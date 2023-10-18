@@ -9,15 +9,18 @@
   },
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
+    "jest": true
   },
   "extends": [
     "react-app",
     "airbnb",
     "prettier",
-    "plugin:storybook/recommended"
+    "plugin:storybook/recommended",
+    "plugin:testing-library/react",
+    "plugin:jest/recommended"
   ],
-  "plugins": ["prettier", "react", "react-hooks"],
+  "plugins": ["prettier", "react", "react-hooks", "testing-library", "jest"],
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module",
@@ -35,7 +38,7 @@
         "storybook/default-exports": "off"
       }
     }
-    ],
+  ],
   "rules": {
     "prettier/prettier": ["warn", {}, { "usePrettierrc": true }],
     "react/react-in-jsx-scope": "off",

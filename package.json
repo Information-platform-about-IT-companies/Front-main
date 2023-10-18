@@ -19,11 +19,13 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .js,.jsx src",
-    "lint-fix": "npm run lint -- --fix",
+    "lint-fix": "npm run lint -- --fix --color",
     "prettier": "prettier --check src/**/*.{js,jsx,css}",
     "prettier-format": "prettier --write src/**/*.{js,jsx,css}",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "prepare": "husky install",
+    "stylelint": "stylelint 'src/**/*.scss' --config .stylelintrc.json; exit 0"
   },
   "eslintConfig": {
     "extends": [
@@ -43,6 +45,19 @@
       "last 1 safari version"
     ]
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js, jsx}": [
+      "lint-fix"
+    ],
+    "*.{json,js,jsx,html}": [
+      "prettier-format"
+    ]
+  },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@storybook/addon-essentials": "^7.5.0",
@@ -59,13 +74,20 @@
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "9.0.0",
     "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-jest": "^27.4.2",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-prettier": "5.0.1",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-storybook": "^0.6.15",
+    "eslint-plugin-testing-library": "^6.1.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.0.1",
     "prettier": "3.0.3",
+    "sass": "^1.69.4",
     "storybook": "^7.5.0",
+    "stylelint": "^15.11.0",
+    "stylelint-config-standard-scss": "^11.0.0",
     "webpack": "^5.89.0"
   }
 }
