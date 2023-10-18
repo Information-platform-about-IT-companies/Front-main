@@ -14,7 +14,8 @@
   "extends": [
     "react-app",
     "airbnb",
-    "prettier"
+    "prettier",
+    "plugin:storybook/recommended"
   ],
   "plugins": ["prettier", "react", "react-hooks"],
   "parserOptions": {
@@ -24,6 +25,17 @@
       "jsx": true
     }
   },
+  "overrides": [
+    {
+      "files": [
+        ",*.stories.@(ts|tsx|js|jsx|mjs|cjs)"
+      ],
+      "rules": {
+        "storybook/hierarchy-separator": "error",
+        "storybook/default-exports": "off"
+      }
+    }
+    ],
   "rules": {
     "prettier/prettier": ["warn", {}, { "usePrettierrc": true }],
     "react/react-in-jsx-scope": "off",
@@ -38,6 +50,8 @@
     "react/jsx-uses-vars": 2,
     "react/no-typos": 0,
     "react/prop-types": ["off"],
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    "import/prefer-default-export": "off",
+    "react/jsx-props-no-spreading": "off"
   }
 }

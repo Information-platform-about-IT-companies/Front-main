@@ -21,7 +21,9 @@
     "lint": "eslint --ext .js,.jsx src",
     "lint-fix": "npm run lint -- --fix",
     "prettier": "prettier --check src/**/*.{js,jsx,css}",
-    "prettier-format": "prettier --write src/**/*.{js,jsx,css}"
+    "prettier-format": "prettier --write src/**/*.{js,jsx,css}",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "eslintConfig": {
     "extends": [
@@ -43,6 +45,16 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@storybook/addon-essentials": "^7.5.0",
+    "@storybook/addon-interactions": "^7.5.0",
+    "@storybook/addon-links": "^7.5.0",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.5.0",
+    "@storybook/preset-create-react-app": "^7.5.0",
+    "@storybook/react": "^7.5.0",
+    "@storybook/react-webpack5": "^7.5.0",
+    "@storybook/testing-library": "^0.2.2",
+    "babel-plugin-named-exports-order": "^0.0.2",
     "eslint": "^8.51.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "9.0.0",
@@ -51,6 +63,9 @@
     "eslint-plugin-prettier": "5.0.1",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "prettier": "3.0.3"
+    "eslint-plugin-storybook": "^0.6.15",
+    "prettier": "3.0.3",
+    "storybook": "^7.5.0",
+    "webpack": "^5.89.0"
   }
 }
