@@ -51,11 +51,11 @@
     }
   },
   "lint-staged": {
-    "*.{js, jsx}": [
-      "lint-fix"
+    "src/**/*.{js, jsx}": [
+      "npm run lint-fix"
     ],
-    "*.{json,js,jsx,html}": [
-      "prettier-format"
+    "src/**/*.{json,js,jsx,html}": [
+      "npm run prettier-format"
     ]
   },
   "devDependencies": {
