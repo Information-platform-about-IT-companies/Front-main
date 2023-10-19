@@ -1,0 +1,51 @@
+.button {
+  box-sizing: border-box;
+  color: #FFF;
+  border-radius: 10px;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &_style_fill {
+    background: linear-gradient(180deg, #605ED6 -0.01%, #5C9AD2 100.02%);
+
+    &:hover {
+      background: #4E4CBF;
+    }
+    &:active {
+      background: #479FBA;
+    }
+
+    &:disabled {
+      background: #C0BFE2;
+    }
+  }
+
+  &_style_outline {
+    background: transparent;
+    border: 1.5px #4E4CBF solid;
+    color: #111111;
+
+    &:hover {
+      border-width: 2px;
+    }
+    &:active {
+      border-width: 3px;
+    }
+
+    &:disabled {
+     // стилей в фигме нет
+    }
+  }
+
+  &_size_small {
+    padding: 12px 32px;
+  }
+
+  &_size_medium {
+    padding: 22px 32px;
+  }
+
+}

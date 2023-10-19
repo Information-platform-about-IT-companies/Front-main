@@ -5,7 +5,6 @@ export const MainContext = createContext(null);
 export default function MainContextProvider({ children }) {
   const [data, setData] = useState({
     // тут будет дата
-    // vcvdvfdf
   });
   const value = useMemo(
     () => ({
