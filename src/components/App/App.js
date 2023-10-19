@@ -10,6 +10,9 @@ function App() {
       <Button type="submit" onClick={() => console.log("atatat")} fill size="medium" style={style}>
         Testtt
       </Button>
+      <Button type="submit" onClick={() => console.log("atatat")} fill size="medium" style={style}>
+        Testtt
+      </Button>
     </div>
   );
 }
