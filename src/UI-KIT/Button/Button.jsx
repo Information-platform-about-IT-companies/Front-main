@@ -14,6 +14,7 @@ export function Button({ type, size, fill, children, onClick, style, icon, ...pr
       style={style}
       {...props}
     >
+      {/* {icon && <span>icon here</span>} */}
       {children}
     </button>
   );
@@ -26,9 +27,11 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func.isRequired,
   style: PropTypes.string,
+  icon: PropTypes.node,
 };
 
 Button.defaultProps = {
   type: "button",
-  style: "",
+  style: {},
+  icon: null,
 };
