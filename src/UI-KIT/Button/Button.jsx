@@ -1,17 +1,16 @@
 import "./Button.scss";
 import PropTypes from "prop-types";
 
-export function Button({ type, size, fill, children, onClick, style, icon, ...props }) {
+export function Button({ type, size, fill, children, onClick, icon, extClassName, ...props }) {
   return (
     <button
       type={type}
       onClick={onClick}
       className={
         fill
-          ? `button button_style_fill button_size_${size}`
-          : `button button_style_outline button_size_${size}`
+          ? `button button_style_fill button_size_${size} ${extClassName}`
+          : `button button_style_outline button_size_${size} ${extClassName}`
       }
-      style={style}
       {...props}
     >
       {/* {icon && <span>icon here</span>} */}
@@ -26,12 +25,12 @@ Button.propTypes = {
   fill: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func.isRequired,
-  style: PropTypes.string,
   icon: PropTypes.node,
+  extClassName: PropTypes.string,
 };
 
 Button.defaultProps = {
   type: "button",
-  style: {},
   icon: null,
+  extClassName: null,
 };

@@ -1,4 +1,5 @@
 import { Button } from "./Button";
+import "./Button.scss";
 
 const meta = {
   title: "UI-KIT/Button",
@@ -39,8 +40,9 @@ const meta = {
     icon: {
       description: "Необязательный параметр. Передаем внутрь компонент с иконкой",
     },
-    style: {
-      description: "Необязательный параметр. Для дополнительных стилей",
+    extClassName: {
+      description:
+        "Необязательный параметр. Для дополнительных стилей (например, изменение обводки кнопки",
     },
   },
 };
@@ -84,8 +86,6 @@ export const MediumButtonWithStyle = {
     children: "Большая кнопка с другими стилями",
     fill: false,
     size: "medium",
-    style: {
-      borderRadius: "0px 10px 10px 0px",
-    },
+    extClassName: "forStory",
   },
 };
