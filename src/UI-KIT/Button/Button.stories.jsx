@@ -1,4 +1,5 @@
 import { Button } from "./Button";
+import "./Button.scss";
 
 const meta = {
   title: "UI-KIT/Button",
@@ -39,8 +40,9 @@ const meta = {
     icon: {
       description: "Необязательный параметр. Передаем внутрь компонент с иконкой",
     },
-    style: {
-      description: "Необязательный параметр. Для дополнительных стилей",
+    extClassName: {
+      description:
+        "Необязательный параметр. Для дополнительных стилей (например, изменение обводки кнопки",
     },
   },
 };
@@ -67,7 +69,7 @@ export const MediumButtonWithFill = {
   args: {
     children: "Большая кнопка с заливкой",
     fill: true,
-    size: "small",
+    size: "medium",
   },
 };
 
@@ -75,7 +77,7 @@ export const MediumButtonWithOutline = {
   args: {
     children: "Большая кнопка с обводкой",
     fill: false,
-    size: "small",
+    size: "medium",
   },
 };
 
@@ -83,9 +85,7 @@ export const MediumButtonWithStyle = {
   args: {
     children: "Большая кнопка с другими стилями",
     fill: false,
-    size: "small",
-    style: {
-      borderRadius: "0px 10px 10px 0px",
-    },
+    size: "medium",
+    extClassName: "forStory",
   },
 };
