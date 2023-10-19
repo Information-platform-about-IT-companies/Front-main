@@ -1,4 +1,6 @@
-function IconSearch({ size, color, extClassName }) {
+import PropTypes from "prop-types";
+
+export default function IconSearch({ size, color, extClassName }) {
   return (
     <svg
       width={size}
@@ -16,4 +18,8 @@ function IconSearch({ size, color, extClassName }) {
   );
 }
 
-export default IconSearch;
+IconSearch.propTypes = {
+  size: PropTypes.oneOf(["24", "32", "60"]).isRequired,
+  color: PropTypes.string.isRequired,
+  extClassName: PropTypes.string.isRequired,
+};

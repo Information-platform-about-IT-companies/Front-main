@@ -1,4 +1,6 @@
-function IconPin({ size, color, extClassName }) {
+import PropTypes from "prop-types";
+
+export default function IconPin({ size, color, extClassName }) {
   return (
     <svg
       width={size}
@@ -20,4 +22,8 @@ function IconPin({ size, color, extClassName }) {
   );
 }
 
-export default IconPin;
+IconPin.propTypes = {
+  size: PropTypes.oneOf(["24", "32", "60"]).isRequired,
+  color: PropTypes.string.isRequired,
+  extClassName: PropTypes.string.isRequired,
+};

@@ -1,4 +1,8 @@
-function IconAccount({ size, color, extClassName }) {
+import PropTypes from "prop-types";
+
+export default function IconAccount(props) {
+  const { size, color, extClassName } = props;
+
   return (
     <svg
       width={size}
@@ -20,4 +24,8 @@ function IconAccount({ size, color, extClassName }) {
   );
 }
 
-export default IconAccount;
+IconAccount.propTypes = {
+  size: PropTypes.oneOf(["24", "32", "60"]).isRequired,
+  color: PropTypes.string.isRequired,
+  extClassName: PropTypes.string.isRequired,
+};

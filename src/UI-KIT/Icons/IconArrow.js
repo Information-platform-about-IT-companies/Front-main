@@ -1,4 +1,6 @@
-function IconArrow({ size, color, extClassName, angle = "0" }) {
+import PropTypes from "prop-types";
+
+export default function IconArrow({ size, color, extClassName, angle = "0" }) {
   return (
     <svg
       width={size}
@@ -17,4 +19,9 @@ function IconArrow({ size, color, extClassName, angle = "0" }) {
   );
 }
 
-export default IconArrow;
+IconArrow.propTypes = {
+  size: PropTypes.oneOf(["24", "32", "60"]).isRequired,
+  color: PropTypes.string.isRequired,
+  extClassName: PropTypes.string.isRequired,
+  angle: PropTypes.oneOf(["0", "90", "180", "270"]).isRequired,
+};
