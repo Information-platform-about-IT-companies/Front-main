@@ -8,6 +8,7 @@ import Profile from "components/Profile/Profile";
 import { useState } from "react";
 import Main from "components/Main/Main";
 import WelcomePage from "components/WelcomePage/WelcomePage";
+import ForgetPassword from "components/FogetPassword/ForgetPassword";
 
 function App() {
   const [loggedIn, setLoggetIn] = useState(null);
@@ -23,6 +24,7 @@ function App() {
         <Route path="/home" element={<Main />} />
         <Route path="/signin" element={<Login />} />
         <Route path="/signup" element={<Register />} />
+        <Route path="/passrecovery" element={<ForgetPassword />} />
         <Route path="/404" element={<NotFound />} />
         <Route path="/*" element={<Navigate to="/404" replace />} />
       </Routes>
