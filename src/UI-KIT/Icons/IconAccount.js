@@ -1,8 +1,6 @@
 import PropTypes from "prop-types";
 
-export default function IconAccount(props) {
-  const { size, color, extClassName } = props;
-
+export default function IconAccount({ size, color, extClassName }) {
   return (
     <svg
       width={size}
