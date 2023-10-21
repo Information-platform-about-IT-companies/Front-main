@@ -1,0 +1,19 @@
+.label {
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: none;
+  padding: 8px 12px;
+  background-color: rgba(140, 92, 241, 0.1019607843);
+  height: 35px;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.label:hover {
+  background-color: #e8defc;
+  cursor: pointer;
+}
+.label_title {
+  margin: 0;
+  color: #000000;
+  font-size: 16px;
+}/*# sourceMappingURL=Label.css.map */
