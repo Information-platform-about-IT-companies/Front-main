@@ -20,8 +20,13 @@ export default function IconArrow({ size, color, extClassName, angle = "0" }) {
 }
 
 IconArrow.propTypes = {
-  size: PropTypes.oneOf(["24", "32", "60"]).isRequired,
+  size: PropTypes.oneOf(["24", "32", "60"]),
   color: PropTypes.string.isRequired,
-  extClassName: PropTypes.string.isRequired,
   angle: PropTypes.oneOf(["0", "90", "180", "270"]).isRequired,
+  extClassName: PropTypes.string,
+};
+
+IconArrow.defaultProps = {
+  size: "32",
+  extClassName: null,
 };
