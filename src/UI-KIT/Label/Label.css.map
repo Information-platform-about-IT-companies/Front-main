@@ -1,1 +1,1 @@
-{"version":3,"sources":["Label.scss","Label.css","../../style/variables.scss"],"names":[],"mappings":"AAGA;EACI,sBAAA;EACA,mBAAA;EACA,YAAA;EACA,iBAAA;EACA,kDAAA;EACA,YAAA;EACA,uBAAA;EAAA,kBAAA;ACFJ;ADGI;EACI,yBAAA;EACA,eAAA;ACDR;ADGI;EACI,SAAA;EACA,cENA;EFOA,eEFU;ADClB","file":"Label.css"}
+{"version":3,"sources":["Label.scss","../../style/variables.scss","Label.css"],"names":[],"mappings":"AAEA;EACE,sBAAA;EACA,mBAAA;EACA,YAAA;EACA,iBAAA;EACA,kDCMY;EDLZ,YAAA;EACA,uBAAA;EAAA,kBAAA;AEDF;AFEE;EACE,yBCGS;EDFT,eAAA;AEAJ;AFEE;EACE,SAAA;EACA,cCLI;EDMJ,eCGc;ACHlB","file":"Label.css"}

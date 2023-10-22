@@ -1,22 +1,20 @@
-@import '../../style/mixins.scss';
-@import '../../style/variables.scss';
+@import "../../style/variables.scss";
 
 .label {
-    box-sizing: border-box;
-    border-radius: 10px;
-    border: none;
-    padding: 8px 12px;
-    background-color: #8c5cf11a;
-    height: 35px;
-    width: fit-content;
-    &:hover {
-        background-color: #e8defc;
-        cursor: pointer;
-      }
-    &_title {
-        margin: 0;
-        color: $black;
-        font-size: $textSizeDefault;
-    }
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: none;
+  padding: 8px 12px;
+  background-color: $lightViolet;
+  height: 35px;
+  width: fit-content;
+  &:hover {
+    background-color: $darkViolet;
+    cursor: pointer;
+  }
+  &_title {
+    margin: 0;
+    color: $black;
+    font-size: $textSizeDefault;
+  }
 }
-  
