@@ -9,9 +9,7 @@ import IconSearch from "./IconSearch";
 
 const icons = { IconAccount, IconArrow, IconOctopusArrow, IconPin, IconRound, IconSearch };
 
-function Icon({ icon, ...props }) {
+export default function Icon({ icon, ...props }) {
   const RenderIcon = useMemo(() => icons[icon], [icon]);
   return <RenderIcon {...props} />;
 }
-
-export default Icon;
