@@ -23,7 +23,12 @@ export default function IconPin({ size, color, extClassName }) {
 }
 
 IconPin.propTypes = {
-  size: PropTypes.oneOf(["24", "32", "60"]).isRequired,
+  size: PropTypes.oneOf(["24", "32", "60"]),
   color: PropTypes.string.isRequired,
-  extClassName: PropTypes.string.isRequired,
+  extClassName: PropTypes.string,
+};
+
+IconPin.defaultProps = {
+  size: "32",
+  extClassName: null,
 };

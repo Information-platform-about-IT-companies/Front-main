@@ -33,7 +33,12 @@ export default function IconOctopusArrow({ size, color, extClassName }) {
 }
 
 IconOctopusArrow.propTypes = {
-  size: PropTypes.oneOf(["24", "32", "60"]).isRequired,
+  size: PropTypes.oneOf(["24", "32", "60"]),
   color: PropTypes.string.isRequired,
-  extClassName: PropTypes.string.isRequired,
+  extClassName: PropTypes.string,
+};
+
+IconOctopusArrow.defaultProps = {
+  size: "60",
+  extClassName: null,
 };
