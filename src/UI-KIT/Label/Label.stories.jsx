@@ -13,7 +13,7 @@ const meta = {
     },
   },
   argTypes: {
-    children: {
+    title: {
       description: "Обязательный параметр. Используйте для title",
     },
     extClassName: {
@@ -26,6 +26,6 @@ export default meta;
 
 export const DefaultLabel = {
   args: {
-    children: "Разработка мобильных приложений",
+    title: "Разработка мобильных приложений",
   },
 };

@@ -8,13 +8,10 @@
   background-color: $lightViolet;
   height: 35px;
   width: fit-content;
+  color: $black;
+  font-size: $textSizeDefault;
   &:hover {
     background-color: $darkViolet;
     cursor: pointer;
-  }
-  &_title {
-    margin: 0;
-    color: $black;
-    font-size: $textSizeDefault;
   }
 }

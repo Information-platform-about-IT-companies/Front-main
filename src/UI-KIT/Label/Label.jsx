@@ -1,16 +1,12 @@
 import "./Label.scss";
 import PropTypes from "prop-types";
 
-export function Label({ children, extClassName, ...props }) {
-  return (
-    <div className={`label ${extClassName}`} {...props}>
-      <p className="label_title">{children}</p>
-    </div>
-  );
+export function Label({ title, extClassName }) {
+  return <span className={`label ${extClassName}`}>{title}</span>;
 }
 
 Label.propTypes = {
-  children: PropTypes.node.isRequired,
+  title: PropTypes.string.isRequired,
   extClassName: PropTypes.string,
 };
 
