@@ -2,11 +2,11 @@ import { useState } from "react";
 import "./Checkbox.scss";
 import PropTypes from "prop-types";
 
-export function Checkbox({ title, value, onChange, ...props }) {
-  const [isChecked, setisChecked] = useState(false);
+export function Checkbox({ title, name, id }) {
+  const [isChecked, setIsChecked] = useState(false);
 
-  function handleChange(e) {
-    setisChecked(!isChecked);
+  function handleChange() {
+    setIsChecked((prevIsChecked) => !prevIsChecked);
   }
 
   return (
@@ -14,7 +14,8 @@ export function Checkbox({ title, value, onChange, ...props }) {
       <input
         className="checkbox_input"
         type="checkbox"
-        id="checkbox"
+        name={name}
+        id={id}
         checked={isChecked}
         onChange={() => handleChange()}
       />
@@ -24,7 +25,7 @@ export function Checkbox({ title, value, onChange, ...props }) {
 }
 
 Checkbox.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  value: PropTypes.bool.isRequired,
-  onChange: PropTypes.func.isRequired,
 };

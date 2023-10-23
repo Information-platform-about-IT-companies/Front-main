@@ -15,11 +15,11 @@ const meta = {
     title: {
       description: "Обязательный параметр. Используйте для title",
     },
-    onChange: {
-      description: "Обязательный параметр. Передаем внутрь функцию",
+    id: {
+      description: "Обязательный параметр. Передаем внутрь id чекбокса",
     },
-    value: {
-      description: "Обязательный параметр. Передает значение чекбокса",
+    name: {
+      description: "Обязательный параметр. Передаем внутрь name чекбокса",
     },
   },
 };
@@ -29,6 +29,7 @@ export default meta;
 export const DefaultCheckbox = {
   args: {
     title: "Разработка программного обеспечения на заказ",
-    value: true,
+    id: "1",
+    name: "checkbox",
   },
 };
