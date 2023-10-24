@@ -17,7 +17,7 @@
     min-width: 15px;
     height: 15px;
     border: 1px solid $black;
-    border-radius: 28%;
+    border-radius: 4px;
     background-color: white;
     @include flex(center, center);
     margin-right: 8px;
@@ -28,7 +28,7 @@
     width: 10px;
     height: 10px;
     border: none;
-    border-radius: 28%;
-    background-color: #8c5cf1;
+    border-radius: 2px;
+    background-color: $darkBlue;
   }
 }
