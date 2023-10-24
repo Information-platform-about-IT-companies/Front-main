@@ -1,7 +1,8 @@
+@import "src/style/main";
+
 .form {
   width: 100%;
-  max-width: content;
-  background-color: transparent;
+  max-width: max-content;
   padding: 32px;
-  background-color: $seaBlue-20;
+  background-color: $sea-blue-20;
 }
