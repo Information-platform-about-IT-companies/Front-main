@@ -1,17 +1,18 @@
-@import "../../style/variables.scss";
+@import "src/style/main";
 
 .label {
   box-sizing: border-box;
   border-radius: 10px;
   border: none;
   padding: 8px 12px;
-  background-color: $seaBlue-20;
+  background-color: $sea-blue-20;
   height: 35px;
   width: fit-content;
   color: $black;
-  font-size: $textSizeDefault;
+  font-size: $text-size-default;
+
   &:hover {
-    background-color: $seaBlue-50;
+    background-color: $sea-blue-50;
     cursor: pointer;
   }
 }
