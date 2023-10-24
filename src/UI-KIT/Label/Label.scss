@@ -5,13 +5,13 @@
   border-radius: 10px;
   border: none;
   padding: 8px 12px;
-  background-color: $lightViolet;
+  background-color: $seaBlue-20;
   height: 35px;
   width: fit-content;
   color: $black;
   font-size: $textSizeDefault;
   &:hover {
-    background-color: $darkViolet;
+    background-color: $seaBlue-50;
     cursor: pointer;
   }
 }
