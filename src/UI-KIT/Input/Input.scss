@@ -1,0 +1,49 @@
+@import "/src/style/variables.scss";
+
+.input {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.input__lable {
+  width: 20%;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.input__field {
+  width: 80%;
+  padding: 12px;
+  background-color: $lightGrey;
+  border: 1px solid $darkBlue;
+  border-radius: 10px;
+  font-size: 16px;
+  color: $black-98;
+  font-weight: 400;
+  line-height: 22.4px;
+
+  &:auto-fill {
+    background-color: $lightGrey;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    color: $black-50;
+  }
+}
+
+.input__field-error {
+  border-color: $red;
+}
+
+.input__error-text {
+  width: 100%;
+  color: $red;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 22.4px;
+}

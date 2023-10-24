@@ -1,36 +1,42 @@
 import "./Input.scss";
 import PropTypes from "prop-types";
 
-function Input({
+export function Input({
   lable,
   extClassNameLable,
   type,
   name,
   id,
   onChange,
+  value,
   extClassNameInput,
   required,
   placeholder,
   error,
   ...props
 }) {
+  function errorStyle() {
+    return error ? "input__field-error" : "";
+  }
+
   return (
-    <>
-      <lable className={`lable ${extClassNameLable}`} htmlFor={id}>
-        ${lable}
+    <div className="input">
+      <lable className={`input__lable ${extClassNameLable}`} htmlFor={id}>
+        {lable}
       </lable>
       <input
         type={type}
         name={name}
         id={id}
-        className={`input ${extClassNameInput}`}
+        className={`input__field ${extClassNameInput} ${errorStyle()}`}
         required={required}
         placeholder={placeholder}
         onChange={onChange}
+        value={value}
         {...props}
       />
-      <span className="input__error">${error}</span>
-    </>
+      <span className="input__error-text">{error}</span>
+    </div>
   );
 }
 
@@ -44,6 +50,7 @@ Input.propTypes = {
   required: PropTypes.bool,
   placeholder: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+  value: PropTypes.string,
   error: PropTypes.string,
 };
 
@@ -54,7 +61,6 @@ Input.defaultProps = {
   extClassNameInput: null,
   required: false,
   placeholder: "",
+  value: null,
   error: null,
 };
-
-export default Input;
