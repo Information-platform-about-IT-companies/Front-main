@@ -22,7 +22,7 @@ const meta = {
     size: {
       description:
         "Обязательный параметр указанием размера кнопки (условно маленькая или большая. Может принимать 2 значения - small | medium",
-      options: ["small", "medium"],
+      options: ["standard", "medium"],
       control: { type: "radio" },
     },
     fill: {
@@ -31,8 +31,8 @@ const meta = {
       options: [true, false],
       control: { type: "radio" },
     },
-    children: {
-      description: "Обязательный параметр. Используйте для title",
+    title: {
+      description: "Обязательный параметр. Используйте для текста на кнопке",
     },
     onClick: {
       description: "Обязательный параметр. Передаем внутрь функцию",
@@ -49,25 +49,43 @@ const meta = {
 
 export default meta;
 
-export const SmallButtonWithFill = {
+export const ButtonWithFill = {
   args: {
-    children: "Кнопка с заливкой",
+    title: "Кнопка с заливкой",
     fill: true,
-    size: "small",
+    size: "standard",
   },
 };
 
-export const SmallButtonWithOutline = {
+export const ButtonWithOutline = {
   args: {
-    children: "Кнопка с обводкой",
+    title: "Кнопка с обводкой",
     fill: false,
-    size: "small",
+    size: "standard",
+  },
+};
+
+export const DisabledButtonWithFill = {
+  args: {
+    title: "Неактивная кнопка с заливкой",
+    fill: true,
+    size: "standard",
+    disabled: true,
+  },
+};
+
+export const DisabledButtonWithOutline = {
+  args: {
+    title: "Неактивная Кнопка с обводкой",
+    fill: false,
+    size: "standard",
+    disabled: true,
   },
 };
 
 export const MediumButtonWithFill = {
   args: {
-    children: "Большая кнопка с заливкой",
+    title: "Большая кнопка с заливкой",
     fill: true,
     size: "medium",
   },
@@ -75,7 +93,7 @@ export const MediumButtonWithFill = {
 
 export const MediumButtonWithOutline = {
   args: {
-    children: "Большая кнопка с обводкой",
+    title: "Большая кнопка с обводкой",
     fill: false,
     size: "medium",
   },
@@ -83,7 +101,7 @@ export const MediumButtonWithOutline = {
 
 export const MediumButtonWithStyle = {
   args: {
-    children: "Большая кнопка с другими стилями",
+    title: "Большая кнопка с другими стилями",
     fill: false,
     size: "medium",
     extClassName: "forStory",

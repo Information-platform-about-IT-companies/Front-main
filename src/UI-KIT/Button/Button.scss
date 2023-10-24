@@ -1,32 +1,60 @@
+@import "src/style/main";
+
 .button {
   box-sizing: border-box;
-  color: #fff;
+  position: relative;
+  overflow: hidden;
   border-radius: 10px;
   border: none;
+  z-index: 1;
 
   &:hover {
     cursor: pointer;
   }
 
-  &_style_fill {
-    background: linear-gradient(180deg, #605ed6 -0.01%, #5c9ad2 100.02%);
+  &:disabled {
+    cursor: not-allowed;
+  }
 
-    &:hover {
-      background: #4e4cbf;
+  &_style_fill {
+    background: $primaryGradient;
+    color: $white;
+
+    &::before {
+      position: absolute;
+      background: $darkBlue;
+      content: "";
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+      transition: opacity $animation;
+      opacity: 0;
     }
-    &:active {
-      background: #479fba;
+
+    &:hover::before {
+      opacity: 1;
+    }
+
+    &:active::before {
+      background: $seaBlue;
+      transition: background $animation;
     }
 
     &:disabled {
-      background: #c0bfe2;
+      background: $darkBlue-20;
+
+      &:hover::before {
+        opacity: 0;
+      }
     }
   }
 
   &_style_outline {
     background: transparent;
-    border: 1.5px #4e4cbf solid;
-    color: #111111;
+    border: 1.5px $darkBlue solid;
+    color: $black;
 
     &:hover {
       border-width: 2px;
@@ -36,11 +64,12 @@
     }
 
     &:disabled {
-      // стилей в фигме нет
+      border-width: 1.5px;
+      border-color: $darkBlue-20;
     }
   }
 
-  &_size_small {
+  &_size_standard {
     padding: 12px 32px;
   }
 
