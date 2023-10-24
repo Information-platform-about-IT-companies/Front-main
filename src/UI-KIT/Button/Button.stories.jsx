@@ -104,6 +104,6 @@ export const MediumButtonWithStyle = {
     title: "Большая кнопка с другими стилями",
     fill: false,
     size: "medium",
-    extClassName: "forStory",
+    extClassName: "for-story",
   },
 };
