@@ -1,9 +1,8 @@
-@import "/src/style/variables.scss";
+@import "/src/style/variables";
 
 .input {
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
 }
 
 .input__lable {
@@ -15,17 +14,13 @@
 .input__field {
   width: 80%;
   padding: 12px;
-  background-color: $lightGrey;
-  border: 1px solid $darkBlue;
+  background-color: $light-grey;
+  border: 1px solid $dark-blue;
   border-radius: 10px;
   font-size: 16px;
   color: $black-98;
   font-weight: 400;
   line-height: 22.4px;
-
-  &:auto-fill {
-    background-color: $lightGrey;
-  }
 
   &:focus {
     outline: none;
@@ -41,6 +36,7 @@
 }
 
 .input__error-text {
+  padding-top: 4px;
   width: 100%;
   color: $red;
   font-size: 16px;

@@ -1,17 +1,6 @@
 import { Input } from "./Input";
 import "./Input.scss";
 
-/* lable, +
-extClassNameLable,+
-type, +
-name, +
-id, +
-onChange, +
-extClassNameInput, +
-required, +
-placeholder, +
-error, */
-
 const meta = {
   title: "UI-KIT/Input",
   component: Input,

@@ -11,6 +11,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.16.0",
     "react-scripts": "5.0.1",
+    "stylelint-selector-bem-pattern": "^3.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -57,8 +58,7 @@
     "{src/**/*, src/**/**/*}.{json,js,jsx,html}": [
       "npm run prettier-format"
     ],
-  "{src/**/*, src/**/**/*}.{css,scss}":
-    [
+    "{src/**/*, src/**/**/*}.{css,scss}": [
       "npm run stylelint -- --fix"
     ]
   },
