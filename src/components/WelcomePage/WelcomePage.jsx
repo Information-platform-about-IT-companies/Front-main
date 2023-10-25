@@ -1,4 +1,4 @@
-import { Input } from "UI-KIT/Input/Input";
+import { Button } from "../../UI-KIT/Button/Button";
 
 function WelcomePage() {
   return (

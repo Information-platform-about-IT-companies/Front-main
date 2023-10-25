@@ -1,6 +1,7 @@
 {
   "extends": "stylelint-config-standard-scss",
   "rules": {
-    "color-named": "never"
+    "color-named": "never",
+    "no-empty-source": null
   }
 }

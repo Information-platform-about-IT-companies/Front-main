@@ -1,7 +1,7 @@
 import "./Button.scss";
 import PropTypes from "prop-types";
 
-export function Button({ type, size, fill, children, onClick, icon, extClassName, ...props }) {
+export function Button({ type, size, fill, title, onClick, icon, extClassName, ...props }) {
   return (
     <button
       type={type}
@@ -14,7 +14,7 @@ export function Button({ type, size, fill, children, onClick, icon, extClassName
       {...props}
     >
       {/* {icon && <span>icon here</span>} */}
-      {children}
+      {title}
     </button>
   );
 }
@@ -23,7 +23,7 @@ Button.propTypes = {
   type: PropTypes.string,
   size: PropTypes.string.isRequired,
   fill: PropTypes.bool.isRequired,
-  children: PropTypes.node.isRequired,
+  title: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   icon: PropTypes.node,
   extClassName: PropTypes.string,

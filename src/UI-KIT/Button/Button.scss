@@ -1,46 +1,73 @@
+@import "src/style/main";
+
 .button {
   box-sizing: border-box;
-  color: #fff;
+  position: relative;
+  overflow: hidden;
   border-radius: 10px;
   border: none;
+  z-index: 1;
 
   &:hover {
     cursor: pointer;
   }
 
-  &_style_fill {
-    background: linear-gradient(180deg, #605ed6 -0.01%, #5c9ad2 100.02%);
+  &:disabled {
+    cursor: not-allowed;
+  }
 
-    &:hover {
-      background: #4e4cbf;
+  &_style_fill {
+    background: $primary-gradient;
+    color: $white;
+
+    &::before {
+      position: absolute;
+      background: $dark-blue;
+      content: "";
+      inset: 0;
+      z-index: -1;
+      transition: opacity $animation;
+      opacity: 0;
     }
-    &:active {
-      background: #479fba;
+
+    &:hover::before {
+      opacity: 1;
+    }
+
+    &:active::before {
+      background: $sea-blue;
+      transition: background $animation;
     }
 
     &:disabled {
-      background: #c0bfe2;
+      background: $dark-blue-20;
+
+      &:hover::before {
+        opacity: 0;
+      }
     }
   }
 
   &_style_outline {
     background: transparent;
-    border: 1.5px #4e4cbf solid;
-    color: #111111;
+    border: 1.5px $dark-blue solid;
+    color: $black;
 
     &:hover {
       border-width: 2px;
     }
+
     &:active {
       border-width: 3px;
     }
 
     &:disabled {
-      // стилей в фигме нет
+      border-width: 1.5px;
+      border-color: $dark-blue-20;
     }
   }
 
-  &_size_small {
+  &_size_standard {
     padding: 12px 32px;
   }
 
@@ -49,6 +76,6 @@
   }
 }
 
-.forStory {
-  border-radius: 0px 10px 10px 0px;
+.for-story {
+  border-radius: 0 10px 10px 0;
 }
