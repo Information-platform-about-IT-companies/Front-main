@@ -1,4 +1,4 @@
-@import "src/style/main";
+@import "src/assets/style/main";
 
 .checkbox {
   color: $black;
@@ -20,14 +20,14 @@
     border: 1px solid $black;
     border-radius: 4px;
     background-color: $white;
-  }
 
-  &__input[type="checkbox"]:checked::before {
-    content: "";
-    width: 10px;
-    height: 10px;
-    border: none;
-    border-radius: 2px;
-    background-color: $dark-blue;
+    &:checked::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border: none;
+      border-radius: 2px;
+      background-color: $dark-blue;
+    }
   }
 }
