@@ -1,0 +1,17 @@
+{
+  "extends": "stylelint-config-standard-scss",
+  "plugins": ["stylelint-selector-bem-pattern"],
+  "rules": {
+    "color-named": "never",
+    "no-empty-source": null,
+    "selector-class-pattern": null,
+    "plugin/selector-bem-pattern": {
+      "componentName": "[A-Z]+",
+      "componentSelectors": {
+        "initial": "^\\.{componentName}(?:-[a-z]+)?$",
+        "combined": "^\\.combined-{componentName}-[a-z]+$"
+      },
+      "utilitySelectors": "^\\.util-[a-z]+$"
+    }
+  }
+}
