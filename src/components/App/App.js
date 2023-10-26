@@ -9,12 +9,14 @@ import { useState } from "react";
 import Main from "components/Main/Main";
 import WelcomePage from "components/WelcomePage/WelcomePage";
 import ForgetPassword from "components/FogetPassword/ForgetPassword";
+import { Filter } from "components/Filter/Filter";
 
 function App() {
   const [loggedIn, setLoggetIn] = useState(null);
   return (
     <>
       <div>Information-platform-about-IT-companies</div>
+      <Filter />
       <Routes>
         <Route
           path="/profile"

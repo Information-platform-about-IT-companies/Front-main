@@ -1,0 +1,9 @@
+@import "style/variables";
+
+.filter__tabs {
+  display: flex;
+  gap: 40px;
+  padding: 8px 20px;
+  border: 1px solid $dark-blue;
+  border-radius: 10px;
+}
