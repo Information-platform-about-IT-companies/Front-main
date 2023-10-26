@@ -1,6 +1,7 @@
 @import "src/style/main";
 
 .link {
+  position: relative;
   padding: 4px 0;
   color: $black;
   text-decoration: none;
@@ -10,5 +11,18 @@
     cursor: pointer;
     border-bottom: 1px solid $sea-blue;
   }
-}
 
+  &_style_list {
+    &::after {
+      position: absolute;
+      content: "";
+      width: 4px;
+      height: 4px;
+      top: 50%;
+      left: -15px;
+      transform: translate(0, -50%);
+      border-radius: 40%;
+      background-color: $black;
+    }
+  }
+}
