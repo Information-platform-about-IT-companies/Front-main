@@ -1,6 +1,7 @@
 import Input from "UI-KIT/Input/Input";
 import "./Input.scss";
 import IconSearch from "UI-KIT/Icons/IconSearch";
+import Icon from "UI-KIT/Icons";
 
 const meta = {
   title: "UI-KIT/Input",
@@ -59,9 +60,7 @@ export default meta;
 
 export const InputWithFill = {
   args: {
-    lable: "Имя",
     value: "Василий Пупкин",
-    icon: IconSearch(32, "red"),
   },
 };
 
@@ -70,6 +69,13 @@ export const ActiveInput = {};
 export const InputWithHelp = {
   args: {
     placeholder: "Василий Пупкин",
+  },
+};
+
+export const InputWithIcon = {
+  args: {
+    value: "Вася Пупкин",
+    icon: <Icon icon="IconAccount" size="24" color="#4E4CBF" />,
   },
 };
 
