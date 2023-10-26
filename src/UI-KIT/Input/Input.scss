@@ -5,15 +5,19 @@
   flex-flow: column wrap;
 }
 
+.input__container {
+  position: relative;
+}
+
 .input__label {
-  width: 20%;
+  padding-bottom: 4px;
   font-weight: 400;
   font-size: 16px;
-  line-height: 19.6px;
+  font-style: normal;
+  line-height: 140%;
 }
 
 .input__field {
-  width: 80%;
   padding: 12px;
   background-color: $light-grey;
   border: 1px solid $dark-blue;
@@ -31,6 +35,16 @@
     color: $black;
     opacity: 0.8;
   }
+}
+
+.input__field_icon {
+  padding-left: 56px;
+}
+
+.input__field-icon {
+  position: absolute;
+  top: 25%;
+  left: 20px;
 }
 
 .input__field-error {

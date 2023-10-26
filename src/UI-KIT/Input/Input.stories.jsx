@@ -1,5 +1,6 @@
-import { Input } from "./Input";
+import Input from "UI-KIT/Input/Input";
 import "./Input.scss";
+import IconSearch from "UI-KIT/Icons/IconSearch";
 
 const meta = {
   title: "UI-KIT/Input",
@@ -58,7 +59,9 @@ export default meta;
 
 export const InputWithFill = {
   args: {
+    lable: "Имя",
     value: "Василий Пупкин",
+    icon: IconSearch(32, "red"),
   },
 };
 
