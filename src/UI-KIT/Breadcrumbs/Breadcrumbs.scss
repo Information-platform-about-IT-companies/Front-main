@@ -1,12 +1,11 @@
-@import "/src/style/variables";
-@import "/src/style/mixins";
+@import "/src/style/main";
 
 .breadcrumbs {
   box-sizing: border-box;
   font-size: $text-size-default;
   padding: 0;
 
-  @include flex($align: center, $justify: flex-start, $direction: row);
+  @include flex(center, flex-start, row);
 
   &__element {
     position: relative;
