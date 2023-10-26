@@ -51,7 +51,7 @@
       cursor: pointer;
       border-bottom-width: 1px;
       border-bottom-style: solid;
-      border-image: $primaryGradient;
+      border-image: $primary-gradient;
       border-image-slice: 1;
     }
   }
@@ -61,6 +61,6 @@
   }
 }
 
-.forStory {
+.for-story {
   color: #777;
 }

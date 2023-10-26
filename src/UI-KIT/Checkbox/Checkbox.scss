@@ -22,7 +22,7 @@
     background-color: $white;
   }
 
-  &__input[type="checkbox"]:checked::before {
+  &_input[type="checkbox"]:checked::before {
     content: "";
     width: 10px;
     height: 10px;
