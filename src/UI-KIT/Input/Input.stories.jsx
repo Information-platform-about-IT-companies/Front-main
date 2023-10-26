@@ -14,10 +14,10 @@ const meta = {
     },
   },
   argTypes: {
-    lable: {
+    label: {
       description: "Необязательный параметр с указанием названия поля ввода.",
     },
-    extClassNameLable: {
+    extClassNameLabel: {
       description:
         "Необязательный параметр для добавления дополнительных стилей заголовку поля ввода",
     },
