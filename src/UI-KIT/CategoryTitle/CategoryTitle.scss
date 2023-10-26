@@ -1,0 +1,19 @@
+@import "src/style/main";
+
+.category {
+  box-sizing: border-box;
+  color: $black;
+  font-weight: 700;
+  border: 2px solid $dark-blue;
+  border-radius: 10px;
+  width: 285px;
+  height: 56px;
+  margin: 0;
+  padding: 8px, 0;
+
+  @include flex(center, center);
+
+  &_icon {
+    margin-right: 12px;
+  }
+}
