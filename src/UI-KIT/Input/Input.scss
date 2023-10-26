@@ -1,0 +1,45 @@
+@import "/src/style/variables";
+
+.input {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.input__lable {
+  width: 20%;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.input__field {
+  width: 80%;
+  padding: 12px;
+  background-color: $light-grey;
+  border: 1px solid $dark-blue;
+  border-radius: 10px;
+  font-size: 16px;
+  color: $black-98;
+  font-weight: 400;
+  line-height: 22.4px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    color: $black-50;
+  }
+}
+
+.input__field-error {
+  border-color: $red;
+}
+
+.input__error-text {
+  padding-top: 4px;
+  width: 100%;
+  color: $red;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 22.4px;
+}
