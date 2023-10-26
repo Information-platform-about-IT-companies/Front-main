@@ -1,14 +1,17 @@
-import Login from "components/Login/Login";
-import "./App.scss";
+// Сторонние библиотеки
+import { useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
+// Компоненты
+import Login from "components/Login/Login";
 import Register from "components/Register/Register";
 import NotFound from "components/NotFound/NotFound";
 import ProtectedRouteElement from "components/ProtectedRoute/ProtectedRoute";
 import Profile from "components/Profile/Profile";
-import { useState } from "react";
 import Main from "components/Main/Main";
 import WelcomePage from "components/WelcomePage/WelcomePage";
-import ForgetPassword from "components/FogetPassword/ForgetPassword";
+import ForgetPassword from "components/ForgetPassword/ForgetPassword";
+// Стили
+import "./App.scss";
 
 function App() {
   const [loggedIn, setLoggetIn] = useState(null);

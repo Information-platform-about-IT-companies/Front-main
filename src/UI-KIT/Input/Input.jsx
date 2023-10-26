@@ -1,9 +1,9 @@
 import "./Input.scss";
 import PropTypes from "prop-types";
 
-export function Input({
-  lable,
-  extClassNameLable,
+function Input({
+  label,
+  extClassNameLabel,
   type,
   name,
   id,
@@ -21,9 +21,9 @@ export function Input({
 
   return (
     <div className="input">
-      <lable className={`input__lable ${extClassNameLable}`} htmlFor={id}>
-        {lable}
-      </lable>
+      <label className={`input__label ${extClassNameLabel}`} htmlFor={id}>
+        {label}
+      </label>
       <input
         type={type}
         name={name}
@@ -40,9 +40,11 @@ export function Input({
   );
 }
 
+export default Input;
+
 Input.propTypes = {
-  lable: PropTypes.string,
-  extClassNameLable: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  extClassNameLabel: PropTypes.string,
   type: PropTypes.string,
   name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
@@ -55,8 +57,7 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
-  lable: null,
-  extClassNameLable: null,
+  extClassNameLabel: null,
   type: "text",
   extClassNameInput: null,
   required: false,

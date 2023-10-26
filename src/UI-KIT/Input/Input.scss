@@ -1,14 +1,15 @@
-@import "/src/style/variables";
+@import "/src/style/main";
 
 .input {
   display: flex;
   flex-flow: column wrap;
 }
 
-.input__lable {
+.input__label {
   width: 20%;
   font-weight: 400;
   font-size: 16px;
+  line-height: 19.6px;
 }
 
 .input__field {
@@ -18,7 +19,7 @@
   border: 1px solid $dark-blue;
   border-radius: 10px;
   font-size: 16px;
-  color: $black-98;
+  color: $black;
   font-weight: 400;
   line-height: 22.4px;
 
@@ -27,7 +28,8 @@
   }
 
   &::placeholder {
-    color: $black-50;
+    color: $black;
+    opacity: 0.8;
   }
 }
 

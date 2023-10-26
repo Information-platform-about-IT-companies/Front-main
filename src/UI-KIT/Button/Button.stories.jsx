@@ -1,4 +1,4 @@
-import { Button } from "./Button";
+import { Button } from "UI-KIT/Button/Button";
 import "./Button.scss";
 
 const meta = {
