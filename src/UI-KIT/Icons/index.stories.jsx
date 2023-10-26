@@ -14,11 +14,12 @@ const meta = {
   argTypes: {
     icon: {
       description:
-        "Обязательный параметр объявления используемой иконки. Может принимать значения - IconAccount | IconArrow | IconOctopusArrow | IconPin | IconRound | IconSearch",
+        "Обязательный параметр объявления используемой иконки. Может принимать значения - IconAccount | IconArrow | IconFilter | IconOctopusArrow | IconPin | IconRound | IconSearch",
       control: { type: "select" },
       options: [
         "IconAccount",
         "IconArrow",
+        "IconFilter",
         "IconOctopusArrow",
         "IconPin",
         "IconRound",
@@ -53,7 +54,7 @@ export const IconAccount = {
     icon: "IconAccount",
     size: 32,
     color: "black",
-    extClassName: "forStory",
+    extClassName: "for-story",
   },
 };
 
@@ -62,7 +63,17 @@ export const IconArrow = {
     icon: "IconArrow",
     size: 32,
     color: "black",
-    extClassName: "forStory",
+    extClassName: "for-story",
+    direction: "up",
+  },
+};
+
+export const IconFilter = {
+  args: {
+    icon: "IconFilter",
+    size: 32,
+    color: "black",
+    extClassName: "for-story",
     direction: "up",
   },
 };
@@ -72,7 +83,7 @@ export const IconOctopusArrow = {
     icon: "IconOctopusArrow",
     size: 60,
     color: "black",
-    extClassName: "forStory",
+    extClassName: "for-story",
   },
 };
 
@@ -81,7 +92,7 @@ export const IconPin = {
     icon: "IconPin",
     size: 32,
     color: "black",
-    extClassName: "forStory",
+    extClassName: "for-story",
   },
 };
 
@@ -90,7 +101,7 @@ export const IconRound = {
     icon: "IconRound",
     size: 32,
     color: "black",
-    extClassName: "forStory",
+    extClassName: "for-story",
   },
 };
 
@@ -99,6 +110,6 @@ export const IconSearch = {
     icon: "IconSearch",
     size: 32,
     color: "black",
-    extClassName: "forStory",
+    extClassName: "for-story",
   },
 };
