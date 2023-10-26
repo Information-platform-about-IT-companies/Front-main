@@ -3,6 +3,7 @@
 
 .breadcrumbs {
   box-sizing: border-box;
+  font-size: $text-size-default;
   padding: 0;
 
   @include flex($align: center, $justify: flex-start, $direction: row);
@@ -23,10 +24,6 @@
       content: "";
       background-image: url('data:image/svg+xml;charset=utf-8, <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="2" fill="$black"/></svg>');
       cursor: auto;
-      transform: translate(0, -50%);
-      transform: translate(0, -50%);
-      transform: translate(0, -50%);
-      transform: translate(0, -50%);
       transform: translate(0, -50%);
     }
 
