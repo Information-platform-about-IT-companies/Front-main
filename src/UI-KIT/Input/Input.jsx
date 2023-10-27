@@ -48,8 +48,6 @@ function Input({
   );
 }
 
-export default Input;
-
 Input.propTypes = {
   label: PropTypes.string.isRequired,
   icon: PropTypes.string,
