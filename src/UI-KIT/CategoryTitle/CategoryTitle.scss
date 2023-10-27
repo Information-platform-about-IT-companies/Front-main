@@ -1,4 +1,4 @@
-@import "src/style/main";
+@import "src/assets/style/main";
 
 .category {
   color: $black;
@@ -7,7 +7,8 @@
   border-radius: 10px;
   width: 285px;
   height: 56px;
-  padding: 8px 0;
+  font-size: 20px;
+  padding: 0;
 
   @include flex(center, center);
 

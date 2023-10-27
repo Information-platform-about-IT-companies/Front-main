@@ -28,6 +28,8 @@ export default meta;
 export const NewCategoryTitle = {
   args: {
     title: "Веб-разработка",
-    icon: <Icon icon="IconRound" color="#4E4CBF" size="32" extClassName="category_icon" />,
+    icon: (
+      <Icon icon="IconRound" symbol="W" color="#4E4CBF" size="32" extClassName="category_icon" />
+    ),
   },
 };
