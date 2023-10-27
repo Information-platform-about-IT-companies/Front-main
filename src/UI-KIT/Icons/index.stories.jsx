@@ -28,7 +28,7 @@ const meta = {
     },
     size: {
       description:
-        "Необязательный параметр размера иконки. По умолчанию задан стандартный размер 32px, кроме иконки OctopusArrow у которой стандартный размер 60px. Может принимать значения - 24 | 32 | 60",
+        "Необязательный параметр размера иконки. По умолчанию стандартный размер 32px, кроме: иконки Bullet у который стандартный размер 24px и иконки OctopusArrow у которой стандартный размер 60px. Может принимать значения - 24 | 32 | 60",
       control: { type: "inline-radio" },
       options: ["24", "32", "60"],
     },
@@ -78,6 +78,16 @@ export const IconFilter = {
     size: 32,
     color: "black",
     extClassName: "for-story",
+    direction: "up",
+  },
+};
+
+export const IconBullet = {
+  args: {
+    icon: "IconBullet",
+    size: 24,
+    color: "black",
+    extClassName: "forStory",
     direction: "up",
   },
 };
