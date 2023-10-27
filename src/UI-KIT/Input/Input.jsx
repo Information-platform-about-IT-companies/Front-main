@@ -52,7 +52,7 @@ export default Input;
 
 Input.propTypes = {
   label: PropTypes.string.isRequired,
-  icon: PropTypes.func,
+  icon: PropTypes.string,
   extClassNameLabel: PropTypes.string,
   type: PropTypes.string,
   name: PropTypes.string.isRequired,
