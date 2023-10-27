@@ -1,22 +1,16 @@
 import "./CategoryTitle.scss";
 import PropTypes from "prop-types";
 
-export function CategoryTitle({ title, icon, children }) {
+export function CategoryTitle({ title, icon }) {
   return (
-    <ul className="category">
+    <span className="category_title">
       {icon}
       {title}
-      {children}
-    </ul>
+    </span>
   );
 }
 
 CategoryTitle.propTypes = {
   title: PropTypes.string.isRequired,
   icon: PropTypes.node.isRequired,
-  children: PropTypes.node,
-};
-
-CategoryTitle.defaultProps = {
-  children: null,
 };
