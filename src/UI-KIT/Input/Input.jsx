@@ -43,7 +43,6 @@ function Input({
           {...props}
         />
       </div>
-
       <span className="input__error-text">{error}</span>
     </div>
   );

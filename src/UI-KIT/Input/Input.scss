@@ -1,8 +1,7 @@
 @import "/src/assets/style/main";
 
 .input {
-  display: flex;
-  flex-flow: column wrap;
+  @include flex(start, flex-start, column);
 }
 
 .input__container {
@@ -29,6 +28,7 @@
 
   &:focus {
     outline: none;
+    border: 2px solid $dark-blue;
   }
 
   &::placeholder {
@@ -53,7 +53,6 @@
 
 .input__error-text {
   padding-top: 4px;
-  width: 100%;
   color: $red;
   font-size: 16px;
   font-weight: 300;
