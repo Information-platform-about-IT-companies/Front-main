@@ -15,7 +15,7 @@ import "./App.scss";
 import Header from "components/Header/Header";
 
 function App() {
-  const [loggedIn, setLoggetIn] = useState(null);
+  const [loggedIn, setLoggetIn] = useState(true);
   return (
     <>
       <Header loggedIn={loggedIn} />

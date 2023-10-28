@@ -2,9 +2,10 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./LinkItem.scss";
 
-export function LinkItem({ url, title, withBullet }) {
+export function LinkItem({ url, title, withBullet, icon }) {
   return (
     <Link className={withBullet ? "link link_style_list" : "link"} to={url}>
+      <div className="link__icon">{icon}</div>
       {title}
     </Link>
   );

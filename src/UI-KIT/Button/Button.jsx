@@ -13,7 +13,7 @@ export function Button({ type, size, fill, title, onClick, icon, extClassName, .
       }
       {...props}
     >
-      {/* {icon && <span>icon here</span>} */}
+      {icon}
       {title}
     </button>
   );

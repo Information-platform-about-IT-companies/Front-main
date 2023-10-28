@@ -10,19 +10,20 @@ function Header({ loggedIn }) {
       <nav className="header__navigation">
         {loggedIn ? (
           <>
-            <Button type="button" size="standard" fill="true" title="Войти" />
-            <Button type="button" size="standard" fill="true" title="Зарегистрироваться" />
-          </>
-        ) : (
-          <>
             <Button
               type="button"
               size="standard"
-              fill="false"
+              fill={false}
               title="Василий Пупкин"
-              icon={<Icon icon="IconAccount" size="32" color="black" />}
+              icon={<Icon icon="IconAccount" size="32" color="#4E4CBF" />}
+              extClassName="icon_borderfree"
             />
             <Button type="button" size="standard" fill="false" title="Выйти" />
+          </>
+        ) : (
+          <>
+            <Button type="button" size="standard" fill={false} title="Войти" />
+            <Button type="button" size="standard" fill title="Зарегистрироваться" />
           </>
         )}
       </nav>
