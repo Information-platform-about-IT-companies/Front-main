@@ -1,5 +1,6 @@
 import { Button } from "UI-KIT/Button/Button";
 import { LinkItem } from "UI-KIT/Link/LinkItem";
+import { Link } from "react-router-dom";
 import Icon from "UI-KIT/Icons";
 import "./Header.scss";
 import PropTypes from "prop-types";
@@ -7,7 +8,9 @@ import PropTypes from "prop-types";
 function Header({ loggedIn, userData }) {
   return (
     <header className="header">
-      <div className="header__logo" />
+      <Link to="/">
+        <div className="header__logo" />
+      </Link>
       <nav className="header__navigation">
         {loggedIn ? (
           <>
