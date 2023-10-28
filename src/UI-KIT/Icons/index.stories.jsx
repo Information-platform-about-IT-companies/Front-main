@@ -44,6 +44,10 @@ const meta = {
       control: { type: "select" },
       options: ["up", "right", "down", "left"],
     },
+    symbol: {
+      description: "бязательный параметр для иконки буквы в кружочке. Принимает букву",
+      control: "text",
+    },
   },
 };
 
@@ -102,6 +106,7 @@ export const IconRound = {
     size: 32,
     color: "black",
     extClassName: "for-story",
+    symbol: "I",
   },
 };
 
