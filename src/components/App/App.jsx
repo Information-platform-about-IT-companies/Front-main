@@ -15,10 +15,11 @@ import "./App.scss";
 import Header from "components/Header/Header";
 
 function App() {
-  const [loggedIn, setLoggetIn] = useState(true);
+  const [loggedIn, setLoggetIn] = useState(null);
+  const [userData, setUserdata] = useState();
   return (
     <>
-      <Header loggedIn={loggedIn} />
+      <Header loggedIn={loggedIn} userData={userData} />
 
       <div>Information-platform-about-IT-companies</div>
 

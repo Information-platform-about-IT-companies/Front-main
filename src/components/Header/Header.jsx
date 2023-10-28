@@ -1,22 +1,20 @@
 import { Button } from "UI-KIT/Button/Button";
+import { LinkItem } from "UI-KIT/Link/LinkItem";
 import Icon from "UI-KIT/Icons";
 import "./Header.scss";
 import PropTypes from "prop-types";
 
-function Header({ loggedIn }) {
+function Header({ loggedIn, userData }) {
   return (
     <header className="header">
       <div className="header__logo" />
       <nav className="header__navigation">
         {loggedIn ? (
           <>
-            <Button
-              type="button"
-              size="standard"
-              fill={false}
-              title="Василий Пупкин"
+            <LinkItem
+              url="/profile"
+              title={userData}
               icon={<Icon icon="IconAccount" size="32" color="#4E4CBF" />}
-              extClassName="icon_borderfree"
             />
             <Button type="button" size="standard" fill="false" title="Выйти" />
           </>
@@ -33,6 +31,11 @@ function Header({ loggedIn }) {
 
 export default Header;
 
-Header.PropTypes = {
+Header.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
+  userData: PropTypes.string,
+};
+
+Header.defaultProps = {
+  userData: "",
 };

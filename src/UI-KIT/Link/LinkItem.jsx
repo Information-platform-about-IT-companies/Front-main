@@ -15,8 +15,10 @@ LinkItem.propTypes = {
   url: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   withBullet: PropTypes.bool,
+  icon: PropTypes.string,
 };
 
 LinkItem.defaultProps = {
   withBullet: false,
+  icon: null,
 };

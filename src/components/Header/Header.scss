@@ -1,6 +1,20 @@
-.icon_borderfree {
-  border: none;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
+@import "/src/assets/style/main";
+
+.header {
+  padding: 12px 120px;
+  width: 100%;
+
+  @include flex(center, space-between, row);
+}
+
+.header__logo {
+  width: 173px;
+  height: 69px;
+  background-image: url("../../images/Logo.svg");
+}
+
+.header__navigation {
+  @include flex(center, space-between, row);
+
+  gap: 20px;
 }
