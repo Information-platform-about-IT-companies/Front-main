@@ -16,12 +16,12 @@
   }
 
   &_style_fill {
-    background: $primary-gradient;
+    background: $gradient-blue;
     color: $white;
 
     &::before {
       position: absolute;
-      background: $dark-blue;
+      background: $blue-dark;
       content: "";
       inset: 0;
       z-index: -1;
@@ -39,7 +39,7 @@
     }
 
     &:disabled {
-      background: $dark-blue-20;
+      background: $blue-light;
 
       &:hover::before {
         opacity: 0;
@@ -49,7 +49,7 @@
 
   &_style_outline {
     background: transparent;
-    border: 1.5px $dark-blue solid;
+    border: 1.5px $blue-dark solid;
     color: $black;
 
     &:hover {
@@ -62,7 +62,7 @@
 
     &:disabled {
       border-width: 1.5px;
-      border-color: $dark-blue-20;
+      border-color: $blue-light;
     }
   }
 
