@@ -10,6 +10,7 @@ import Profile from "components/Profile/Profile";
 import Main from "components/Main/Main";
 import WelcomePage from "components/WelcomePage/WelcomePage";
 import ForgetPassword from "components/ForgetPassword/ForgetPassword";
+import Footer from "components/Footer/Footer";
 // Стили
 import "./App.scss";
 
@@ -18,6 +19,7 @@ function App() {
   return (
     <>
       <div>Information-platform-about-IT-companies</div>
+      <Footer />
       <Routes>
         <Route
           path="/profile"
