@@ -17,24 +17,6 @@ function App() {
   const [loggedIn, setLoggetIn] = useState(null);
   return (
     <>
-      <Breadcrumbs
-        main={{
-          name: "Главная",
-          url: "https://www.figma.com/file/MDEs5K1tETvN45PgPGHaFr/IT-%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F-%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D0%B0?node-id=42%3A2&mode=dev",
-        }}
-        services={{
-          name: "Веб-разработка",
-          url: "https://www.figma.com/file/MDEs5K1tETvN45PgPGHaFr/IT-%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F-%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D0%B0?node-id=42%3A2&mode=dev",
-        }}
-        city={{
-          name: "Таганрог",
-          url: "https://www.figma.com/file/MDEs5K1tETvN45PgPGHaFr/IT-%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F-%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D0%B0?node-id=42%3A2&mode=dev",
-        }}
-        company={{
-          name: "Mentalstack",
-          url: "https://www.figma.com/file/MDEs5K1tETvN45PgPGHaFr/IT-%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F-%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D0%B0?node-id=42%3A2&mode=dev",
-        }}
-      />
       <div>Information-platform-about-IT-companies</div>
       <Routes>
         <Route
