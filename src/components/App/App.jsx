@@ -13,12 +13,17 @@ import ForgetPassword from "components/ForgetPassword/ForgetPassword";
 import Footer from "components/Footer/Footer";
 // Стили
 import "./App.scss";
+import Header from "components/Header/Header";
 
 function App() {
   const [loggedIn, setLoggetIn] = useState(null);
+  const [userData, setUserdata] = useState();
   return (
     <>
+      <Header loggedIn={loggedIn} userData={userData} />
+
       <div>Information-platform-about-IT-companies</div>
+
       <Routes>
         <Route
           path="/profile"
