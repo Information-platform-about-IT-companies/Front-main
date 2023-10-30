@@ -1,20 +1,27 @@
 @import "/src/assets/style/main";
 
 .header {
-  padding: 12px 120px;
   width: 100%;
 
   @include flex(center, space-between, row);
-}
 
-.header__logo {
-  width: 173px;
-  height: 69px;
-  background-image: url("../../images/Logo.svg");
-}
+  &__userdata {
+    @include flex(center, center);
 
-.header__navigation {
-  @include flex(center, space-between, row);
+    gap: 8px;
+    cursor: pointer;
+    text-decoration: none;
+  }
 
-  gap: 20px;
+  &__logo {
+    width: 173px;
+    height: 69px;
+    background-image: url("../../images/Logo.svg");
+  }
+
+  &__navigation {
+    @include flex(center, space-between, row);
+
+    gap: 20px;
+  }
 }
