@@ -1,0 +1,18 @@
+@import "src/assets/style/main";
+
+.category {
+  &_title {
+    font-weight: 700;
+    border: 2px solid $dark-blue;
+    border-radius: 10px;
+    width: 285px;
+    height: 56px;
+    font-size: 20px;
+
+    @include flex(center, center);
+  }
+
+  &_icon {
+    margin-right: 12px;
+  }
+}

@@ -18,6 +18,7 @@ function App() {
   return (
     <>
       <div>Information-platform-about-IT-companies</div>
+
       <Routes>
         <Route
           path="/profile"
