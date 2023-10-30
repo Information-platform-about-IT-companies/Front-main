@@ -1,9 +1,11 @@
+import { Search } from "../Search/Search";
+
 function Main() {
   return (
     <main>
       <section className="Intro">
         <h1 className="Intro__title">Найдите подходящие для вас IT-компании в России</h1>
-        {/* компонент поиск */}
+        <Search />
       </section>
       <section className="Companies">
         <h2 className="Companies__subtitle">Найдите компанию, которая Вам нужна</h2>
