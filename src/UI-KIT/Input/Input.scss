@@ -1,19 +1,24 @@
-@import "/src/style/main";
+@import "/src/assets/style/main";
 
 .input {
-  display: flex;
-  flex-flow: column wrap;
+  @include flex(start, flex-start, column);
+}
+
+.input__container {
+  width: 100%;
+  position: relative;
 }
 
 .input__label {
-  width: 20%;
+  padding-bottom: 4px;
   font-weight: 400;
   font-size: 16px;
-  line-height: 19.6px;
+  font-style: normal;
+  line-height: 140%;
 }
 
 .input__field {
-  width: 80%;
+  width: inherit;
   padding: 12px;
   background-color: $light-grey;
   border: 1px solid $dark-blue;
@@ -25,6 +30,7 @@
 
   &:focus {
     outline: none;
+    border: 2px solid $dark-blue;
   }
 
   &::placeholder {
@@ -33,13 +39,22 @@
   }
 }
 
+.input__field_icon {
+  padding-left: 56px;
+}
+
+.input__field-icon {
+  position: absolute;
+  top: 25%;
+  left: 20px;
+}
+
 .input__field-error {
   border-color: $red;
 }
 
 .input__error-text {
   padding-top: 4px;
-  width: 100%;
   color: $red;
   font-size: 16px;
   font-weight: 300;
