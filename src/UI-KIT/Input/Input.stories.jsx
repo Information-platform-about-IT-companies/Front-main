@@ -1,6 +1,5 @@
-import Input from "UI-KIT/Input/Input";
+import { Input } from "./Input";
 import "./Input.scss";
-import Icon from "UI-KIT/Icons";
 
 const meta = {
   title: "UI-KIT/Input",
@@ -14,10 +13,10 @@ const meta = {
     },
   },
   argTypes: {
-    label: {
+    lable: {
       description: "Необязательный параметр с указанием названия поля ввода.",
     },
-    extClassNameLabel: {
+    extClassNameLable: {
       description:
         "Необязательный параметр для добавления дополнительных стилей заголовку поля ввода",
     },
@@ -68,13 +67,6 @@ export const ActiveInput = {};
 export const InputWithHelp = {
   args: {
     placeholder: "Василий Пупкин",
-  },
-};
-
-export const InputWithIcon = {
-  args: {
-    value: "Вася Пупкин",
-    icon: <Icon icon="IconAccount" size="24" color="#4E4CBF" />,
   },
 };
 

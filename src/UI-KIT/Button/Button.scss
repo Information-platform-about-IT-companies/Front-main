@@ -1,12 +1,11 @@
-@import "src/assets/style/main";
+@import "src/style/main";
 
 .button {
+  box-sizing: border-box;
   position: relative;
-  display: inline-block;
   overflow: hidden;
   border-radius: 10px;
   border: none;
-  text-decoration: none;
   z-index: 1;
 
   &:hover {
@@ -18,9 +17,8 @@
   }
 
   &_style_fill {
-    @include roboto-16($white);
-
     background: $primary-gradient;
+    color: $white;
 
     &::before {
       position: absolute;
@@ -51,10 +49,9 @@
   }
 
   &_style_outline {
-    @include roboto-16($black);
-
     background: transparent;
     border: 1.5px $dark-blue solid;
+    color: $black;
 
     &:hover {
       border-width: 2px;
@@ -79,6 +76,6 @@
   }
 }
 
-.for-button-story {
+.for-story {
   border-radius: 0 10px 10px 0;
 }
