@@ -10,18 +10,13 @@ import Profile from "components/Profile/Profile";
 import Main from "components/Main/Main";
 import WelcomePage from "components/WelcomePage/WelcomePage";
 import ForgetPassword from "components/ForgetPassword/ForgetPassword";
-import Footer from "components/Footer/Footer";
 // Стили
 import "./App.scss";
-import Header from "components/Header/Header";
 
 function App() {
   const [loggedIn, setLoggetIn] = useState(null);
-  const [userData, setUserdata] = useState();
   return (
     <>
-      <Header loggedIn={loggedIn} userData={userData} />
-
       <div>Information-platform-about-IT-companies</div>
 
       <Routes>
@@ -37,7 +32,6 @@ function App() {
         <Route path="/404" element={<NotFound />} />
         <Route path="/*" element={<Navigate to="/404" replace />} />
       </Routes>
-      <Footer />
     </>
   );
 }

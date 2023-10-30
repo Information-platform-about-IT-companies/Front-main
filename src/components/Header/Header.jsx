@@ -1,5 +1,4 @@
 import { Button } from "UI-KIT/Button/Button";
-import { LinkItem } from "UI-KIT/Link/LinkItem";
 import { Link } from "react-router-dom";
 import Icon from "UI-KIT/Icons";
 import "./Header.scss";
@@ -14,17 +13,16 @@ function Header({ loggedIn, userData }) {
       <nav className="header__navigation">
         {loggedIn ? (
           <>
-            <LinkItem
-              url="/profile"
-              title={userData}
-              icon={<Icon icon="IconAccount" size="32" color="#4E4CBF" />}
-            />
-            <Button type="button" size="standard" fill="false" title="Выйти" />
+            <Link to="/profile" className="header__userdata">
+              <Icon icon="IconAccount" size="32" color="#4E4CBF" />
+              <span className="header__user">{userData}</span>
+            </Link>
+            <Button size="standard" fill="false" title="Выйти" />
           </>
         ) : (
           <>
-            <Button type="button" size="standard" fill={false} title="Войти" />
-            <Button type="button" size="standard" fill title="Зарегистрироваться" />
+            <Button size="standard" fill={false} title="Войти" url="/signin" />
+            <Button size="standard" fill title="Зарегистрироваться" url="signup" />
           </>
         )}
       </nav>

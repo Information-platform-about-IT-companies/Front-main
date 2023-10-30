@@ -66,6 +66,7 @@ export function Search() {
     <div className="search">
       <Input
         icon={<Icon icon="IconSearch" color="#4e4cbf" size="24" />}
+        extClassNameInput="search__input"
         extClassNameLabel="search__input-label"
         name="search"
         id="search"
@@ -75,6 +76,7 @@ export function Search() {
       />
       <Input
         icon={<Icon icon="IconPin" color="#4e4cbf" size="24" />}
+        extClassNameInput="search__input"
         extClassNameLabel="search__input-label"
         name="city"
         id="city"
@@ -84,7 +86,7 @@ export function Search() {
       />
       <Button
         extClassName="search__input-button"
-        size="standard"
+        size="medium"
         title="Поиск"
         fill="true"
         onClick={() => console.log("нажата кнопка поиска")}

@@ -1,12 +1,12 @@
 @import "/src/assets/style/main";
 
 .footer {
-  width: 100%;
-  padding: 20px 120px;
-
   @include flex(center, space-between, row);
+
+  width: 100%;
+  min-height: 70px;
 }
 
 .footer__copyright {
-  font-size: 14px;
+  font-size: $text-size-small;
 }

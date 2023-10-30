@@ -27,9 +27,6 @@ const meta = {
       control: { type: "radio" },
       defaultvalue: false,
     },
-    icon: {
-      description: "Icon ссылки",
-    },
   },
   decorators: [
     (Story) => (
@@ -54,13 +51,5 @@ export const BulletLink = {
     url: "/",
     title: "Это ссылка",
     withBullet: true,
-  },
-};
-
-export const LinkWithIcon = {
-  args: {
-    url: "/",
-    title: "Это ссылка",
-    icon: <Icon icon="IconAccount" size="24" color="#4E4CBF" />,
   },
 };

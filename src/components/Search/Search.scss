@@ -5,7 +5,11 @@
   grid-template-columns: 1fr 1fr min-content;
 
   &__input-button {
-    border-radius: 0 10px 10px 0;
+    border-radius: 0 10px 10px 0 !important;
+  }
+
+  &__input {
+    padding: 20px;
   }
 
   &__input-label {

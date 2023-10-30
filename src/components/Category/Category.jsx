@@ -9,7 +9,7 @@ export function Category({ categories, categoryTitle, icon }) {
     <>
       <CategoryTitle title={categoryTitle} icon={icon} />
       <ul className="category">
-        {categories.map((category, i) => (
+        {categories.map((category) => (
           <li className="category_link" key={category.title}>
             <LinkItem title={category.title} withBullet url="/" />
           </li>
