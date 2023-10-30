@@ -1,0 +1,12 @@
+@import "/src/assets/style/main";
+
+.footer {
+  width: 100%;
+  padding: 20px 120px;
+
+  @include flex(center, space-between, row);
+}
+
+.footer__copyright {
+  font-size: 14px;
+}

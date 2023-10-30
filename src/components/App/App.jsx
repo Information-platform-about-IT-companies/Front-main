@@ -10,6 +10,7 @@ import Profile from "components/Profile/Profile";
 import Main from "components/Main/Main";
 import WelcomePage from "components/WelcomePage/WelcomePage";
 import ForgetPassword from "components/ForgetPassword/ForgetPassword";
+import Footer from "components/Footer/Footer";
 // Стили
 import "./App.scss";
 
@@ -31,6 +32,7 @@ function App() {
         <Route path="/404" element={<NotFound />} />
         <Route path="/*" element={<Navigate to="/404" replace />} />
       </Routes>
+      <Footer />
     </>
   );
 }
