@@ -1,15 +1,6 @@
-@import "variables";
-
 @mixin flex($align: stretch, $justify: flex-start, $direction: row) {
   display: flex;
   align-items: $align;
   justify-content: $justify;
   flex-direction: $direction;
-}
-
-@mixin roboto-16($color: $black) {
-  font-size: $text-size-default;
-  line-height: 19px;
-  font-weight: 400;
-  color: $color;
 }

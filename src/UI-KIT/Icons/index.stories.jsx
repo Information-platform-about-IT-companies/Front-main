@@ -14,12 +14,11 @@ const meta = {
   argTypes: {
     icon: {
       description:
-        "Обязательный параметр объявления используемой иконки. Может принимать значения - IconAccount | IconArrow | IconFilter | IconOctopusArrow | IconPin | IconRound | IconSearch",
+        "Обязательный параметр объявления используемой иконки. Может принимать значения - IconAccount | IconArrow | IconOctopusArrow | IconPin | IconRound | IconSearch",
       control: { type: "select" },
       options: [
         "IconAccount",
         "IconArrow",
-        "IconFilter",
         "IconOctopusArrow",
         "IconPin",
         "IconRound",
@@ -44,10 +43,6 @@ const meta = {
       control: { type: "select" },
       options: ["up", "right", "down", "left"],
     },
-    symbol: {
-      description: "бязательный параметр для иконки буквы в кружочке. Принимает букву",
-      control: "text",
-    },
   },
 };
 
@@ -58,7 +53,7 @@ export const IconAccount = {
     icon: "IconAccount",
     size: 32,
     color: "black",
-    extClassName: "for-story",
+    extClassName: "forStory",
   },
 };
 
@@ -67,17 +62,7 @@ export const IconArrow = {
     icon: "IconArrow",
     size: 32,
     color: "black",
-    extClassName: "for-story",
-    direction: "up",
-  },
-};
-
-export const IconFilter = {
-  args: {
-    icon: "IconFilter",
-    size: 32,
-    color: "black",
-    extClassName: "for-story",
+    extClassName: "forStory",
     direction: "up",
   },
 };
@@ -87,7 +72,7 @@ export const IconOctopusArrow = {
     icon: "IconOctopusArrow",
     size: 60,
     color: "black",
-    extClassName: "for-story",
+    extClassName: "forStory",
   },
 };
 
@@ -96,7 +81,7 @@ export const IconPin = {
     icon: "IconPin",
     size: 32,
     color: "black",
-    extClassName: "for-story",
+    extClassName: "forStory",
   },
 };
 
@@ -105,8 +90,7 @@ export const IconRound = {
     icon: "IconRound",
     size: 32,
     color: "black",
-    extClassName: "for-story",
-    symbol: "I",
+    extClassName: "forStory",
   },
 };
 
@@ -115,6 +99,6 @@ export const IconSearch = {
     icon: "IconSearch",
     size: 32,
     color: "black",
-    extClassName: "for-story",
+    extClassName: "forStory",
   },
 };

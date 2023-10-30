@@ -1,6 +1,5 @@
 import { Button } from "UI-KIT/Button/Button";
 import "./Button.scss";
-import { MemoryRouter } from "react-router-dom";
 
 const meta = {
   title: "UI-KIT/Button",
@@ -9,15 +8,16 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component:
-          "Универсальная кнопка, она же ссылка. Если компонент используется как кнопка и нужно явно указать type - пробросьте ...props",
+        component: "Универсальная кнопка",
       },
     },
   },
   argTypes: {
-    url: {
+    type: {
       description:
-        "Важно, обязательный параметр в случае, если компонент используется как ссылка. Если как кнопка - не указываем его",
+        "Необязательный параметр с указанием типа кнопки. Может принимать в себя значения button | reset | submit",
+      options: ["button", "reset", "submit"],
+      control: { type: "radio" },
     },
     size: {
       description:
@@ -35,21 +35,16 @@ const meta = {
       description: "Обязательный параметр. Используйте для текста на кнопке",
     },
     onClick: {
-      description:
-        "Важно, обязательный параметр в случае, если компонент используется как кнопка. Передаем внутрь функцию",
+      description: "Обязательный параметр. Передаем внутрь функцию",
+    },
+    icon: {
+      description: "Необязательный параметр. Передаем внутрь компонент с иконкой",
     },
     extClassName: {
       description:
         "Необязательный параметр. Для дополнительных стилей (например, изменение обводки кнопки",
     },
   },
-  decorators: [
-    (Story) => (
-      <MemoryRouter>
-        <Story />
-      </MemoryRouter>
-    ),
-  ],
 };
 
 export default meta;
@@ -104,38 +99,11 @@ export const MediumButtonWithOutline = {
   },
 };
 
-export const MediumOutlineButtonWithStyle = {
-  args: {
-    title: "Большая кнопка с обводкой и другими стилями",
-    fill: false,
-    size: "medium",
-    extClassName: "for-button-story",
-  },
-};
-
 export const MediumButtonWithStyle = {
   args: {
     title: "Большая кнопка с другими стилями",
-    fill: true,
-    size: "medium",
-    extClassName: "for-button-story",
-  },
-};
-
-export const FillLink = {
-  args: {
-    title: "Ссылка с заливкой",
-    fill: true,
-    size: "standard",
-    url: "#",
-  },
-};
-
-export const OutlineLink = {
-  args: {
-    title: "Ссылка с обводкой",
     fill: false,
-    size: "standard",
-    url: "#",
+    size: "medium",
+    extClassName: "for-story",
   },
 };
