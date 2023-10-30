@@ -1,10 +1,10 @@
 import "./Button.scss";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-export function Button({ type, size, fill, title, onClick, icon, extClassName, ...props }) {
-  return (
+export function Button({ url, size, fill, title, onClick, extClassName, ...props }) {
+  const button = (
     <button
-      type={type}
       onClick={onClick}
       className={
         fill
@@ -13,24 +13,37 @@ export function Button({ type, size, fill, title, onClick, icon, extClassName, .
       }
       {...props}
     >
-      {/* {icon && <span>icon here</span>} */}
       {title}
     </button>
   );
+  const link = (
+    <Link
+      to={url}
+      className={
+        fill
+          ? `button button_style_fill button_size_${size} ${extClassName}`
+          : `button button_style_outline button_size_${size} ${extClassName}`
+      }
+      {...props}
+    >
+      {title}
+    </Link>
+  );
+
+  return url ? link : button;
 }
 
 Button.propTypes = {
-  type: PropTypes.string,
+  url: PropTypes.string,
   size: PropTypes.string.isRequired,
   fill: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-  icon: PropTypes.node,
+  onClick: PropTypes.func,
   extClassName: PropTypes.string,
 };
 
 Button.defaultProps = {
-  type: "button",
-  icon: null,
+  onClick: null,
+  url: null,
   extClassName: null,
 };

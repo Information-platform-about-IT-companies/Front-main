@@ -1,6 +1,5 @@
 import Input from "UI-KIT/Input/Input";
 import "./Input.scss";
-import IconSearch from "UI-KIT/Icons/IconSearch";
 import Icon from "UI-KIT/Icons";
 
 const meta = {

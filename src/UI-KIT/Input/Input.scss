@@ -5,6 +5,7 @@
 }
 
 .input__container {
+  width: 100%;
   position: relative;
 }
 
@@ -17,6 +18,7 @@
 }
 
 .input__field {
+  width: inherit;
   padding: 12px;
   background-color: $light-grey;
   border: 1px solid $dark-blue;

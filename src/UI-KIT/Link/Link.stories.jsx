@@ -1,4 +1,5 @@
 import { MemoryRouter } from "react-router-dom";
+import Icon from "UI-KIT/Icons";
 import { LinkItem } from "./LinkItem";
 
 const meta = {
