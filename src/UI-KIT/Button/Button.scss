@@ -18,8 +18,9 @@
   }
 
   &_style_fill {
+    @include roboto-16($white);
+    
     background: $gradient-blue;
-    color: $white;
 
     &::before {
       position: absolute;
