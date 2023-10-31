@@ -1,0 +1,80 @@
+@import "src/assets/style/main";
+
+.popup {
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    visibility 0.5s,
+    opacity $animation;
+  align-items: center;
+  position: fixed;
+  background: $popup-overlay;
+  inset: 0;
+  z-index: 3;
+  margin: 0 auto;
+
+  &_opened {
+    visibility: visible;
+    opacity: 1;
+    transition:
+      visibility 0.5s,
+      opacity $animation;
+  }
+
+  &_container {
+    padding: 30px 32px;
+    max-width: 500px;
+    width: 100%;
+    min-height: 191px;
+    background: #fff;
+    position: relative;
+    margin: 0 auto;
+    z-index: 4;
+    border-radius: 20px;
+  }
+
+  &_header {
+    @include flex(center, space-between);
+  }
+
+  &_logo {
+    background-image: url("../../images/Popup-Logo.svg");
+    width: 45px;
+    height: 40px;
+  }
+
+  &_close-btn {
+    background-image: url("../../images/Popup-Close-Btn.svg");
+    width: 24px;
+    height: 24px;
+    border: none;
+    text-decoration: none;
+    background-color: $white;
+  }
+
+  &_close-btn:hover {
+    cursor: pointer;
+  }
+
+  &_title {
+    margin: 0;
+    margin-bottom: 20px;
+    padding: 0 50px;
+    text-align: center;
+    color: $black;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  &_details {
+    padding: 0 20px;
+
+    @include flex(center, space-between);
+  }
+
+  &_button {
+    padding: 12px 87px;
+  }
+}
