@@ -1,0 +1,27 @@
+@import "src/assets/style/main";
+
+.not-found {
+  @include flex(center, center, column);
+
+  padding-top: 100px;
+  background-image: url("../../images/NotFound.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &__header {
+    padding-bottom: 20px;
+    background-color: $purple;
+    background-image: $gradient-pink;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 200px;
+    font-weight: 700;
+  }
+
+  &__paragraph {
+    padding-bottom: 32px;
+    font-size: $text-size-large;
+    font-weight: 400;
+  }
+}
