@@ -18,13 +18,12 @@
   }
 
   &_style_fill {
-    @include roboto-16($white);
-
     background: $gradient-blue;
+    color: $white;
 
     &::before {
       position: absolute;
-      background: $blue-dark;
+      background: $blue;
       content: "";
       inset: 0;
       z-index: -1;
@@ -55,6 +54,7 @@
 
     background: transparent;
     border: 1.5px $blue solid;
+    color: $black;
 
     &:hover {
       border-width: 2px;
