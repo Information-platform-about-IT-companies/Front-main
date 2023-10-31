@@ -20,11 +20,11 @@
   &_style_fill {
     @include roboto-16($white);
 
-    background: $primary-gradient;
+    background: $gradient-blue;
 
     &::before {
       position: absolute;
-      background: $dark-blue;
+      background: $blue-dark;
       content: "";
       inset: 0;
       z-index: -1;
@@ -42,7 +42,7 @@
     }
 
     &:disabled {
-      background: $dark-blue-20;
+      background: $blue-light;
 
       &:hover::before {
         opacity: 0;
@@ -54,7 +54,7 @@
     @include roboto-16($black);
 
     background: transparent;
-    border: 1.5px $dark-blue solid;
+    border: 1.5px $blue solid;
 
     &:hover {
       border-width: 2px;
@@ -66,7 +66,7 @@
 
     &:disabled {
       border-width: 1.5px;
-      border-color: $dark-blue-20;
+      border-color: $blue-light;
     }
   }
 
