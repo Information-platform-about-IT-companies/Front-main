@@ -49,6 +49,8 @@
 }
 
 #root {
+  display: grid;
+  grid-template-rows: 93px 1fr 70px;
   position: relative;
   max-width: 1200px;
   height: 100vh;
