@@ -3,6 +3,7 @@
 .search {
   display: grid;
   grid-template-columns: 1fr 1fr min-content;
+  position: relative;
 
   &__input-button {
     border-radius: 0 10px 10px 0 !important;
@@ -21,11 +22,15 @@
   }
 
   &__hint {
-    position: relative;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
     padding: 32px;
     border-radius: 10px;
     background-color: $sea-blue-light;
     grid-column: 1 / -1;
+    z-index: 99;
   }
 
   &__hint-container {
