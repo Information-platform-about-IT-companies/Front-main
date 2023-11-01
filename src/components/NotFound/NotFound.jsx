@@ -21,7 +21,7 @@ export default function NotFound() {
   };
 
   return (
-    <main className="not-found">
+    <main className="not-found fullwidth">
       <h1 className="not-found__header">404</h1>
       <p className="not-found__paragraph">Страница не найдена</p>
       <Button
