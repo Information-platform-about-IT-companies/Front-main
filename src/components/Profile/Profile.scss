@@ -1,0 +1,10 @@
+@import "src/assets/style/main";
+
+.profile {
+  @include flex(center, space-between);
+
+  &_details {
+    background-color: $sea-blue-light;
+    border-radius: 20px;
+  }
+}
