@@ -1,5 +1,4 @@
 import React from "react";
-// import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import Input from "UI-KIT/Input/Input";
@@ -8,7 +7,7 @@ import Icon from "UI-KIT/Icons";
 
 import "./Search.scss";
 
-export function Search() {
+export function Search({ extClassName, ...props }) {
   const [isButtonDisabled, setIsButtonDisabled] = React.useState(true);
   const [isStartHint, setIsStartHint] = React.useState(true);
   const [query, setQuery] = React.useState("");
@@ -63,7 +62,7 @@ export function Search() {
   });
 
   return (
-    <div className="search">
+    <div className={`search ${extClassName}`}>
       <Input
         icon={<Icon icon="IconSearch" color="#4e4cbf" size="24" />}
         extClassNameInput="search__input_1"
@@ -73,7 +72,6 @@ export function Search() {
         required="false"
         placeholder="Название компании или услуга"
         onChange={() => console.log("изменение инпута name")}
-        onlyInput
       />
       <Input
         icon={<Icon icon="IconPin" color="#4e4cbf" size="24" />}
@@ -84,7 +82,6 @@ export function Search() {
         required="false"
         placeholder="Город"
         onChange={() => console.log("изменение инпута city")}
-        onlyInput
       />
       <Button
         extClassName="search__input-button"
@@ -94,9 +91,8 @@ export function Search() {
         onClick={() => console.log("нажата кнопка поиска")}
         disabled={isButtonDisabled}
       />
-      {isStartHint && !responseNotFound ? (
-        <div className="search__hint">{hint}</div>
-      ) : (
+      {isStartHint && !responseNotFound && <div className="search__hint">{hint}</div>}
+      {isStartHint && responseNotFound && (
         <div className="search__hint">
           <div className="search__hint-container">
             <div className="search__hint-header search__hint-header_no-found">
