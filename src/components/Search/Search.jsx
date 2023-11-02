@@ -2,11 +2,11 @@ import React from "react";
 // import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-import "./Search.scss";
-
 import Input from "UI-KIT/Input/Input";
 import { Button } from "UI-KIT/Button/Button";
 import Icon from "UI-KIT/Icons";
+
+import "./Search.scss";
 
 export function Search() {
   const [isButtonDisabled, setIsButtonDisabled] = React.useState(true);
@@ -73,6 +73,7 @@ export function Search() {
         required="false"
         placeholder="Название компании или услуга"
         onChange={() => console.log("изменение инпута name")}
+        onlyInput
       />
       <Input
         icon={<Icon icon="IconPin" color="#4e4cbf" size="24" />}
@@ -83,6 +84,7 @@ export function Search() {
         required="false"
         placeholder="Город"
         onChange={() => console.log("изменение инпута city")}
+        onlyInput
       />
       <Button
         extClassName="search__input-button"

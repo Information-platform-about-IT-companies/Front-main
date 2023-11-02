@@ -1,18 +1,23 @@
 @import "/src/assets/style/main";
 
 .input {
-  @include flex(start, flex-start, column);
+  @include flex(start, center, column);
+
+  width: 100%;
+  position: relative;
 }
 
 .input__container {
   width: 100%;
   position: relative;
+
+  @include flex(center, flex-start, row);
 }
 
 .input__label {
   padding-bottom: 4px;
   font-weight: 400;
-  font-size: 16px;
+  font-size: $text-size-default;
   font-style: normal;
   line-height: 140%;
 }
@@ -20,17 +25,17 @@
 .input__field {
   width: inherit;
   padding: 12px;
-  background-color: $light-grey;
-  border: 1px solid $dark-blue;
+  background-color: $white;
+  border: 1px solid $blue;
   border-radius: 10px;
-  font-size: 16px;
+  font-size: $text-size-default;
   color: $black;
   font-weight: 400;
   line-height: 22.4px;
 
   &:focus {
     outline: none;
-    border: 2px solid $dark-blue;
+    border: 2px solid $blue;
   }
 
   &::placeholder {
@@ -45,7 +50,7 @@
 
 .input__field-icon {
   position: absolute;
-  top: 25%;
+  max-height: 24px;
   left: 20px;
 }
 

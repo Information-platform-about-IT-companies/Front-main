@@ -9,7 +9,7 @@
   }
 
   &__input {
-    padding: 20px;
+    padding: 20px 20px 20px 56px;
   }
 
   &__input-label {
@@ -24,7 +24,7 @@
     position: relative;
     padding: 32px;
     border-radius: 10px;
-    background-color: $sea-blue-20;
+    background-color: $sea-blue-light;
     grid-column: 1 / -1;
   }
 
@@ -39,7 +39,7 @@
   &__hint-header {
     margin: 0;
     padding-bottom: 12px;
-    color: $dark-blue;
+    color: $blue;
     font-size: $text-size-small;
 
     &_no-found {

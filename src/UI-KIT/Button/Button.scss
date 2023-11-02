@@ -20,11 +20,11 @@
   &_style_fill {
     @include roboto-16($white);
 
-    background: $primary-gradient;
+    background: $gradient-blue;
 
     &::before {
       position: absolute;
-      background: $dark-blue;
+      background: $blue;
       content: "";
       inset: 0;
       z-index: -1;
@@ -42,7 +42,7 @@
     }
 
     &:disabled {
-      background: $dark-blue-20;
+      background: $blue-light;
 
       &:hover::before {
         opacity: 0;
@@ -54,19 +54,22 @@
     @include roboto-16($black);
 
     background: transparent;
-    border: 1.5px $dark-blue solid;
+    outline: 1.5px $blue solid;
+    outline-offset: -1.5px;
 
     &:hover {
-      border-width: 2px;
+      outline-offset: -2px;
+      outline-width: 2px;
     }
 
     &:active {
-      border-width: 3px;
+      outline-offset: -3px;
+      outline-width: 3px;
     }
 
     &:disabled {
       border-width: 1.5px;
-      border-color: $dark-blue-20;
+      border-color: $blue-light;
     }
   }
 
@@ -81,4 +84,9 @@
 
 .for-button-story {
   border-radius: 0 10px 10px 0;
+}
+
+.active {
+  outline-offset: -3px;
+  outline-width: 3px;
 }

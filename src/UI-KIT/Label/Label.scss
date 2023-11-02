@@ -4,14 +4,14 @@
   border-radius: 10px;
   border: none;
   padding: 8px 12px;
-  background-color: $sea-blue-20;
+  background-color: $sea-blue-light;
   height: 35px;
   width: fit-content;
   color: $black;
   font-size: $text-size-default;
 
   &:hover {
-    background-color: $sea-blue-50;
+    background-color: $sea-blue-middle;
     cursor: pointer;
   }
 }
