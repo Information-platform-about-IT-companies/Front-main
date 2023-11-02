@@ -1,7 +1,10 @@
 @import "/src/assets/style/main";
 
 .input {
-  @include flex(start, flex-start, column);
+  @include flex(start, center, column);
+
+  width: 100%;
+  position: relative;
 }
 
 .input__container {
@@ -47,7 +50,7 @@
 
 .input__field-icon {
   position: absolute;
-  height: 50%;
+  max-height: 24px;
   left: 20px;
 }
 
@@ -61,8 +64,4 @@
   font-size: 16px;
   font-weight: 300;
   line-height: 22.4px;
-}
-
-.input__hide {
-  display: none;
 }

@@ -25,30 +25,41 @@ function Input({
     return icon ? "input__field_icon" : "";
   }
 
-  function hideExraParams() {
-    return onlyInput ? "input__hide" : "";
-  }
+  const inputField = (
+    <input
+      type={type}
+      name={name}
+      id={id}
+      className={`input__field ${errorStyle()} ${inputWithIconStyle()} ${extClassNameInput}`}
+      required={required}
+      placeholder={placeholder}
+      onChange={onChange}
+      value={value}
+      {...props}
+    />
+  );
+
+  const inputIcon = <div className="input__field-icon">{icon}</div>;
 
   return (
     <div className="input">
-      <label className={`input__label ${extClassNameLabel} ${hideExraParams()}`} htmlFor={id}>
-        {label}
-      </label>
-      <div className="input__container">
-        <div className="input__field-icon">{icon}</div>
-        <input
-          type={type}
-          name={name}
-          id={id}
-          className={`input__field ${errorStyle()} ${inputWithIconStyle()} ${extClassNameInput}`}
-          required={required}
-          placeholder={placeholder}
-          onChange={onChange}
-          value={value}
-          {...props}
-        />
-      </div>
-      <span className={`input__error-text ${hideExraParams()}`}>{error}</span>
+      {onlyInput ? (
+        <>
+          {inputIcon}
+          {inputField}
+        </>
+      ) : (
+        <>
+          <label className={`input__label ${extClassNameLabel}`} htmlFor={id}>
+            {label}
+          </label>
+          <div className="input__container">
+            {inputIcon}
+            {inputField}
+          </div>
+          <span className="input__error-text">{error}</span>
+        </>
+      )}
     </div>
   );
 }

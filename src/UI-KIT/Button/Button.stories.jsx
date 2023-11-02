@@ -10,7 +10,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "Универсальная кнопка, она же ссылка. Если компонент используется как кнопка и нужно явно указать type - пробросьте ...props",
+          "Универсальная кнопка Button, она же ссылка Link, она же NavLink. Если компонент используется как кнопка и нужно явно указать type - пробросьте ...props",
       },
     },
   },
@@ -19,9 +19,15 @@ const meta = {
       description:
         "Важно, обязательный параметр в случае, если компонент используется как ссылка. Если как кнопка - не указываем его",
     },
+    linkType: {
+      description:
+        "Важно, обязательный параметр в случае, если компонент используется как ссылка. Если как кнопка - не указываем его. Может принимать 2 значения - small | medium",
+      options: ["link", "navlink"],
+      control: { type: "radio" },
+    },
     size: {
       description:
-        "Обязательный параметр указанием размера кнопки (условно маленькая или большая. Может принимать 2 значения - small | medium",
+        "Обязательный параметр указанием размера кнопки (условно маленькая или большая. Может принимать 2 значения - standard | medium",
       options: ["standard", "medium"],
       control: { type: "radio" },
     },
@@ -54,7 +60,7 @@ const meta = {
 
 export default meta;
 
-export const ButtonWithFill = {
+export const FillButton = {
   args: {
     title: "Кнопка с заливкой",
     fill: true,
@@ -62,7 +68,7 @@ export const ButtonWithFill = {
   },
 };
 
-export const ButtonWithOutline = {
+export const OutlineButton = {
   args: {
     title: "Кнопка с обводкой",
     fill: false,
@@ -70,7 +76,7 @@ export const ButtonWithOutline = {
   },
 };
 
-export const DisabledButtonWithFill = {
+export const DisabledFillButton = {
   args: {
     title: "Неактивная кнопка с заливкой",
     fill: true,
@@ -79,7 +85,7 @@ export const DisabledButtonWithFill = {
   },
 };
 
-export const DisabledButtonWithOutline = {
+export const DisabledOutlineButton = {
   args: {
     title: "Неактивная Кнопка с обводкой",
     fill: false,
@@ -88,7 +94,7 @@ export const DisabledButtonWithOutline = {
   },
 };
 
-export const MediumButtonWithFill = {
+export const MediumFillButton = {
   args: {
     title: "Большая кнопка с заливкой",
     fill: true,
@@ -96,7 +102,7 @@ export const MediumButtonWithFill = {
   },
 };
 
-export const MediumButtonWithOutline = {
+export const MediumOutlineButton = {
   args: {
     title: "Большая кнопка с обводкой",
     fill: false,
@@ -113,7 +119,7 @@ export const MediumOutlineButtonWithStyle = {
   },
 };
 
-export const MediumButtonWithStyle = {
+export const MediumFillButtonWithStyle = {
   args: {
     title: "Большая кнопка с другими стилями",
     fill: true,
@@ -128,6 +134,7 @@ export const FillLink = {
     fill: true,
     size: "standard",
     url: "#",
+    linkType: "link",
   },
 };
 
@@ -137,5 +144,20 @@ export const OutlineLink = {
     fill: false,
     size: "standard",
     url: "#",
+    linkType: "link",
   },
+};
+
+export const NavLinks = {
+  render: (args) => (
+    <div
+      style={{
+        width: "200px",
+      }}
+    >
+      <Button size="standard" title="Active Navlink 1" url="/" linkType="navlink" />
+      <Button size="standard" title="Navlink 2" url="/2" linkType="navlink" />
+      <Button size="standard" title="Navlink 3" url="/3" linkType="navlink" />
+    </div>
+  ),
 };
