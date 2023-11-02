@@ -36,8 +36,8 @@ export const PopupToFavourite = {
   args: {
     children: (
       <>
-        <Button title="Войти" fill={false} extClassName="popup_button" />
-        <Button title="Зарегистрироваться" fill={false} size="standard" />
+        <Button title="Войти" onClick={() => {}} fill={false} extClassName="popup_button" />
+        <Button title="Зарегистрироваться" onClick={() => {}} fill={false} size="standard" />
       </>
     ),
     title:

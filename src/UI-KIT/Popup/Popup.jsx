@@ -12,12 +12,9 @@ export function Popup({ title, isOpen, onClose, extClassName, children }) {
       <div className="popup_container">
         <div className="popup_header">
           <div className="popup_logo" />
-          <span
-            role="button"
-            tabIndex={0}
+          <button
             className="popup_close-btn"
             onClick={onClose}
-            onKeyDown={onClose}
             aria-label="Закрыть модальное окно"
           />
         </div>
