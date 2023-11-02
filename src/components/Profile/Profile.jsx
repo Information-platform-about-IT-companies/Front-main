@@ -1,27 +1,36 @@
-import { Route, Routes, Link, Outlet, useParams } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import "./Profile.scss";
-import PropTypes from "prop-types";
 import { Button } from "UI-KIT/Button/Button";
 
 function Profile() {
   return (
-    <section className="profile">
-      <nav>
-        <ul>
-          <li>
-            <Button url="info" title="Личные данные" withBullet={false} />
-          </li>
-          <li>
-            <Button url="favourite" title="Избранные компании" />
-          </li>
-          <li>
-            <Button url="support" title="Поддержка" />
-          </li>
-        </ul>
-      </nav>
+    <main className="profile">
+      <nav className="profile_navigation">
+        <Button
+          extClassName="profile_navigation_button"
+          size="standard"
+          url="info"
+          title="Личные данные"
+        />
 
-      <Outlet />
-    </section>
+        <Button
+          extClassName="profile_navigation_button"
+          size="standard"
+          url="favourite"
+          title="Избранные компании"
+        />
+
+        <Button
+          extClassName="profile_navigation_button"
+          size="standard"
+          url="support"
+          title="Поддержка"
+        />
+      </nav>
+      <div className="profile_details">
+        <Outlet />
+      </div>
+    </main>
   );
 }
 

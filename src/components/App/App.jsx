@@ -28,9 +28,9 @@ function App() {
           element={<ProtectedRouteElement element={Profile} loggedIn={loggedIn} />}
         >
           <Route index element={<Navigate to="info" />} />
-          <Route path="info" element={<ProfileInfo title="Профиль пользователя" />} />
-          <Route path="favourite" element={<ProfileFavourite title="Избранные компании" />} />
-          <Route path="support" element={<ProfileSupport title="Поддержка" />} />
+          <Route path="info" element={<ProfileInfo />} />
+          <Route path="favourite" element={<ProfileFavourite />} />
+          <Route path="support" element={<ProfileSupport />} />
         </Route>
         <Route index element={<Main />} />
         <Route path="/signin" element={<Login />} />

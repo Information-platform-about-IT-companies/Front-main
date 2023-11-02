@@ -1,0 +1,14 @@
+@import "src/assets/style/main";
+
+.profile {
+  &_favourite {
+    width: 100%;
+  }
+
+  &_favourite-details {
+    padding: 32px;
+    background-color: $sea-blue-light;
+    border-radius: 20px;
+    width: 100%;
+  }
+}

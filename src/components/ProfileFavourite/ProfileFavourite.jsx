@@ -5,18 +5,18 @@ import PropTypes from "prop-types";
 import Input from "UI-KIT/Input/Input";
 import { Button } from "UI-KIT/Button/Button";
 
-function ProfileFavourite({ title, props }) {
+function ProfileFavourite({ props }) {
   return (
-    <div className="profile_details">
-      <h1>{title}</h1>
+    <div className="profile_favourite">
+      <h1 className="profile_title">Избранные компании</h1>
       {props ? (
         { props }
       ) : (
-        <>
-          <h4>Тут пока пусто</h4>
-          <p>Нажмите кнопку ниже, чтобы найти полезные компании.</p>
-          <Button title="Поиск компаний" />
-        </>
+        <div className="profile_favourite-details">
+          <h4 className="profile_subtitle">Тут пока пусто</h4>
+          <p className="profile_description">Нажмите кнопку ниже, чтобы найти полезные компании.</p>
+          <Button fill onClick={() => {}} size="standard" title="Поиск компаний" url="#" />
+        </div>
       )}
     </div>
   );
