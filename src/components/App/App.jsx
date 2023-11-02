@@ -19,14 +19,19 @@ import Layout from "../Layout/Layout";
 import "./App.scss";
 
 function App() {
-  const [loggedIn, setLoggetIn] = useState(null);
+  const [loggedIn, setLoggetIn] = useState(true); // поменять на null
   const [userData, setUserData] = useState("Вася Пупкин");
   return (
     <Routes>
       <Route
-        path="/profile"
+        path="/profile/*"
         element={<ProtectedRouteElement element={Profile} loggedIn={loggedIn} />}
-      />
+      >
+        <Route index element={<Navigate to="info" />} />
+        <Route path="info" element={<ProfileInfo />} />
+        <Route path="favourite" element={<ProfileFavourite />} />
+        <Route path="support" element={<ProfileSupport />} />
+      </Route>
       <Route path="/" element={<Layout loggedIn={loggedIn} userData={userData} />}>
         <Route index element={<Main />} />
         <Route path="/signin" element={<Login />} />

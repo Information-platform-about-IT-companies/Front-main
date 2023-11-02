@@ -7,6 +7,7 @@ function Profile() {
     <main className="profile">
       <nav className="profile_navigation">
         <Button
+          linkType="navlink"
           extClassName="profile_navigation_button"
           size="standard"
           url="info"
@@ -14,6 +15,7 @@ function Profile() {
         />
 
         <Button
+          linkType="navlink"
           extClassName="profile_navigation_button"
           size="standard"
           url="favourite"
@@ -21,6 +23,7 @@ function Profile() {
         />
 
         <Button
+          linkType="navlink"
           extClassName="profile_navigation_button"
           size="standard"
           url="support"
