@@ -54,14 +54,17 @@
     @include roboto-16($black);
 
     background: transparent;
-    border: 1.5px $blue solid;
+    outline: 1.5px $blue solid;
+    outline-offset: -1.5px;
 
     &:hover {
-      border-width: 2px;
+      outline-offset: -2px;
+      outline-width: 2px;
     }
 
     &:active {
-      border-width: 3px;
+      outline-offset: -3px;
+      outline-width: 3px;
     }
 
     &:disabled {
@@ -81,4 +84,9 @@
 
 .for-button-story {
   border-radius: 0 10px 10px 0;
+}
+
+.active {
+  outline-offset: -3px;
+  outline-width: 3px;
 }
