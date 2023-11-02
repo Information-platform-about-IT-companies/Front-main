@@ -54,7 +54,7 @@ const meta = {
 
 export default meta;
 
-export const TexareaFoeSupportMessage = {
+export const TexareaForSupportMessage = {
   args: {
     label: "Сообщение",
     rows: "8",

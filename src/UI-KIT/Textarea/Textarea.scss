@@ -1,12 +1,8 @@
 @import "/src/assets/style/main";
 
 .textarea {
-  @include flex(start, flex-start, column);
-
-  width: 100%;
-
   &_label {
-    padding-bottom: 4px;
+    width: 100%;
     font-weight: 400;
     font-size: $text-size-default;
     font-style: normal;
@@ -24,6 +20,7 @@
     color: $black;
     font-weight: 400;
     line-height: 22.4px;
+    margin-top: 4px;
 
     &:focus {
       outline: none;
@@ -46,5 +43,9 @@
     font-size: 16px;
     font-weight: 300;
     line-height: 22.4px;
+  }
+
+  &_error-message-hide {
+    display: none;
   }
 }

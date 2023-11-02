@@ -19,24 +19,28 @@ function Textarea({
     return error ? "textarea_field-error" : "";
   }
 
+  function hideErrorMessage() {
+    return error ? "" : "textarea_error-message-hide";
+  }
+
   return (
-    <div className="textarea">
+    <>
       <label className={`textarea_label ${extClassNameLabel}`} htmlFor={id}>
         {label}
+        <textarea
+          name={name}
+          id={id}
+          className={`textarea_field ${extClassNameTextarea} ${errorStyle()} `}
+          required={required}
+          placeholder={placeholder}
+          onChange={onChange}
+          value={value}
+          rows={rows}
+          {...props}
+        />
       </label>
-      <textarea
-        name={name}
-        id={id}
-        className={`textarea_field ${extClassNameTextarea} ${errorStyle()} `}
-        required={required}
-        placeholder={placeholder}
-        onChange={onChange}
-        value={value}
-        rows={rows}
-        {...props}
-      />
-      <span className="textarea_error-text">{error}</span>
-    </div>
+      <span className={`textarea_error-text ${hideErrorMessage()}`}>{error}</span>
+    </>
   );
 }
 

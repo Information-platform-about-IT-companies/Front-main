@@ -1,1 +1,7 @@
 @import "src/assets/style/main";
+
+.support {
+  &_button {
+    max-width: 233px;
+  }
+}

@@ -15,7 +15,14 @@ function ProfileFavourite({ props }) {
         <div className="profile_favourite-details">
           <h4 className="profile_subtitle">Тут пока пусто</h4>
           <p className="profile_description">Нажмите кнопку ниже, чтобы найти полезные компании.</p>
-          <Button fill onClick={() => {}} size="standard" title="Поиск компаний" url="#" />
+          <Button
+            fill
+            extClassName="profile_favourite-find-button"
+            onClick={() => {}}
+            size="standard"
+            title="Поиск компаний"
+            url="#"
+          />
         </div>
       )}
     </div>
