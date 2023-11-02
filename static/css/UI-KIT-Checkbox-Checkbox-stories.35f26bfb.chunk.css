@@ -1,0 +1,3 @@
+.checkbox{color:#111;display:flex;align-items:center;max-width:200px;font-size:14px;line-height:21px;text-align:left}.checkbox__input[type=checkbox]{display:flex;align-items:center;justify-content:center;flex-direction:row;cursor:pointer;margin:0 8px 0 0;-webkit-appearance:none;appearance:none;min-width:15px;height:15px;border:1px solid #111;border-radius:4px;background-color:#f8f8f8}.checkbox__input[type=checkbox]:checked::before{content:"";width:10px;height:10px;border:none;border-radius:2px;background-color:#4e4cbf}
+
+/*# sourceMappingURL=UI-KIT-Checkbox-Checkbox-stories.35f26bfb.chunk.css.map*/
