@@ -66,8 +66,8 @@ export function Search() {
     <div className="search">
       <Input
         icon={<Icon icon="IconSearch" color="#4e4cbf" size="24" />}
-        extClassNameInput="search__input"
-        extClassNameLabel="search__input-label"
+        extClassNameInput="search__input_1"
+        onlyInput="true"
         name="search"
         id="search"
         required="false"
@@ -77,8 +77,8 @@ export function Search() {
       />
       <Input
         icon={<Icon icon="IconPin" color="#4e4cbf" size="24" />}
-        extClassNameInput="search__input"
-        extClassNameLabel="search__input-label"
+        extClassNameInput="search__input_2"
+        onlyInput="true"
         name="city"
         id="city"
         required="false"
