@@ -14,7 +14,7 @@ import Layout from "../Layout/Layout";
 import "./App.scss";
 
 function App() {
-  const [loggedIn, setLoggetIn] = useState(true);
+  const [loggedIn, setLoggetIn] = useState(null);
   const [userData, setUserData] = useState("Вася Пупкин");
   return (
     <Routes>
