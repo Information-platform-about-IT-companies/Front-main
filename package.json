@@ -26,7 +26,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepare": "husky install",
-    "stylelint": "stylelint '{src/**/*, src/**/**/*}.{css,scss}'"
+    "stylelint": "stylelint '{src/**/*, src/**/**/*}.{css,scss}'",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -86,6 +87,7 @@
     "eslint-plugin-storybook": "^0.6.15",
     "eslint-plugin-testing-library": "^6.1.0",
     "fetch-mock": "^9.11.0",
+    "gh-pages": "^6.0.0",
     "husky": "^8.0.0",
     "lint-staged": "^15.0.1",
     "prettier": "3.0.3",

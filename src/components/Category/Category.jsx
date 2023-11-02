@@ -11,7 +11,7 @@ export function Category({ categories, categoryTitle, icon }) {
       <ul className="category">
         {categories.map((category) => (
           <li className="category_link" key={category.title}>
-            <LinkItem title={category.title} withBullet={false} url="/" />
+            <LinkItem title={category.title} withBullet={false} url={category.link} />
           </li>
         ))}
       </ul>
