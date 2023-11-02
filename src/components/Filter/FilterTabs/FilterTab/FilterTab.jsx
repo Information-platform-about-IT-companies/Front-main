@@ -21,7 +21,7 @@ export function Tab({ value, count, activeForm, setActiveForm }) {
     >
       <span>{value}</span>
       {count && <span className="filter__tab-count">{`(${count})`}</span>}
-      <IconArrow size="24" color="#000" direction={iconDirection} />
+      <IconArrow size="24" color="#111111" direction={iconDirection} />
     </div>
   );
 }

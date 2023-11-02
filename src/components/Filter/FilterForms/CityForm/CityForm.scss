@@ -1,0 +1,13 @@
+.city-form {
+  &__checkboxes {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    gap: 12px 32px;
+    margin-bottom: 20px;
+  }
+
+  &__button {
+    margin-left: 322px;
+    padding: 12px 32px;
+  }
+}
