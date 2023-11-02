@@ -15,13 +15,14 @@ import "./App.scss";
 
 function App() {
   const [loggedIn, setLoggetIn] = useState(null);
+  const [userData, setUserData] = useState("Вася Пупкин");
   return (
     <Routes>
       <Route
         path="/profile"
         element={<ProtectedRouteElement element={Profile} loggedIn={loggedIn} />}
       />
-      <Route path="/" element={<Layout />}>
+      <Route path="/" element={<Layout loggedIn={loggedIn} userData={userData} />}>
         <Route index element={<Main />} />
         <Route path="/signin" element={<Login />} />
         <Route path="/signup" element={<Register />} />

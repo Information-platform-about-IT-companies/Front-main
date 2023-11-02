@@ -7,9 +7,7 @@ import PropTypes from "prop-types";
 function Header({ loggedIn, userData }) {
   return (
     <header className="header">
-      <Link to="/">
-        <div className="header__logo" />
-      </Link>
+      <Link to="/" className="header__logo" />
       <nav className="header__navigation">
         {loggedIn ? (
           <>
@@ -17,7 +15,7 @@ function Header({ loggedIn, userData }) {
               <Icon icon="IconAccount" size="32" color="#4E4CBF" />
               <span className="header__user">{userData}</span>
             </Link>
-            <Button size="standard" fill="false" title="Выйти" />
+            <Button size="standard" fill={false} title="Выйти" />
           </>
         ) : (
           <>
