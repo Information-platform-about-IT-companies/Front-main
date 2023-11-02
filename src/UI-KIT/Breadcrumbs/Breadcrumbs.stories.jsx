@@ -2,8 +2,6 @@ import { MemoryRouter, Routes, Route } from "react-router-dom";
 
 import Breadcrumbs from "./Breadcrumbs";
 import "./Breadcrumbs.scss";
-import "../../index.scss";
-import "../../assets/style/main.scss";
 import Main from "../../components/Main/Main";
 // import WelcomePage from "components/WelcomePage/WelcomePage";
 
