@@ -37,7 +37,7 @@ function App() {
         <Route path="/signup" element={<Register />} />
         <Route path="/passrecovery" element={<ForgetPassword />} />
         <Route path="/404" element={<NotFound />} />
-        <Route path="/*" element={<Navigate to="/404" replace />} />
+        <Route path="/*" element={<Navigate to="/404" state={{ fromSameSite: true }} replace />} />
       </Route>
     </Routes>
   );
