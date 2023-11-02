@@ -15,6 +15,7 @@ export function Search({ extClassName, ...props }) {
   const [responseNotFound, serResponseNotFound] = React.useState(false);
 
   React.useEffect(() => {
+    setIsButtonDisabled(true);
     setResponse([
       {
         title: "company",
@@ -26,6 +27,11 @@ export function Search({ extClassName, ...props }) {
       { title: "city", element: [{ name: "Menesota", link: "/" }] },
     ]);
   }, []);
+
+  function handleSubmitSearch(event) {
+    event.preventDefault();
+    console.log("начинаем поиск");
+  }
 
   const hint = response.map((ul) => {
     const li = ul.element.map((e) => (
@@ -62,14 +68,14 @@ export function Search({ extClassName, ...props }) {
   });
 
   return (
-    <div className={`search ${extClassName}`}>
+    <form className={`search ${extClassName}`} onSubmit={handleSubmitSearch}>
       <Input
         icon={<Icon icon="IconSearch" color="#4e4cbf" size="24" />}
         extClassNameInput="search__input_1"
         onlyInput="true"
         name="search"
         id="search"
-        required="false"
+        required={false}
         placeholder="Название компании или услуга"
         onChange={() => console.log("изменение инпута name")}
       />
@@ -79,7 +85,7 @@ export function Search({ extClassName, ...props }) {
         onlyInput="true"
         name="city"
         id="city"
-        required="false"
+        required={false}
         placeholder="Город"
         onChange={() => console.log("изменение инпута city")}
       />
@@ -88,7 +94,6 @@ export function Search({ extClassName, ...props }) {
         size="medium"
         title="Поиск"
         fill="true"
-        onClick={() => console.log("нажата кнопка поиска")}
         disabled={isButtonDisabled}
       />
       {isStartHint && !responseNotFound && <div className="search__hint">{hint}</div>}
@@ -101,6 +106,6 @@ export function Search({ extClassName, ...props }) {
           </div>
         </div>
       )}
-    </div>
+    </form>
   );
 }
