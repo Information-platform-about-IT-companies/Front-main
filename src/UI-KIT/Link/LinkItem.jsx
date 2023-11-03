@@ -1,10 +1,19 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./LinkItem.scss";
+import { useRef, useEffect } from "react";
 
-export function LinkItem({ url, title, withBullet }) {
+export function LinkItem({ url, title, textColor, lineColor }) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current.style.color = textColor;
+  }, [textColor]);
+
+  const changeLineColor = () => {
+    console.log((ref.current.style.borderColor = lineColor));
+  };
   return (
-    <Link className={withBullet ? "link link_style_list" : "link"} to={url}>
+    <Link className="link" to={url} ref={ref} onMouseOver={changeLineColor}>
       {title}
     </Link>
   );
@@ -13,9 +22,11 @@ export function LinkItem({ url, title, withBullet }) {
 LinkItem.propTypes = {
   url: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  withBullet: PropTypes.bool,
+  textColor: PropTypes.string,
+  lineColor: PropTypes.string,
 };
 
 LinkItem.defaultProps = {
-  withBullet: false,
+  textColor: "#111",
+  lineColor: "#111",
 };

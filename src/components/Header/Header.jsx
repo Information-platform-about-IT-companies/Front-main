@@ -11,6 +11,7 @@ function Header({ loggedIn, userData }) {
       <nav className="header__navigation">
         {loggedIn ? (
           <>
+            dsds
             <Link to="/profile" className="header__userdata">
               <Icon icon="IconAccount" size="32" color="#4E4CBF" />
               <span className="header__user">{userData}</span>
@@ -19,8 +20,8 @@ function Header({ loggedIn, userData }) {
           </>
         ) : (
           <>
-            <Button size="standard" fill={false} title="Войти" url="/signin" />
-            <Button size="standard" fill title="Зарегистрироваться" url="signup" />
+            <Button size="standard" fill={false} title="Войти" url="/signin" linkType="link" />
+            <Button size="standard" fill title="Зарегистрироваться" url="signup" linkType="link" />
           </>
         )}
       </nav>

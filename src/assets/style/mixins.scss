@@ -13,3 +13,17 @@
   font-weight: 400;
   color: $color;
 }
+
+@mixin roboto-32($color: $black) {
+  font-size: $text-size-large;
+  line-height: 44.8px;
+  font-weight: 400;
+  color: $color;
+}
+
+@mixin roboto-44($color: $black) {
+  font-size: $text-size-title;
+  line-height: 61.6px;
+  font-weight: 700;
+  color: $color;
+}
