@@ -1,5 +1,4 @@
 import React from "react";
-// import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import Input from "UI-KIT/Input/Input";
@@ -8,7 +7,7 @@ import Icon from "UI-KIT/Icons";
 
 import "./Search.scss";
 
-export function Search() {
+export function Search({ extClassName, ...props }) {
   const [isButtonDisabled, setIsButtonDisabled] = React.useState(true);
   const [isStartHint, setIsStartHint] = React.useState(true);
   const [query, setQuery] = React.useState("");
@@ -16,6 +15,7 @@ export function Search() {
   const [responseNotFound, serResponseNotFound] = React.useState(false);
 
   React.useEffect(() => {
+    setIsButtonDisabled(true);
     setResponse([
       {
         title: "company",
@@ -27,6 +27,11 @@ export function Search() {
       { title: "city", element: [{ name: "Menesota", link: "/" }] },
     ]);
   }, []);
+
+  function handleSubmitSearch(event) {
+    event.preventDefault();
+    console.log("начинаем поиск");
+  }
 
   const hint = response.map((ul) => {
     const li = ul.element.map((e) => (
@@ -63,40 +68,36 @@ export function Search() {
   });
 
   return (
-    <div className="search">
+    <form className={`search ${extClassName}`} onSubmit={handleSubmitSearch}>
       <Input
         icon={<Icon icon="IconSearch" color="#4e4cbf" size="24" />}
-        extClassNameInput="search__input"
-        extClassNameLabel="search__input-label"
+        extClassNameInput="search__input_1"
+        onlyInput="true"
         name="search"
         id="search"
-        required="false"
+        required={false}
         placeholder="Название компании или услуга"
         onChange={() => console.log("изменение инпута name")}
-        onlyInput
       />
       <Input
         icon={<Icon icon="IconPin" color="#4e4cbf" size="24" />}
-        extClassNameInput="search__input"
-        extClassNameLabel="search__input-label"
+        extClassNameInput="search__input_2"
+        onlyInput="true"
         name="city"
         id="city"
-        required="false"
+        required={false}
         placeholder="Город"
         onChange={() => console.log("изменение инпута city")}
-        onlyInput
       />
       <Button
         extClassName="search__input-button"
         size="medium"
         title="Поиск"
         fill="true"
-        onClick={() => console.log("нажата кнопка поиска")}
         disabled={isButtonDisabled}
       />
-      {isStartHint && !responseNotFound ? (
-        <div className="search__hint">{hint}</div>
-      ) : (
+      {isStartHint && !responseNotFound && <div className="search__hint">{hint}</div>}
+      {isStartHint && responseNotFound && (
         <div className="search__hint">
           <div className="search__hint-container">
             <div className="search__hint-header search__hint-header_no-found">
@@ -105,6 +106,6 @@ export function Search() {
           </div>
         </div>
       )}
-    </div>
+    </form>
   );
 }
