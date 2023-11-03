@@ -1,0 +1,20 @@
+@import "assets/style/variables";
+
+.service-form {
+  &__fieldset {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 200px;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  &__legend {
+    margin-bottom: 12px;
+    padding: 0;
+    font-size: $text-size-default;
+    font-weight: 500;
+  }
+}
