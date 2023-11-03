@@ -21,3 +21,6 @@ npm run start
    вместо
    import 'Button '../../components/Button';
       ```
+
+2. Мы пишем комменатрии к пул реквестам сокомандников)
+3.  [Ссылка на сторибук на GP:](https://information-platform-about-it-companies.github.io/Front-main/)
