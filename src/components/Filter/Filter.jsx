@@ -125,49 +125,64 @@ const cities = [
 ];
 
 export function Filter() {
-  const [checkedValues, setChekedValues] = useState({ Город: {}, Услуги: {} });
+  const [checkedValues, setChekedValues] = useState({ cities: {}, services: {} });
 
-  const [activeForm, setActiveForm] = useState("Город");
+  const [isOpenFilter, setIsOpenFilter] = useState(false);
+  const [activeForm, setActiveForm] = useState("cities");
 
   const onSubmit = (e) => {
     e.preventDefault();
 
     /* логика по отправке данных на сервер */
 
-    setChekedValues({ Город: {}, Услуги: {} });
+    setChekedValues({ cities: {}, services: {} });
   };
 
+  /* Здесь будет обработка загрузки данных, пока набросаю комментарий, чтобы не забыть
+    if (isLoading) {
+      return <Preloader />
+    }
+    
+    if (isError && allServices.length === 0 && cities.length === 0) {
+      return <ErrorMessage />
+    }
+  */
+
   return (
-    <section className="filter">
+    <section className={isOpenFilter ? "filter filter_open" : "filter"}>
       <FilterTabs
         activeForm={activeForm}
+        isOpenFilter={isOpenFilter}
         setActiveForm={setActiveForm}
+        setIsOpenFilter={setIsOpenFilter}
         checkedValues={checkedValues}
       />
 
-      <div className="filter__content">
-        <FilterNav
-          activeForm={activeForm}
-          setActiveForm={setActiveForm}
-          checkedValues={checkedValues}
-        />
+      {isOpenFilter && (
+        <div className="filter__content">
+          <FilterNav
+            activeForm={activeForm}
+            setActiveForm={setActiveForm}
+            checkedValues={checkedValues}
+          />
 
-        {activeForm === "Услуги" ? (
-          <ServiceForm
-            onSubmit={onSubmit}
-            allServices={allServices}
-            checkedValues={checkedValues}
-            setChekedValues={setChekedValues}
-          />
-        ) : (
-          <CityForm
-            onSubmit={onSubmit}
-            cities={cities}
-            checkedValues={checkedValues}
-            setChekedValues={setChekedValues}
-          />
-        )}
-      </div>
+          {activeForm === "services" ? (
+            <ServiceForm
+              onSubmit={onSubmit}
+              allServices={allServices}
+              checkedValues={checkedValues}
+              setChekedValues={setChekedValues}
+            />
+          ) : (
+            <CityForm
+              onSubmit={onSubmit}
+              cities={cities}
+              checkedValues={checkedValues}
+              setChekedValues={setChekedValues}
+            />
+          )}
+        </div>
+      )}
     </section>
   );
 }

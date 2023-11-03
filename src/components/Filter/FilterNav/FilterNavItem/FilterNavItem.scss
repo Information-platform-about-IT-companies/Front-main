@@ -1,14 +1,14 @@
-@import "style/variables";
+@import "assets/style/variables";
 
 .filter__nav-item {
   padding: 0;
   padding-right: 20px;
-  font-size: 20px;
+  font-size: $text-size-medium;
   font-weight: 500;
   background-color: transparent;
   border: none;
 
   &_active {
-    color: $dark-blue;
+    color: $blue;
   }
 }

@@ -1,10 +1,42 @@
 import "./Button.scss";
 import PropTypes from "prop-types";
+import { Link, NavLink } from "react-router-dom";
 
-export function Button({ type, size, fill, title, onClick, icon, extClassName, ...props }) {
+export function Button({ size, fill, title, linkType, url, onClick, extClassName, ...props }) {
+  if (url) {
+    const isLink = linkType === "link";
+    const isNavLink = linkType === "navlink";
+    const link = isLink && (
+      <Link
+        to={url}
+        className={
+          fill
+            ? `button button_style_fill button_size_${size} ${extClassName}`
+            : `button button_style_outline button_size_${size} ${extClassName}`
+        }
+        {...props}
+      >
+        {title}
+      </Link>
+    );
+
+    const navlink = isNavLink && (
+      <NavLink
+        to={url}
+        className={
+          fill
+            ? `button button_style_fill button_size_${size} ${extClassName}`
+            : `button button_style_outline button_size_${size} ${extClassName}`
+        }
+        {...props}
+      >
+        {title}
+      </NavLink>
+    );
+    return isLink ? link : navlink;
+  }
   return (
     <button
-      type={type}
       onClick={onClick}
       className={
         fill
@@ -13,24 +45,24 @@ export function Button({ type, size, fill, title, onClick, icon, extClassName, .
       }
       {...props}
     >
-      {/* {icon && <span>icon here</span>} */}
       {title}
     </button>
   );
 }
 
 Button.propTypes = {
-  type: PropTypes.string,
+  linkType: PropTypes.string,
+  url: PropTypes.string,
   size: PropTypes.string.isRequired,
   fill: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-  icon: PropTypes.node,
+  onClick: PropTypes.func,
   extClassName: PropTypes.string,
 };
 
 Button.defaultProps = {
-  type: "button",
-  icon: null,
-  extClassName: null,
+  linkType: null,
+  onClick: null,
+  url: null,
+  extClassName: "",
 };

@@ -1,25 +1,21 @@
-import { useCallback } from "react";
 import "./CityForm.scss";
 
 import { Checkbox } from "UI-KIT/Checkbox/Checkbox";
 import { Button } from "UI-KIT/Button/Button";
 
 export function CityForm({ cities, checkedValues, setChekedValues, onSubmit }) {
-  const checkedCities = checkedValues["Город"];
+  const checkedCities = checkedValues.cities;
 
-  const onChange = useCallback(
-    (e) => {
-      const { checked, name } = e.target;
-      setChekedValues((lastValues) => ({
-        ...lastValues,
-        ["Город"]: { ...lastValues["Город"], [name]: checked },
-      }));
-    },
-    [checkedValues],
-  );
+  const onChange = (e) => {
+    const { checked, name } = e.target;
+    setChekedValues((lastValues) => ({
+      ...lastValues,
+      cities: { ...lastValues.cities, [name]: checked },
+    }));
+  };
 
   return (
-    <form name="Город" className="filter__city-form city-form" onSubmit={onSubmit}>
+    <form name="cities" className="filter__city-form city-form" onSubmit={onSubmit}>
       <div className="city-form__checkboxes">
         {cities.map((city) => (
           <Checkbox
@@ -39,7 +35,7 @@ export function CityForm({ cities, checkedValues, setChekedValues, onSubmit }) {
         size="standart"
         onClick={onSubmit}
         title="Применить фильтры"
-        fill={true}
+        fill
       />
     </form>
   );

@@ -1,13 +1,16 @@
+@import "assets/style/variables";
+@import "assets/style/mixins";
+
 .filter__tab {
-  display: flex;
-  align-items: center;
+  @include flex(center);
+
   gap: 8px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: $text-size-medium;
   font-weight: 500;
 
   &-count {
-    color: #4e4cbf;
+    color: $blue;
     display: flex;
   }
 }

@@ -1,5 +1,4 @@
-@import "../../style/variables";
-@import "../../style/mixins";
+@import "src/assets/style/main";
 
 .checkbox {
   color: $black;
@@ -10,9 +9,11 @@
   line-height: 21px;
   text-align: left;
 
-  &_input[type="checkbox"] {
-    margin: 0;
+  &__input[type="checkbox"] {
+    @include flex(center, center);
+
     cursor: pointer;
+    margin: 0 8px 0 0;
     appearance: none;
     min-width: 15px;
     height: 15px;
@@ -20,17 +21,13 @@
     border-radius: 4px;
     background-color: $white;
 
-    @include flex(center, center);
-
-    margin-right: 8px;
-  }
-
-  &_input[type="checkbox"]:checked::before {
-    content: "";
-    width: 10px;
-    height: 10px;
-    border: none;
-    border-radius: 2px;
-    background-color: $dark-blue;
+    &:checked::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border: none;
+      border-radius: 2px;
+      background-color: $blue;
+    }
   }
 }

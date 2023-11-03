@@ -1,11 +1,11 @@
-@import "style/variables";
+@import "assets/style/variables";
 
 .service-form {
   &__fieldset {
     display: flex;
     flex-direction: column;
-    gap: 12px;
     flex-basis: 200px;
+    gap: 12px;
     margin: 0;
     padding: 0;
     border: none;

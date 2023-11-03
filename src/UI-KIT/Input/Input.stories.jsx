@@ -1,5 +1,6 @@
-import { Input } from "./Input";
+import Input from "UI-KIT/Input/Input";
 import "./Input.scss";
+import Icon from "UI-KIT/Icons";
 
 const meta = {
   title: "UI-KIT/Input",
@@ -13,10 +14,14 @@ const meta = {
     },
   },
   argTypes: {
-    lable: {
+    icon: {
+      description: "Необязательный параметр для добавления icon в поле input",
+      options: ["24px"],
+    },
+    label: {
       description: "Необязательный параметр с указанием названия поля ввода.",
     },
-    extClassNameLable: {
+    extClassNameLabel: {
       description:
         "Необязательный параметр для добавления дополнительных стилей заголовку поля ввода",
     },
@@ -59,20 +64,41 @@ export default meta;
 export const InputWithFill = {
   args: {
     value: "Василий Пупкин",
+    onlyInput: true,
   },
 };
 
-export const ActiveInput = {};
+export const ActiveInput = {
+  args: {
+    onlyInput: true,
+  },
+};
 
 export const InputWithHelp = {
   args: {
     placeholder: "Василий Пупкин",
+    onlyInput: true,
   },
 };
 
-export const InputWithError = {
+export const InputWithIcon = {
   args: {
+    value: "Вася Пупкин",
+    icon: <Icon icon="IconAccount" size="24" color="#4E4CBF" />,
+    onlyInput: true,
+  },
+};
+
+export const InputWithErrorAndLabel = {
+  args: {
+    label: "E-mail",
     value: "@mail.ru",
     error: "Ошибка",
+  },
+};
+
+export const InputOnly = {
+  args: {
+    onlyInput: true,
   },
 };

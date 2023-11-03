@@ -1,18 +1,20 @@
-@import "style/variables";
+@import "assets/style/variables";
 
 .filter {
-  border-radius: 10px 10px 20px 20px;
-  outline: 1px solid $dark-blue;
-
-  /* не забудь удалить эти стили */
-  max-width: 1200px;
-  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  background-color: $light-grey;
 
   &__content {
-    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    z-index: -1;
     display: flex;
     gap: 20px;
+    padding: 78px 20px 20px;
     width: 100%;
-    padding: 20px;
+    background-color: $light-grey;
+    outline: 1px solid $blue;
+    border-radius: 10px 10px 20px 20px;
   }
 }

@@ -6,7 +6,7 @@ import { ServiceCheckboxGroup } from "components/Filter/FilterForms/ServiceForm/
 
 export function ServiceForm({ allServices, checkedValues, setChekedValues, onSubmit }) {
   return (
-    <form name="Услуги" className="filter__service-form service-form" onSubmit={onSubmit}>
+    <form name="services" className="filter__service-form service-form" onSubmit={onSubmit}>
       <div className="service-form__checkboxes">
         {allServices.map(({ id, category, services }) => (
           <ServiceCheckboxGroup

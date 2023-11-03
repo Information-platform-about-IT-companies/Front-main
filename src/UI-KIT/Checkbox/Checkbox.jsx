@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 
 export function Checkbox({ title, name, id, onChange, ...props }) {
   return (
-    <label className="checkbox" htmlFor="checkbox">
+    <label className="checkbox" htmlFor="id">
       <input
-        className="checkbox_input"
+        className="checkbox__input"
         type="checkbox"
         name={name}
         id={id}

@@ -1,9 +1,24 @@
-@import "style/variables";
+@import "assets/style/variables";
+@import "assets/style/mixins";
 
 .filter__tabs {
   display: flex;
   gap: 40px;
-  padding: 8px 20px;
-  outline: 1px solid $dark-blue;
-  border-radius: 10px;
+
+  &-container {
+    @include flex(stretch, space-between);
+
+    padding: 8px 20px;
+    outline: 1px solid $blue;
+    border-radius: 10px;
+  }
+
+  &-button {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+  }
 }
