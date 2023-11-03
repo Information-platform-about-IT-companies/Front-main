@@ -25,7 +25,7 @@
     "prettier": "prettier --check {src/**/*, src/**/**/*}.{js,jsx,css, scss}",
     "prettier-format": "prettier --write \"{src/**/*, src/**/**/*}.{js,jsx,scss,css,json}\"",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "build-storybook",
+    "build-storybook": "storybook build",
     "prepare": "husky install",
     "stylelint": "stylelint '{src/**/*, src/**/**/*}.{css,scss}'",
     "deploy": "gh-pages -d build",
