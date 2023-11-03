@@ -3,7 +3,7 @@ import "./Main.scss";
 import { Link } from "react-router-dom";
 import Icon from "UI-KIT/Icons";
 import { Category } from "components/Category/Category";
-import { Button } from "../../UI-KIT/Button/Button";
+import { Button } from "UI-KIT/Button/Button";
 
 function Main() {
   const hardcode = {

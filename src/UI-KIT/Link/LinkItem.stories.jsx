@@ -1,5 +1,4 @@
 import { MemoryRouter } from "react-router-dom";
-import Icon from "UI-KIT/Icons";
 import { LinkItem } from "./LinkItem";
 
 const meta = {
@@ -21,11 +20,13 @@ const meta = {
     title: {
       description: "Текст ссылки",
     },
-    withBullet: {
-      description: "Необязательный параметр (для вывода булета)",
-      options: [true, false],
-      control: { type: "radio" },
-      defaultvalue: false,
+    textColor: {
+      description:
+        "Цвет текста ссылки. Можно вносить любой цвет в виде: #00FF00 или rgb(0, 255, 0) или green",
+    },
+    linkColor: {
+      description:
+        "Цвет подчеркивания при наведении на ссылку. Можно вносить любой цвет в виде: #00FF00 или rgb(0, 255, 0) или green",
     },
   },
   decorators: [
@@ -42,14 +43,16 @@ export default meta;
 export const DefaultLink = {
   args: {
     url: "/",
-    title: "Это ссылка",
+    title: "Привет, я ссылка на главной странице",
+    lineColor: "#479fba",
   },
 };
 
-export const BulletLink = {
+export const LKLink = {
   args: {
     url: "/",
-    title: "Это ссылка",
-    withBullet: true,
+    title: "Привет, я ссылка для ЛК",
+    textColor: "#4e4cbf",
+    lineColor: "#605ed6",
   },
 };
