@@ -9,7 +9,7 @@ import ProtectedRouteElement from "components/ProtectedRoute/ProtectedRoute";
 import Profile from "components/Profile/Profile";
 import Main from "components/Main/Main";
 import ForgetPassword from "components/ForgetPassword/ForgetPassword";
-import Layout from "../Layout/Layout";
+import Layout from "components/Layout/Layout";
 // Стили
 import "./App.scss";
 
