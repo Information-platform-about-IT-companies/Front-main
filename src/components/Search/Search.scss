@@ -3,29 +3,36 @@
 .search {
   display: grid;
   grid-template-columns: 1fr 1fr min-content;
+  position: relative;
 
   &__input-button {
     border-radius: 0 10px 10px 0 !important;
   }
 
-  &__input {
-    padding: 20px 20px 20px 56px;
+  &__input_1 {
+    box-sizing: border-box;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-right: none;
+    border-radius: 10px 0 0 10px;
   }
 
-  &__input-label {
-    padding-bottom: 0;
-  }
-
-  &__error-label {
-    padding: 0;
+  &__input_2 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 0;
   }
 
   &__hint {
-    position: relative;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
     padding: 32px;
     border-radius: 10px;
     background-color: $sea-blue-light;
     grid-column: 1 / -1;
+    z-index: 99;
   }
 
   &__hint-container {

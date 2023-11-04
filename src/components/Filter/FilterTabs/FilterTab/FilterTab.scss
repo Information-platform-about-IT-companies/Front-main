@@ -1,0 +1,16 @@
+@import "assets/style/variables";
+@import "assets/style/mixins";
+
+.filter__tab {
+  @include flex(center);
+
+  gap: 8px;
+  cursor: pointer;
+  font-size: $text-size-medium;
+  font-weight: 500;
+
+  &-count {
+    color: $blue;
+    display: flex;
+  }
+}

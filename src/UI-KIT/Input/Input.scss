@@ -32,10 +32,15 @@
   color: $black;
   font-weight: 400;
   line-height: 22.4px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  outline: none;
+  box-shadow: inset 0 0 0 0 $blue;
 
   &:focus {
-    outline: none;
-    border: 2px solid $blue;
+    box-shadow: inset 0 0 0 1px $blue;
+    z-index: 9;
   }
 
   &::placeholder {
@@ -52,6 +57,7 @@
   position: absolute;
   max-height: 24px;
   left: 20px;
+  z-index: 10;
 }
 
 .input__field-error {

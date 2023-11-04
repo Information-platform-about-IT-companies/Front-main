@@ -11,8 +11,6 @@ export default function NotFound() {
   const isSameSite =
     document.referrer.includes(window.location.origin) || location.state?.fromSameSite;
 
-  console.log(isSameSite);
-
   const handleButtonNotFound = () => {
     if (isSameSite) {
       navigate(-1);

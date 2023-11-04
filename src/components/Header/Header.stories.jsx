@@ -15,7 +15,7 @@ const meta = {
   },
   argTypes: {
     loggedIn: {
-      description: "Признак авторилован пользователь или нет",
+      description: "Признак авторизован пользователь или нет",
       options: [true, false],
     },
     userData: {

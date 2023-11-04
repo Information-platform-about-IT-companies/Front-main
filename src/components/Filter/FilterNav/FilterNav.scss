@@ -1,0 +1,14 @@
+@import "assets/style/mixins";
+
+.filter__nav {
+  flex: 0 0 136px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+
+  &-item {
+    @include flex(center, space-between);
+
+    cursor: pointer;
+  }
+}
