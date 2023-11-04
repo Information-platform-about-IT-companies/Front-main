@@ -14,12 +14,13 @@ const meta = {
   argTypes: {
     icon: {
       description:
-        "Обязательный параметр объявления используемой иконки. Может принимать значения - IconAccount | IconArrow | IconFilter | IconOctopusArrow | IconPin | IconRound | IconSearch",
+        "Обязательный параметр объявления используемой иконки. Может принимать значения - IconAccount | IconArrow | IconFilter | IconHeart | IconOctopusArrow | IconPin | IconRound | IconSearch",
       control: { type: "select" },
       options: [
         "IconAccount",
         "IconArrow",
         "IconFilter",
+        "IconHeart",
         "IconOctopusArrow",
         "IconPin",
         "IconRound",
@@ -44,8 +45,12 @@ const meta = {
       control: { type: "select" },
       options: ["up", "right", "down", "left"],
     },
+    fill: {
+      description: "Обязательный параметр для иконки сердечка. Отвечает за заливку сердечка цветом",
+      options: [true, false],
+    },
     symbol: {
-      description: "бязательный параметр для иконки буквы в кружочке. Принимает букву",
+      description: "Обязательный параметр для иконки буквы в кружочке. Принимает букву",
       control: "text",
     },
   },
@@ -82,6 +87,16 @@ export const IconFilter = {
   },
 };
 
+export const IconHeart = {
+  args: {
+    icon: "IconHeart",
+    size: 32,
+    color: "black",
+    extClassName: "for-story",
+    fill: false,
+  },
+};
+
 export const IconOctopusArrow = {
   args: {
     icon: "IconOctopusArrow",
@@ -106,7 +121,7 @@ export const IconRound = {
     size: 32,
     color: "black",
     extClassName: "for-story",
-    symbol: "I",
+    symbol: "W",
   },
 };
 
