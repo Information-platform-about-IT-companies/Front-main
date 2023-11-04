@@ -118,3 +118,9 @@ export const IconSearch = {
     extClassName: "for-story",
   },
 };
+
+export const IconLike = {
+  args: {
+    icon: "IconLike",
+  },
+};
