@@ -75,7 +75,6 @@ export function Search({ extClassName, ...props }) {
         onlyInput="true"
         name="search"
         id="search"
-        required={false}
         placeholder="Название компании или услуга"
         onChange={() => console.log("изменение инпута name")}
       />
@@ -85,7 +84,6 @@ export function Search({ extClassName, ...props }) {
         onlyInput="true"
         name="city"
         id="city"
-        required={false}
         placeholder="Город"
         onChange={() => console.log("изменение инпута city")}
       />
@@ -93,7 +91,7 @@ export function Search({ extClassName, ...props }) {
         extClassName="search__input-button"
         size="medium"
         title="Поиск"
-        fill="true"
+        fill
         disabled={isButtonDisabled}
       />
       {isStartHint && !responseNotFound && <div className="search__hint">{hint}</div>}
