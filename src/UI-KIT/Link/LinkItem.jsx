@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./LinkItem.scss";
 import { useRef, useEffect } from "react";
 
-export function LinkItem({ url, title, textColor, lineColor, weight }) {
+export function LinkItem({ url, title, textColor, lineColor, weight, extClassName }) {
   const ref = useRef();
   useEffect(() => {
     ref.current.style.color = textColor;
@@ -14,7 +14,7 @@ export function LinkItem({ url, title, textColor, lineColor, weight }) {
     console.log((ref.current.style.borderColor = lineColor));
   };
   return (
-    <Link className="link" to={url} ref={ref} onMouseOver={changeLineColor}>
+    <Link className={`link ${extClassName}`} to={url} ref={ref} onMouseOver={changeLineColor}>
       {title}
     </Link>
   );
@@ -26,10 +26,12 @@ LinkItem.propTypes = {
   textColor: PropTypes.string,
   lineColor: PropTypes.string,
   weight: PropTypes.string,
+  extClassName: PropTypes.string,
 };
 
 LinkItem.defaultProps = {
   textColor: "#111",
   lineColor: "#111",
   weight: "300",
+  extClassName: "",
 };

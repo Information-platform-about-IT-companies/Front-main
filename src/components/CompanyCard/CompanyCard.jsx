@@ -1,36 +1,52 @@
-import Icon from "UI-KIT/Icons";
+// Сторонние пакеты
 import { Link } from "react-router-dom";
+// UI
+import Icon from "UI-KIT/Icons";
 import { Label } from "UI-KIT/Label/Label";
-import { declinationsNumericalValues } from "services/constants";
+import { LinkItem } from "UI-KIT/Link/LinkItem";
+// Функции
+import { cutText, declinationsNumericalValues } from "services/constants";
+// Стили
+import "./CompanyCard.scss";
 
-export default function ({ logo, name, city, services, about, onIconLikeClick }) {
+export default function ({ logo, name, city, services, description, onIconLikeClick }) {
+  // для кнопок "ЕЩЕ N УСЛУГ"
   let filterServices;
   let filterCount;
   if (services.length > 3) {
     filterServices = services.slice(0, 3);
     filterCount = services.length - 3;
   } else filterServices = services.slice(0);
+  // для обрезки и ... многострочного текста
+  const cutDescription = cutText(description, 330);
   return (
     <div className="companyCard">
       <div className="companyCard__info">
-        {logo ? (
-          <img src={logo} className="companyCard__logo" alt={`Логотип компании ${name}`} />
-        ) : (
-          <div className="companyCard__logo-cap">logo</div>
-        )}
         <div className="companyCard__about">
-          <h2 className="companyCard__name">{name}</h2>
-          <span className="companyCard__city">{city}</span>
+          {logo ? (
+            <img src={logo} className="companyCard__logo" alt={`Логотип компании ${name}`} />
+          ) : (
+            <div className="companyCard__logo-cap" />
+          )}
+          <div className="companyCard__title">
+            <h2 className="companyCard__name">{name}</h2>
+            <span className="companyCard__city">{city}</span>
+          </div>
         </div>
-        <Icon icon="IconLike" className="companyCard__btn-like" onClick={() => onIconLikeClick()} />
+        <Icon
+          color="#414040"
+          icon="IconLike"
+          className="companyCard__btn-like"
+          onClick={() => onIconLikeClick()}
+        />
       </div>
-      <p>{about}</p>
+      <p className="companyCard__description">{cutDescription}</p>
       <div className="companyCard__services">
         <span className="companyCard__services-text">Услуги:</span>
         <ul className="companyCard__services-list">
           {filterServices.map((service) => (
             <li>
-              <Link to="/">
+              <Link to="/" className="companyCard__services-list-item">
                 <Label title={service} />
               </Link>
             </li>
@@ -40,6 +56,7 @@ export default function ({ logo, name, city, services, about, onIconLikeClick })
           )}
         </ul>
       </div>
+      <LinkItem title="Подробнее" url="/" extClassName="companyCard__fullInfo" />
     </div>
   );
 }

@@ -1,0 +1,10 @@
+.like-icon {
+  &:hover {
+    cursor: pointer;
+    stroke: #ff9091;
+  }
+
+  &:hover path {
+    stroke: #ff9091;
+  }
+}

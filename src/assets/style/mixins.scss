@@ -7,9 +7,23 @@
   flex-direction: $direction;
 }
 
+@mixin roboto-14($color: $black, $weight: 300) {
+  font-size: $text-size-small;
+  line-height: 21px;
+  font-weight: $weight;
+  color: $color;
+}
+
 @mixin roboto-16($color: $black) {
   font-size: $text-size-default;
   line-height: 19px;
+  font-weight: 400;
+  color: $color;
+}
+
+@mixin roboto-24($color: $black) {
+  font-size: 24px;
+  line-height: 28px;
   font-weight: 400;
   color: $color;
 }

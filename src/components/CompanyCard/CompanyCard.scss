@@ -1,0 +1,91 @@
+@import "src/assets/style/main";
+
+.companyCard {
+  @include flex(stretch, space-between, column);
+
+  height: 441px;
+  width: 100%;
+  max-width: 586px;
+  border-radius: 20px;
+  background-color: $white;
+  padding: 20px;
+
+  &__info {
+    @include flex(stretch, space-between);
+  }
+
+  &__fullInfo {
+    align-self: flex-start;
+  }
+
+  &__about {
+    display: flex;
+    gap: 20px;
+    min-width: 466px;
+  }
+
+  &__logo {
+    width: 170px;
+    height: 120px;
+    object-fit: cover;
+    object-position: center center;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+  }
+
+  &__logo-cap {
+    position: relative;
+    width: 170px;
+    height: 120px;
+    text-align: center;
+    border: 1px solid $black-light;
+    border-radius: 10px;
+
+    &::after {
+      position: absolute;
+      content: "Logo";
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &__title {
+    @include flex(flex-start, center, column);
+
+    gap: 12px;
+  }
+
+  &__name {
+    @include roboto-24;
+  }
+
+  &_city {
+    @include roboto-16;
+  }
+
+  &__description {
+    @include roboto-14;
+
+    height: 84px;
+  }
+
+  &__services-text {
+    display: inline-block;
+    padding-bottom: 12px;
+
+    @include roboto-14($black, 400);
+  }
+
+  &__services-list {
+    @include flex;
+
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 0;
+
+    &-item {
+      text-decoration: none;
+    }
+  }
+}

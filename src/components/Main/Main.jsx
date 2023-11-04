@@ -61,10 +61,16 @@ function Main() {
     <main className="mainPage">
       <section className="intro">
         <CompanyCard
-          name="test"
-          services={["first", "second", "third", "ff", "dsdsd"]}
-          city="blabla"
-          about="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, soluta."
+          name="Mentalstack "
+          services={[
+            "firstfirstfirst firstfirstfirst",
+            "secondsecond secondsecond",
+            "thirdthirdthird",
+            "ff",
+            "dsdsd",
+          ]}
+          city="Rostov"
+          description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi beatae laborum nam nobis reprehenderit, tempora? Ab dolor dolorum esse, explicabo fugiat labore molestiae nulla officiis, omnis pariatur quaerat quasi quibusdam rerum suscipit veritatis. Accusamus, accusantium enim iusto libero magnam neque nihil porro praesentium qui ratione vero voluptate! Quia, quos similique?"
         />
         <h1 className="intro__title">Найдите подходящие для вас IT-компании в России</h1>
         <Search />

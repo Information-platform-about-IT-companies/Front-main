@@ -1,4 +1,3 @@
-export const TEST = 0;
 export function declinationsNumericalValues(value) {
   const text = ["услуга", "услуги", "услуг"];
   const v = Math.abs(value) % 100;
@@ -13,4 +12,9 @@ export function declinationsNumericalValues(value) {
     return text[0];
   }
   return text[2];
+}
+
+export function cutText(text, limit) {
+  if (text.length < limit) return text;
+  return `${text.slice(0, limit)}...`;
 }
