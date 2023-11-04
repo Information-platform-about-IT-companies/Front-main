@@ -3,6 +3,7 @@ import { useId, useState } from "react";
 import Input from "UI-KIT/Input/Input";
 import { Form } from "UI-KIT/Form/Form";
 import { Button } from "UI-KIT/Button/Button";
+import { ButtonChanges } from "UI-KIT/ButtonChanges/ButtonChanges";
 
 function ProfileInfo({ onSubmit }) {
   const firstNameInputId = useId();
@@ -32,9 +33,11 @@ function ProfileInfo({ onSubmit }) {
         <Input label="E-mail" type="email" name="email" id={emailInputId} />
         <div className="info-buttons">
           <Button fill size="standard" type="submit" title="Обновить профиль" />
-          <button type="button" onClick={handleChangePasswordForm}>
-            Изменить пароль
-          </button>
+          <ButtonChanges
+            type="button"
+            title="Изменить пароль"
+            onClick={() => handleChangePasswordForm()}
+          />
         </div>
       </Form>
 
@@ -58,9 +61,11 @@ function ProfileInfo({ onSubmit }) {
 
           <div className="info-buttons">
             <Button fill size="standard" type="submit" title="Обновить пароль" />
-            <button type="button" onClick={handleChangePasswordForm}>
-              Отменить
-            </button>
+            <ButtonChanges
+              type="button"
+              title="Отменить"
+              onClick={() => handleChangePasswordForm()}
+            />
           </div>
         </Form>
       ) : null}
