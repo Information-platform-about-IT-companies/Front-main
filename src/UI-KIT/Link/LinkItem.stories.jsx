@@ -28,6 +28,9 @@ const meta = {
       description:
         "Цвет подчеркивания при наведении на ссылку. Можно вносить любой цвет в виде: #00FF00 или rgb(0, 255, 0) или green",
     },
+    weight: {
+      description: "Начертание текста",
+    },
   },
   decorators: [
     (Story) => (
@@ -48,11 +51,12 @@ export const DefaultLink = {
   },
 };
 
-export const LKLink = {
+export const CardLink = {
   args: {
     url: "/",
-    title: "Привет, я ссылка для ЛК",
+    title: "Подробнее",
     textColor: "#4e4cbf",
     lineColor: "#605ed6",
+    weight: "700",
   },
 };
