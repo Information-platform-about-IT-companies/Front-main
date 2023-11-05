@@ -24,11 +24,12 @@ export default function IconAccount({ size, color, extClassName }) {
 
 IconAccount.propTypes = {
   size: PropTypes.oneOf(["24", "32", "60"]),
-  color: PropTypes.string.isRequired,
+  color: PropTypes.string,
   extClassName: PropTypes.string,
 };
 
 IconAccount.defaultProps = {
   size: "32",
+  color: "#4E4CBF",
   extClassName: null,
 };

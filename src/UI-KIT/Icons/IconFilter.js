@@ -22,11 +22,12 @@ export default function IconFilter({ size, color, extClassName }) {
 
 IconFilter.propTypes = {
   size: PropTypes.oneOf(["24", "32", "60"]),
-  color: PropTypes.string.isRequired,
+  color: PropTypes.string,
   extClassName: PropTypes.string,
 };
 
 IconFilter.defaultProps = {
   size: "32",
+  color: "#111",
   extClassName: null,
 };

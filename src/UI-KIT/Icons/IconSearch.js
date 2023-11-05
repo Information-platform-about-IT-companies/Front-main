@@ -20,11 +20,12 @@ export default function IconSearch({ size, color, extClassName }) {
 
 IconSearch.propTypes = {
   size: PropTypes.oneOf(["24", "32", "60"]),
-  color: PropTypes.string.isRequired,
+  color: PropTypes.string,
   extClassName: PropTypes.string,
 };
 
 IconSearch.defaultProps = {
   size: "32",
+  color: "#4e4cbf",
   extClassName: null,
 };
