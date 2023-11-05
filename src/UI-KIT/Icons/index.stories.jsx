@@ -122,5 +122,13 @@ export const IconSearch = {
 export const IconLike = {
   args: {
     icon: "IconLike",
+    state: false,
+  },
+};
+
+export const IconLikeActive = {
+  args: {
+    icon: "IconLike",
+    state: true,
   },
 };
