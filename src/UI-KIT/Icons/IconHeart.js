@@ -43,6 +43,6 @@ IconHeart.propTypes = {
 IconHeart.defaultProps = {
   size: "32",
   color: "#414040",
-  colorFill: "#FF9091",
+  colorFill: "#BD489D",
   extClassName: null,
 };

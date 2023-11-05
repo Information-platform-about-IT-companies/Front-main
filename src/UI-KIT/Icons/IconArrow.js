@@ -39,12 +39,14 @@ export default function IconArrow({ size, color, extClassName, direction }) {
 
 IconArrow.propTypes = {
   size: PropTypes.oneOf(["24", "32", "60"]),
-  color: PropTypes.string.isRequired,
-  direction: PropTypes.oneOf(["up", "left", "down", "right"]).isRequired,
+  color: PropTypes.string,
+  direction: PropTypes.oneOf(["up", "left", "down", "right"]),
   extClassName: PropTypes.string,
 };
 
 IconArrow.defaultProps = {
   size: "32",
+  color: "#111",
+  direction: "up",
   extClassName: null,
 };
