@@ -1,9 +1,9 @@
-@import "assets/style/variables";
+@import "src/assets/style/variables";
 
 .filter {
   position: relative;
   z-index: 1;
-  background-color: $light-grey;
+  background-color: $white;
 
   &__content {
     position: absolute;
@@ -13,7 +13,7 @@
     gap: 20px;
     padding: 78px 20px 20px;
     width: 100%;
-    background-color: $light-grey;
+    background-color: $white;
     outline: 1px solid $blue;
     border-radius: 10px 10px 20px 20px;
   }

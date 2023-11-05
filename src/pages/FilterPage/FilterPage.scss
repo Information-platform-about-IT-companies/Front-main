@@ -1,0 +1,24 @@
+@import "src/assets/style/main";
+
+.filterPage {
+  padding: 40px 0 86px;
+
+  &__intro {
+    @include flex(stretch, center, column);
+
+    gap: 40px;
+  }
+
+  &__title {
+    @include roboto-32;
+
+    line-height: 38px;
+    text-align: center;
+  }
+
+  &__list {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+}

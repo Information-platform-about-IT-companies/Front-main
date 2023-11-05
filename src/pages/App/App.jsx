@@ -17,6 +17,7 @@ import ProfileFavourite from "components/ProfileFavourite/ProfileFavourite";
 import Layout from "components/Layout/Layout";
 // Стили
 import "./App.scss";
+import FilterPage from "../FilterPage/FilterPage";
 
 function App() {
   const [loggedIn, setLoggetIn] = useState(true);
@@ -34,6 +35,7 @@ function App() {
           <Route path="support" element={<ProfileSupport />} />
         </Route>
         <Route index element={<Main />} />
+        <Route path="/filter/*" element={<FilterPage />} />
         <Route path="/signin" element={<Login />} />
         <Route path="/signup" element={<Register />} />
         <Route path="/passrecovery" element={<ForgetPassword />} />
