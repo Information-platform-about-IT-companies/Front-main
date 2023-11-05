@@ -1,3 +1,6 @@
+import React from "react";
+
+import { Button } from "UI-KIT/Button/Button";
 import Icon from "./index";
 
 const meta = {
@@ -49,6 +52,9 @@ const meta = {
       description: "Обязательный параметр для иконки сердечка. Отвечает за заливку сердечка цветом",
       options: [true, false],
     },
+    colorFill: {
+      description: "Обязательный параметр отвечающий за цвет заполненной иконки",
+    },
     symbol: {
       description: "Обязательный параметр для иконки буквы в кружочке. Принимает букву",
       control: "text",
@@ -87,14 +93,25 @@ export const IconFilter = {
   },
 };
 
-export const IconHeart = {
-  args: {
-    icon: "IconHeart",
-    size: 32,
-    color: "black",
-    extClassName: "for-story",
-    fill: false,
-  },
+export function IconHeart({ fill, ...args }) {
+  const [isFill, setIsFill] = React.useState(fill);
+
+  return (
+    <Button
+      size="minimum"
+      onClick={() => (isFill ? setIsFill(false) : setIsFill(true))}
+      title={<Icon icon="IconHeart" size="32" {...(isFill ? { fill: "fill" } : {})} />}
+    />
+  );
+}
+
+IconHeart.args = {
+  icon: "IconFilter",
+  size: 32,
+  color: "black",
+  extClassName: "for-story",
+  fill: false,
+  colorFill: "red",
 };
 
 export const IconOctopusArrow = {

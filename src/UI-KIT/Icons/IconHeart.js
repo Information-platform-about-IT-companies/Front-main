@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
 
-export default function IconHeart({ size, color, extClassName, fill }) {
+export default function IconHeart({ size, color, extClassName, fill, colorFill }) {
   function path(fillHeart) {
     if (fillHeart) {
       return (
         <path
           d="M 9.1640625,2.8085938 C 6.742255,2.6331175 4.5640466,3.6110834 2.9941406,5.1699219 -0.1456713,8.2875988 -0.99366179,13.863727 2.7773438,17.634766 c 0.00953,0.01 0.019297,0.01977 0.029297,0.0293 L 15.423828,29.091797 c 0.326828,0.29668 0.825516,0.29668 1.152344,0 L 29.193359,17.664062 c 0.01,-0.0095 0.01977,-0.0193 0.0293,-0.0293 C 32.973088,13.884279 32.122866,8.3106674 28.990234,5.1875 27.423919,3.6259163 25.251049,2.6428949 22.832031,2.8144531 20.620055,2.9713279 18.266598,4.2370552 16,6.5566406 13.732976,4.2365509 11.378643,2.9690549 9.1640625,2.8085938 Z"
-          fill={color}
+          fill={colorFill}
         />
       );
     }
@@ -34,12 +34,15 @@ export default function IconHeart({ size, color, extClassName, fill }) {
 
 IconHeart.propTypes = {
   size: PropTypes.oneOf(["24", "32", "60"]),
-  color: PropTypes.string.isRequired,
-  fill: PropTypes.bool.isRequired,
+  color: PropTypes.string,
   extClassName: PropTypes.string,
+  fill: PropTypes.bool.isRequired,
+  colorFill: PropTypes.string,
 };
 
 IconHeart.defaultProps = {
   size: "32",
+  color: "#414040",
+  colorFill: "#FF9091",
   extClassName: null,
 };
