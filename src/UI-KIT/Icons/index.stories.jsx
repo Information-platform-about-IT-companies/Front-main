@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button } from "UI-KIT/Button/Button";
+import ButtonIcon from "UI-KIT/ButtonIcon/ButtonIcon";
 import Icon from "./index";
 
 const meta = {
@@ -97,10 +97,9 @@ export function IconHeart({ fill, ...args }) {
   const [isFill, setIsFill] = React.useState(fill);
 
   return (
-    <Button
-      size="minimum"
+    <ButtonIcon
       onClick={() => (isFill ? setIsFill(false) : setIsFill(true))}
-      title={<Icon icon="IconHeart" size="32" {...(isFill ? { fill: "fill" } : {})} />}
+      icon={<Icon icon="IconHeart" size="32" {...(isFill ? { fill: "fill" } : {})} />}
     />
   );
 }
