@@ -73,6 +73,11 @@
     }
   }
 
+	&_size_minimum {
+    padding: 0;
+		outline: none;
+  }
+
   &_size_standard {
     padding: 12px 32px;
   }
