@@ -2,7 +2,7 @@ import { MemoryRouter, Routes, Route } from "react-router-dom";
 
 import Breadcrumbs from "./Breadcrumbs";
 import "./Breadcrumbs.scss";
-import Main from "../../components/Main/Main";
+import Main from "../../pages/Main/Main";
 // import WelcomePage from "components/WelcomePage/WelcomePage";
 
 export default {

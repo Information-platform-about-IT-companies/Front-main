@@ -2,37 +2,37 @@
 import { useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 // Компоненты
-import Login from "components/Login/Login";
-import Register from "components/Register/Register";
+import Login from "pages/Login/Login";
+import Register from "pages/Register/Register";
 import NotFound from "components/NotFound/NotFound";
 import ProtectedRouteElement from "components/ProtectedRoute/ProtectedRoute";
-import Profile from "components/Profile/Profile";
-import Main from "components/Main/Main";
-import ForgetPassword from "components/ForgetPassword/ForgetPassword";
+import Profile from "pages/Profile/Profile";
+import Main from "pages/Main/Main";
+import ForgetPassword from "pages/ForgetPassword/ForgetPassword";
 
 import ProfileInfo from "components/ProfileInfo/ProfileInfo";
 import ProfileSupport from "components/ProfileSupport/ProfileSupport";
 import ProfileFavourite from "components/ProfileFavourite/ProfileFavourite";
 
-import Layout from "../Layout/Layout";
+import Layout from "components/Layout/Layout";
 // Стили
 import "./App.scss";
 
 function App() {
-  const [loggedIn, setLoggetIn] = useState(null);
+  const [loggedIn, setLoggetIn] = useState(true);
   const [userData, setUserData] = useState("Вася Пупкин");
   return (
     <Routes>
-      <Route
-        path="/profile/*"
-        element={<ProtectedRouteElement element={Profile} loggedIn={loggedIn} />}
-      >
-        <Route index element={<Navigate to="info" />} />
-        <Route path="info" element={<ProfileInfo />} />
-        <Route path="favourite" element={<ProfileFavourite />} />
-        <Route path="support" element={<ProfileSupport />} />
-      </Route>
       <Route path="/" element={<Layout loggedIn={loggedIn} userData={userData} />}>
+        <Route
+          path="/profile/*"
+          element={<ProtectedRouteElement element={Profile} loggedIn={loggedIn} />}
+        >
+          <Route index element={<Navigate to="info" />} />
+          <Route path="info" element={<ProfileInfo />} />
+          <Route path="favourite" element={<ProfileFavourite />} />
+          <Route path="support" element={<ProfileSupport />} />
+        </Route>
         <Route index element={<Main />} />
         <Route path="/signin" element={<Login />} />
         <Route path="/signup" element={<Register />} />
