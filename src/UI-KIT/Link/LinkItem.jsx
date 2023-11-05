@@ -14,7 +14,7 @@ export function LinkItem({ url, title, textColor, lineColor, weight, extClassNam
     console.log((ref.current.style.borderColor = lineColor));
   };
   return (
-    <Link className={`link ${extClassName}`} to={url} ref={ref} onMouseOver={changeLineColor}>
+    <Link to={url} ref={ref} onMouseOver={changeLineColor} className={`link ${extClassName}`}>
       {title}
     </Link>
   );

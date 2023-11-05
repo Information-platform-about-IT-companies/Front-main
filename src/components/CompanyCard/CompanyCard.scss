@@ -7,7 +7,7 @@
   width: 100%;
   max-width: 586px;
   border-radius: 20px;
-  background-color: $white;
+  background-color: $snow-white;
   padding: 20px;
 
   &__info {
@@ -16,6 +16,7 @@
 
   &__fullInfo {
     align-self: flex-start;
+    color: $blue;
   }
 
   &__about {

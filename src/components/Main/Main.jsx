@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import Icon from "UI-KIT/Icons";
 import { Category } from "components/Category/Category";
 import { Button } from "UI-KIT/Button/Button";
-import CompanyCard from "../CompanyCard/CompanyCard";
 
 function Main() {
   const hardcode = {
@@ -60,18 +59,6 @@ function Main() {
   return (
     <main className="mainPage">
       <section className="intro">
-        <CompanyCard
-          name="Mentalstack "
-          services={[
-            "firstfirstfirst firstfirstfirst",
-            "secondsecond secondsecond",
-            "thirdthirdthird",
-            "ff",
-            "dsdsd",
-          ]}
-          city="Rostov"
-          description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi beatae laborum nam nobis reprehenderit, tempora? Ab dolor dolorum esse, explicabo fugiat labore molestiae nulla officiis, omnis pariatur quaerat quasi quibusdam rerum suscipit veritatis. Accusamus, accusantium enim iusto libero magnam neque nihil porro praesentium qui ratione vero voluptate! Quia, quos similique?"
-        />
         <h1 className="intro__title">Найдите подходящие для вас IT-компании в России</h1>
         <Search />
         <div className="intro__popular-search">

@@ -9,7 +9,15 @@ import { cutText, declinationsNumericalValues } from "services/constants";
 // Стили
 import "./CompanyCard.scss";
 
-export default function ({ logo, name, city, services, description, onIconLikeClick }) {
+export default function ({
+  logo,
+  name,
+  city,
+  services,
+  description,
+  iconLikeState,
+  onIconLikeClick,
+}) {
   // для кнопок "ЕЩЕ N УСЛУГ"
   let filterServices;
   let filterCount;
@@ -38,6 +46,7 @@ export default function ({ logo, name, city, services, description, onIconLikeCl
           icon="IconLike"
           className="companyCard__btn-like"
           onClick={() => onIconLikeClick()}
+          state={iconLikeState}
         />
       </div>
       <p className="companyCard__description">{cutDescription}</p>
@@ -56,7 +65,14 @@ export default function ({ logo, name, city, services, description, onIconLikeCl
           )}
         </ul>
       </div>
-      <LinkItem title="Подробнее" url="/" extClassName="companyCard__fullInfo" />
+      <LinkItem
+        title="Подробнее"
+        url="/"
+        lineColor="#4e4cbf"
+        textColor="#4e4cbf"
+        weight="700"
+        extClassName="companyCard__fullInfo"
+      />
     </div>
   );
 }
