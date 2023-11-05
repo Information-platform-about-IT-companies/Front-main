@@ -45,7 +45,7 @@ const meta = {
       options: ["up", "right", "down", "left"],
     },
     symbol: {
-      description: "бязательный параметр для иконки буквы в кружочке. Принимает букву",
+      description: "Обязательный параметр для иконки буквы в кружочке. Принимает букву",
       control: "text",
     },
   },
@@ -106,7 +106,7 @@ export const IconRound = {
     size: 32,
     color: "black",
     extClassName: "for-story",
-    symbol: "I",
+    symbol: "W",
   },
 };
 
@@ -116,5 +116,19 @@ export const IconSearch = {
     size: 32,
     color: "black",
     extClassName: "for-story",
+  },
+};
+
+export const IconLike = {
+  args: {
+    icon: "IconLike",
+    state: false,
+  },
+};
+
+export const IconLikeActive = {
+  args: {
+    icon: "IconLike",
+    state: true,
   },
 };
