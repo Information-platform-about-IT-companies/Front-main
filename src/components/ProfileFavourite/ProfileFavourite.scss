@@ -1,0 +1,20 @@
+@import "src/assets/style/main";
+
+.profile {
+  &_favourite {
+    width: 100%;
+  }
+
+  &_favourite-details {
+    padding: 32px;
+    background-color: $sea-blue-light;
+    border-radius: 20px;
+    width: 100%;
+    display: grid;
+    row-gap: 20px;
+  }
+
+  &_favourite-find-button {
+    max-width: 190px;
+  }
+}
