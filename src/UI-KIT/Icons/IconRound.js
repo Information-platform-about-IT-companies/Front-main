@@ -25,12 +25,13 @@ export default function IconRound({ size, color, extClassName, symbol }) {
 
 IconRound.propTypes = {
   size: PropTypes.oneOf(["24", "32", "60"]),
-  color: PropTypes.string.isRequired,
+  color: PropTypes.string,
   extClassName: PropTypes.string,
   symbol: PropTypes.string.isRequired,
 };
 
 IconRound.defaultProps = {
   size: "32",
+  color: "#4e4cbf",
   extClassName: null,
 };

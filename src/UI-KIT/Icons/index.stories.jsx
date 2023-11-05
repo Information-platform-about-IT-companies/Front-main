@@ -1,3 +1,6 @@
+import React from "react";
+
+import ButtonIcon from "UI-KIT/ButtonIcon/ButtonIcon";
 import Icon from "./index";
 
 const meta = {
@@ -14,12 +17,13 @@ const meta = {
   argTypes: {
     icon: {
       description:
-        "Обязательный параметр объявления используемой иконки. Может принимать значения - IconAccount | IconArrow | IconFilter | IconOctopusArrow | IconPin | IconRound | IconSearch",
+        "Обязательный параметр объявления используемой иконки. Может принимать значения - IconAccount | IconArrow | IconFilter | IconHeart | IconOctopusArrow | IconPin | IconRound | IconSearch",
       control: { type: "select" },
       options: [
         "IconAccount",
         "IconArrow",
         "IconFilter",
+        "IconHeart",
         "IconOctopusArrow",
         "IconPin",
         "IconRound",
@@ -43,6 +47,13 @@ const meta = {
         "Необязательный параметр для иконки стрелки. Может принимать значения - up, right, down, right.",
       control: { type: "select" },
       options: ["up", "right", "down", "left"],
+    },
+    fill: {
+      description: "Обязательный параметр для иконки сердечка. Отвечает за заливку сердечка цветом",
+      options: [true, false],
+    },
+    colorFill: {
+      description: "Обязательный параметр отвечающий за цвет заполненной иконки",
     },
     symbol: {
       description: "Обязательный параметр для иконки буквы в кружочке. Принимает букву",
@@ -80,6 +91,26 @@ export const IconFilter = {
     extClassName: "for-story",
     direction: "up",
   },
+};
+
+export function IconHeart({ fill, ...args }) {
+  const [isFill, setIsFill] = React.useState(fill);
+
+  return (
+    <ButtonIcon
+      onClick={() => (isFill ? setIsFill(false) : setIsFill(true))}
+      icon={<Icon icon="IconHeart" size="32" {...(isFill ? { fill: "fill" } : {})} />}
+    />
+  );
+}
+
+IconHeart.args = {
+  icon: "IconFilter",
+  size: 32,
+  color: "black",
+  extClassName: "for-story",
+  fill: false,
+  colorFill: "red",
 };
 
 export const IconOctopusArrow = {

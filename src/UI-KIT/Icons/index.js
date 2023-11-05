@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import IconAccount from "./IconAccount";
 import IconArrow from "./IconArrow";
 import IconFilter from "./IconFilter";
+import IconHeart from "./IconHeart";
 import IconOctopusArrow from "./IconOctopusArrow";
 import IconPin from "./IconPin";
 import IconRound from "./IconRound";
@@ -13,6 +14,7 @@ const icons = {
   IconAccount,
   IconArrow,
   IconFilter,
+  IconHeart,
   IconOctopusArrow,
   IconPin,
   IconRound,
