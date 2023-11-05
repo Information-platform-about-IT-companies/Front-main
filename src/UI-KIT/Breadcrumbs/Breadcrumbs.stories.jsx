@@ -38,8 +38,8 @@ export default {
               <>
                 <Button size="standard" title="На главную" url="/" linkType="navlink" />
                 <br />
-                <Button size="standard" title="Артур" url="/frontend/artur" linkType="navlink" />
                 <Button size="standard" title="Алина" url="/frontend/alina" linkType="navlink" />
+                <Button size="standard" title="Артур" url="/frontend/artur" linkType="navlink" />
                 <Button
                   size="standard"
                   title="Виолета"
