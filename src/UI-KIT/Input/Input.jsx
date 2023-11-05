@@ -68,7 +68,7 @@ export default Input;
 
 Input.propTypes = {
   label: PropTypes.string,
-  icon: PropTypes.string,
+  icon: PropTypes.node,
   extClassNameLabel: PropTypes.string,
   type: PropTypes.string,
   name: PropTypes.string.isRequired,
@@ -85,9 +85,9 @@ Input.propTypes = {
 Input.defaultProps = {
   label: null,
   icon: null,
-  extClassNameLabel: null,
+  extClassNameLabel: "",
   type: "text",
-  extClassNameInput: null,
+  extClassNameInput: "",
   required: false,
   placeholder: "",
   value: null,
