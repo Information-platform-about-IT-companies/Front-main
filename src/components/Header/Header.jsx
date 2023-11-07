@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Icon from "UI-KIT/Icons";
 import "./Header.scss";
 import PropTypes from "prop-types";
+import ScrollUp from "../ScrollUp/ScrollUp";
 
 function Header({ loggedIn, userData }) {
   return (
@@ -11,7 +12,6 @@ function Header({ loggedIn, userData }) {
       <nav className="header__navigation">
         {loggedIn ? (
           <>
-            dsds
             <Link to="/profile" className="header__userdata">
               <Icon icon="IconAccount" size="32" color="#4E4CBF" />
               <span className="header__user">{userData}</span>
