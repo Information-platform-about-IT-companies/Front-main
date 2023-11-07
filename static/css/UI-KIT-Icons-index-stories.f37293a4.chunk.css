@@ -1,0 +1,4 @@
+.button{display:flex;align-items:center;justify-content:center;flex-direction:row;overflow:hidden;border:none;z-index:1;background:rgba(0,0,0,0)}.button:hover{cursor:pointer}.button:disabled{cursor:not-allowed}
+.like-icon:hover{cursor:pointer;stroke:#ff9091}.like-icon:hover path{stroke:#ff9091}
+
+/*# sourceMappingURL=UI-KIT-Icons-index-stories.f37293a4.chunk.css.map*/
