@@ -17,30 +17,39 @@ import ProfileFavourite from "components/ProfileFavourite/ProfileFavourite";
 import Layout from "components/Layout/Layout";
 // Стили
 import "./App.scss";
+import FilterPage from "pages/FilterPage/FilterPage";
+import ScrollUp from "components/ScrollUp/ScrollUp";
 
 function App() {
   const [loggedIn, setLoggetIn] = useState(true);
   const [userData, setUserData] = useState("Вася Пупкин");
   return (
-    <Routes>
-      <Route path="/" element={<Layout loggedIn={loggedIn} userData={userData} />}>
-        <Route
-          path="/profile/*"
-          element={<ProtectedRouteElement element={Profile} loggedIn={loggedIn} />}
-        >
-          <Route index element={<Navigate to="info" />} />
-          <Route path="info" element={<ProfileInfo />} />
-          <Route path="favourite" element={<ProfileFavourite />} />
-          <Route path="support" element={<ProfileSupport />} />
+    <>
+      <Routes>
+        <Route path="/" element={<Layout loggedIn={loggedIn} userData={userData} />}>
+          <Route
+            path="/profile/*"
+            element={<ProtectedRouteElement element={Profile} loggedIn={loggedIn} />}
+          >
+            <Route index element={<Navigate to="info" />} />
+            <Route path="info" element={<ProfileInfo />} />
+            <Route path="favourite" element={<ProfileFavourite />} />
+            <Route path="support" element={<ProfileSupport />} />
+          </Route>
+          <Route index element={<Main />} />
+          <Route path="/filter/*" element={<FilterPage />} />
+          <Route path="/signin" element={<Login />} />
+          <Route path="/signup" element={<Register />} />
+          <Route path="/passrecovery" element={<ForgetPassword />} />
+          <Route path="/404" element={<NotFound />} />
+          <Route
+            path="/*"
+            element={<Navigate to="/404" state={{ fromSameSite: true }} replace />}
+          />
         </Route>
-        <Route index element={<Main />} />
-        <Route path="/signin" element={<Login />} />
-        <Route path="/signup" element={<Register />} />
-        <Route path="/passrecovery" element={<ForgetPassword />} />
-        <Route path="/404" element={<NotFound />} />
-        <Route path="/*" element={<Navigate to="/404" state={{ fromSameSite: true }} replace />} />
-      </Route>
-    </Routes>
+      </Routes>
+      <ScrollUp />
+    </>
   );
 }
 
