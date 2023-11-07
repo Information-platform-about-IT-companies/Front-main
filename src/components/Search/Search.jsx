@@ -8,14 +8,14 @@ import Icon from "UI-KIT/Icons";
 import "./Search.scss";
 
 export function Search({ extClassName, ...props }) {
-  const [isButtonDisabled, setIsButtonDisabled] = React.useState(true);
-  const [isStartHint, setIsStartHint] = React.useState(true);
+  const [isButtonDisabled, setIsButtonDisabled] = React.useState(false);
+  const [isStartHint, setIsStartHint] = React.useState(false);
   const [query, setQuery] = React.useState("");
   const [response, setResponse] = React.useState([]);
   const [responseNotFound, serResponseNotFound] = React.useState(false);
 
   React.useEffect(() => {
-    setIsButtonDisabled(true);
+    setIsButtonDisabled(false);
     setResponse([
       {
         title: "company",
