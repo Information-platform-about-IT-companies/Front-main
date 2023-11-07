@@ -42,6 +42,11 @@ const meta = {
     extClassName: {
       description: "Необязательный параметр. Для дополнительных стилей",
     },
+    cross: {
+      description:
+        "Обязательный параметр для иконки фильтра. Отвечает за добавление крестика к иконке фильтра",
+      options: [true, false],
+    },
     direction: {
       description:
         "Необязательный параметр для иконки стрелки. Может принимать значения - up, right, down, right.",
@@ -89,28 +94,19 @@ export const IconFilter = {
     size: 32,
     color: "black",
     extClassName: "for-story",
-    direction: "up",
+    cross: false,
   },
 };
 
-export function IconHeart({ fill, ...args }) {
-  const [isFill, setIsFill] = React.useState(fill);
-
-  return (
-    <ButtonIcon
-      onClick={() => (isFill ? setIsFill(false) : setIsFill(true))}
-      icon={<Icon icon="IconHeart" size="32" {...(isFill ? { fill: "fill" } : {})} />}
-    />
-  );
-}
-
-IconHeart.args = {
-  icon: "IconFilter",
-  size: 32,
-  color: "black",
-  extClassName: "for-story",
-  fill: false,
-  colorFill: "red",
+export const IconHeart = {
+  args: {
+    icon: "IconHeart",
+    size: 32,
+    color: "black",
+    extClassName: "for-story",
+    fill: false,
+    colorFill: "red",
+  },
 };
 
 export const IconOctopusArrow = {
