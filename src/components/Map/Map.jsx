@@ -1,8 +1,6 @@
 import React from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer } from "react-leaflet";
 
-import Icon from "UI-KIT/Icons";
-import IconPin from "UI-KIT/Icons/IconPin";
 import CustomMarker from "./CustomMarker/CusomMarker";
 
 import "./Map.scss";
