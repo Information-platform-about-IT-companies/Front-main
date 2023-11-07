@@ -50,7 +50,13 @@ function Main() {
             </li>
           ))}
         </ul>
-        <Button size="standard" fill title="Посмотреть все компании" />
+        <Button
+          linkType="link"
+          url="/filter"
+          size="standard"
+          fill
+          title="Посмотреть все компании"
+        />
       </section>
     </main>
   );
