@@ -1,7 +1,13 @@
 import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
-export default function Map({ address }) {
+import Icon from "UI-KIT/Icons";
+import IconPin from "UI-KIT/Icons/IconPin";
+import CustomMarker from "./CustomMarker/CusomMarker";
+
+import "./Map.scss";
+
+export default function Map({ company, address }) {
   const [latitude, setLatitude] = React.useState(null);
   const [longitude, setLongitude] = React.useState(null);
   const [error, setError] = React.useState(null);
@@ -39,14 +45,19 @@ export default function Map({ address }) {
   }
 
   return (
-    <MapContainer center={position} zoom={15} style={{ height: "400px", width: "100%" }}>
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      />
-      <Marker position={position}>
-        <Popup>{address}</Popup>
-      </Marker>
-    </MapContainer>
+    <div className="map">
+      <MapContainer
+        center={position}
+        zoom={15}
+        zoomControl={false}
+        style={{ height: "100%", width: "100%" }}
+      >
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        />
+        <CustomMarker position={position} text={company} />
+      </MapContainer>
+    </div>
   );
 }
