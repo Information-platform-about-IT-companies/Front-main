@@ -31,6 +31,7 @@ function Main() {
         <p className="companies__text">
           Мы разбили все компании на основные <span>4 категории</span> для вашего удобства
         </p>
+        {/* <Map address="Кожевническая улица, 10с1,  115477, Москва, Россия" /> */}
         <ul className="companies__list">
           {hardcode.companies.map((company) => (
             <li>
