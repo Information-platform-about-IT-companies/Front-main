@@ -5,8 +5,8 @@
   visibility: hidden;
   opacity: 0;
   transition:
-          visibility 0.5s,
-          opacity $animation;
+    visibility 0.5s,
+    opacity $animation;
   align-items: center;
   position: fixed;
   background: $popup-overlay;
@@ -19,8 +19,8 @@
     visibility: visible;
     opacity: 1;
     transition:
-            visibility 0.5s,
-            opacity $animation;
+      visibility 0.5s,
+      opacity $animation;
   }
 
   &_container {
