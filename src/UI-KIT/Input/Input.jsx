@@ -21,6 +21,10 @@ function Input({
     return error ? "input__field-error" : "";
   }
 
+  function errorShow() {
+    return error ? "input__error-text_show" : "";
+  }
+
   function inputWithIconStyle() {
     return icon ? "input__field_icon" : "";
   }
@@ -57,7 +61,7 @@ function Input({
             {inputIcon}
             {inputField}
           </div>
-          <span className="input__error-text">{error}</span>
+          <span className={`input__error-text ${errorShow()}`}>{error}</span>
         </>
       )}
     </div>
