@@ -8,14 +8,16 @@ import Icon from "UI-KIT/Icons";
 import "./Search.scss";
 
 export function Search({ extClassName, ...props }) {
-  const [isButtonDisabled, setIsButtonDisabled] = React.useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = React.useState(true);
   const [isStartHint, setIsStartHint] = React.useState(false);
   const [query, setQuery] = React.useState("");
+  const [queryCity, setCityQuery] = React.useState("");
   const [response, setResponse] = React.useState([]);
   const [responseNotFound, serResponseNotFound] = React.useState(false);
 
   React.useEffect(() => {
-    setIsButtonDisabled(false);
+    setIsButtonDisabled(true);
+    setIsStartHint(false);
     setResponse([
       {
         title: "company",
@@ -27,6 +29,15 @@ export function Search({ extClassName, ...props }) {
       { title: "city", element: [{ name: "Menesota", link: "/" }] },
     ]);
   }, []);
+
+  React.useEffect(() => {
+    if (query.length >= 3 || queryCity >= 3) {
+      setIsStartHint(true);
+    }
+    if (query || queryCity) {
+      setIsButtonDisabled(false);
+    }
+  }, [query, queryCity]);
 
   function handleSubmitSearch(event) {
     event.preventDefault();
@@ -76,7 +87,7 @@ export function Search({ extClassName, ...props }) {
         name="search"
         id="search"
         placeholder="Название компании или услуга"
-        onChange={() => console.log("изменение инпута name")}
+        onChange={(event) => setQuery(event.target.value)}
       />
       <Input
         icon={<Icon icon="IconPin" color="#4e4cbf" size="24" />}
@@ -85,7 +96,7 @@ export function Search({ extClassName, ...props }) {
         name="city"
         id="city"
         placeholder="Город"
-        onChange={() => console.log("изменение инпута city")}
+        onChange={(event) => setCityQuery(event.target.value)}
       />
       <Button
         extClassName="search__input-button"
@@ -96,7 +107,7 @@ export function Search({ extClassName, ...props }) {
       />
       {isStartHint && !responseNotFound && <div className="search__hint">{hint}</div>}
       {isStartHint && responseNotFound && (
-        <div className="search__hint">
+        <div className={`search__hint ${isStartHint ? "search__hint_active" : ""}`}>
           <div className="search__hint-container">
             <div className="search__hint-header search__hint-header_no-found">
               По вашему запросу ничего не найдено
