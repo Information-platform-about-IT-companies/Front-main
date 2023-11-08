@@ -24,7 +24,7 @@ export function Pagination({ totalPages, currentPage }) {
       {currentPage > firstPage && (
         <li>
           <Link className="pagination__button" to={`/companies/${currentPage - 1}`}>
-            <IconArrow direction={"left"} size={24} />
+            <IconArrow direction="left" size={24} />
           </Link>
         </li>
       )}
@@ -48,7 +48,7 @@ export function Pagination({ totalPages, currentPage }) {
       {currentPage < totalPages && (
         <li>
           <Link className="pagination__button" to={`/companies/${currentPage + 1}`}>
-            <IconArrow direction={"right"} size={24} />
+            <IconArrow direction="right" size={24} />
           </Link>
         </li>
       )}

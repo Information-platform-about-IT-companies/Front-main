@@ -1,5 +1,4 @@
-@import "assets/style/mixins";
-@import "assets/style/variables";
+@import "assets/style/main";
 
 .pagination {
   @include flex(center, center);
@@ -21,8 +20,7 @@
 
     &_active {
       position: relative;
-      background: linear-gradient(180deg, #605ed6 -0.01%, #5c9ad2 100.02%);
-      background-clip: text;
+      background: $gradient-blue;
       background-clip: text;
       -webkit-text-fill-color: transparent;
 
