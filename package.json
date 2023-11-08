@@ -75,7 +75,7 @@
     "@storybook/addon-links": "^7.5.0",
     "@storybook/addon-onboarding": "^1.0.8",
     "@storybook/blocks": "^7.5.0",
-    "@storybook/preset-create-react-app": "^7.5.0",
+    "@storybook/preset-create-react-app": "^4.1.0",
     "@storybook/react": "^7.5.0",
     "@storybook/react-webpack5": "^7.5.0",
     "@storybook/testing-library": "^0.2.2",
