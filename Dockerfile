@@ -4,9 +4,9 @@ WORKDIR /octopus-front
 
 COPY package*.json ./
 
-RUN npm сi
+RUN npm ci
 
-COPY . ./
+COPY . .
 
 RUN npm run build \
     && rm -rf ./src \
