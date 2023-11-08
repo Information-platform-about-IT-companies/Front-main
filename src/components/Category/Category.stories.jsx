@@ -3,7 +3,7 @@ import { Category } from "components/Category/Category";
 import { MemoryRouter } from "react-router-dom";
 
 const meta = {
-  title: "component/Category",
+  title: "components/Category",
   component: Category,
   tags: ["autodocs"],
   parameters: {

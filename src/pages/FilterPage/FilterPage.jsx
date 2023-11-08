@@ -1,4 +1,4 @@
-import Breadcrumbs from "UI-KIT/Breadcrumbs/Breadcrumbs";
+import Breadcrumbs from "components/Breadcrumbs/Breadcrumbs";
 import { Filter } from "components/Filter/Filter";
 import CompanyCard from "components/CompanyCard/CompanyCard";
 import "./FilterPage.scss";

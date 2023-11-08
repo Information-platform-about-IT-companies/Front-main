@@ -6,7 +6,7 @@ import Breadcrumbs from "./Breadcrumbs";
 import "./Breadcrumbs.scss";
 
 export default {
-  title: "UI-KIT/Breadcrumbs",
+  title: "components/Breadcrumbs",
   component: Breadcrumbs,
   tags: ["autodocs"],
   parameters: {
