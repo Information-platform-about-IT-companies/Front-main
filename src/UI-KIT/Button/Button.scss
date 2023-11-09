@@ -80,6 +80,20 @@
   &_size_medium {
     padding: 22px 32px;
   }
+
+  &_style_light_bg {
+    border: none;
+    color: $black;
+    background: transparent;
+
+    &:hover {
+      background-color: $sea-blue-light;
+    }
+
+    &:visited {
+      color: $black;
+    }
+  }
 }
 
 .for-button-story {
@@ -87,6 +101,7 @@
 }
 
 .active {
-  outline-offset: -3px;
-  outline-width: 3px;
+  font-weight: 500;
+  background-color: $sea-blue-light;
+  border: none;
 }
