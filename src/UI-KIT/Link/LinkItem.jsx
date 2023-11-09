@@ -31,7 +31,7 @@ LinkItem.propTypes = {
 
 LinkItem.defaultProps = {
   textColor: "#111",
-  lineColor: "#111",
-  weight: "300",
+  lineColor: "#5c9ad2",
+  weight: "400",
   extClassName: "",
 };
