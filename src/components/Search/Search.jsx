@@ -13,7 +13,7 @@ export function Search({ extClassName, ...props }) {
   const [query, setQuery] = React.useState("");
   const [queryCity, setCityQuery] = React.useState("");
   const [response, setResponse] = React.useState([]);
-  const [responseNotFound, serResponseNotFound] = React.useState(false);
+  const [responseNotFound, setResponseNotFound] = React.useState(false);
 
   React.useEffect(() => {
     setIsButtonDisabled(true);
@@ -31,9 +31,12 @@ export function Search({ extClassName, ...props }) {
   }, []);
 
   React.useEffect(() => {
-    if (query.length >= 3 || queryCity >= 3) {
+    if (query.length >= 3 || queryCity.length >= 3) {
       setIsStartHint(true);
+    } else {
+      setIsStartHint(false);
     }
+
     if (query || queryCity) {
       setIsButtonDisabled(false);
     }
@@ -47,7 +50,7 @@ export function Search({ extClassName, ...props }) {
   const hint = response.map((ul) => {
     const li = ul.element.map((e) => (
       <li className="search__hint-list-element" key={e.name}>
-        <Link to="e.link" className="search__hint-link">
+        <Link to={e.link} className="search__hint-link">
           {e.name}
         </Link>
       </li>
@@ -83,7 +86,7 @@ export function Search({ extClassName, ...props }) {
       <Input
         icon={<Icon icon="IconSearch" color="#4e4cbf" size="24" />}
         extClassNameInput="search__input_1"
-        onlyInput="true"
+        onlyInput
         name="search"
         id="search"
         placeholder="Название компании или услуга"
@@ -92,7 +95,7 @@ export function Search({ extClassName, ...props }) {
       <Input
         icon={<Icon icon="IconPin" color="#4e4cbf" size="24" />}
         extClassNameInput="search__input_2"
-        onlyInput="true"
+        onlyInput
         name="city"
         id="city"
         placeholder="Город"
@@ -105,9 +108,11 @@ export function Search({ extClassName, ...props }) {
         fill
         disabled={isButtonDisabled}
       />
-      {isStartHint && !responseNotFound && <div className="search__hint">{hint}</div>}
+      {isStartHint && !responseNotFound && (
+        <div className={`search__hint  ${isStartHint ? "search__hint_active" : ""}`}>{hint}</div>
+      )}
       {isStartHint && responseNotFound && (
-        <div className={`search__hint ${isStartHint ? "search__hint_active" : ""}`}>
+        <div className="search__hint">
           <div className="search__hint-container">
             <div className="search__hint-header search__hint-header_no-found">
               По вашему запросу ничего не найдено
