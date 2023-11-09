@@ -1,0 +1,43 @@
+@import "assets/style/main";
+
+.pagination {
+  @include flex(center, center);
+
+  gap: 8px;
+
+  &__button {
+    @include flex(center, center);
+  }
+
+  &__item {
+    @include flex(center, center, column);
+
+    height: 32px;
+    width: 32px;
+    font-size: 14px;
+    text-decoration: none;
+    color: $black;
+
+    &_active {
+      position: relative;
+      background: $gradient-blue;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      &::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        inset: 0 0 0 -1px;
+        padding: 1px;
+        border-radius: 5px;
+        background: linear-gradient(#605ed6, #5c9ad2);
+        mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        mask-composite: destination-out;
+        mask-composite: exclude;
+      }
+    }
+  }
+}
