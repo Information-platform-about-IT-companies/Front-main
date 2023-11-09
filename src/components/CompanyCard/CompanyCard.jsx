@@ -17,18 +17,23 @@ export default function ({
   description,
   iconLikeState,
   onIconLikeClick,
+  extClassCardName,
 }) {
   // для кнопок "ЕЩЕ N УСЛУГ"
   let filterServices;
   let filterCount;
-  if (services.length > 3) {
-    filterServices = services.slice(0, 3);
-    filterCount = services.length - 3;
-  } else filterServices = services.slice(0);
+  if (services) {
+    if (services.length > 3) {
+      filterServices = services.slice(0, 3);
+      filterCount = services.length - 3;
+    } else filterServices = services.slice(0);
+  }
+
   // для обрезки и ... многострочного текста
-  const cutDescription = cutText(description, 330);
+  const cutDescription = description ? cutText(description, 330) : null;
+
   return (
-    <div className="companyCard">
+    <div className={`companyCard companyCard${extClassCardName}`}>
       <div className="companyCard__info">
         <div className="companyCard__about">
           {logo ? (
@@ -41,38 +46,64 @@ export default function ({
             <span className="companyCard__city">{city}</span>
           </div>
         </div>
-        <Icon
-          color="#414040"
-          icon="IconLike"
-          className="companyCard__btn-like"
-          onClick={() => onIconLikeClick()}
-          state={iconLikeState}
+        {services ? (
+          <Icon
+            color="#414040"
+            icon="IconLike"
+            className="companyCard__btn-like"
+            onClick={() => onIconLikeClick()}
+            state={iconLikeState}
+          />
+        ) : null}
+      </div>
+
+      {description ? <p className="companyCard__description">{cutDescription}</p> : null}
+      {services ? (
+        <div className="companyCard__services">
+          <span className="companyCard__services-text">Услуги:</span>
+
+          <ul className="companyCard__services-list">
+            {filterServices.map((service) => (
+              <li>
+                <Link to="/" className="companyCard__services-list-item">
+                  <Label title={service} />
+                </Link>
+              </li>
+            ))}
+            {filterCount && (
+              <Label title={`Ещё ${filterCount} ${declinationsNumericalValues(filterCount)}`} />
+            )}
+          </ul>
+        </div>
+      ) : null}
+      {services ? (
+        <LinkItem
+          title="Подробнее"
+          url="/"
+          lineColor="#4e4cbf"
+          textColor="#4e4cbf"
+          weight="700"
+          extClassName="companyCard__fullInfo"
         />
-      </div>
-      <p className="companyCard__description">{cutDescription}</p>
-      <div className="companyCard__services">
-        <span className="companyCard__services-text">Услуги:</span>
-        <ul className="companyCard__services-list">
-          {filterServices.map((service) => (
-            <li>
-              <Link to="/" className="companyCard__services-list-item">
-                <Label title={service} />
-              </Link>
-            </li>
-          ))}
-          {filterCount && (
-            <Label title={`Ещё ${filterCount} ${declinationsNumericalValues(filterCount)}`} />
-          )}
-        </ul>
-      </div>
-      <LinkItem
-        title="Подробнее"
-        url="/"
-        lineColor="#4e4cbf"
-        textColor="#4e4cbf"
-        weight="700"
-        extClassName="companyCard__fullInfo"
-      />
+      ) : (
+        <div className="companyCard__itemsContainer">
+          <LinkItem
+            title="Подробнее"
+            url="/"
+            lineColor="#4e4cbf"
+            textColor="#4e4cbf"
+            weight="700"
+            extClassName="companyCard__emptyInfo"
+          />
+          <Icon
+            color="#414040"
+            icon="IconLike"
+            className="companyCard__btn-like"
+            onClick={() => onIconLikeClick()}
+            state={iconLikeState}
+          />
+        </div>
+      )}
     </div>
   );
 }

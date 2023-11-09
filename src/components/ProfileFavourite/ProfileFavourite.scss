@@ -14,6 +14,12 @@
     row-gap: 20px;
   }
 
+  &_favourite-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+
   &_favourite-find-button {
     max-width: 190px;
   }

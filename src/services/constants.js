@@ -85,3 +85,56 @@ export const hardcode = {
     },
   ],
 };
+
+export const companies = [
+  {
+    name: "LukoilLukoilLukoilLukoilLukoil",
+    city: "Moscow",
+    isFavourite: true,
+  },
+  {
+    name: "GazpromIt",
+    city: "Taganrog",
+    isFavourite: false,
+  },
+  {
+    name: "Sberbank",
+    city: "Vakanda",
+    isFavourite: false,
+  },
+  {
+    name: "Magnit-It",
+    city: "Moscow",
+    isFavourite: true,
+  },
+  {
+    name: "TNK-BP",
+    city: "Tyva",
+    isFavourite: false,
+  },
+  {
+    name: "GazpromIt",
+    city: "Samara",
+    isFavourite: true,
+  },
+  {
+    name: "INOSTUDIO",
+    city: "Ufa",
+    isFavourite: true,
+  },
+  {
+    name: "Novatek",
+    city: "DC2",
+    isFavourite: false,
+  },
+  {
+    name: "Mentalstack",
+    city: "Taganrog",
+    isFavourite: true,
+  },
+  {
+    name: "Afterlogic.Works",
+    city: "Krasnodar",
+    isFavourite: true,
+  },
+];
