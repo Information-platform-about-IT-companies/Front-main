@@ -35,6 +35,9 @@ export default {
       description:
         "Дефолтное состоянии кнопки лайка (все неактивные, если пользователь не вошел или не добавил в избранное. И активная, если уже добавлял в избранное",
     },
+    extClassCardName: {
+      description: "Дополнительный класс для изменения стилей карточки",
+    },
   },
   decorators: [
     (Story) => (
@@ -59,5 +62,14 @@ export const CardCompany = {
     description:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi beatae laborum nam nobis reprehenderit, tempora? Ab dolor dolorum esse, explicabo fugiat labore molestiae nulla officiis, omnis pariatur quaerat quasi quibusdam rerum suscipit veritatis. Accusamus, accusantium enim iusto libero magnam neque nihil porro praesentium qui ratione vero voluptate! Quia, quos similique?",
     iconLikeState: false,
+  },
+};
+
+export const CardFavouriteCompany = {
+  args: {
+    name: "Дэвид Коперфильд",
+    city: "Город, которого нет",
+    iconLikeState: false,
+    extClassCardName: "__favourite",
   },
 };
