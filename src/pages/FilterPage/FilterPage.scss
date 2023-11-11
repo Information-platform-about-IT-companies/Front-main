@@ -22,4 +22,9 @@
     flex-wrap: wrap;
     padding: 30px 0;
   }
+
+  &__listitem {
+    display: block;
+    width: 100%;
+  }
 }

@@ -174,7 +174,7 @@ export const company = {
       },
     },
   ],
-  logo: "https://m.media-amazon.com/images/M/MV5BYWI3MTJkN2UtMTU0Zi00ZjE2LThjMWEtYmQ5YmFiZmU1N2JhXkEyXkFqcGdeQXVyMTMzOTQyOTk1._V1_FMjpg_UX1000_.jpg",
+  logo: "https://www.looper.com/img/gallery/the-strange-detail-you-never-noticed-about-planet-express-in-futurama/intro-1611689563.jpg",
   website: "https://commons.wikimedia.org/wiki/Category:Futurama",
   team_size: 6,
   year_founded: 1999,

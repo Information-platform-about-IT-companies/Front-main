@@ -4,19 +4,14 @@ import { Link } from "react-router-dom";
 import { LinkItem } from "../../UI-KIT/Link/LinkItem";
 import { Label } from "../../UI-KIT/Label/Label";
 import "./CompanyPage.scss";
+import CompanyLogo from "../../UI-KIT/CompanyLogo/CompanyLogo";
 
 export default function () {
   return (
     <main className="company-page">
       <Breadcrumbs />
       <section className="company__basic-info">
-        <div className="company__profile">
-          <img className="company__logo" src={company.logo} alt="profile img" />
-          <div>
-            <h1 className="company__name">{company.name}</h1>
-            <span className="company__city">{company.city.name}</span>
-          </div>
-        </div>
+        <CompanyLogo logo={company.logo} name={company.name} city={company.city.name} />
         <div className="company__size-info">
           Год основания: <span>{company.year_founded}</span>
           Численность компании: <span>{company.year_founded}</span>
