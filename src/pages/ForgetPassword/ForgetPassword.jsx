@@ -54,7 +54,7 @@ function ForgetPassword() {
             required
           />
 
-          <Button title="Восстановить пароль" fill size="standard" />
+          <Button title="Восстановить пароль" fill size="standard" disabled={!formInputs.isValid} />
         </Form>
         <p className="password-recovery__suggestion">
           Вспомнили свой пароль?{" "}

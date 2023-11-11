@@ -4,8 +4,9 @@ import { Form } from "UI-KIT/Form/Form";
 import Input from "UI-KIT/Input/Input";
 import { useFormAndValidation } from "hooks/useFormAndValidation";
 
+import { useEffect, useState } from "react";
+
 import "./Register.scss";
-import { useEffect } from "react";
 
 function Register() {
   const formInputs = useFormAndValidation({
@@ -80,19 +81,29 @@ function Register() {
           id="authEmail"
           required
         />
-        <Input
-          label="Пароль"
-          onChange={formInputs.handleChange}
-          value={formInputs.values.password}
-          error={formInputs.errors.password}
-          extClassNameInput="login__input"
-          type="password"
-          name="password"
-          id="registerPassword"
-          minLength="3"
-          maxLength="20"
-          required
-        />
+        <div className="register__tooltip-input">
+          <Input
+            label="Пароль"
+            onChange={formInputs.handleChange}
+            value={formInputs.values.password}
+            error={formInputs.errors.password}
+            extClassNameInput="register__input"
+            type="password"
+            name="password"
+            id="registerPassword"
+            minLength="3"
+            maxLength="20"
+            required
+          >
+            <ul className="register__tooltip-container">
+              <li className="register__tooltip-item">от 8 до 30 символов</li>
+              <li className="register__tooltip-item">
+                должен содержать цифры и буквы / спецсимволы без пробелов
+              </li>
+            </ul>
+          </Input>
+        </div>
+
         <Input
           label="Повторите пароль"
           onChange={formInputs.handleChange}
@@ -104,12 +115,17 @@ function Register() {
           id="registerRepeatPassword"
           required
         />
-        <Button title="Зарегистрироваться" fill size="standard" />
+        <Button
+          title="Зарегистрироваться"
+          fill
+          size="standard"
+          disabled={!formInputs.isValid || formInputs.errors.repeatPassword ? "true" : false}
+        />
       </Form>
       <p className="register__suggestion">
         У вас уже есть учетная запись?{" "}
         <LinkItem
-          url="/signшт"
+          url="/signin"
           title="Войти"
           extClassName="login__link"
           weight="400"

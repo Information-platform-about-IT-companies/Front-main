@@ -1,4 +1,5 @@
 @import "src/assets/style/main";
+@import "../../UI-KIT/Input/Input";
 
 .register {
   @include flex(center, center, column);
@@ -55,5 +56,53 @@
     @include flex(start, space-between, row);
 
     gap: 32px;
+  }
+
+  &__tooltip-input {
+    width: 100%;
+    position: relative;
+  }
+
+  &__tooltip-container {
+    position: absolute;
+    margin-top: 0;
+    top: 0;
+    right: 0;
+    padding: 13px;
+    border-radius: 20px;
+    max-width: 300px;
+    background-color: $purple;
+    border-color: none;
+    display: none;
+    transform: 0.5s;
+
+    &::after {
+      content: "";
+      width: 0;
+      height: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin-top: 26px;
+      transform: translateX(-85%);
+      border-width: 10px 15px 10px 0;
+      border-style: solid;
+      border-radius: 10px;
+      border-color: transparent $purple;
+      border-color: none;
+    }
+  }
+
+  &__input:focus + &__tooltip-container {
+    display: block;
+  }
+
+  &__tooltip-item {
+    @include roboto-16($color: $white);
+
+    line-height: 140%;
+    list-style: disc outside;
+    margin-left: 23px;
+    padding-right: -100px;
   }
 }

@@ -54,7 +54,7 @@ function Login() {
           weight="400"
           lineColor="#479fba"
         />
-        <Button title="Войти" fill size="standard" />
+        <Button title="Войти" fill size="standard" disabled={!formInputs.isValid} />
       </Form>
       <p className="login__suggestion">
         У вас нет учетной записи?{" "}
