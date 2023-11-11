@@ -1,4 +1,5 @@
 // Сторонние пакеты
+import React from "react";
 import { Link } from "react-router-dom";
 // UI
 import Icon from "UI-KIT/Icons";
@@ -8,6 +9,7 @@ import { LinkItem } from "UI-KIT/Link/LinkItem";
 import { cutText, declinationsNumericalValues } from "services/constants";
 // Стили
 import "./CompanyCard.scss";
+import ButtonIcon from "UI-KIT/ButtonIcon/ButtonIcon";
 
 export default function ({
   logo,
@@ -19,6 +21,8 @@ export default function ({
   onIconLikeClick,
   extClassCardName,
 }) {
+  const [isFill, setIsFill] = React.useState(false);
+
   // для кнопок "ЕЩЕ N УСЛУГ"
   let filterServices;
   let filterCount;
@@ -47,13 +51,13 @@ export default function ({
           </div>
         </div>
         {services ? (
-          <Icon
-            color="#414040"
-            icon="IconLike"
-            className="companyCard__btn-like"
-            onClick={() => onIconLikeClick()}
-            state={iconLikeState}
-          />
+          <div className="companyCard__buttonContainer">
+            <ButtonIcon
+              extClassName={isFill ? "iconHeart_active" : "iconHeart"}
+              onClick={() => (isFill ? setIsFill(false) : setIsFill(true))}
+              icon={<Icon icon="IconHeart" size="32" {...(isFill ? { fill: "fill" } : {})} />}
+            />
+          </div>
         ) : null}
       </div>
 
