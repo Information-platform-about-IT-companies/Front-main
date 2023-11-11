@@ -3,7 +3,6 @@
 .button {
   @include flex(center, center);
 
-  height: auto;
   overflow: hidden;
   border: none;
   z-index: 1;

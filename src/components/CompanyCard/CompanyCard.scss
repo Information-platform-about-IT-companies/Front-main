@@ -112,24 +112,3 @@
     @include flex(center, center);
   }
 }
-
-.iconHeart {
-  fill: $black;
-  transition:
-    transform $animation,
-    fill $animation;
-
-  &:hover {
-    fill: $purple;
-    transform: scale(1.1);
-  }
-
-  &_active {
-    fill: $purple;
-    transition: transform $animation;
-
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
-}

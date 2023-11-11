@@ -16,7 +16,7 @@ function ProfileFavourite() {
                 <CompanyCard
                   city={company.city}
                   name={company.name}
-                  iconLikeState={company.isFavourite}
+                  iconHeartFill={company.isFavourite}
                   extClassCardName="__favourite"
                 />
               </li>

@@ -4,6 +4,10 @@ import CompanyCard from "components/CompanyCard/CompanyCard";
 import "./FilterPage.scss";
 
 function FilterPage() {
+  const onIconHeartClick = () => {
+    console.log("функция добавления/удаления в БД");
+  };
+
   return (
     <main className="filterPage">
       <div className="filterPage__intro">
@@ -22,7 +26,8 @@ function FilterPage() {
               "блаблабла",
             ]}
             name="Дэвид Блейн"
-            iconLikeState
+            onIconHeartClick={onIconHeartClick}
+            iconHeartFill
             description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi beatae laborum nam nobis reprehenderit, tempora? Ab dolor dolorum esse, explicabo fugiat labore molestiae nulla officiis, omnis pariatur quaerat quasi quibusdam rerum suscipit veritatis. Accusamus, accusantium enim iusto libero magnam neque nihil porro praesentium qui ratione vero voluptate! Quia, quos similique?"
           />
         </li>
@@ -36,6 +41,7 @@ function FilterPage() {
               "Проход вскозь Великую китайскую стену",
             ]}
             name="Дэвид Коперфильд"
+            onIconHeartClick={onIconHeartClick}
             description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi beatae laborum nam nobis reprehenderit, tempora? Ab dolor dolorum esse, explicabo fugiat labore molestiae nulla officiis, omnis pariatur quaerat quasi quibusdam rerum suscipit veritatis. Accusamus, accusantium enim iusto libero magnam neque nihil porro praesentium qui ratione vero voluptate! Quia, quos similique?"
           />
         </li>
@@ -49,7 +55,8 @@ function FilterPage() {
               "блаблабла",
             ]}
             name="Дэвид Блейн"
-            iconLikeState
+            onIconHeartClick={onIconHeartClick}
+            iconHeartFill
             description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi beatae laborum nam nobis reprehenderit, tempora? Ab dolor dolorum esse, explicabo fugiat labore molestiae nulla officiis, omnis pariatur quaerat quasi quibusdam rerum suscipit veritatis. Accusamus, accusantium enim iusto libero magnam neque nihil porro praesentium qui ratione vero voluptate! Quia, quos similique?"
           />
         </li>
@@ -63,6 +70,7 @@ function FilterPage() {
               "Проход вскозь Великую китайскую стену",
             ]}
             name="Дэвид Коперфильд"
+            onIconHeartClick={onIconHeartClick}
             description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi beatae laborum nam nobis reprehenderit, tempora? Ab dolor dolorum esse, explicabo fugiat labore molestiae nulla officiis, omnis pariatur quaerat quasi quibusdam rerum suscipit veritatis. Accusamus, accusantium enim iusto libero magnam neque nihil porro praesentium qui ratione vero voluptate! Quia, quos similique?"
           />
         </li>

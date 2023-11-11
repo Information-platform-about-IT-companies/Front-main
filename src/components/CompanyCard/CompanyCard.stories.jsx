@@ -28,10 +28,10 @@ export default {
     services: {
       description: "Массив услуг, которые оказывает компания",
     },
-    onIconLikeClick: {
+    onIconHeartClick: {
       description: "Функция, обработка события добавления карточки в избранное",
     },
-    iconLikeState: {
+    iconHeartFill: {
       description:
         "Дефолтное состоянии кнопки лайка (все неактивные, если пользователь не вошел или не добавил в избранное. И активная, если уже добавлял в избранное",
     },
@@ -61,7 +61,7 @@ export const CardCompany = {
     city: "Город, которого нет",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi beatae laborum nam nobis reprehenderit, tempora? Ab dolor dolorum esse, explicabo fugiat labore molestiae nulla officiis, omnis pariatur quaerat quasi quibusdam rerum suscipit veritatis. Accusamus, accusantium enim iusto libero magnam neque nihil porro praesentium qui ratione vero voluptate! Quia, quos similique?",
-    iconLikeState: false,
+    iconHeartFill: false,
   },
 };
 
@@ -69,7 +69,7 @@ export const CardFavouriteCompany = {
   args: {
     name: "Дэвид Коперфильд",
     city: "Город, которого нет",
-    iconLikeState: false,
+    iconHeartFill: false,
     extClassCardName: "__favourite",
   },
 };

@@ -2,14 +2,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 // UI
-import Icon from "UI-KIT/Icons";
+
 import { Label } from "UI-KIT/Label/Label";
 import { LinkItem } from "UI-KIT/Link/LinkItem";
 // Функции
 import { cutText, declinationsNumericalValues } from "services/constants";
 // Стили
 import "./CompanyCard.scss";
-import ButtonIcon from "UI-KIT/ButtonIcon/ButtonIcon";
+import ButtonHeart from "components/ButtonHeart/ButtonHeart";
 
 export default function ({
   logo,
@@ -17,12 +17,10 @@ export default function ({
   city,
   services,
   description,
-  iconLikeState,
-  onIconLikeClick,
+  iconHeartFill,
+  onIconHeartClick,
   extClassCardName,
 }) {
-  const [isFill, setIsFill] = React.useState(false);
-
   // для кнопок "ЕЩЕ N УСЛУГ"
   let filterServices;
   let filterCount;
@@ -52,11 +50,7 @@ export default function ({
         </div>
         {services ? (
           <div className="companyCard__buttonContainer">
-            <ButtonIcon
-              extClassName={isFill ? "iconHeart_active" : "iconHeart"}
-              onClick={() => (isFill ? setIsFill(false) : setIsFill(true))}
-              icon={<Icon icon="IconHeart" size="32" {...(isFill ? { fill: "fill" } : {})} />}
-            />
+            <ButtonHeart click={onIconHeartClick} fill={iconHeartFill} />
           </div>
         ) : null}
       </div>
@@ -99,13 +93,9 @@ export default function ({
             weight="700"
             extClassName="companyCard__emptyInfo"
           />
-          <Icon
-            color="#414040"
-            icon="IconLike"
-            className="companyCard__btn-like"
-            onClick={() => onIconLikeClick()}
-            state={iconLikeState}
-          />
+          <div className="companyCard__buttonContainer">
+            <ButtonHeart click={onIconHeartClick} fill={iconHeartFill} />
+          </div>
         </div>
       )}
     </div>
