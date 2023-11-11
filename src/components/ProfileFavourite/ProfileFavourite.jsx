@@ -1,16 +1,29 @@
 import "./ProfileFavourite.scss";
 
-import { Route, Routes, Link, Outlet, useParams } from "react-router-dom";
-import PropTypes from "prop-types";
-import Input from "UI-KIT/Input/Input";
 import { Button } from "UI-KIT/Button/Button";
+import CompanyCard from "components/CompanyCard/CompanyCard";
+import { companies } from "services/constants";
 
-function ProfileFavourite({ props }) {
+function ProfileFavourite() {
   return (
     <div className="profile_favourite">
       <h1 className="profile_title">Избранные компании</h1>
-      {props ? (
-        { props }
+      {companies ? (
+        <>
+          <ul className="profile_favourite-cards">
+            {companies.map((company) => (
+              <li key={`${company.name}`}>
+                <CompanyCard
+                  city={company.city}
+                  name={company.name}
+                  iconLikeState={company.isFavourite}
+                  extClassCardName="__favourite"
+                />
+              </li>
+            ))}
+          </ul>
+          <div>тут будет пагинация</div>
+        </>
       ) : (
         <div className="profile_favourite-details">
           <h4 className="profile_subtitle">Тут пока пусто</h4>

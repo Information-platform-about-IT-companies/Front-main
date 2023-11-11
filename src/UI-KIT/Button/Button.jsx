@@ -26,7 +26,7 @@ export function Button({ size, fill, title, linkType, url, onClick, extClassName
         className={
           fill
             ? `button button_style_fill button_size_${size} ${extClassName}`
-            : `button button_style_outline button_size_${size} ${extClassName}`
+            : `button button_style_light_bg button_size_${size} ${extClassName}`
         }
         {...props}
       >
