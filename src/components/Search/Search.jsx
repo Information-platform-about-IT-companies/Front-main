@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Input from "UI-KIT/Input/Input";
 import { Button } from "UI-KIT/Button/Button";
 import Icon from "UI-KIT/Icons";
+import dropDownBlock from "services/dropDown";
 
 import "./Search.scss";
 
@@ -78,21 +79,13 @@ export function Search({ extClassName, ...props }) {
     </div>
   );
 
-  function toggleBlock(toggle) {
-    if (toggle) {
-      elementToggle.current.style.height = `${elementToggle.current.scrollHeight}px`;
-    } else {
-      elementToggle.current.style.height = "0";
-    }
-  }
-
   React.useEffect(() => {
     if (query.length >= 3 || queryCity.length >= 3) {
       setIsStartHint(true);
-      toggleBlock(true);
+      dropDownBlock(elementToggle, true);
     } else {
       setIsStartHint(false);
-      toggleBlock(false);
+      dropDownBlock(elementToggle, false);
     }
 
     if (query || queryCity) {
