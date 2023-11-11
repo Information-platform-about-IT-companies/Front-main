@@ -138,3 +138,7 @@ export const companies = [
     isFavourite: true,
   },
 ];
+
+export const PASSWORD_REGULAR =
+  /^(?!.* )(?!^\d+$)[a-zA-Z0-9._~\-|:?#[\]\\@!$&'{}()*+,/;=]{8,30}$/gim;
+export const NAME_REGULAR = /^(?!.*-.*-|.* .* |.*-.* )(?!.*- $)(?!- )[A-Za-zА-яЁё -]{2,30}$/gim;
