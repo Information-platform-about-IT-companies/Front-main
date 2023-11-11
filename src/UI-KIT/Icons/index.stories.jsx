@@ -1,6 +1,5 @@
-import React from "react";
+import { MemoryRouter } from "react-router-dom";
 
-import ButtonIcon from "UI-KIT/ButtonIcon/ButtonIcon";
 import Icon from "./index";
 
 const meta = {
@@ -22,6 +21,10 @@ const meta = {
       options: [
         "IconAccount",
         "IconArrow",
+        "IconСategoryDesign",
+        "IconСategoryMarketing",
+        "IconСategorySoftware",
+        "IconСategoryWeb",
         "IconFilter",
         "IconHeart",
         "IconOctopusArrow",
@@ -78,84 +81,29 @@ export const IconAccount = {
   },
 };
 
-export const IconArrow = {
-  args: {
-    icon: "IconArrow",
-    size: 32,
-    color: "black",
-    extClassName: "for-story",
-    direction: "up",
-  },
-};
-
-export const IconFilter = {
-  args: {
-    icon: "IconFilter",
-    size: 32,
-    color: "black",
-    extClassName: "for-story",
-    cross: false,
-  },
-};
-
-export const IconHeart = {
-  args: {
-    icon: "IconHeart",
-    size: 32,
-    color: "black",
-    extClassName: "for-story",
-    fill: false,
-    colorFill: "red",
-  },
-};
-
-export const IconOctopusArrow = {
-  args: {
-    icon: "IconOctopusArrow",
-    size: 60,
-    color: "black",
-    extClassName: "for-story",
-  },
-};
-
-export const IconPin = {
-  args: {
-    icon: "IconPin",
-    size: 32,
-    color: "black",
-    extClassName: "for-story",
-  },
-};
-
-export const IconRound = {
-  args: {
-    icon: "IconRound",
-    size: 32,
-    color: "black",
-    extClassName: "for-story",
-    symbol: "W",
-  },
-};
-
-export const IconSearch = {
-  args: {
-    icon: "IconSearch",
-    size: 32,
-    color: "black",
-    extClassName: "for-story",
-  },
-};
-
-export const IconLike = {
-  args: {
-    icon: "IconLike",
-    state: false,
-  },
-};
-
-export const IconLikeActive = {
-  args: {
-    icon: "IconLike",
-    state: true,
-  },
+export const Icons = {
+  render: () => (
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill, 60px)",
+        gridTemplateRows: "repeat(auto-fill, 60px)",
+        justifyItems: "center",
+        alignItems: "center",
+      }}
+    >
+      <Icon icon="IconAccount" />
+      <Icon icon="IconArrow" />
+      <Icon icon="IconСategoryDesign" />
+      <Icon icon="IconСategoryMarketing" />
+      <Icon icon="IconСategorySoftware" />
+      <Icon icon="IconСategoryWeb" />
+      <Icon icon="IconFilter" />
+      <Icon icon="IconHeart" />
+      <Icon icon="IconOctopusArrow" />
+      <Icon icon="IconPin" />
+      <Icon icon="IconRound" symbol="Д" />
+      <Icon icon="IconSearch" />
+    </div>
+  ),
 };
