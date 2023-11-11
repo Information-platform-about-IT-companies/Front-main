@@ -6,7 +6,7 @@ import Input from "UI-KIT/Input/Input";
 import { Form } from "UI-KIT/Form/Form";
 import { Button } from "UI-KIT/Button/Button";
 import { ButtonChanges } from "UI-KIT/ButtonChanges/ButtonChanges";
-import { NAME_REGULAR, PASSWORD_REGULAR } from "services/constants";
+import { NAME_REGULAR, PASSWORD_REGULAR } from "services/regulars";
 
 function ProfileInfo({ onSubmit }) {
   const formik = useFormik({
@@ -122,7 +122,7 @@ function ProfileInfo({ onSubmit }) {
         <Form extClassName="form-info-change" onSubmit={onSubmit}>
           <Input
             label="Текущий пароль"
-            type="password"
+            // type="password"
             name="currentPassword"
             id={currentPasswordInputId}
             value={formik.values.currentPassword}
