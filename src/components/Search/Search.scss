@@ -29,28 +29,29 @@
     left: 0;
     width: 100%;
     height: 0;
-    overflow: auto;
-    padding: 32px;
+    overflow: hidden;
     border-radius: 10px;
     background-color: $sea-blue-light;
     grid-column: 1 / -1;
     z-index: 99;
-    transition: height 0.4s ease;
-
-    &_active {
-      height: auto;
-    }
+    transition: height $animation;
   }
 
-  &__hint-container {
+  &__hint-list-container {
+    padding: 0 32px;
     margin-bottom: 20px;
 
+    &:first-of-type {
+      padding-top: 32px;
+    }
+
     &:last-of-type {
+      padding-bottom: 32px;
       margin-bottom: 0;
     }
   }
 
-  &__hint-header {
+  &__hint-list-header {
     margin: 0;
     padding-bottom: 12px;
     color: $blue;

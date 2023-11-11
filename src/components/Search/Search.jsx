@@ -14,6 +14,7 @@ export function Search({ extClassName, ...props }) {
   const [queryCity, setCityQuery] = React.useState("");
   const [response, setResponse] = React.useState([]);
   const [responseNotFound, setResponseNotFound] = React.useState(false);
+  const elementToggle = React.useRef(null);
 
   React.useEffect(() => {
     setIsButtonDisabled(true);
@@ -29,18 +30,6 @@ export function Search({ extClassName, ...props }) {
       { title: "city", element: [{ name: "Menesota", link: "/" }] },
     ]);
   }, []);
-
-  React.useEffect(() => {
-    if (query.length >= 3 || queryCity.length >= 3) {
-      setIsStartHint(true);
-    } else {
-      setIsStartHint(false);
-    }
-
-    if (query || queryCity) {
-      setIsButtonDisabled(false);
-    }
-  }, [query, queryCity]);
 
   function handleSubmitSearch(event) {
     event.preventDefault();
@@ -72,14 +61,46 @@ export function Search({ extClassName, ...props }) {
     }
 
     return (
-      <div className="search__hint-container">
-        <div className="search__hint-header" key={ul.title}>
+      <div className="search__hint-list-container">
+        <div className="search__hint-list-header" key={ul.title}>
           Найдено в {label}
         </div>
         <ul className="search__hint-list">{li}</ul>
       </div>
     );
   });
+
+  const hintNotFound = (
+    <div className="search__hint-list-container">
+      <div className="search__hint-list-header search__hint-header_no-found">
+        По вашему запросу ничего не найдено
+      </div>
+    </div>
+  );
+
+  function toggleBlock(toggle) {
+    if (toggle) {
+      elementToggle.current.style.height = `${elementToggle.current.scrollHeight}px`;
+    } else {
+      elementToggle.current.style.height = "0";
+    }
+  }
+
+  React.useEffect(() => {
+    if (query.length >= 3 || queryCity.length >= 3) {
+      setIsStartHint(true);
+      toggleBlock(true);
+    } else {
+      setIsStartHint(false);
+      toggleBlock(false);
+    }
+
+    if (query || queryCity) {
+      setIsButtonDisabled(false);
+    } else {
+      setIsButtonDisabled(true);
+    }
+  }, [query, queryCity]);
 
   return (
     <form className={`search ${extClassName}`} onSubmit={handleSubmitSearch}>
@@ -108,18 +129,9 @@ export function Search({ extClassName, ...props }) {
         fill
         disabled={isButtonDisabled}
       />
-      {isStartHint && !responseNotFound && (
-        <div className={`search__hint  ${isStartHint ? "search__hint_active" : ""}`}>{hint}</div>
-      )}
-      {isStartHint && responseNotFound && (
-        <div className="search__hint">
-          <div className="search__hint-container">
-            <div className="search__hint-header search__hint-header_no-found">
-              По вашему запросу ничего не найдено
-            </div>
-          </div>
-        </div>
-      )}
+      <div ref={elementToggle} className="search__hint">
+        {responseNotFound ? hintNotFound : hint}
+      </div>
     </form>
   );
 }
