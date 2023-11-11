@@ -1,0 +1,21 @@
+@import "src/assets/style/main";
+
+.company-page {
+  display: grid;
+  grid-template-areas:
+    "bread bread"
+    "main aside";
+  padding: 32px;
+}
+
+.company {
+  &__info {
+    @include flex(center, center);
+
+    gap: 20px;
+  }
+
+  &__city {
+    display: block;
+  }
+}

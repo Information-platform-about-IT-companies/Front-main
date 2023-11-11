@@ -19,6 +19,7 @@ import Layout from "components/Layout/Layout";
 import "./App.scss";
 import FilterPage from "pages/FilterPage/FilterPage";
 import ScrollUp from "components/ScrollUp/ScrollUp";
+import CompanyPage from "../Company/CompanyPage";
 
 function App() {
   const [loggedIn, setLoggetIn] = useState(true);
@@ -38,6 +39,7 @@ function App() {
           </Route>
           <Route index element={<Main />} />
           <Route path="/filter/*" element={<FilterPage />} />
+          <Route path="/company" element={<CompanyPage />} />
           <Route path="/signin" element={<Login />} />
           <Route path="/signup" element={<Register />} />
           <Route path="/passrecovery" element={<ForgetPassword />} />

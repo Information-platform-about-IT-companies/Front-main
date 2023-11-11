@@ -138,3 +138,44 @@ export const companies = [
     isFavourite: true,
   },
 ];
+
+export const company = {
+  id: 1212121,
+  name: "Planet Express",
+  description:
+    "Межпланетный Экспресс (англ. Planet Express) — небольшая курьерская фирма по межпланетной доставке различных грузов. Место работы главных героев, а также дом для некоторых из них. Сотрудники: Профессор Фарнсворт (глава, владелец), Туранга Лилла (пилот), Фрай (курьер), Бендер (курьер), Скраффи (уборщик), Эми Вонг (студент профессора), Зойдберг (врач), Гермес Конрад (бюрократ). Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consequuntur deleniti dolorem esse id, magni maiores minima qui voluptates. A autem cupiditate debitis dicta distinctio inventore molestias neque? A, dignissimos eos exercitationem magnam nesciunt odit officiis quaerat quia repellendus repudiandae. Aperiam architecto dolores eos error iste totam, ullam vero voluptatibus.\n",
+  email: "bender@rodrigez.com",
+  city: {
+    id: 5454,
+    name: "Новый Нью-Йорк",
+  },
+  address: "Ищите нас по штаб-квартире красного цвета",
+  industries: [
+    {
+      id: 1,
+      name: "Доставка грузов",
+    },
+    {
+      id: 2,
+      name: "Полёты в космос",
+    },
+    {
+      id: 3,
+      name: "Война с инопланетянами",
+    },
+  ],
+  services: [
+    {
+      id: 1,
+      name: "Маркетинг",
+      category: {
+        id: 11,
+        name: "Реклама",
+      },
+    },
+  ],
+  logo: "https://m.media-amazon.com/images/M/MV5BYWI3MTJkN2UtMTU0Zi00ZjE2LThjMWEtYmQ5YmFiZmU1N2JhXkEyXkFqcGdeQXVyMTMzOTQyOTk1._V1_FMjpg_UX1000_.jpg",
+  website: "https://commons.wikimedia.org/wiki/Category:Futurama",
+  team_size: 6,
+  year_founded: 1999,
+};
