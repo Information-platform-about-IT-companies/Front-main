@@ -9,13 +9,13 @@ export function CategoryTitle({ title, id }) {
   let icon;
 
   if (id === "1") {
-    icon = <IconСategoryWeb />;
+    icon = <IconСategoryWeb extClassName="category_icon" />;
   } else if (id === "2") {
-    icon = <IconСategorySoftware />;
+    icon = <IconСategorySoftware extClassName="category_icon" />;
   } else if (id === "3") {
-    icon = <IconСategoryDesign />;
+    icon = <IconСategoryDesign extClassName="category_icon" />;
   } else {
-    icon = <IconСategoryMarketing />;
+    icon = <IconСategoryMarketing extClassName="category_icon" />;
   }
 
   return (
