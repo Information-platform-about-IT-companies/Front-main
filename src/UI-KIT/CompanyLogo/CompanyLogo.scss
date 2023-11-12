@@ -1,0 +1,56 @@
+@import "src/assets/style/main";
+
+.сompanyLogo {
+  &__wrapper {
+    display: flex;
+    gap: 20px;
+    width: 466px;
+  }
+
+  &__logo {
+    width: 170px;
+    height: 120px;
+    object-fit: cover;
+    object-position: center center;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+  }
+
+  &__logo-cap {
+    position: relative;
+    width: 170px;
+    height: 120px;
+    text-align: center;
+    border: 1px solid $black-light;
+    border-radius: 10px;
+
+    &::after {
+      position: absolute;
+      content: "Logo";
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &__title {
+    @include flex(flex-start, center, column);
+
+    gap: 12px;
+    width: 100%;
+    max-width: 276px;
+  }
+
+  &__name {
+    @include roboto-24;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: inherit;
+  }
+
+  &__city {
+    @include roboto-16;
+  }
+}

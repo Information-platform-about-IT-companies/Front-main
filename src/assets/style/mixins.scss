@@ -14,10 +14,10 @@
   color: $color;
 }
 
-@mixin roboto-16($color: $black) {
+@mixin roboto-16($color: $black, $weight: 400) {
   font-size: $text-size-default;
   line-height: 19px;
-  font-weight: 400;
+  font-weight: $weight;
   color: $color;
 }
 
@@ -39,5 +39,12 @@
   font-size: $text-size-title;
   line-height: 61.6px;
   font-weight: 700;
+  color: $color;
+}
+
+@mixin roboto($color: $black, $size: $text-size-default, $line, $weight: 400) {
+  font-size: $size;
+  line-height: $line;
+  font-weight: $weight;
   color: $color;
 }

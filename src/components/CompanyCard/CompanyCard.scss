@@ -3,16 +3,29 @@
 .companyCard {
   @include flex(stretch, space-between, column);
 
-  height: 441px;
+  min-height: 441px;
   width: 100%;
   max-width: 586px;
   border-radius: 20px;
   background-color: $snow-white;
   padding: 20px;
 
-  &__favourite {
-    height: 236px;
-    max-width: 423px;
+  &_type_favourite {
+    min-height: 163px;
+    max-width: unset;
+  }
+
+  &__like-wrapper {
+    @include flex(flex-end, space-between, column);
+
+    & button {
+      align-self: flex-end;
+    }
+  }
+
+  &__like {
+    align-self: flex-start;
+    padding: 8px;
   }
 
   &__info {
@@ -28,80 +41,10 @@
     align-self: center;
   }
 
-  &__about {
-    display: flex;
-    gap: 20px;
-    min-width: 466px;
-  }
-
-  &__logo {
-    width: 170px;
-    height: 120px;
-    object-fit: cover;
-    object-position: center center;
-    background-repeat: no-repeat;
-    border-radius: 10px;
-  }
-
-  &__logo-cap {
-    position: relative;
-    width: 170px;
-    height: 120px;
-    text-align: center;
-    border: 1px solid $black-light;
-    border-radius: 10px;
-
-    &::after {
-      position: absolute;
-      content: "Logo";
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-  }
-
-  &__title {
-    @include flex(flex-start, center, column);
-
-    gap: 12px;
-  }
-
-  &__name {
-    @include roboto-24;
-
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    max-width: 193px;
-  }
-
-  &_city {
-    @include roboto-16;
-  }
-
   &__description {
     @include roboto-14;
 
     height: 84px;
-  }
-
-  &__services-text {
-    display: inline-block;
-    padding-bottom: 12px;
-
-    @include roboto-14($black, 400);
-  }
-
-  &__services-list {
-    @include flex;
-
-    flex-wrap: wrap;
-    gap: 12px;
-    margin: 0;
-
-    &-item {
-      text-decoration: none;
-    }
   }
 
   &__itemsContainer {
