@@ -5,6 +5,7 @@ import Breadcrumbs from "UI-KIT/Breadcrumbs/Breadcrumbs";
 import { Filter } from "components/Filter/Filter";
 import CompanyCard from "components/CompanyCard/CompanyCard";
 import { getCompanies } from "mocks/services/companyController";
+import { Pagination } from "components/Pagination/Pagination";
 import "./FilterPage.scss";
 
 const LoadingStatus = {
@@ -66,7 +67,9 @@ function FilterPage() {
             </li>
           ))}
       </ul>
-      <div>тут будет пагинация</div>
+      <div>
+        <Pagination totalPages={totalPages} currentPage={Number(page)} />
+      </div>
     </main>
   );
 }

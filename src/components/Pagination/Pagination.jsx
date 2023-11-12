@@ -1,9 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
+import ButtonIcon from "UI-KIT/ButtonIcon/ButtonIcon";
+import Button from "UI-KIT/Button/Button";
 import IconArrow from "UI-KIT/Icons/IconArrow";
 
 import "./Pagination.scss";
 
 export function Pagination({ totalPages, currentPage }) {
+  const [, setSearchParams] = useSearchParams();
+  // const page = searchParams.get("page") ?? 1;
+
+  const turnToPage = (page) => {
+    setSearchParams({ page });
+  };
+
   const firstPage = 1;
   let visiblePageNumbers = [];
 
@@ -23,9 +32,11 @@ export function Pagination({ totalPages, currentPage }) {
     <ul className="pagination">
       {currentPage > firstPage && (
         <li>
-          <Link className="pagination__button" to={`/companies/${currentPage - 1}`}>
-            <IconArrow direction="left" size={24} />
-          </Link>
+          <ButtonIcon
+            className="pagination__button"
+            onClick={() => turnToPage(currentPage - 1)}
+            icon={<IconArrow direction="left" size={24} />}
+          />
         </li>
       )}
 
@@ -37,19 +48,20 @@ export function Pagination({ totalPages, currentPage }) {
             {isActive ? (
               <span className="pagination__item pagination__item_active">{page}</span>
             ) : (
-              <Link to={`/companies/${page}`} className="pagination__item">
+              <button className="pagination__item" onClick={() => turnToPage(page)}>
                 {page}
-              </Link>
+              </button>
             )}
           </li>
         );
       })}
-
       {currentPage < totalPages && (
         <li>
-          <Link className="pagination__button" to={`/companies/${currentPage + 1}`}>
-            <IconArrow direction="right" size={24} />
-          </Link>
+          <ButtonIcon
+            className="pagination__button"
+            onClick={() => turnToPage(currentPage + 1)}
+            icon={<IconArrow direction="right" size={24} />}
+          />
         </li>
       )}
     </ul>
