@@ -1,9 +1,39 @@
+/* eslint-disable camelcase */
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import Breadcrumbs from "UI-KIT/Breadcrumbs/Breadcrumbs";
 import { Filter } from "components/Filter/Filter";
 import CompanyCard from "components/CompanyCard/CompanyCard";
+import { getCompanies } from "mocks/services/companyController";
 import "./FilterPage.scss";
 
+const LoadingStatus = {
+  idle: "idle",
+  loading: "loading",
+  succeeded: "succeeded",
+  failed: "failed",
+};
+
 function FilterPage() {
+  const [searchParams] = useSearchParams();
+  const page = searchParams.get("page") ?? 1;
+  const city = searchParams.get("city");
+  const [companies, setCompanies] = useState(null);
+  const [totalPages, setTotalPages] = useState(null);
+  const [loadingStatus, setLoadingStatus] = useState(LoadingStatus.idle);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getCompanies({ page: Number(page), city });
+      setCompanies(response.results);
+      setTotalPages(response.total_pages);
+      setLoadingStatus(LoadingStatus.succeeded);
+    };
+    setLoadingStatus(LoadingStatus.loading);
+
+    fetchData().catch(console.error);
+  }, [page, city]);
+
   return (
     <main className="filterPage">
       <div className="filterPage__intro">
@@ -11,61 +41,30 @@ function FilterPage() {
         <h1 className="filterPage__title">Изучите лучшие компании России</h1>
         <Filter />
       </div>
+      {loadingStatus === LoadingStatus.loading && (
+        <div>
+          <div style={{ paddingTop: "20px", width: "200px", margin: "0 auto" }}>
+            <img
+              decoding="async"
+              alt="spinner"
+              src="https://gderadost.ru/catalog/view/theme/default/img/lazy-img.gif?is-pending-load=1"
+            />
+            Здесь крутится спиннер
+          </div>
+        </div>
+      )}
       <ul className="filterPage__list">
-        <li className="filterPage__listitem">
-          <CompanyCard
-            services={[
-              "Исчезновение Статуи Свободы",
-              "Полет перед зрителями на сцене",
-              "Проход вскозь Великую китайскую стену",
-              "Разрезание ассистентки",
-              "блаблабла",
-            ]}
-            name="Дэвид Блейн"
-            iconLikeState
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi beatae laborum nam nobis reprehenderit, tempora? Ab dolor dolorum esse, explicabo fugiat labore molestiae nulla officiis, omnis pariatur quaerat quasi quibusdam rerum suscipit veritatis. Accusamus, accusantium enim iusto libero magnam neque nihil porro praesentium qui ratione vero voluptate! Quia, quos similique?"
-          />
-        </li>
-        <li>
-          <CompanyCard
-            services={[
-              "Разрезание ассистентки",
-              "Исчезновение Статуи Свободы",
-              "блаблабла",
-              "Полет перед зрителями на сцене",
-              "Проход вскозь Великую китайскую стену",
-            ]}
-            name="Дэвид Коперфильд"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi beatae laborum nam nobis reprehenderit, tempora? Ab dolor dolorum esse, explicabo fugiat labore molestiae nulla officiis, omnis pariatur quaerat quasi quibusdam rerum suscipit veritatis. Accusamus, accusantium enim iusto libero magnam neque nihil porro praesentium qui ratione vero voluptate! Quia, quos similique?"
-          />
-        </li>
-        <li className="filterPage__listitem">
-          <CompanyCard
-            services={[
-              "Исчезновение Статуи Свободы",
-              "Полет перед зрителями на сцене",
-              "Проход вскозь Великую китайскую стену",
-              "Разрезание ассистентки",
-              "блаблабла",
-            ]}
-            name="Дэвид Блейн"
-            iconLikeState
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi beatae laborum nam nobis reprehenderit, tempora? Ab dolor dolorum esse, explicabo fugiat labore molestiae nulla officiis, omnis pariatur quaerat quasi quibusdam rerum suscipit veritatis. Accusamus, accusantium enim iusto libero magnam neque nihil porro praesentium qui ratione vero voluptate! Quia, quos similique?"
-          />
-        </li>
-        <li>
-          <CompanyCard
-            services={[
-              "Разрезание ассистентки",
-              "Исчезновение Статуи Свободы",
-              "блаблабла",
-              "Полет перед зрителями на сцене",
-              "Проход вскозь Великую китайскую стену",
-            ]}
-            name="Дэвид Коперфильд"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi beatae laborum nam nobis reprehenderit, tempora? Ab dolor dolorum esse, explicabo fugiat labore molestiae nulla officiis, omnis pariatur quaerat quasi quibusdam rerum suscipit veritatis. Accusamus, accusantium enim iusto libero magnam neque nihil porro praesentium qui ratione vero voluptate! Quia, quos similique?"
-          />
-        </li>
+        {companies &&
+          companies.map(({ services, name, description, is_favorited }) => (
+            <li className="filterPage__listitem">
+              <CompanyCard
+                services={services && services.map((service) => service.name)}
+                name={name}
+                iconLikeState={is_favorited}
+                description={description}
+              />
+            </li>
+          ))}
       </ul>
       <div>тут будет пагинация</div>
     </main>
