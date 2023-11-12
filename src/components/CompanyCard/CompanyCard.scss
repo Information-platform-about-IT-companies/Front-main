@@ -51,7 +51,7 @@
     @include flex(center, space-between);
   }
 
-  &__buttonContainer {
+  &__buttonHeartContainer {
     @include flex(center, center);
   }
 }
