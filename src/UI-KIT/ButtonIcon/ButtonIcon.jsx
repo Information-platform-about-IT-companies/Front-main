@@ -10,7 +10,7 @@ export default function ButtonIcon({ icon, onClick, extClassName, ...props }) {
 }
 
 ButtonIcon.propTypes = {
-  icon: PropTypes.string.isRequired,
+  icon: PropTypes.node.isRequired,
   onClick: PropTypes.func.isRequired,
   extClassName: PropTypes.string,
 };
