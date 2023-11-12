@@ -16,7 +16,8 @@ function ProfileFavourite() {
                 <CompanyCard
                   city={company.city}
                   name={company.name}
-                  onIconLikeClick={() => {}}
+                  onIconHeartClick={() => {}}
+                  iconHeartFill={company.isFavourite}
                   type="favoriteCard"
                 />
               </li>
