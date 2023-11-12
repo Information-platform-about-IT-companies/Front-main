@@ -33,6 +33,7 @@ function FilterPage() {
         <li className="filterPage__listitem">
           <CompanyCard
             type="filterCard"
+            inFavorite
             services={[
               { id: 1, name: "Исчезновение Статуи Свободы" },
               { id: 2, name: "Полет перед зрителями на сцене" },
@@ -63,6 +64,7 @@ function FilterPage() {
         <li className="filterPage__listitem">
           <CompanyCard
             type="filterCard"
+            inFavorite
             services={[
               { id: 1, name: "Исчезновение Статуи Свободы" },
               { id: 2, name: "Полет перед зрителями на сцене" },

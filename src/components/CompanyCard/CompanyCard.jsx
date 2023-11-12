@@ -19,6 +19,7 @@ export default function CompanyCard({
   description,
   onIconLikeClick,
   extClassCardName,
+  inFavorite,
 }) {
   const isFilterCard = type === "filterCard";
   const isFavoriteCard = type === "favoriteCard";
@@ -30,7 +31,7 @@ export default function CompanyCard({
         <div className="companyCard__info">
           <CompanyLogo logo={logo} name={name} city={city} />
           <ButtonIcon
-            icon={<Icon icon="IconHeart" size="32" />}
+            icon={<Icon icon="IconHeart" size="32" fill={inFavorite} />}
             onClick={() => onIconLikeClick()}
             extClassName="companyCard__like"
           />
@@ -55,7 +56,7 @@ export default function CompanyCard({
           <CompanyLogo logo={logo} name={name} city={city} />
           <div className="companyCard__like-wrapper">
             <ButtonIcon
-              icon={<Icon icon="IconHeart" size="32" fill />}
+              icon={<Icon icon="IconHeart" size="32" fill={inFavorite} />}
               onClick={() => onIconLikeClick()}
               extClassName="companyCard__like"
             />
@@ -84,6 +85,7 @@ CompanyCard.propTypes = {
   ).isRequired,
   description: PropTypes.string.isRequired,
   onIconLikeClick: PropTypes.func,
+  inFavorite: PropTypes.bool.isRequired,
   extClassCardName: PropTypes.string,
 };
 
