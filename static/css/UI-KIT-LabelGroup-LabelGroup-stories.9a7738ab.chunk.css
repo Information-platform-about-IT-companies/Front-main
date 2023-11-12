@@ -1,0 +1,4 @@
+.labels__text{display:inline-block;padding-bottom:12px;font-size:14px;line-height:21px;font-weight:400;color:#111}.labels__link:hover{cursor:pointer}.labels__list{display:flex;align-items:stretch;justify-content:flex-start;flex-direction:row;flex-wrap:wrap;gap:12px;margin:0}.labels__list-item{text-decoration:none}
+.label{font-size:16px;line-height:19px;font-weight:400;color:#111;display:block;border-radius:10px;border:none;padding:8px 12px;background-color:#e4eff2;height:35px;width:-webkit-fit-content;width:-moz-fit-content;width:fit-content;cursor:default}.label:hover{background-color:#8acce1}
+
+/*# sourceMappingURL=UI-KIT-LabelGroup-LabelGroup-stories.9a7738ab.chunk.css.map*/
