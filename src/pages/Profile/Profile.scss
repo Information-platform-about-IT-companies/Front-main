@@ -12,12 +12,6 @@
     max-width: 285px;
     width: 100%;
 
-    &_button {
-      width: 100%;
-      text-align: left;
-      margin-bottom: 20px;
-    }
-
     &_button:last-child {
       margin-bottom: 0;
     }
@@ -51,4 +45,11 @@
     text-align: left;
     margin-bottom: 34px;
   }
+}
+
+.button.profile_navigation_button {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 20px;
+  justify-content: flex-start;
 }

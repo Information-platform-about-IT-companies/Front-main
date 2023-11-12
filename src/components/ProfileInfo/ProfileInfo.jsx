@@ -1,7 +1,7 @@
 import "./ProfileInfo.scss";
 import { useId, useState } from "react";
 import { useFormik } from "formik";
-import * as Yup from "yup";
+import * as yup from "yup";
 import Input from "UI-KIT/Input/Input";
 import { Form } from "UI-KIT/Form/Form";
 import { Button } from "UI-KIT/Button/Button";
@@ -15,38 +15,44 @@ function ProfileInfo({ onSubmit }) {
       lastName: "Pupkin",
       email: "VasyaPupkin@yandex.com",
     },
-    validationSchema: Yup.object({
-      firstName: Yup.string()
+    validationSchema: yup.object({
+      firstName: yup
+        .string()
         .min(2, "Длина поля от 2 до 30 символов")
         .max(30, "Длина поля от 2 до 30 символов")
         .matches(NAME_REGULAR, "Введите корректное имя")
         .required("Поле обязательно для заполнения"),
-      lastName: Yup.string()
+      lastName: yup
+        .string()
         .min(2, "Длина поля от 2 до 30 символов")
         .max(30, "Длина поля от 2 до 30 символов")
         .matches(NAME_REGULAR, "Введите корректную фамилию")
         .required("Поле обязательно для заполнения"),
-      email: Yup.string()
+      email: yup
+        .string()
         .email("Введите корректный E-mail")
         .min(6, "Длина поля от 6 до 254 символов")
         .max(254, "Длина поля от 6 до 254 символов")
         .email()
         .required("Поле обязательно для заполнения"),
-      currentPassword: Yup.string()
+      currentPassword: yup
+        .string()
         .min(8, "Длина поля от 8 до 30 символов")
         .max(30, "Длина поля от 8 до 30 символов")
         .matches(PASSWORD_REGULAR, "Введите корректный пароль")
         .required("Поле обязательно для заполнения"),
-      newPassword: Yup.string()
+      newPassword: yup
+        .string()
         .min(8, "Длина поля от 8 до 30 символов")
         .max(30, "Длина поля от 8 до 30 символов")
         .matches(PASSWORD_REGULAR, "Введите корректный пароль")
         .required("Поле обязательно для заполнения"),
-      approvePassword: Yup.string()
+      approvePassword: yup
+        .string()
         .min(8, "Длина поля от 8 до 30 символов")
         .max(30, "Длина поля от 8 до 30 символов")
         .matches(PASSWORD_REGULAR, "Введите корректный пароль")
-        .oneOf([Yup.ref("newPassword"), null], "Пароли не совпадают")
+        .oneOf([yup.ref("newPassword"), null], "Пароли не совпадают")
         .required("Поле обязательно для заполнения"),
     }),
     onSubmit: (values) => console.log(JSON.stringify(values, null, 2)),
