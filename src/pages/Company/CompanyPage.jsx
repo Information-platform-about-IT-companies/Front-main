@@ -48,8 +48,19 @@ export default function () {
       </section>
       <aside className="company__contact-info">
         <div className="company__btn-wrapper">
-          <Button size="standard" title="Посетить сайт компании" extClassName="company__btn" />
-          <Button size="standard" title="Добавить в избранное" extClassName="company__btn" />
+          <Button
+            size="standard"
+            title="Посетить сайт компании"
+            extClassName="company__btn"
+            linkType="link"
+            url="/"
+          />
+          <Button
+            size="standard"
+            title="Добавить в избранное"
+            extClassName="company__btn"
+            onClick={() => {}}
+          />
         </div>
         <div className="company__contact-wrapper">
           <span className="company__contact-title">Контакты</span>

@@ -8,11 +8,18 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: "Карточка компании на странице фильтрации",
+        component:
+          "Карточка компании. Используется для вывода на странице фильтрации с типом 'filterCard' и в ЛК (избранное) с типом 'favoriteCard'",
       },
     },
   },
   argTypes: {
+    type: {
+      description:
+        "Тип карточки. Для вывода на странице фильтрации - 'filterCard', для ЛК (избранное) -  'favoriteCard'",
+      options: ["filterCard", "favoriteCard"],
+      control: { type: "radio" },
+    },
     logo: {
       description: "Лого компании. Если его не указывать, то будет заглушка",
     },
@@ -26,14 +33,10 @@ export default {
       description: "Описание компании",
     },
     services: {
-      description: "Массив услуг, которые оказывает компания",
+      description: "Массив услуг (объектов) , которые оказывает компания",
     },
     onIconLikeClick: {
       description: "Функция, обработка события добавления карточки в избранное",
-    },
-    iconLikeState: {
-      description:
-        "Дефолтное состоянии кнопки лайка (все неактивные, если пользователь не вошел или не добавил в избранное. И активная, если уже добавлял в избранное",
     },
     extClassCardName: {
       description: "Дополнительный класс для изменения стилей карточки",
@@ -50,26 +53,25 @@ export default {
 
 export const CardCompany = {
   args: {
-    name: "Дэвид Коперфильд",
+    type: "filterCard",
     services: [
-      "Исчезновение Статуи Свободы",
-      "Полет перед зрителями на сцене",
-      "Проход вскозь Великую китайскую стену",
-      "Разрезание ассистентки",
-      "блаблабла",
+      { id: 1, name: "Исчезновение Статуи Свободы" },
+      { id: 2, name: "Полет перед зрителями на сцене" },
+      { id: 3, name: "Проход вскозь Великую китайскую стену" },
+      { id: 4, name: "Разрезание ассистентки" },
+      { id: 5, name: "блаблабла" },
     ],
-    city: "Город, которого нет",
+    city: "Город N",
+    name: "Дэвид Блейн",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi beatae laborum nam nobis reprehenderit, tempora? Ab dolor dolorum esse, explicabo fugiat labore molestiae nulla officiis, omnis pariatur quaerat quasi quibusdam rerum suscipit veritatis. Accusamus, accusantium enim iusto libero magnam neque nihil porro praesentium qui ratione vero voluptate! Quia, quos similique?",
-    iconLikeState: false,
   },
 };
 
-export const CardFavouriteCompany = {
+export const CardCompanyInFavorite = {
   args: {
-    name: "Дэвид Коперфильд",
-    city: "Город, которого нет",
-    iconLikeState: false,
-    extClassCardName: "__favourite",
+    type: "favoriteCard",
+    city: "Город N",
+    name: "Дэвид Блейн",
   },
 };

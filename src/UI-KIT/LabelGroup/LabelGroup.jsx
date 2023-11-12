@@ -1,7 +1,8 @@
 import "./LabelGroup.scss";
 import { Link } from "react-router-dom";
-import { Label } from "../Label/Label";
-import { declinationsNumericalValues } from "../../services/constants";
+import PropTypes, { object } from "prop-types";
+import { Label } from "UI-KIT/Label/Label";
+import { declinationsNumericalValues } from "services/constants";
 
 export default function LabelGroup({ title, items, extClass, isLink }) {
   const text = ["услуга", "услуги", "услуг"];
@@ -21,6 +22,7 @@ export default function LabelGroup({ title, items, extClass, isLink }) {
         {filterServices.map((item) => (
           <li>
             {isLink ? (
+              // заменить потом на item.link
               <Link to="/" className="labels__list-item">
                 <Label title={item.name} extClassName="labels__link" />
               </Link>
@@ -36,3 +38,15 @@ export default function LabelGroup({ title, items, extClass, isLink }) {
     </div>
   );
 }
+
+LabelGroup.propTypes = {
+  title: PropTypes.string.isRequired,
+  items: PropTypes.arrayOf(
+    PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+  ).isRequired,
+  isLink: PropTypes.bool,
+};
+
+LabelGroup.defaultProps = {
+  isLink: false,
+};

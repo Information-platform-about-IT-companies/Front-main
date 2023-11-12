@@ -1,13 +1,14 @@
+import PropTypes from "prop-types";
 // UI
 import Icon from "UI-KIT/Icons";
+import CompanyLogo from "UI-KIT/CompanyLogo/CompanyLogo";
+import LabelGroup from "UI-KIT/LabelGroup/LabelGroup";
+import ButtonIcon from "UI-KIT/ButtonIcon/ButtonIcon";
 import { LinkItem } from "UI-KIT/Link/LinkItem";
 // Функции
 import { cutText } from "services/constants";
 // Стили
 import "./CompanyCard.scss";
-import CompanyLogo from "UI-KIT/CompanyLogo/CompanyLogo";
-import LabelGroup from "UI-KIT/LabelGroup/LabelGroup";
-import ButtonIcon from "UI-KIT/ButtonIcon/ButtonIcon";
 
 export default function CompanyCard({
   type,
@@ -25,7 +26,7 @@ export default function CompanyCard({
   if (isFilterCard) {
     const cutDescription = description && cutText(description, 330);
     return (
-      <div className="companyCard">
+      <div className={`companyCard ${extClassCardName}`}>
         <div className="companyCard__info">
           <CompanyLogo logo={logo} name={name} city={city} />
           <ButtonIcon
@@ -72,3 +73,23 @@ export default function CompanyCard({
     );
   }
 }
+
+CompanyCard.propTypes = {
+  type: PropTypes.string.isRequired,
+  logo: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  city: PropTypes.string,
+  services: PropTypes.arrayOf(
+    PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+  ).isRequired,
+  description: PropTypes.string.isRequired,
+  onIconLikeClick: PropTypes.func,
+  extClassCardName: PropTypes.string,
+};
+
+CompanyCard.defaultProps = {
+  logo: null,
+  city: "",
+  onIconLikeClick: () => {},
+  extClassCardName: "",
+};
