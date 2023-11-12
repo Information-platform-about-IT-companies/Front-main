@@ -1,0 +1,28 @@
+@import "src/assets/style/main";
+
+.labels {
+  &__text {
+    display: inline-block;
+    padding-bottom: 12px;
+
+    @include roboto-14($black, 400);
+  }
+
+  &__link {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__list {
+    @include flex;
+
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 0;
+
+    &-item {
+      text-decoration: none;
+    }
+  }
+}

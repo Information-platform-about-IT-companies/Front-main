@@ -1,0 +1,22 @@
+@import "src/assets/style/main";
+
+.roll-up {
+  @include roboto-16($blue, 300);
+
+  padding: 0;
+  margin-top: 8px;
+  outline: transparent;
+  border: none;
+  background: transparent;
+  line-height: 24px;
+  max-height: 24px;
+
+  &:hover {
+    cursor: pointer;
+    border-bottom: 1px solid $blue;
+  }
+}
+
+.text {
+  @include roboto($black, 14px, 21px, 300);
+}
