@@ -1,5 +1,3 @@
-import { MemoryRouter } from "react-router-dom";
-
 import Icon from "./index";
 
 const meta = {
@@ -40,7 +38,8 @@ const meta = {
       options: ["24", "32", "60"],
     },
     color: {
-      description: "Обязательный параметр отвечающий за цвет иконки",
+      description:
+        "Обязательный параметр отвечающий за цвет иконки. (У иконки IconHeart нет этого поля, необходимо передавать цвет в стиле CSS, и стоило так делать везде)",
     },
     extClassName: {
       description: "Необязательный параметр. Для дополнительных стилей",
