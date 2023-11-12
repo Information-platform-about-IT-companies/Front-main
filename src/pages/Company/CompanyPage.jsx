@@ -1,14 +1,15 @@
-import Breadcrumbs from "UI-KIT/Breadcrumbs/Breadcrumbs";
-import { company, cutText, declinationsNumericalValues } from "services/constants";
-import { Link } from "react-router-dom";
-import { LinkItem } from "../../UI-KIT/Link/LinkItem";
-import { Label } from "../../UI-KIT/Label/Label";
+// UI
+import CompanyLogo from "UI-KIT/CompanyLogo/CompanyLogo";
+import LabelGroup from "UI-KIT/LabelGroup/LabelGroup";
+import { Button } from "UI-KIT/Button/Button";
+import HideTextBlock from "UI-KIT/HideTextBlock/HideTextBlock";
+// components
+import Breadcrumbs from "components/Breadcrumbs/Breadcrumbs";
+import Map from "components/Map/Map";
+// функции
+import { company, declinationsNumericalValues } from "services/constants";
+// стили
 import "./CompanyPage.scss";
-import CompanyLogo from "../../UI-KIT/CompanyLogo/CompanyLogo";
-import LabelGroup from "../../UI-KIT/LabelGroup/LabelGroup";
-import { Button } from "../../UI-KIT/Button/Button";
-import HideTextBlock from "../../UI-KIT/HideTextBlock/HideTextBlock";
-import Map from "../../components/Map/Map";
 
 export default function () {
   const text = ["человек", "человека", "человек"];

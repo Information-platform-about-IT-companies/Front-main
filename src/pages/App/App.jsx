@@ -4,7 +4,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 // Компоненты
 import Login from "pages/Login/Login";
 import Register from "pages/Register/Register";
-import NotFound from "components/NotFound/NotFound";
+import NotFound from "pages/NotFound/NotFound";
 import ProtectedRouteElement from "components/ProtectedRoute/ProtectedRoute";
 import Profile from "pages/Profile/Profile";
 import Main from "pages/Main/Main";

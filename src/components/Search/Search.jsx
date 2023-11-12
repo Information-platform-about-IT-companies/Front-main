@@ -4,18 +4,22 @@ import { Link } from "react-router-dom";
 import Input from "UI-KIT/Input/Input";
 import { Button } from "UI-KIT/Button/Button";
 import Icon from "UI-KIT/Icons";
+import dropDownBlock from "services/dropDown";
 
 import "./Search.scss";
 
 export function Search({ extClassName, ...props }) {
-  const [isButtonDisabled, setIsButtonDisabled] = React.useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = React.useState(true);
   const [isStartHint, setIsStartHint] = React.useState(false);
   const [query, setQuery] = React.useState("");
+  const [queryCity, setCityQuery] = React.useState("");
   const [response, setResponse] = React.useState([]);
-  const [responseNotFound, serResponseNotFound] = React.useState(false);
+  const [responseNotFound, setResponseNotFound] = React.useState(false);
+  const elementToggle = React.useRef(null);
 
   React.useEffect(() => {
-    setIsButtonDisabled(false);
+    setIsButtonDisabled(true);
+    setIsStartHint(false);
     setResponse([
       {
         title: "company",
@@ -36,7 +40,7 @@ export function Search({ extClassName, ...props }) {
   const hint = response.map((ul) => {
     const li = ul.element.map((e) => (
       <li className="search__hint-list-element" key={e.name}>
-        <Link to="e.link" className="search__hint-link">
+        <Link to={e.link} className="search__hint-link">
           {e.name}
         </Link>
       </li>
@@ -58,8 +62,8 @@ export function Search({ extClassName, ...props }) {
     }
 
     return (
-      <div className="search__hint-container">
-        <div className="search__hint-header" key={ul.title}>
+      <div className="search__hint-list-container">
+        <div className="search__hint-list-header" key={ul.title}>
           Найдено в {label}
         </div>
         <ul className="search__hint-list">{li}</ul>
@@ -67,25 +71,49 @@ export function Search({ extClassName, ...props }) {
     );
   });
 
+  const hintNotFound = (
+    <div className="search__hint-list-container">
+      <div className="search__hint-list-header search__hint-header_no-found">
+        По вашему запросу ничего не найдено
+      </div>
+    </div>
+  );
+
+  React.useEffect(() => {
+    if (query.length >= 3 || queryCity.length >= 3) {
+      setIsStartHint(true);
+      dropDownBlock(elementToggle, true);
+    } else {
+      setIsStartHint(false);
+      dropDownBlock(elementToggle, false);
+    }
+
+    if (query || queryCity) {
+      setIsButtonDisabled(false);
+    } else {
+      setIsButtonDisabled(true);
+    }
+  }, [query, queryCity]);
+
   return (
     <form className={`search ${extClassName}`} onSubmit={handleSubmitSearch}>
       <Input
         icon={<Icon icon="IconSearch" color="#4e4cbf" size="24" />}
         extClassNameInput="search__input_1"
-        onlyInput="true"
+        onlyInput
         name="search"
         id="search"
         placeholder="Название компании или услуга"
-        onChange={() => console.log("изменение инпута name")}
+        onChange={(event) => setQuery(event.target.value)}
       />
       <Input
         icon={<Icon icon="IconPin" color="#4e4cbf" size="24" />}
         extClassNameInput="search__input_2"
-        onlyInput="true"
+        onlyInput
         name="city"
         id="city"
         placeholder="Город"
-        onChange={() => console.log("изменение инпута city")}
+        onChange={(event) => setCityQuery(event.target.value)}
       />
       <Button
         extClassName="search__input-button"
@@ -94,16 +122,9 @@ export function Search({ extClassName, ...props }) {
         fill
         disabled={isButtonDisabled}
       />
-      {isStartHint && !responseNotFound && <div className="search__hint">{hint}</div>}
-      {isStartHint && responseNotFound && (
-        <div className="search__hint">
-          <div className="search__hint-container">
-            <div className="search__hint-header search__hint-header_no-found">
-              По вашему запросу ничего не найдено
-            </div>
-          </div>
-        </div>
-      )}
+      <div ref={elementToggle} className="search__hint">
+        {responseNotFound ? hintNotFound : hint}
+      </div>
     </form>
   );
 }

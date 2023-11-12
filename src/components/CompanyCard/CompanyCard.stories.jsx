@@ -2,7 +2,7 @@ import { MemoryRouter } from "react-router-dom";
 import CompanyCard from "./CompanyCard";
 
 export default {
-  title: "component/CompanyCard",
+  title: "components/CompanyCard",
   component: CompanyCard,
   tags: ["autodocs"],
   parameters: {

@@ -1,6 +1,5 @@
-// UI
-import Breadcrumbs from "UI-KIT/Breadcrumbs/Breadcrumbs";
 // components
+import Breadcrumbs from "components/Breadcrumbs/Breadcrumbs";
 import { Filter } from "components/Filter/Filter";
 import CompanyCard from "components/CompanyCard/CompanyCard";
 import { Pagination } from "components/Pagination/Pagination";
