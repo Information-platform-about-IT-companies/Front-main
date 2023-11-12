@@ -10,9 +10,9 @@
   background-color: $sea-blue-light;
   height: 35px;
   width: fit-content;
+  cursor: default;
 
   &:hover {
     background-color: $sea-blue-middle;
-    cursor: pointer;
   }
 }

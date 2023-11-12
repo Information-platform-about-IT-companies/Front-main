@@ -35,7 +35,7 @@ export default function CompanyCard({
           />
         </div>
         {description ? <p className="companyCard__description">{cutDescription}</p> : null}
-        <LabelGroup services={services} title="Услуги" />
+        <LabelGroup items={services} title="Услуги" isLink />
         <LinkItem
           title="Подробнее"
           url="/"

@@ -4,8 +4,14 @@
   display: grid;
   grid-template-areas:
     "bread bread"
-    "main aside";
+    "main aside"
+    "main title";
+  gap: 40px;
   padding: 32px;
+
+  &__breadcrumbs {
+    grid-area: bread;
+  }
 }
 
 .company {
@@ -17,5 +23,95 @@
 
   &__city {
     display: block;
+  }
+
+  &__size-info {
+    display: flex;
+    gap: 40px;
+    line-height: 24px;
+    padding: 8px 0;
+  }
+
+  &__full-info {
+    height: max-content;
+  }
+
+  &__description {
+    @include roboto-14;
+  }
+
+  &__accent-text {
+    color: $sea-blue;
+  }
+
+  &__basic-info {
+    @include flex(stretch, start, column);
+
+    gap: 20px;
+    grid-area: main;
+    padding: 20px 32px;
+  }
+
+  &__contact-info {
+    @include flex(stretch, start, column);
+
+    gap: 40px;
+    grid-area: aside;
+  }
+
+  &__btn-wrapper {
+    padding: 40px;
+  }
+
+  &__btn {
+    width: 100%;
+
+    &:first-child {
+      margin-bottom: 20px;
+    }
+  }
+
+  &__contact-wrapper {
+    @include flex(stretch, start, column);
+
+    gap: 20px;
+    padding: 20px 32px;
+  }
+
+  &__contact-title {
+    @include roboto($black, 20px, 23px, 700);
+  }
+
+  &__contact-block {
+    @include flex(stretch, start, column);
+
+    gap: 8px;
+
+    &_title {
+      @include roboto($black, 20px, 23px, 400);
+    }
+
+    &_subtitle {
+      @include roboto($black, 16px, 22px, 300);
+
+      line-height: 22px;
+      margin: 0;
+
+      li {
+        margin-bottom: 8px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  &__label-text {
+    > span {
+      font-size: 20px;
+      line-height: 23px;
+      font-weight: 600;
+    }
   }
 }

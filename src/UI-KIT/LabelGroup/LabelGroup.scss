@@ -8,6 +8,12 @@
     @include roboto-14($black, 400);
   }
 
+  &__link {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
   &__list {
     @include flex;
 
