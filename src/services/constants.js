@@ -1,3 +1,5 @@
+export const COMPANIES_PER_PAGE = 3;
+
 export function declinationsNumericalValues(value) {
   const text = ["услуга", "услуги", "услуг"];
   const v = Math.abs(value) % 100;
@@ -138,3 +140,8 @@ export const companies = [
     isFavourite: true,
   },
 ];
+
+export const sleep = (delay) =>
+  new Promise((res) => {
+    setTimeout(res, delay);
+  });

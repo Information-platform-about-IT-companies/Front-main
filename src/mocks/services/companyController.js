@@ -1,6 +1,6 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable camelcase */
-import { companies, hardcode } from "services/constants";
+import { companies, hardcode, sleep, COMPANIES_PER_PAGE } from "services/constants";
 
 const loreum = `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi beatae 
   laborum nam nobis reprehenderit, tempora? Ab dolor dolorum esse, explicabo fugiat labore
@@ -23,8 +23,8 @@ const mockCompanies = companies.map(({ name, city, isFavourite }, i) => ({
   is_favorited: isFavourite,
 }));
 
-const getCompanies = (props) => {
-  const { page, pageSize = 10, city, isFavourite } = props || {};
+const getCompanies = async (props) => {
+  const { page, pageSize = COMPANIES_PER_PAGE, city, isFavourite } = props || {};
   const currentPage = page ?? 1;
   const TotalPages = Math.ceil(companies.length / pageSize);
   const startPosition = (currentPage - 1) * pageSize;
@@ -42,6 +42,7 @@ const getCompanies = (props) => {
     startPosition,
     startPosition + pageSize,
   );
+  await sleep(1000);
 
   return {
     total_pages: TotalPages,
