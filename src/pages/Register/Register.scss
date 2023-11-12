@@ -71,10 +71,11 @@
     padding: 13px;
     border-radius: 20px;
     max-width: 300px;
+    transform: translateX(106%) translateY(-15%);
     background-color: $purple;
     border-color: none;
-    display: none;
-    transform: 0.5s;
+    opacity: 0;
+    transition: 0.5s;
 
     &::after {
       content: "";
@@ -94,7 +95,7 @@
   }
 
   &__input:focus + &__tooltip-container {
-    display: block;
+    opacity: 1;
   }
 
   &__tooltip-item {

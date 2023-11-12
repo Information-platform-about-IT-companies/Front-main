@@ -1,7 +1,7 @@
 @import "/src/assets/style/main";
 
 .input {
-  @include flex(start, center, column);
+  @include flex(start, start, column);
 
   width: 100%;
   position: relative;

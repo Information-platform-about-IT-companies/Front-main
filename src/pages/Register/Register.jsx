@@ -4,7 +4,7 @@ import { Form } from "UI-KIT/Form/Form";
 import Input from "UI-KIT/Input/Input";
 import { useFormAndValidation } from "hooks/useFormAndValidation";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import "./Register.scss";
 
@@ -25,14 +25,17 @@ function Register() {
   function checkPassword() {
     if (formInputs.values.repeatPassword !== "") {
       if (formInputs.values.password !== formInputs.values.repeatPassword) {
+        console.log(`${formInputs.values.password} / ${formInputs.values.repeatPassword}`);
         formInputs.setErrors({ repeatPassword: "Пароли не совпадают" });
+      } else {
+        formInputs.setErrors({ repeatPassword: "" });
       }
     }
   }
 
   useEffect(() => {
     checkPassword();
-  }, [formInputs.values.repeatPassword, formInputs.values.password]);
+  }, [formInputs.values.password, formInputs.values.repeatPassword]);
 
   return (
     <main className="register">
@@ -54,7 +57,7 @@ function Register() {
             type="text"
             name="userName"
             id="registerUserName"
-            minLength="2"
+            /*  minLength="2" */
             required
           />
           <Input
