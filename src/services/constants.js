@@ -23,6 +23,7 @@ export const hardcode = {
   companies: [
     {
       title: "Веб-разработка",
+      id: "1",
       comp: [
         { title: "Веб-разработка", link: "/bla-1" },
         { title: "Разработка под e-commerce", link: "/bla-1" },
@@ -40,6 +41,7 @@ export const hardcode = {
     },
     {
       title: "Разработка ПО",
+      id: "2",
       comp: [
         { title: "Разработка для IOS", link: "/boo-1" },
         { title: "Разработка для Android", link: "/boo-2" },
@@ -56,6 +58,7 @@ export const hardcode = {
     },
     {
       title: "Дизайн",
+      id: "3",
       comp: [
         { title: "Веб-дизайн", link: "/boo-1" },
         { title: "UX/UI ", link: "/boo-2" },
@@ -68,6 +71,7 @@ export const hardcode = {
     },
     {
       title: "Маркетинг",
+      id: "4",
       comp: [
         { title: "Реклама", link: "/bla-1" },
         { title: "SMM", link: "/bla-2" },
