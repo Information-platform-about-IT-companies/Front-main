@@ -23,7 +23,6 @@ export default function CompanyCard({
 }) {
   const isFilterCard = type === "filterCard";
   const isFavoriteCard = type === "favoriteCard";
-  const [isFill, setIsFill] = React.useState(false);
   // для обрезки и ... многострочного текста
   if (isFilterCard) {
     const cutDescription = description && cutText(description, 330);
@@ -31,7 +30,7 @@ export default function CompanyCard({
       <div className={`companyCard ${extClassCardName}`}>
         <div className="companyCard__info">
           <CompanyLogo logo={logo} name={name} city={city} />
-          <div className="companyCard__buttonContainer">
+          <div className="companyCard__buttonHeartContainer">
             <ButtonHeart click={onIconHeartClick} fill={inFavorite} />
           </div>
         </div>
@@ -54,7 +53,7 @@ export default function CompanyCard({
         <div className="companyCard__info">
           <CompanyLogo logo={logo} name={name} city={city} />
           <div className="companyCard__like-wrapper">
-            <div className="companyCard__buttonContainer">
+            <div className="companyCard__buttonHeartContainer">
               <ButtonHeart click={onIconHeartClick} fill={inFavorite} />
             </div>
             <LinkItem
