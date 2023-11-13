@@ -12,6 +12,8 @@ import IconOctopusArrow from "./IconOctopusArrow";
 import IconPin from "./IconPin";
 import IconRound from "./IconRound";
 import IconSearch from "./IconSearch";
+import IconThemeDark from "./IconThemeDark";
+import IconThemeLight from "./IconThemeLight";
 
 const icons = {
   IconAccount,
@@ -26,6 +28,8 @@ const icons = {
   IconPin,
   IconRound,
   IconSearch,
+  IconThemeDark,
+  IconThemeLight,
 };
 
 export default function Icon({ icon, ...props }) {
