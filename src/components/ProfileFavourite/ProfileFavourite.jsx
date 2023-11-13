@@ -1,8 +1,8 @@
-import "./ProfileFavourite.scss";
-
 import { Button } from "UI-KIT/Button/Button";
 import CompanyCard from "components/CompanyCard/CompanyCard";
 import { companies } from "services/constants";
+
+import "./ProfileFavourite.scss";
 
 function ProfileFavourite() {
   return (
@@ -16,7 +16,8 @@ function ProfileFavourite() {
                 <CompanyCard
                   city={company.city}
                   name={company.name}
-                  onIconLikeClick={() => {}}
+                  onIconHeartClick={() => {}}
+                  inFavorite={company.inFavorite}
                   type="favoriteCard"
                 />
               </li>

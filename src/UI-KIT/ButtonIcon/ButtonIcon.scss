@@ -1,11 +1,11 @@
 @import "src/assets/style/main";
 
-.button {
+.buttonIcon {
   @include flex(center, center);
 
   overflow: hidden;
   border: none;
-  z-index: 1;
+  z-index: 0;
   background: transparent;
 
   &:hover {

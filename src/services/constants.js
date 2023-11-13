@@ -93,52 +93,52 @@ export const companies = [
   {
     name: "LukoilLukoilLukoilLukoilLukoil",
     city: "Moscow",
-    isFavourite: true,
+    inFavorite: true,
   },
   {
     name: "GazpromIt",
     city: "Taganrog",
-    isFavourite: false,
+    inFavorite: false,
   },
   {
     name: "Sberbank",
     city: "Vakanda",
-    isFavourite: false,
+    inFavorite: true,
   },
   {
     name: "Magnit-It",
     city: "Moscow",
-    isFavourite: true,
+    inFavorite: true,
   },
   {
     name: "TNK-BP",
     city: "Tyva",
-    isFavourite: false,
+    inFavorite: true,
   },
   {
     name: "GazpromIt",
     city: "Samara",
-    isFavourite: true,
+    inFavorite: true,
   },
   {
     name: "INOSTUDIO",
     city: "Ufa",
-    isFavourite: true,
+    inFavorite: true,
   },
   {
     name: "Novatek",
     city: "DC2",
-    isFavourite: false,
+    inFavorite: true,
   },
   {
     name: "Mentalstack",
     city: "Taganrog",
-    isFavourite: true,
+    inFavorite: true,
   },
   {
     name: "Afterlogic.Works",
     city: "Krasnodar",
-    isFavourite: true,
+    inFavorite: true,
   },
 ];
 
