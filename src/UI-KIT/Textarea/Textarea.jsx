@@ -24,23 +24,21 @@ function Textarea({
   }
 
   return (
-    <>
-      <label className={`textarea_label ${extClassNameLabel}`} htmlFor={id}>
-        {label}
-        <textarea
-          name={name}
-          id={id}
-          className={`textarea_field ${extClassNameTextarea} ${errorStyle()} `}
-          required={required}
-          placeholder={placeholder}
-          onChange={onChange}
-          value={value}
-          rows={rows}
-          {...props}
-        />
-      </label>
+    <label className={`textarea_label ${extClassNameLabel}`} htmlFor={id}>
+      {label}
+      <textarea
+        name={name}
+        id={id}
+        className={`textarea_field ${extClassNameTextarea} ${errorStyle()} `}
+        required={required}
+        placeholder={placeholder}
+        onChange={onChange}
+        value={value}
+        rows={rows}
+        {...props}
+      />
       <span className={`textarea_error-text ${hideErrorMessage()}`}>{error}</span>
-    </>
+    </label>
   );
 }
 

@@ -8,8 +8,8 @@ import { Button } from "UI-KIT/Button/Button";
 import { ButtonChanges } from "UI-KIT/ButtonChanges/ButtonChanges";
 import { NAME_REGULAR, PASSWORD_REGULAR } from "services/regulars";
 
-function ProfileInfo({ onSubmit }) {
-  const formik = useFormik({
+function ProfileInfo() {
+  const formikInfo = useFormik({
     initialValues: {
       firstName: "Vasya", // тут будут данные из useContext
       lastName: "Pupkin",
@@ -35,6 +35,16 @@ function ProfileInfo({ onSubmit }) {
         .max(254, "Длина поля от 6 до 254 символов")
         .email()
         .required("Поле обязательно для заполнения"),
+    }),
+    onSubmit: (values) => console.log(JSON.stringify(values, null, 2)),
+  });
+  const formikPassword = useFormik({
+    initialValues: {
+      currentPassword: "",
+      newPassword: "",
+      approvePassword: "",
+    },
+    validationSchema: yup.object({
       currentPassword: yup
         .string()
         .min(8, "Длина поля от 8 до 30 символов")
@@ -57,6 +67,14 @@ function ProfileInfo({ onSubmit }) {
     }),
     onSubmit: (values) => console.log(JSON.stringify(values, null, 2)),
   });
+  const transformInfoBlur = (event) => {
+    formikInfo.setFieldValue(event.target.name, event.target.value.trim());
+    formikInfo.handleBlur(event);
+  };
+  const transformPasswordBlur = (event) => {
+    formikPassword.setFieldValue(event.target.name, event.target.value.trim());
+    formikPassword.handleBlur(event);
+  };
   const firstNameInputId = useId();
   const lastNameInputId = useId();
   const emailInputId = useId();
@@ -76,7 +94,7 @@ function ProfileInfo({ onSubmit }) {
 
       <Form
         extClassName={isChangePasswordOpen ? `form-info form-info_with-change` : `form-info`}
-        onSubmit={formik.handleSubmit}
+        onSubmit={formikInfo.handleSubmit}
       >
         <div className="form-info_name-container">
           <Input
@@ -84,24 +102,28 @@ function ProfileInfo({ onSubmit }) {
             label="Имя"
             type="text"
             name="firstName"
-            value={formik.values.firstName}
-            onChange={formik.handleChange}
+            value={formikInfo.values.firstName}
+            onChange={formikInfo.handleChange}
             error={
-              formik.errors.firstName && formik.touched.firstName ? formik.errors.firstName : null
+              formikInfo.errors.firstName && formikInfo.touched.firstName
+                ? formikInfo.errors.firstName
+                : null
             }
-            onBlur={formik.handleBlur}
+            onBlur={transformInfoBlur}
           />
           <Input
             label="Фамилия"
             type="text"
             name="lastName"
-            value={formik.values.lastName}
-            onChange={formik.handleChange}
+            value={formikInfo.values.lastName}
+            onChange={formikInfo.handleChange}
             id={lastNameInputId}
             error={
-              formik.errors.lastName && formik.touched.lastName ? formik.errors.lastName : null
+              formikInfo.errors.lastName && formikInfo.touched.lastName
+                ? formikInfo.errors.lastName
+                : null
             }
-            onBlur={formik.handleBlur}
+            onBlur={transformInfoBlur}
           />
         </div>
         <Input
@@ -109,13 +131,21 @@ function ProfileInfo({ onSubmit }) {
           type="email"
           name="email"
           id={emailInputId}
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          error={formik.errors.email && formik.touched.email ? formik.errors.email : null}
-          onBlur={formik.handleBlur}
+          value={formikInfo.values.email}
+          onChange={formikInfo.handleChange}
+          error={
+            formikInfo.errors.email && formikInfo.touched.email ? formikInfo.errors.email : null
+          }
+          onBlur={transformInfoBlur}
         />
         <div className="info-buttons">
-          <Button fill size="standard" type="submit" title="Обновить профиль" />
+          <Button
+            fill
+            size="standard"
+            type="submit"
+            title="Обновить профиль"
+            disabled={!(formikInfo.isValid && formikInfo.dirty)}
+          />
           <ButtonChanges
             type="button"
             title="Изменить пароль"
@@ -125,20 +155,20 @@ function ProfileInfo({ onSubmit }) {
       </Form>
 
       {isChangePasswordOpen ? (
-        <Form extClassName="form-info-change" onSubmit={onSubmit}>
+        <Form extClassName="form-info-change" onSubmit={formikPassword.handleSubmit}>
           <Input
             label="Текущий пароль"
-            // type="password"
+            type="password"
             name="currentPassword"
             id={currentPasswordInputId}
-            value={formik.values.currentPassword}
-            onChange={formik.handleChange}
+            value={formikPassword.values.currentPassword}
+            onChange={formikPassword.handleChange}
             error={
-              formik.errors.currentPassword && formik.touched.currentPassword
-                ? formik.errors.currentPassword
+              formikPassword.errors.currentPassword && formikPassword.touched.currentPassword
+                ? formikPassword.errors.currentPassword
                 : null
             }
-            onBlur={formik.handleBlur}
+            onBlur={transformPasswordBlur}
           />
 
           <Input
@@ -146,14 +176,14 @@ function ProfileInfo({ onSubmit }) {
             type="password"
             name="newPassword"
             id={newPasswordInputId}
-            value={formik.values.newPassword}
-            onChange={formik.handleChange}
+            value={formikPassword.values.newPassword}
+            onChange={formikPassword.handleChange}
             error={
-              formik.errors.newPassword && formik.touched.newPassword
-                ? formik.errors.newPassword
+              formikPassword.errors.newPassword && formikPassword.touched.newPassword
+                ? formikPassword.errors.newPassword
                 : null
             }
-            onBlur={formik.handleBlur}
+            onBlur={transformPasswordBlur}
           />
 
           <Input
@@ -161,18 +191,24 @@ function ProfileInfo({ onSubmit }) {
             type="password"
             name="approvePassword"
             id={approvePasswordInputId}
-            value={formik.values.approvePassword}
-            onChange={formik.handleChange}
+            value={formikPassword.values.approvePassword}
+            onChange={formikPassword.handleChange}
             error={
-              formik.errors.approvePassword && formik.touched.approvePassword
-                ? formik.errors.approvePassword
+              formikPassword.errors.approvePassword && formikPassword.touched.approvePassword
+                ? formikPassword.errors.approvePassword
                 : null
             }
-            onBlur={formik.handleBlur}
+            onBlur={transformPasswordBlur}
           />
 
           <div className="info-buttons">
-            <Button fill size="standard" type="submit" title="Обновить пароль" />
+            <Button
+              fill
+              size="standard"
+              type="submit"
+              title="Обновить пароль"
+              disabled={!(formikPassword.isValid && formikPassword.dirty)}
+            />
             <ButtonChanges
               type="button"
               title="Отменить"

@@ -26,11 +26,16 @@ function ProfileSupport() {
         .string()
         .min(2, "Длина поля от 2 до 1500 символов")
         .max(1500, "Длина поля от 2 до 1500 символов")
-        .matches(SUPPORT_MESSAGE_REGULAR, "Введите корректный")
+        .matches(SUPPORT_MESSAGE_REGULAR, "Введите корректный текст")
         .required("Поле обязательно для заполнения"),
     }),
     onSubmit: (values) => console.log(JSON.stringify(values, null, 2)),
   });
+
+  const transformBlur = (event) => {
+    formik.setFieldValue(event.target.name, event.target.value.trim());
+    formik.handleBlur(event);
+  };
 
   const supportTitleInputId = useId();
   const supportMessageInputId = useId();
@@ -55,10 +60,10 @@ function ProfileSupport() {
               ? formik.errors.supportTitle
               : null
           }
-          onBlur={formik.handleBlur}
+          onBlur={transformBlur}
         />
 
-        <Textarea // убрать роу гэп
+        <Textarea
           label="Сообщение"
           rows="8"
           name="supportMessage"
@@ -70,12 +75,11 @@ function ProfileSupport() {
               ? formik.errors.supportMessage
               : null
           }
-          onBlur={formik.handleBlur}
+          onBlur={transformBlur}
         />
 
         <Button
-          onClick={() => {}}
-          disabled
+          disabled={!(formik.isValid && formik.dirty)}
           fill
           size="standard"
           extClassName="support_button"
