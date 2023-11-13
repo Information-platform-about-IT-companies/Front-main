@@ -35,19 +35,7 @@ function Main() {
         <ul className="companies__list">
           {hardcode.companies.map((company) => (
             <li>
-              <Category
-                categoryTitle={company.title}
-                categories={company.comp}
-                icon={
-                  <Icon
-                    color="#4E4CBF"
-                    extClassName="category_icon"
-                    icon="IconRound"
-                    size="32"
-                    symbol={company.title[0]}
-                  />
-                }
-              />
+              <Category categoryTitle={company.title} categories={company.comp} id={company.id} />
             </li>
           ))}
         </ul>
