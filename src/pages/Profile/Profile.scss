@@ -1,0 +1,54 @@
+@import "src/assets/style/main";
+
+.profile {
+  @include flex(flex-start, space-between);
+
+  margin-top: 80px;
+  color: $black;
+
+  &_navigation {
+    margin-right: 40px;
+    margin-top: 78px;
+    max-width: 285px;
+    width: 100%;
+
+    &_button {
+      width: 100%;
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    &_button:last-child {
+      margin-bottom: 0;
+    }
+
+    &_subtitle {
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 23px;
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    &_description {
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 22px;
+      text-align: left;
+      margin-bottom: 20px;
+      color: #000;
+    }
+  }
+
+  &_details {
+    width: 100%;
+  }
+
+  &_title {
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 38px;
+    text-align: left;
+    margin-bottom: 34px;
+  }
+}

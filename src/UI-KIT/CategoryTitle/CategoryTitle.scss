@@ -1,0 +1,17 @@
+@import "src/assets/style/main";
+
+.category {
+  &_title {
+    font-weight: 700;
+    border-radius: 10px;
+    max-width: 285px;
+    padding: 10px 0;
+    font-size: 20px;
+
+    @include flex(center, flex-start);
+  }
+
+  &_icon {
+    margin-right: 12px;
+  }
+}

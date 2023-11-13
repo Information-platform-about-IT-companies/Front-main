@@ -1,11 +1,12 @@
-@import "src/style/main";
+@import "src/assets/style/main";
 
 .button {
-  box-sizing: border-box;
   position: relative;
+  display: inline-block;
   overflow: hidden;
   border-radius: 10px;
   border: none;
+  text-decoration: none;
   z-index: 1;
 
   &:hover {
@@ -17,12 +18,13 @@
   }
 
   &_style_fill {
-    background: $primary-gradient;
-    color: $white;
+    @include roboto-16($white);
+
+    background: $gradient-blue;
 
     &::before {
       position: absolute;
-      background: $dark-blue;
+      background: $blue;
       content: "";
       inset: 0;
       z-index: -1;
@@ -40,7 +42,7 @@
     }
 
     &:disabled {
-      background: $dark-blue-20;
+      background: $blue-light;
 
       &:hover::before {
         opacity: 0;
@@ -49,21 +51,25 @@
   }
 
   &_style_outline {
+    @include roboto-16($black);
+
     background: transparent;
-    border: 1.5px $dark-blue solid;
-    color: $black;
+    outline: 1.5px $blue solid;
+    outline-offset: -1.5px;
 
     &:hover {
-      border-width: 2px;
+      outline-offset: -2px;
+      outline-width: 2px;
     }
 
     &:active {
-      border-width: 3px;
+      outline-offset: -3px;
+      outline-width: 3px;
     }
 
     &:disabled {
       border-width: 1.5px;
-      border-color: $dark-blue-20;
+      border-color: $blue-light;
     }
   }
 
@@ -74,8 +80,28 @@
   &_size_medium {
     padding: 22px 32px;
   }
+
+  &_style_light_bg {
+    border: none;
+    color: $black;
+    background: transparent;
+
+    &:hover {
+      background-color: $sea-blue-light;
+    }
+
+    &:visited {
+      color: $black;
+    }
+  }
 }
 
-.for-story {
+.for-button-story {
   border-radius: 0 10px 10px 0;
+}
+
+.active {
+  font-weight: 500;
+  background-color: $sea-blue-light;
+  border: none;
 }

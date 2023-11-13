@@ -1,3 +1,5 @@
+import { MemoryRouter } from "react-router-dom";
+
 import Icon from "./index";
 
 const meta = {
@@ -14,11 +16,17 @@ const meta = {
   argTypes: {
     icon: {
       description:
-        "Обязательный параметр объявления используемой иконки. Может принимать значения - IconAccount | IconArrow | IconOctopusArrow | IconPin | IconRound | IconSearch",
+        "Обязательный параметр объявления используемой иконки. Может принимать значения - IconAccount | IconArrow | IconFilter | IconHeart | IconOctopusArrow | IconPin | IconRound | IconSearch",
       control: { type: "select" },
       options: [
         "IconAccount",
         "IconArrow",
+        "IconСategoryDesign",
+        "IconСategoryMarketing",
+        "IconСategorySoftware",
+        "IconСategoryWeb",
+        "IconFilter",
+        "IconHeart",
         "IconOctopusArrow",
         "IconPin",
         "IconRound",
@@ -37,11 +45,27 @@ const meta = {
     extClassName: {
       description: "Необязательный параметр. Для дополнительных стилей",
     },
+    cross: {
+      description:
+        "Обязательный параметр для иконки фильтра. Отвечает за добавление крестика к иконке фильтра",
+      options: [true, false],
+    },
     direction: {
       description:
         "Необязательный параметр для иконки стрелки. Может принимать значения - up, right, down, right.",
       control: { type: "select" },
       options: ["up", "right", "down", "left"],
+    },
+    fill: {
+      description: "Обязательный параметр для иконки сердечка. Отвечает за заливку сердечка цветом",
+      options: [true, false],
+    },
+    colorFill: {
+      description: "Обязательный параметр отвечающий за цвет заполненной иконки",
+    },
+    symbol: {
+      description: "Обязательный параметр для иконки буквы в кружочке. Принимает букву",
+      control: "text",
     },
   },
 };
@@ -53,52 +77,33 @@ export const IconAccount = {
     icon: "IconAccount",
     size: 32,
     color: "black",
-    extClassName: "forStory",
+    extClassName: "for-story",
   },
 };
 
-export const IconArrow = {
-  args: {
-    icon: "IconArrow",
-    size: 32,
-    color: "black",
-    extClassName: "forStory",
-    direction: "up",
-  },
-};
-
-export const IconOctopusArrow = {
-  args: {
-    icon: "IconOctopusArrow",
-    size: 60,
-    color: "black",
-    extClassName: "forStory",
-  },
-};
-
-export const IconPin = {
-  args: {
-    icon: "IconPin",
-    size: 32,
-    color: "black",
-    extClassName: "forStory",
-  },
-};
-
-export const IconRound = {
-  args: {
-    icon: "IconRound",
-    size: 32,
-    color: "black",
-    extClassName: "forStory",
-  },
-};
-
-export const IconSearch = {
-  args: {
-    icon: "IconSearch",
-    size: 32,
-    color: "black",
-    extClassName: "forStory",
-  },
+export const Icons = {
+  render: () => (
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill, 60px)",
+        gridTemplateRows: "repeat(auto-fill, 60px)",
+        justifyItems: "center",
+        alignItems: "center",
+      }}
+    >
+      <Icon icon="IconAccount" />
+      <Icon icon="IconArrow" />
+      <Icon icon="IconСategoryDesign" />
+      <Icon icon="IconСategoryMarketing" />
+      <Icon icon="IconСategorySoftware" />
+      <Icon icon="IconСategoryWeb" />
+      <Icon icon="IconFilter" />
+      <Icon icon="IconHeart" />
+      <Icon icon="IconOctopusArrow" />
+      <Icon icon="IconPin" />
+      <Icon icon="IconRound" symbol="Д" />
+      <Icon icon="IconSearch" />
+    </div>
+  ),
 };

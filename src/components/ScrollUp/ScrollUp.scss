@@ -1,0 +1,14 @@
+@import "src/assets/style/main";
+
+.scroll {
+  all: unset;
+  position: relative;
+  cursor: pointer;
+
+  &__icon {
+    position: fixed;
+    bottom: 145px;
+    right: 120px;
+    z-index: 1000;
+  }
+}

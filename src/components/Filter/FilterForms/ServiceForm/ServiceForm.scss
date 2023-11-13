@@ -1,0 +1,13 @@
+.service-form {
+  &__checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px 20px;
+    margin-bottom: 20px;
+  }
+
+  &__button {
+    left: 332px;
+    padding: 12px 32px;
+  }
+}

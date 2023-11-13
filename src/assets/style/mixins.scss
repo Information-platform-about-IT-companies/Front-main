@@ -1,0 +1,50 @@
+@import "variables";
+
+@mixin flex($align: stretch, $justify: flex-start, $direction: row) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+  flex-direction: $direction;
+}
+
+@mixin roboto-14($color: $black, $weight: 300) {
+  font-size: $text-size-small;
+  line-height: 21px;
+  font-weight: $weight;
+  color: $color;
+}
+
+@mixin roboto-16($color: $black, $weight: 400) {
+  font-size: $text-size-default;
+  line-height: 19px;
+  font-weight: $weight;
+  color: $color;
+}
+
+@mixin roboto-24($color: $black) {
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 400;
+  color: $color;
+}
+
+@mixin roboto-32($color: $black) {
+  font-size: $text-size-large;
+  line-height: 44.8px;
+  font-weight: 400;
+  color: $color;
+}
+
+@mixin roboto-44($color: $black) {
+  font-size: $text-size-title;
+  line-height: 61.6px;
+  font-weight: 700;
+  color: $color;
+}
+
+@mixin roboto($color: $black, $size: $text-size-default, $line, $weight: 400) {
+  font-size: $size;
+  line-height: $line;
+  font-weight: $weight;
+  color: $color;
+}

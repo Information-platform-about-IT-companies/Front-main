@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 function Input({
   label,
+  icon,
   extClassNameLabel,
   type,
   name,
@@ -13,29 +14,58 @@ function Input({
   required,
   placeholder,
   error,
+  onlyInput,
+  children,
   ...props
 }) {
   function errorStyle() {
     return error ? "input__field-error" : "";
   }
 
+  function errorShow() {
+    return error ? "input__error-text_show" : "";
+  }
+
+  function inputWithIconStyle() {
+    return icon ? "input__field_icon" : "";
+  }
+
+  const inputField = (
+    <input
+      type={type}
+      name={name}
+      id={id}
+      className={`input__field ${errorStyle()} ${inputWithIconStyle()} ${extClassNameInput}`}
+      required={required}
+      placeholder={placeholder}
+      onChange={onChange}
+      value={value}
+      {...props}
+    />
+  );
+
+  const inputIcon = <div className="input__field-icon">{icon}</div>;
+
   return (
     <div className="input">
-      <label className={`input__label ${extClassNameLabel}`} htmlFor={id}>
-        {label}
-      </label>
-      <input
-        type={type}
-        name={name}
-        id={id}
-        className={`input__field ${extClassNameInput} ${errorStyle()}`}
-        required={required}
-        placeholder={placeholder}
-        onChange={onChange}
-        value={value}
-        {...props}
-      />
-      <span className="input__error-text">{error}</span>
+      {onlyInput ? (
+        <>
+          {inputIcon}
+          {inputField}
+        </>
+      ) : (
+        <>
+          <label className={`input__label ${extClassNameLabel}`} htmlFor={id}>
+            {label}
+          </label>
+          <div className="input__container">
+            {inputIcon}
+            {inputField}
+            {children}
+          </div>
+          <span className={`input__error-text ${errorShow()}`}>{error}</span>
+        </>
+      )}
     </div>
   );
 }
@@ -43,7 +73,8 @@ function Input({
 export default Input;
 
 Input.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  icon: PropTypes.node,
   extClassNameLabel: PropTypes.string,
   type: PropTypes.string,
   name: PropTypes.string.isRequired,
@@ -54,14 +85,18 @@ Input.propTypes = {
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string,
   error: PropTypes.string,
+  onlyInput: PropTypes.bool,
 };
 
 Input.defaultProps = {
-  extClassNameLabel: null,
+  label: null,
+  icon: null,
+  extClassNameLabel: "",
   type: "text",
-  extClassNameInput: null,
+  extClassNameInput: "",
   required: false,
   placeholder: "",
   value: null,
   error: null,
+  onlyInput: false,
 };

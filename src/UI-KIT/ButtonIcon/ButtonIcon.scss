@@ -1,0 +1,18 @@
+@import "src/assets/style/main";
+
+.button {
+  @include flex(center, center);
+
+  overflow: hidden;
+  border: none;
+  z-index: 1;
+  background: transparent;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

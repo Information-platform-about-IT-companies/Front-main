@@ -1,0 +1,53 @@
+@import "src/assets/style/main";
+
+.companyCard {
+  @include flex(stretch, space-between, column);
+
+  min-height: 441px;
+  width: 100%;
+  max-width: 586px;
+  border-radius: 20px;
+  background-color: $snow-white;
+  padding: 20px;
+
+  &_type_favourite {
+    min-height: 163px;
+    max-width: unset;
+  }
+
+  &__like-wrapper {
+    @include flex(flex-end, space-between, column);
+
+    & button {
+      align-self: flex-end;
+    }
+  }
+
+  &__like {
+    align-self: flex-start;
+    padding: 8px;
+  }
+
+  &__info {
+    @include flex(stretch, space-between);
+  }
+
+  &__fullInfo {
+    align-self: flex-start;
+    color: $blue;
+  }
+
+  &__emptyInfo {
+    align-self: center;
+  }
+
+  &__description {
+    @include roboto-14;
+
+    height: 84px;
+  }
+
+  &__itemsContainer {
+    @include flex(center, space-between);
+  }
+}

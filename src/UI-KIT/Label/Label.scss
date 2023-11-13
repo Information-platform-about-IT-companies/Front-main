@@ -1,18 +1,18 @@
-@import "src/style/main";
+@import "src/assets/style/main";
 
 .label {
-  box-sizing: border-box;
+  @include roboto-16;
+
+  display: block;
   border-radius: 10px;
   border: none;
   padding: 8px 12px;
-  background-color: $sea-blue-20;
+  background-color: $sea-blue-light;
   height: 35px;
   width: fit-content;
-  color: $black;
-  font-size: $text-size-default;
+  cursor: default;
 
   &:hover {
-    background-color: $sea-blue-50;
-    cursor: pointer;
+    background-color: $sea-blue-middle;
   }
 }

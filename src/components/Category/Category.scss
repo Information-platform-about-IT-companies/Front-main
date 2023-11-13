@@ -1,0 +1,19 @@
+@import "src/assets/style/main";
+
+.category {
+  color: $black;
+  margin: 12px 0 0;
+  min-width: 285px;
+
+  &_link {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18.75px;
+    margin-bottom: 16px;
+    list-style-type: none;
+  }
+
+  &_link:last-child {
+    margin-bottom: 0;
+  }
+}

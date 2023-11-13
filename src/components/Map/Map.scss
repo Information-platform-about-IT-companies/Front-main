@@ -1,0 +1,9 @@
+@import "src/assets/style/main";
+
+.map {
+  width: 323px;
+  height: 200px;
+  border-color: $blue-light;
+  border-radius: 10px;
+  overflow: hidden;
+}

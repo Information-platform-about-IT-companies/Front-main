@@ -11,5 +11,5 @@ Label.propTypes = {
 };
 
 Label.defaultProps = {
-  extClassName: null,
+  extClassName: "",
 };

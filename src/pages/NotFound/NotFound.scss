@@ -1,0 +1,31 @@
+@import "src/assets/style/main";
+
+.fullwidth {
+  width: calc(100 * var(--vw, 1vw));
+  margin-left: calc(50% - 50 * var(--vw, 1vw));
+}
+
+.not-found {
+  @include flex(center, center, column);
+
+  background-image: url("../../images/NotFound.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &__header {
+    padding-bottom: 20px;
+    background-color: $purple;
+    background-image: $gradient-pink;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 200px;
+    font-weight: 700;
+  }
+
+  &__paragraph {
+    padding-bottom: 32px;
+    font-size: $text-size-large;
+    font-weight: 400;
+  }
+}

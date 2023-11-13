@@ -1,16 +1,18 @@
 {
   "name": "front-main",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "leaflet": "^1.9.4",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.16.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "stylelint-selector-bem-pattern": "^3.0.1",
     "web-vitals": "^2.1.4"
   },
@@ -26,7 +28,10 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepare": "husky install",
-    "stylelint": "stylelint '{src/**/*, src/**/**/*}.{css,scss}'"
+    "stylelint": "stylelint '{src/**/*, src/**/**/*}.{css,scss}'",
+    "deploy": "gh-pages -d build",
+    "predeploy-storybook": "npm run build-storybook",
+    "deploy-storybook": "gh-pages -d storybook-static"
   },
   "eslintConfig": {
     "extends": [
@@ -86,6 +91,7 @@
     "eslint-plugin-storybook": "^0.6.15",
     "eslint-plugin-testing-library": "^6.1.0",
     "fetch-mock": "^9.11.0",
+    "gh-pages": "^6.0.0",
     "husky": "^8.0.0",
     "lint-staged": "^15.0.1",
     "prettier": "3.0.3",
