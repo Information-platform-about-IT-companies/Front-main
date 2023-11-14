@@ -7,7 +7,6 @@ import "./ProfileSupport.scss";
 import Input from "UI-KIT/Input/Input";
 import Textarea from "UI-KIT/Textarea/Textarea";
 import { Button } from "UI-KIT/Button/Button";
-import { SUPPORT_MESSAGE_REGULAR, SUPPORT_TITLE_REGULAR } from "services/regulars";
 
 function ProfileSupport() {
   const formik = useFormik({
@@ -16,17 +15,11 @@ function ProfileSupport() {
       supportMessage: "",
     },
     validationSchema: yup.object({
-      supportTitle: yup
-        .string()
-        .min(2, "Длина поля от 2 до 100 символов")
-        .max(100, "Длина поля от 2 до 100 символов")
-        .matches(SUPPORT_TITLE_REGULAR, "Введите корректный текст")
-        .required("Поле обязательно для заполнения"),
+      supportTitle: yup.string().max(100, "Длина поля не более 100 символов"),
       supportMessage: yup
         .string()
-        .min(2, "Длина поля от 2 до 1500 символов")
-        .max(1500, "Длина поля от 2 до 1500 символов")
-        .matches(SUPPORT_MESSAGE_REGULAR, "Введите корректный текст")
+        .min(5, "Длина поля от 5 до 1500 символов")
+        .max(1500, "Длина поля от 5 до 1500 символов")
         .required("Поле обязательно для заполнения"),
     }),
     onSubmit: (values) => console.log(JSON.stringify(values, null, 2)),

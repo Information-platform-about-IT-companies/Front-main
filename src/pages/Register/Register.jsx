@@ -2,101 +2,121 @@ import { LinkItem } from "UI-KIT/Link/LinkItem";
 import { Button } from "UI-KIT/Button/Button";
 import { Form } from "UI-KIT/Form/Form";
 import Input from "UI-KIT/Input/Input";
-import { useFormAndValidation } from "hooks/useFormAndValidation";
-
-import { useEffect } from "react";
+import { useFormik } from "formik";
+import * as yup from "yup";
 
 import "./Register.scss";
+import { NAME_REGULAR, PASSWORD_REGULAR } from "services/regulars";
 
 function Register() {
-  const formInputs = useFormAndValidation({
-    userName: "",
-    userSurname: "",
-    email: "",
-    password: "",
-    repeatPassword: "",
+  const formik = useFormik({
+    initialValues: {
+      userName: "",
+      userSurname: "",
+      email: "",
+      password: "",
+      repeatPassword: "",
+    },
+    validationSchema: yup.object({
+      userName: yup
+        .string()
+        .min(2, "Длина поля от 2 до 30 символов")
+        .max(30, "Длина поля от 2 до 30 символов")
+        .matches(NAME_REGULAR, "Введите корректное имя")
+        .required("Поле обязательно для заполнения"),
+      userSurname: yup
+        .string()
+        .min(2, "Длина поля от 2 до 30 символов")
+        .max(30, "Длина поля от 2 до 30 символов")
+        .matches(NAME_REGULAR, "Введите корректную фамилию")
+        .required("Поле обязательно для заполнения"),
+      email: yup
+        .string()
+        .email("Введите корректный E-mail")
+        .min(6, "Длина поля от 6 до 254 символов")
+        .max(254, "Длина поля от 6 до 254 символов")
+        .required("Поле обязательно для заполнения"),
+      password: yup
+        .string()
+        .min(8, "Длина поля от 8 до 30 символов")
+        .max(30, "Длина поля от 8 до 30 символов")
+        .matches(PASSWORD_REGULAR, "Введите корректный пароль")
+        .required("Поле обязательно для заполнения"),
+      repeatPassword: yup
+        .string()
+        .min(8, "Длина поля от 8 до 30 символов")
+        .max(30, "Длина поля от 8 до 30 символов")
+        .matches(PASSWORD_REGULAR, "Введите корректный пароль")
+        .oneOf([yup.ref("password"), null], "Пароли не совпадают")
+        .required("Поле обязательно для заполнения"),
+    }),
+    onSubmit: (values) => console.log(JSON.stringify(values, null, 2)),
   });
 
-  function onSubmit(e) {
-    e.preventDefault();
-    return console.log("Отправили форму регистрации на сервер");
-  }
-
-  function checkPassword() {
-    if (formInputs.values.repeatPassword !== "") {
-      if (formInputs.values.password !== formInputs.values.repeatPassword) {
-        console.log(`${formInputs.values.password} / ${formInputs.values.repeatPassword}`);
-        formInputs.setErrors({ repeatPassword: "Пароли не совпадают" });
-      } else {
-        formInputs.setErrors({ repeatPassword: "" });
-      }
-    }
-  }
-
-  useEffect(() => {
-    checkPassword();
-  }, [formInputs.values.password, formInputs.values.repeatPassword]);
+  const transformBlur = (event) => {
+    formik.setFieldValue(event.target.name, event.target.value.trim());
+    formik.handleBlur(event);
+  };
 
   return (
     <main className="register">
       <h1 className="register__title">Добро пожаловать в Octopus</h1>
       <p className="register__subtitle">Заполните все поля, чтобы зарегистрироваться </p>
-      <Form
-        extClassName="register__form"
-        onSubmit={(e) => {
-          onSubmit(e);
-        }}
-      >
+      <Form extClassName="register__form" onSubmit={formik.handleSubmit}>
         <div className="register__userName">
           <Input
             label="Имя"
-            onChange={formInputs.handleChange}
-            value={formInputs.values.userName}
-            error={formInputs.errors.userName}
             extClassNameInput="login__input"
             type="text"
             name="userName"
             id="registerUserName"
-            /*  minLength="2" */
-            required
+            value={formik.values.userName}
+            onChange={formik.handleChange}
+            error={
+              formik.errors.userName && formik.touched.userName ? formik.errors.userName : null
+            }
+            onBlur={transformBlur}
           />
           <Input
             label="Фамилия"
-            onChange={formInputs.handleChange}
-            value={formInputs.values.userSurname}
-            error={formInputs.errors.userSurname}
             extClassNameInput="login__input"
             type="text"
             name="userSurname"
             id="registerUserSurname"
-            minLength="2"
-            required
+            value={formik.values.userSurname}
+            onChange={formik.handleChange}
+            error={
+              formik.errors.userSurname && formik.touched.userSurname
+                ? formik.errors.userSurname
+                : null
+            }
+            onBlur={transformBlur}
           />
         </div>
         <Input
           label="E-mail"
-          onChange={formInputs.handleChange}
-          value={formInputs.values.email}
-          error={formInputs.errors.email}
           extClassNameInput="login__input"
           type="email"
           name="email"
           id="authEmail"
-          required
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          error={formik.errors.email && formik.touched.email ? formik.errors.email : null}
+          onBlur={transformBlur}
         />
         <div className="register__tooltip-input">
           <Input
             label="Пароль"
-            onChange={formInputs.handleChange}
-            value={formInputs.values.password}
-            error={formInputs.errors.password}
             extClassNameInput="register__input"
             type="password"
             name="password"
             id="registerPassword"
-            minLength="3"
-            maxLength="20"
-            required
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            error={
+              formik.errors.password && formik.touched.password ? formik.errors.password : null
+            }
+            onBlur={transformBlur}
           >
             <ul className="register__tooltip-container">
               <li className="register__tooltip-item">от 8 до 30 символов</li>
@@ -109,20 +129,24 @@ function Register() {
 
         <Input
           label="Повторите пароль"
-          onChange={formInputs.handleChange}
-          value={formInputs.values.repeatPassword}
-          error={formInputs.errors.repeatPassword}
           extClassNameInput="login__input"
           type="password"
           name="repeatPassword"
           id="registerRepeatPassword"
-          required
+          value={formik.values.repeatPassword}
+          onChange={formik.handleChange}
+          error={
+            formik.errors.repeatPassword && formik.touched.repeatPassword
+              ? formik.errors.repeatPassword
+              : null
+          }
+          onBlur={transformBlur}
         />
         <Button
           title="Зарегистрироваться"
           fill
           size="standard"
-          disabled={!formInputs.isValid || formInputs.errors.repeatPassword ? "true" : false}
+          disabled={!(formik.isValid && formik.dirty)}
         />
       </Form>
       <p className="register__suggestion">

@@ -33,7 +33,6 @@ function ProfileInfo() {
         .email("Введите корректный E-mail")
         .min(6, "Длина поля от 6 до 254 символов")
         .max(254, "Длина поля от 6 до 254 символов")
-        .email()
         .required("Поле обязательно для заполнения"),
     }),
     onSubmit: (values) => console.log(JSON.stringify(values, null, 2)),
