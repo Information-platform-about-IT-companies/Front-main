@@ -29,48 +29,69 @@
     @include roboto-16($black);
   }
 
-  &__theme {
+  &__theme-box {
+    max-width: 95px;
+    position: relative;
+  }
+
+  &__theme-button {
     margin: 0;
     position: relative;
     width: 95px;
     height: 43px;
     appearance: none;
     background-color: none;
-    border-radius: 20px;
-    border: 1px solid $blue;
+    border-radius: 50px;
+    border: 1.5px solid $blue;
     outline: none;
     transition: 0.5s;
     cursor: pointer;
 
     &:hover {
-      box-shadow: inset 0 0 0 1px $blue;
+      box-shadow: inset 0 0 0 1.5px $blue;
     }
 
     &:checked {
-      /* background-color: #2be080; */
-      border: 1px solid $dark-blue-night;
+      border: 1.5px solid $blue-dark;
     }
 
     &:checked:hover {
-      /* background-color: #2be080; */
-      border: 1px solid $dark-blue-night;
+      box-shadow: inset 0 0 0 1.5px $blue-dark;
     }
 
     &::before {
       content: "";
       position: absolute;
-      top: 4px;
+      top: 5px;
       left: 5px;
       width: 32px;
       height: 32px;
-      border-radius: 20px;
+      border-radius: 50px;
       background: $blue;
       transition: 0.5s;
+      background-image: url("../../images/Light-theme-icon.svg");
+      background-repeat: no-repeat;
+      background-position: center;
     }
 
     &:checked::before {
       left: 57px;
-      background: $dark-blue-night;
+      background: $blue-dark;
+      background-image: url("../../images/Dark-theme-icon.svg");
+      background-repeat: no-repeat;
+      background-position: center;
     }
+  }
+
+  &__ligth-icon {
+    position: absolute;
+    top: 14%;
+    left: 7%;
+  }
+
+  &__dark-icon {
+    position: absolute;
+    top: 14%;
+    right: 7%;
   }
 }

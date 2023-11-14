@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import Icon from "UI-KIT/Icons";
 import "./Header.scss";
 import PropTypes from "prop-types";
-import ScrollUp from "../ScrollUp/ScrollUp";
+import Input from "UI-KIT/Input/Input";
 
 function Header({ loggedIn, userData }) {
+  const isDark = true;
+
   return (
     <header className="header">
       <Link to="/" className="header__logo" />
@@ -17,7 +19,35 @@ function Header({ loggedIn, userData }) {
               <span className="header__user">{userData}</span>
             </Link>
             <Button size="standard" fill={false} title="Выйти" />
-            <input type="checkbox" className="header__theme" />
+            <div className="header__theme-box">
+              <Icon
+                icon="IconThemeLight"
+                size="30"
+                color="#C0BFE2"
+                extClassName="header__ligth-icon"
+              />
+              <Icon
+                icon="IconThemeDark"
+                size="30"
+                color="#4E4CBF"
+                extClassName="header__dark-icon"
+              />
+              <input type="checkbox" className="header__theme-button" />
+              {/* <Input type="checkbox" extClassNameInput="header__theme-button" onlyInput>
+              <Icon
+                icon="IconThemeLight"
+                size="24"
+                color="#C0BFE2"
+                extClassName={`header__ligth-icon ${isDark ? "header__ligth-icon_dark" : ""}`}
+              />
+              <Icon
+                icon="IconThemeDark"
+                size="24"
+                color="#4E4CBF"
+                extClassName={`header__dark-icon ${isDark ? "header__ligth-icon_light" : ""}`}
+              />
+            </Input> */}
+            </div>
           </>
         ) : (
           <>
