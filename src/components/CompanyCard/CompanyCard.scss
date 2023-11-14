@@ -50,4 +50,8 @@
   &__itemsContainer {
     @include flex(center, space-between);
   }
+
+  &__buttonHeartContainer {
+    @include flex(center, center);
+  }
 }

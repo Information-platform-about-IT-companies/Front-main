@@ -7,6 +7,10 @@ import { Pagination } from "components/Pagination/Pagination";
 import "./FilterPage.scss";
 
 function FilterPage() {
+  const onIconHeartClick = () => {
+    console.log("функция добавления/удаления в БД");
+  };
+
   return (
     <main className="filterPage">
       <div className="filterPage__intro">

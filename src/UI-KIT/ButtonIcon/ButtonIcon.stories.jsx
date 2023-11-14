@@ -32,7 +32,7 @@ const meta = {
 export default meta;
 
 export function ButtonLike({ fill, ...args }) {
-  const [isFill, setIsFill] = React.useState(fill);
+  const [isFill, setIsFill] = React.useState(false);
 
   return (
     <ButtonIcon

@@ -1,14 +1,14 @@
 import PropTypes from "prop-types";
+import React from "react";
 // UI
-import Icon from "UI-KIT/Icons";
 import CompanyLogo from "UI-KIT/CompanyLogo/CompanyLogo";
 import LabelGroup from "UI-KIT/LabelGroup/LabelGroup";
-import ButtonIcon from "UI-KIT/ButtonIcon/ButtonIcon";
 import { LinkItem } from "UI-KIT/Link/LinkItem";
 // Функции
 import { cutText } from "services/constants";
 // Стили
 import "./CompanyCard.scss";
+import ButtonHeart from "components/ButtonHeart/ButtonHeart";
 
 export default function CompanyCard({
   type,
@@ -17,7 +17,7 @@ export default function CompanyCard({
   city,
   services,
   description,
-  onIconLikeClick,
+  onIconHeartClick,
   extClassCardName,
   inFavorite,
 }) {
@@ -30,11 +30,9 @@ export default function CompanyCard({
       <div className={`companyCard ${extClassCardName}`}>
         <div className="companyCard__info">
           <CompanyLogo logo={logo} name={name} city={city} />
-          <ButtonIcon
-            icon={<Icon icon="IconHeart" size="32" fill={inFavorite} />}
-            onClick={() => onIconLikeClick()}
-            extClassName="companyCard__like"
-          />
+          <div className="companyCard__buttonHeartContainer">
+            <ButtonHeart click={onIconHeartClick} fill={inFavorite} />
+          </div>
         </div>
         {description ? <p className="companyCard__description">{cutDescription}</p> : null}
         <LabelGroup items={services} title="Услуги" isLink />
@@ -55,11 +53,9 @@ export default function CompanyCard({
         <div className="companyCard__info">
           <CompanyLogo logo={logo} name={name} city={city} />
           <div className="companyCard__like-wrapper">
-            <ButtonIcon
-              icon={<Icon icon="IconHeart" size="32" fill={inFavorite} />}
-              onClick={() => onIconLikeClick()}
-              extClassName="companyCard__like"
-            />
+            <div className="companyCard__buttonHeartContainer">
+              <ButtonHeart click={onIconHeartClick} fill={inFavorite} />
+            </div>
             <LinkItem
               title="Подробнее"
               url="/"
@@ -84,7 +80,7 @@ CompanyCard.propTypes = {
     PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
   ).isRequired,
   description: PropTypes.string.isRequired,
-  onIconLikeClick: PropTypes.func,
+  onIconHeartClick: PropTypes.func,
   inFavorite: PropTypes.bool.isRequired,
   extClassCardName: PropTypes.string,
 };
@@ -92,6 +88,6 @@ CompanyCard.propTypes = {
 CompanyCard.defaultProps = {
   logo: null,
   city: "",
-  onIconLikeClick: () => {},
+  onIconHeartClick: () => {},
   extClassCardName: "",
 };

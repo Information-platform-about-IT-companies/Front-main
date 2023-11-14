@@ -22,6 +22,7 @@ export const hardcode = {
   companies: [
     {
       title: "Веб-разработка",
+      id: "1",
       comp: [
         { title: "Веб-разработка", link: "/bla-1" },
         { title: "Разработка под e-commerce", link: "/bla-1" },
@@ -39,6 +40,7 @@ export const hardcode = {
     },
     {
       title: "Разработка ПО",
+      id: "2",
       comp: [
         { title: "Разработка для IOS", link: "/boo-1" },
         { title: "Разработка для Android", link: "/boo-2" },
@@ -55,6 +57,7 @@ export const hardcode = {
     },
     {
       title: "Дизайн",
+      id: "3",
       comp: [
         { title: "Веб-дизайн", link: "/boo-1" },
         { title: "UX/UI ", link: "/boo-2" },
@@ -67,6 +70,7 @@ export const hardcode = {
     },
     {
       title: "Маркетинг",
+      id: "4",
       comp: [
         { title: "Реклама", link: "/bla-1" },
         { title: "SMM", link: "/bla-2" },
@@ -89,52 +93,52 @@ export const companies = [
   {
     name: "LukoilLukoilLukoilLukoilLukoil",
     city: "Moscow",
-    isFavourite: true,
+    inFavorite: true,
   },
   {
     name: "GazpromIt",
     city: "Taganrog",
-    isFavourite: false,
+    inFavorite: false,
   },
   {
     name: "Sberbank",
     city: "Vakanda",
-    isFavourite: false,
+    inFavorite: true,
   },
   {
     name: "Magnit-It",
     city: "Moscow",
-    isFavourite: true,
+    inFavorite: true,
   },
   {
     name: "TNK-BP",
     city: "Tyva",
-    isFavourite: false,
+    inFavorite: true,
   },
   {
     name: "GazpromIt",
     city: "Samara",
-    isFavourite: true,
+    inFavorite: true,
   },
   {
     name: "INOSTUDIO",
     city: "Ufa",
-    isFavourite: true,
+    inFavorite: true,
   },
   {
     name: "Novatek",
     city: "DC2",
-    isFavourite: false,
+    inFavorite: true,
   },
   {
     name: "Mentalstack",
     city: "Taganrog",
-    isFavourite: true,
+    inFavorite: true,
   },
   {
     name: "Afterlogic.Works",
     city: "Krasnodar",
-    isFavourite: true,
+    inFavorite: true,
   },
 ];
 

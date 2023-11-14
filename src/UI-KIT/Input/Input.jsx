@@ -16,10 +16,15 @@ function Input({
   error,
   onlyInput,
   onBlur,
+  children,
   ...props
 }) {
   function errorStyle() {
     return error ? "input__field-error" : "";
+  }
+
+  function errorShow() {
+    return error ? "input__error-text_show" : "";
   }
 
   function inputWithIconStyle() {
@@ -58,8 +63,9 @@ function Input({
           <div className="input__container">
             {inputIcon}
             {inputField}
+            {children}
           </div>
-          <span className="input__error-text">{error}</span>
+          <span className={`input__error-text ${errorShow()}`}>{error}</span>
         </>
       )}
     </div>
