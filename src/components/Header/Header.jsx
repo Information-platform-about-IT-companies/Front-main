@@ -17,6 +17,7 @@ function Header({ loggedIn, userData }) {
               <span className="header__user">{userData}</span>
             </Link>
             <Button size="standard" fill={false} title="Выйти" />
+            <input type="checkbox" className="header__theme" />
           </>
         ) : (
           <>
