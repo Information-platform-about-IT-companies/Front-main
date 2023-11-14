@@ -2,7 +2,7 @@ import "./FilterTab.scss";
 import IconArrow from "UI-KIT/Icons/IconArrow";
 
 export function Tab({ value, count, activeForm, isOpenFilter, setActiveForm, setIsOpenFilter }) {
-  const iconDirection = activeForm === value ? "up" : "down";
+  const iconDirection = activeForm === value && isOpenFilter ? "up" : "down";
   const tabName = value === "cities" ? "Город" : "Услуги";
 
   const onClick = () => {
