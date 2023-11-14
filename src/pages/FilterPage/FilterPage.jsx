@@ -71,8 +71,9 @@ function FilterPage() {
           companies.map(({ id, services, name, description, is_favorited }) => (
             <li key={id} className="filterPage__listitem">
               <CompanyCard
+                type="filterCard"
                 key={id}
-                services={services && services.map((item) => item.name)}
+                services={services}
                 name={name}
                 iconLikeState={is_favorited}
                 description={description}
