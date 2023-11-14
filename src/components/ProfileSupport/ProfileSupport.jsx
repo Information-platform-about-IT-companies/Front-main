@@ -30,8 +30,7 @@ function ProfileSupport() {
     formik.handleBlur(event);
   };
 
-  const supportTitleInputId = useId();
-  const supportMessageInputId = useId();
+  const id = useId();
   return (
     <>
       <h1 className="profile_title">Поддержка</h1>
@@ -45,7 +44,7 @@ function ProfileSupport() {
           label="Тема"
           type="text"
           name="supportTitle"
-          id={supportTitleInputId}
+          id={`${id}-supportTitle`}
           value={formik.values.supportTitle}
           onChange={formik.handleChange}
           error={
@@ -60,7 +59,7 @@ function ProfileSupport() {
           label="Сообщение"
           rows="8"
           name="supportMessage"
-          id={supportMessageInputId}
+          id={`${id}-supportMessage`}
           value={formik.values.supportMessage}
           onChange={formik.handleChange}
           error={

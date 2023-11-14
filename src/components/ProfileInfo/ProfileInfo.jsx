@@ -74,12 +74,7 @@ function ProfileInfo() {
     formikPassword.setFieldValue(event.target.name, event.target.value.trim());
     formikPassword.handleBlur(event);
   };
-  const firstNameInputId = useId();
-  const lastNameInputId = useId();
-  const emailInputId = useId();
-  const currentPasswordInputId = useId();
-  const newPasswordInputId = useId();
-  const approvePasswordInputId = useId();
+  const id = useId();
 
   const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
 
@@ -97,7 +92,7 @@ function ProfileInfo() {
       >
         <div className="form-info_name-container">
           <Input
-            id={firstNameInputId}
+            id={`${id}-firstName`}
             label="Имя"
             type="text"
             name="firstName"
@@ -113,10 +108,10 @@ function ProfileInfo() {
           <Input
             label="Фамилия"
             type="text"
+            id={`${id}-lastName`}
             name="lastName"
             value={formikInfo.values.lastName}
             onChange={formikInfo.handleChange}
-            id={lastNameInputId}
             error={
               formikInfo.errors.lastName && formikInfo.touched.lastName
                 ? formikInfo.errors.lastName
@@ -129,7 +124,7 @@ function ProfileInfo() {
           label="E-mail"
           type="email"
           name="email"
-          id={emailInputId}
+          id={`${id}-email`}
           value={formikInfo.values.email}
           onChange={formikInfo.handleChange}
           error={
@@ -159,7 +154,7 @@ function ProfileInfo() {
             label="Текущий пароль"
             type="password"
             name="currentPassword"
-            id={currentPasswordInputId}
+            id={`${id}-currentPassword`}
             value={formikPassword.values.currentPassword}
             onChange={formikPassword.handleChange}
             error={
@@ -174,7 +169,7 @@ function ProfileInfo() {
             label="Новый пароль"
             type="password"
             name="newPassword"
-            id={newPasswordInputId}
+            id={`${id}-newPassword`}
             value={formikPassword.values.newPassword}
             onChange={formikPassword.handleChange}
             error={
@@ -189,7 +184,7 @@ function ProfileInfo() {
             label="Подтвердите новый пароль"
             type="password"
             name="approvePassword"
-            id={approvePasswordInputId}
+            id={`${id}-approvePassword`}
             value={formikPassword.values.approvePassword}
             onChange={formikPassword.handleChange}
             error={
