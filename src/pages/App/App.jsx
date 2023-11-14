@@ -4,7 +4,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 // Компоненты
 import Login from "pages/Login/Login";
 import Register from "pages/Register/Register";
-import NotFound from "components/NotFound/NotFound";
+import NotFound from "pages/NotFound/NotFound";
 import ProtectedRouteElement from "components/ProtectedRoute/ProtectedRoute";
 import Profile from "pages/Profile/Profile";
 import Main from "pages/Main/Main";
@@ -19,6 +19,7 @@ import Layout from "components/Layout/Layout";
 import "./App.scss";
 import FilterPage from "pages/FilterPage/FilterPage";
 import ScrollUp from "components/ScrollUp/ScrollUp";
+import CompanyPage from "../Company/CompanyPage";
 
 function App() {
   const [loggedIn, setLoggetIn] = useState(true);
@@ -38,6 +39,7 @@ function App() {
           </Route>
           <Route index element={<Main />} />
           <Route path="/filter/*" element={<FilterPage />} />
+          <Route path="/company" element={<CompanyPage />} />
           <Route path="/signin" element={<Login />} />
           <Route path="/signup" element={<Register />} />
           <Route path="/passrecovery" element={<ForgetPassword />} />

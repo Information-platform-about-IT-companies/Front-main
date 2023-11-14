@@ -37,5 +37,5 @@ IconFilter.propTypes = {
 IconFilter.defaultProps = {
   size: "32",
   color: "#111",
-  extClassName: null,
+  extClassName: "",
 };

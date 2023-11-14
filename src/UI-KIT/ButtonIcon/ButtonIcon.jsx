@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 
 export default function ButtonIcon({ icon, onClick, extClassName, ...props }) {
   return (
-    <button onClick={onClick} className={`button ${extClassName}`} {...props}>
+    <button onClick={onClick} className={`buttonIcon ${extClassName}`} {...props}>
       {icon}
     </button>
   );
 }
 
 ButtonIcon.propTypes = {
-  icon: PropTypes.string.isRequired,
+  icon: PropTypes.node.isRequired,
   onClick: PropTypes.func.isRequired,
   extClassName: PropTypes.string,
 };

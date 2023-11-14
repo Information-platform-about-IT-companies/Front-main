@@ -1,13 +1,13 @@
 import "./Category.scss";
-import PropTypes from "prop-types";
+import PropTypes, { string } from "prop-types";
 
 import { CategoryTitle } from "UI-KIT/CategoryTitle/CategoryTitle";
 import { LinkItem } from "UI-KIT/Link/LinkItem";
 
-export function Category({ categories, categoryTitle, icon }) {
+export function Category({ categories, categoryTitle, id }) {
   return (
     <>
-      <CategoryTitle title={categoryTitle} icon={icon} />
+      <CategoryTitle title={categoryTitle} id={id} />
       <ul className="category">
         {categories.map((category) => (
           <li className="category_link" key={category.title}>
@@ -21,10 +21,10 @@ export function Category({ categories, categoryTitle, icon }) {
 
 Category.propTypes = {
   categoryTitle: PropTypes.string.isRequired,
-  icon: PropTypes.node.isRequired,
   categories: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
     }),
   ).isRequired,
+  id: PropTypes.string.isRequired,
 };

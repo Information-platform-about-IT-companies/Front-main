@@ -1,82 +1,41 @@
-// Сторонние пакеты
-import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import React from "react";
 // UI
-import Icon from "UI-KIT/Icons";
-import { Label } from "UI-KIT/Label/Label";
+import CompanyLogo from "UI-KIT/CompanyLogo/CompanyLogo";
+import LabelGroup from "UI-KIT/LabelGroup/LabelGroup";
 import { LinkItem } from "UI-KIT/Link/LinkItem";
 // Функции
-import { cutText, declinationsNumericalValues } from "services/constants";
+import { cutText } from "services/constants";
 // Стили
 import "./CompanyCard.scss";
+import ButtonHeart from "components/ButtonHeart/ButtonHeart";
 
-export default function ({
+export default function CompanyCard({
+  type,
   logo,
   name,
   city,
   services,
   description,
-  iconLikeState,
-  onIconLikeClick,
+  onIconHeartClick,
   extClassCardName,
+  inFavorite,
 }) {
-  // для кнопок "ЕЩЕ N УСЛУГ"
-  let filterServices;
-  let filterCount;
-  if (services) {
-    if (services.length > 3) {
-      filterServices = services.slice(0, 3);
-      filterCount = services.length - 3;
-    } else filterServices = services.slice(0);
-  }
-
+  const isFilterCard = type === "filterCard";
+  const isFavoriteCard = type === "favoriteCard";
   // для обрезки и ... многострочного текста
-  const cutDescription = description ? cutText(description, 330) : null;
-
-  return (
-    <div className={`companyCard companyCard${extClassCardName}`}>
-      <div className="companyCard__info">
-        <div className="companyCard__about">
-          {logo ? (
-            <img src={logo} className="companyCard__logo" alt={`Логотип компании ${name}`} />
-          ) : (
-            <div className="companyCard__logo-cap" />
-          )}
-          <div className="companyCard__title">
-            <h2 className="companyCard__name">{name}</h2>
-            <span className="companyCard__city">{city}</span>
+  if (isFilterCard) {
+    const cutDescription = description && cutText(description, 330);
+    return (
+      <div className={`companyCard ${extClassCardName}`}>
+        <div className="companyCard__info">
+          <CompanyLogo logo={logo} name={name} city={city} />
+          <div className="companyCard__buttonHeartContainer">
+            <ButtonHeart click={onIconHeartClick} fill={inFavorite} />
           </div>
         </div>
-        {services ? (
-          <Icon
-            color="#414040"
-            icon="IconLike"
-            className="companyCard__btn-like"
-            onClick={() => onIconLikeClick()}
-            state={iconLikeState}
-          />
-        ) : null}
-      </div>
-
-      {description ? <p className="companyCard__description">{cutDescription}</p> : null}
-      {services ? (
-        <div className="companyCard__services">
-          <span className="companyCard__services-text">Услуги:</span>
-
-          <ul className="companyCard__services-list">
-            {filterServices.map((service) => (
-              <li>
-                <Link to="/" className="companyCard__services-list-item">
-                  <Label title={service} />
-                </Link>
-              </li>
-            ))}
-            {filterCount && (
-              <Label title={`Ещё ${filterCount} ${declinationsNumericalValues(filterCount)}`} />
-            )}
-          </ul>
-        </div>
-      ) : null}
-      {services ? (
+        {description ? <p className="companyCard__description">{cutDescription}</p> : null}
+        <LabelGroup items={services} title="Услуги" isLink />
         <LinkItem
           title="Подробнее"
           url="/"
@@ -85,25 +44,50 @@ export default function ({
           weight="700"
           extClassName="companyCard__fullInfo"
         />
-      ) : (
-        <div className="companyCard__itemsContainer">
-          <LinkItem
-            title="Подробнее"
-            url="/"
-            lineColor="#4e4cbf"
-            textColor="#4e4cbf"
-            weight="700"
-            extClassName="companyCard__emptyInfo"
-          />
-          <Icon
-            color="#414040"
-            icon="IconLike"
-            className="companyCard__btn-like"
-            onClick={() => onIconLikeClick()}
-            state={iconLikeState}
-          />
+      </div>
+    );
+  }
+  if (isFavoriteCard) {
+    return (
+      <div className="companyCard companyCard_type_favourite">
+        <div className="companyCard__info">
+          <CompanyLogo logo={logo} name={name} city={city} />
+          <div className="companyCard__like-wrapper">
+            <div className="companyCard__buttonHeartContainer">
+              <ButtonHeart click={onIconHeartClick} fill={inFavorite} />
+            </div>
+            <LinkItem
+              title="Подробнее"
+              url="/"
+              lineColor="#4e4cbf"
+              textColor="#4e4cbf"
+              weight="700"
+              extClassName="companyCard__fullInfo"
+            />
+          </div>
         </div>
-      )}
-    </div>
-  );
+      </div>
+    );
+  }
 }
+
+CompanyCard.propTypes = {
+  type: PropTypes.string.isRequired,
+  logo: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  city: PropTypes.string,
+  services: PropTypes.arrayOf(
+    PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+  ).isRequired,
+  description: PropTypes.string.isRequired,
+  onIconHeartClick: PropTypes.func,
+  inFavorite: PropTypes.bool.isRequired,
+  extClassCardName: PropTypes.string,
+};
+
+CompanyCard.defaultProps = {
+  logo: null,
+  city: "",
+  onIconHeartClick: () => {},
+  extClassCardName: "",
+};

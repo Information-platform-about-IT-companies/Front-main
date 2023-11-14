@@ -1,7 +1,8 @@
 /* eslint-disable camelcase */
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import Breadcrumbs from "UI-KIT/Breadcrumbs/Breadcrumbs";
+// components
+import Breadcrumbs from "components/Breadcrumbs/Breadcrumbs";
 import { Filter } from "components/Filter/Filter";
 import CompanyCard from "components/CompanyCard/CompanyCard";
 import { getCompanies } from "mocks/services/companyController";
@@ -16,6 +17,10 @@ const LoadingStatus = {
 };
 
 function FilterPage() {
+  const onIconHeartClick = () => {
+    console.log("функция добавления/удаления в БД");
+  };
+
   const [searchParams] = useSearchParams();
   const page = searchParams.get("page") ?? 1;
 
