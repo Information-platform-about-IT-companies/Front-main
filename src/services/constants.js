@@ -91,52 +91,52 @@ export const hardcode = {
 export const companies = [
   {
     name: "LukoilLukoilLukoilLukoilLukoil",
-    city: "Moscow",
+    city: "Москва",
     isFavourite: true,
   },
   {
     name: "GazpromIt",
-    city: "Taganrog",
+    city: "Санкт-Петербург",
     isFavourite: false,
   },
   {
     name: "Sberbank",
-    city: "Vakanda",
+    city: "Сочи",
     isFavourite: false,
   },
   {
     name: "Magnit-It",
-    city: "Moscow",
+    city: "Москва",
     isFavourite: true,
   },
   {
     name: "TNK-BP",
-    city: "Tyva",
+    city: "Барнаул",
     isFavourite: false,
   },
   {
     name: "GazpromIt",
-    city: "Samara",
+    city: "Белгород",
     isFavourite: true,
   },
   {
     name: "INOSTUDIO",
-    city: "Ufa",
+    city: "Уфа",
     isFavourite: true,
   },
   {
     name: "Novatek",
-    city: "DC2",
+    city: "Сочи",
     isFavourite: false,
   },
   {
     name: "Mentalstack",
-    city: "Taganrog",
+    city: "Санкт-Петербург",
     isFavourite: true,
   },
   {
     name: "Afterlogic.Works",
-    city: "Krasnodar",
+    city: "Вологда",
     isFavourite: true,
   },
 ];
@@ -145,3 +145,142 @@ export const sleep = (delay) =>
   new Promise((res) => {
     setTimeout(res, delay);
   });
+
+export const allServices = [
+  {
+    id: 1,
+    category: "Разработка ПО",
+    services: [
+      "Разработка мобильных приложений",
+      "Разработка приложений для носимых устройств",
+      "Развитие электронной коммерции",
+      "Разработка программного обеспечения на заказ",
+      "Модернизация корпоративных приложений",
+      "Консалтинг в области IT-стратегии",
+      "Управление приложениями и поддержка",
+      "Тестирование приложений",
+      "Разработка IoT",
+      "Искусственный интеллект",
+      "Блокчейн",
+      "Консалтинг в области информационных технологий и больших данных",
+      "Разработка  AR/VR",
+      "Облачный консалтинг",
+      "Кибербезопасность",
+      "Разработка других приложений",
+    ],
+  },
+  {
+    id: 2,
+    category: "Дизайн",
+    services: [
+      "Веб-дизайн",
+      "UX/UI ",
+      "Графический дизайн",
+      "Дизайн логотипа",
+      "Продуктовый дизайн",
+      "Дизайн печати",
+      "Архитектурный дизайн",
+      "Брендинг",
+      "Дизайн упаковки",
+      "Наружная реклама",
+    ],
+  },
+  { id: 3, category: "Веб-разработка", services: ["Веб-разработка"] },
+  {
+    id: 4,
+    category: "Маркетинг",
+    services: [
+      "SEO",
+      "Реклама",
+      "Контент-маркетинг",
+      "Маркетинговая стратегия",
+      "PR",
+      "Медиапланирование и закупки",
+      "Маркетинг мобильных устройств и приложений",
+      "Прямой маркетинг",
+      "Партнерский маркетинг",
+      "Корпоративная фотография",
+      "SMM",
+      "Цифровая стратегия",
+    ],
+  },
+  {
+    id: 5,
+    category: "Бизнес-услуги",
+    services: [
+      "Видеопроизводство",
+      "IT-менеджмент",
+      "CRM Консалтинг",
+      "ERP Консалтинг",
+      "Озвучка",
+      "Консалтинг в области унифицированных коммуникаций",
+      "Дизайн интерьера",
+      "ECM консалтинг",
+      "Видео трансляции",
+      "Бизнес консалтинг",
+      "Увеличение числа IT-сотрудников",
+      "Человеческие ресурсы",
+    ],
+  },
+];
+
+export const cities = [
+  "Москва",
+  "Сочи",
+  "Санкт-Петербург",
+  "Барнаул",
+  "Белгород",
+  "Брянск",
+  "Владивосток",
+  "Волгоград",
+  "Вологда",
+  "Воронеж",
+  "Ижевск",
+  "Иваново",
+  "Иркутск",
+  "Краснодар",
+  "Томск",
+  "Красноярск",
+  "Тула",
+  "Набережные Челны",
+  "Ульяновск",
+  "Нижний Новгород",
+  "Уфа",
+  "Новороссийск",
+  "Хабаровск",
+  "Новосибирск",
+  "Челябинск",
+  "Новочеркасск",
+  "Омск",
+  "Орел",
+  "Пенза",
+  "Пермь",
+  "Йошкар-Ола",
+  "Таганрог",
+  "Казань",
+  "Ростов-на-Дону",
+  "Калининград",
+  "Калуга",
+  "Саратов",
+];
+
+export const LoadingStatus = {
+  idle: "idle",
+  loading: "loading",
+  succeeded: "succeeded",
+  failed: "failed",
+};
+
+export const modifyArray = (array, modifications) => {
+  Object.entries(modifications).forEach(([key, shouldAdd]) => {
+    const number = Number(key);
+    const index = array.indexOf(number);
+    if (shouldAdd && index === -1) {
+      array.push(number);
+    } else if (!shouldAdd && index !== -1) {
+      array.splice(index, 1);
+    }
+  });
+
+  return array;
+};

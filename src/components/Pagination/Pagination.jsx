@@ -1,32 +1,22 @@
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import ButtonIcon from "UI-KIT/ButtonIcon/ButtonIcon";
-import Button from "UI-KIT/Button/Button";
 import IconArrow from "UI-KIT/Icons/IconArrow";
 
 import "./Pagination.scss";
 
 export function Pagination({ totalPages, currentPage }) {
-  const [, setSearchParams] = useSearchParams();
-  // const page = searchParams.get("page") ?? 1;
-
+  const [searchParams, setSearchParams] = useSearchParams();
   const turnToPage = (page) => {
-    setSearchParams({ page });
+    searchParams.set("page", page);
+    setSearchParams(searchParams);
   };
 
   const firstPage = 1;
-  let visiblePageNumbers = [];
-
-  if (currentPage === firstPage) {
-    visiblePageNumbers = [...Array(3)].map((e, i) => i + currentPage);
-  }
-
-  if (currentPage >= 2) {
-    visiblePageNumbers = [...Array(3)].map((e, i) => i + currentPage - 1);
-  }
-
-  if (currentPage === totalPages) {
-    visiblePageNumbers = [...Array(4)].map((e, i) => i + currentPage - 3);
-  }
+  const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
+  const visiblePages = pages.slice(
+    Math.max(0, currentPage - 2),
+    Math.min(currentPage + 1, totalPages),
+  );
 
   return (
     <ul className="pagination">
@@ -40,7 +30,7 @@ export function Pagination({ totalPages, currentPage }) {
         </li>
       )}
 
-      {visiblePageNumbers.map((page) => {
+      {visiblePages.map((page) => {
         const isActive = currentPage === page;
 
         return (

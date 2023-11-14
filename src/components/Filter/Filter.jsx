@@ -1,152 +1,48 @@
-import { useState } from "react";
-import "./Filter.scss";
-
+import { useEffect, useState } from "react";
+import { getCategories } from "mocks/services/categoryController";
+import { getCities } from "mocks/services/cityController";
+import { LoadingStatus } from "services/constants";
 import { FilterTabs } from "./FilterTabs/FilterTabs";
 import { FilterNav } from "./FilterNav/FilterNav";
 import { ServiceForm } from "./FilterForms/ServiceForm/ServiceForm";
 import { CityForm } from "./FilterForms/CityForm/CityForm";
-
-const allServices = [
-  {
-    id: 1,
-    category: "Разработка ПО",
-    services: [
-      "Разработка мобильных приложений",
-      "Разработка приложений для носимых устройств",
-      "Развитие электронной коммерции",
-      "Разработка программного обеспечения на заказ",
-      "Модернизация корпоративных приложений",
-      "Консалтинг в области IT-стратегии",
-      "Управление приложениями и поддержка",
-      "Тестирование приложений",
-      "Разработка IoT",
-      "Искусственный интеллект",
-      "Блокчейн",
-      "Консалтинг в области информационных технологий и больших данных",
-      "Разработка  AR/VR",
-      "Облачный консалтинг",
-      "Кибербезопасность",
-      "Разработка других приложений",
-    ],
-  },
-  {
-    id: 2,
-    category: "Дизайн",
-    services: [
-      "Веб-дизайн",
-      "UX/UI ",
-      "Графический дизайн",
-      "Дизайн логотипа",
-      "Продуктовый дизайн",
-      "Дизайн печати",
-      "Архитектурный дизайн",
-      "Брендинг",
-      "Дизайн упаковки",
-      "Наружная реклама",
-    ],
-  },
-  { id: 3, category: "Веб-разработка", services: ["Веб-разработка"] },
-  {
-    id: 4,
-    category: "Маркетинг",
-    services: [
-      "SEO",
-      "Реклама",
-      "Контент-маркетинг",
-      "Маркетинговая стратегия",
-      "PR",
-      "Медиапланирование и закупки",
-      "Маркетинг мобильных устройств и приложений",
-      "Прямой маркетинг",
-      "Партнерский маркетинг",
-      "Корпоративная фотография",
-      "SMM",
-      "Цифровая стратегия",
-    ],
-  },
-  {
-    id: 5,
-    category: "Бизнес-услуги",
-    services: [
-      "Видеопроизводство",
-      "IT-менеджмент",
-      "CRM Консалтинг",
-      "ERP Консалтинг",
-      "Озвучка",
-      "Консалтинг в области унифицированных коммуникаций",
-      "Дизайн интерьера",
-      "ECM консалтинг",
-      "Видео трансляции",
-      "Бизнес консалтинг",
-      "Увеличение числа IT-сотрудников",
-      "Человеческие ресурсы",
-    ],
-  },
-];
-
-const cities = [
-  "Москва",
-  "Сочи",
-  "Санкт-Петербург",
-  "Барнаул",
-  "Белгород",
-  "Брянск",
-  "Владивосток",
-  "Волгоград",
-  "Вологда",
-  "Воронеж",
-  "Ижевск",
-  "Иваново",
-  "Иркутск",
-  "Краснодар",
-  "Томск",
-  "Красноярск",
-  "Тула",
-  "Набережные Челны",
-  "Ульяновск",
-  "Нижний Новгород",
-  "Уфа",
-  "Новороссийск",
-  "Хабаровск",
-  "Новосибирск",
-  "Челябинск",
-  "Новочеркасск",
-  "Омск",
-  "Орел",
-  "Пенза",
-  "Пермь",
-  "Йошкар-Ола",
-  "Таганрог",
-  "Казань",
-  "Ростов-на-Дону",
-  "Калининград",
-  "Калуга",
-  "Саратов",
-];
+import "./Filter.scss";
 
 export function Filter() {
-  const [checkedValues, setChekedValues] = useState({ cities: {}, services: {} });
-
   const [isOpenFilter, setIsOpenFilter] = useState(false);
   const [activeForm, setActiveForm] = useState("cities");
+  const [cities, setCities] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [loadingStatus, setLoadingStatus] = useState(LoadingStatus.idle);
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    const fetchData = async () => {
+      const citiesPromise = getCities();
+      const servicesPromise = getCategories();
+      const response = await Promise.all([citiesPromise, servicesPromise]);
+      setCities(response[0]);
+      setCategories(response[1]);
+      setLoadingStatus(LoadingStatus.succeeded);
+    };
 
-    /* логика по отправке данных на сервер */
-
-    setChekedValues({ cities: {}, services: {} });
-  };
+    setLoadingStatus(LoadingStatus.loading);
+    // TODO обработка ошибок загрузки компаний
+    fetchData().catch(console.error);
+  }, []);
 
   /* Здесь будет обработка загрузки данных, пока набросаю комментарий, чтобы не забыть
-    if (isLoading) {
-      return <Preloader />
-    }
-    
-    if (isError && allServices.length === 0 && cities.length === 0) {
+
+  if (isError && allServices.length === 0 && cities.length === 0) {
       return <ErrorMessage />
     }
   */
+
+  const ActiveFilterForm =
+    activeForm === "services" ? (
+      <ServiceForm categories={categories} setIsOpenFilter={setIsOpenFilter} />
+    ) : (
+      <CityForm cities={cities} setIsOpenFilter={setIsOpenFilter} />
+    );
 
   return (
     <section className={isOpenFilter ? "filter filter_open" : "filter"}>
@@ -155,31 +51,24 @@ export function Filter() {
         isOpenFilter={isOpenFilter}
         setActiveForm={setActiveForm}
         setIsOpenFilter={setIsOpenFilter}
-        checkedValues={checkedValues}
       />
 
       {isOpenFilter && (
         <div className="filter__content">
-          <FilterNav
-            activeForm={activeForm}
-            setActiveForm={setActiveForm}
-            checkedValues={checkedValues}
-          />
-
-          {activeForm === "services" ? (
-            <ServiceForm
-              onSubmit={onSubmit}
-              allServices={allServices}
-              checkedValues={checkedValues}
-              setChekedValues={setChekedValues}
-            />
+          <FilterNav activeForm={activeForm} setActiveForm={setActiveForm} />
+          {loadingStatus === LoadingStatus.loading ? (
+            <div>
+              <div style={{ paddingTop: "20px", width: "200px", margin: "0 auto" }}>
+                <img
+                  decoding="async"
+                  alt="spinner"
+                  src="https://gderadost.ru/catalog/view/theme/default/img/lazy-img.gif?is-pending-load=1"
+                />
+                Здесь крутится спиннер
+              </div>
+            </div>
           ) : (
-            <CityForm
-              onSubmit={onSubmit}
-              cities={cities}
-              checkedValues={checkedValues}
-              setChekedValues={setChekedValues}
-            />
+            ActiveFilterForm
           )}
         </div>
       )}

@@ -18,14 +18,21 @@ const LoadingStatus = {
 function FilterPage() {
   const [searchParams] = useSearchParams();
   const page = searchParams.get("page") ?? 1;
-  const city = searchParams.get("city");
+
   const [companies, setCompanies] = useState(null);
   const [totalPages, setTotalPages] = useState(null);
   const [loadingStatus, setLoadingStatus] = useState(LoadingStatus.idle);
 
   useEffect(() => {
+    const filterCities = JSON.parse(searchParams.get("cities"));
+    const filterServices = JSON.parse(searchParams.get("services"));
+
     const fetchData = async () => {
-      const response = await getCompanies({ page: Number(page), city });
+      const response = await getCompanies({
+        page: Number(page),
+        city: filterCities,
+        service: filterServices,
+      });
       setCompanies(response.results);
       setTotalPages(response.total_pages);
       setLoadingStatus(LoadingStatus.succeeded);
@@ -33,7 +40,7 @@ function FilterPage() {
     setLoadingStatus(LoadingStatus.loading);
 
     fetchData().catch(console.error);
-  }, [page, city]);
+  }, [searchParams]);
 
   return (
     <main className="filterPage">
@@ -56,10 +63,11 @@ function FilterPage() {
       )}
       <ul className="filterPage__list">
         {companies &&
-          companies.map(({ services, name, description, is_favorited }) => (
-            <li className="filterPage__listitem">
+          companies.map(({ id, services, name, description, is_favorited }) => (
+            <li key={id} className="filterPage__listitem">
               <CompanyCard
-                services={services && services.map((service) => service.name)}
+                key={id}
+                services={services && services.map((item) => item.name)}
                 name={name}
                 iconLikeState={is_favorited}
                 description={description}
