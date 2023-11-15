@@ -8,7 +8,6 @@ import dropDownBlock from "services/dropDown";
 
 import "./Search.scss";
 import searchApi from "services/SearchApi";
-import IconFilter from "UI-KIT/Icons/IconFilter";
 
 export function Search({ extClassName, ...props }) {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -24,6 +23,8 @@ export function Search({ extClassName, ...props }) {
     // TODO переходим на страницу фильтра с выбранными параметрами
     // TODO переходим на страницу компании если выбрана компания
   }
+
+  // TODO функция запроса компаний и сервисов
 
   async function addResponseSearchCities(searchQuery) {
     // console.log(searchApi.getSearchCities(searchQuery));
@@ -54,14 +55,30 @@ export function Search({ extClassName, ...props }) {
 
   const hintNotFound = (
     <div className="search__hint-list-container">
-      <div className="search__hint-list-header search__hint-header_no-found">
+      <div className="search__hint-list-header search__hint-list-header_no-found">
         По вашему запросу ничего не найдено
       </div>
     </div>
   );
 
   useEffect(() => {
-    if (query.length >= 3 || queryCity.length >= 1) {
+    if (query.length >= 3) {
+      setIsStartHint(true);
+      dropDownBlock(elementToggle, true);
+    } else {
+      setIsStartHint(false);
+      dropDownBlock(elementToggle, false);
+    }
+
+    if (query || queryCity) {
+      setIsButtonDisabled(false);
+    } else {
+      setIsButtonDisabled(true);
+    }
+  }, [query]);
+
+  useEffect(() => {
+    if (queryCity.length >= 1) {
       addResponseSearchCities(queryCity);
       setIsStartHint(true);
       dropDownBlock(elementToggle, true);
@@ -75,7 +92,7 @@ export function Search({ extClassName, ...props }) {
     } else {
       setIsButtonDisabled(true);
     }
-  }, [query, queryCity]);
+  }, [queryCity]);
 
   return (
     <form className={`search ${extClassName}`} onSubmit={handleSubmitSearch}>

@@ -52,6 +52,9 @@
   }
 
   &__buttonHeartContainer {
-    @include flex(center, center);
+    @include flex(flex-start);
+
+    padding-top: 8px;
+    padding-right: 1px;
   }
 }
