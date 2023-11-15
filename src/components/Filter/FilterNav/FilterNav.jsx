@@ -1,16 +1,11 @@
 import { FilterNavItem } from "./FilterNavItem/FilterNavItem";
 import "./FilterNav.scss";
 
-export function FilterNav({ activeForm, setActiveForm }) {
+export function FilterNav({ activeForm, dispatch }) {
   return (
     <nav className="filter__nav">
-      {["cities", "services"].map((value) => (
-        <FilterNavItem
-          key={value}
-          value={value}
-          activeForm={activeForm}
-          setActiveForm={setActiveForm}
-        />
+      {["city", "service"].map((value) => (
+        <FilterNavItem key={value} formName={value} activeForm={activeForm} dispatch={dispatch} />
       ))}
     </nav>
   );

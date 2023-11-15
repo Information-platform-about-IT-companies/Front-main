@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
+import { useSearchParams } from "react-router-dom";
 import { getCategories } from "mocks/services/categoryController";
 import { getCities } from "mocks/services/cityController";
 import { LoadingStatus } from "services/constants";
+import { reducer, initialState } from "store/reducers/filterReducer";
+// components
 import { FilterTabs } from "./FilterTabs/FilterTabs";
 import { FilterNav } from "./FilterNav/FilterNav";
 import { ServiceForm } from "./FilterForms/ServiceForm/ServiceForm";
@@ -9,53 +12,63 @@ import { CityForm } from "./FilterForms/CityForm/CityForm";
 import "./Filter.scss";
 
 export function Filter() {
-  const [isOpenFilter, setIsOpenFilter] = useState(false);
-  const [activeForm, setActiveForm] = useState("cities");
-  const [cities, setCities] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [loadingStatus, setLoadingStatus] = useState(LoadingStatus.idle);
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     const fetchData = async () => {
       const citiesPromise = getCities();
       const servicesPromise = getCategories();
       const response = await Promise.all([citiesPromise, servicesPromise]);
-      setCities(response[0]);
-      setCategories(response[1]);
-      setLoadingStatus(LoadingStatus.succeeded);
+      dispatch({ type: "FETCH_CITIES", payload: response[0] });
+      dispatch({ type: "FETCH_CATEGORIES", payload: response[1] });
+      dispatch({ type: "CHANGE_LOADING_STATUS", payload: LoadingStatus.succeeded });
     };
 
-    setLoadingStatus(LoadingStatus.loading);
-    // TODO обработка ошибок загрузки компаний
-    fetchData().catch(console.error);
+    const filters = [
+      JSON.parse(searchParams.get("cities")) ?? [],
+      JSON.parse(searchParams.get("services")) ?? [],
+    ];
+
+    dispatch({ type: "SET_FILTERS", payload: filters });
+    dispatch({ type: "CHANGE_LOADING_STATUS", payload: LoadingStatus.loading });
+    fetchData().catch((e) => {
+      dispatch({ type: "CHANGE_LOADING_STATUS", payload: LoadingStatus.failed });
+      dispatch({ type: "SET_LOADING_ERROR", payload: e });
+    });
   }, []);
 
-  /* Здесь будет обработка загрузки данных, пока набросаю комментарий, чтобы не забыть
+  const { isOpenFilter, loadingStatus, checkedCities, checkedServices } = state;
 
-  if (isError && allServices.length === 0 && cities.length === 0) {
-      return <ErrorMessage />
-    }
-  */
+  const onSubmit = (e) => {
+    e.preventDefault();
+    Object.entries({ cities: checkedCities, services: checkedServices, page: [] }).forEach(
+      ([key, array]) => {
+        searchParams.delete(key);
+        if (array?.length) {
+          searchParams.set(key, JSON.stringify(array));
+        }
+      },
+    );
+
+    setSearchParams(searchParams);
+    dispatch({ type: "TOGGLE_FORM", payload: false });
+  };
 
   const ActiveFilterForm =
-    activeForm === "services" ? (
-      <ServiceForm categories={categories} setIsOpenFilter={setIsOpenFilter} />
+    state.activeForm === "service" ? (
+      <ServiceForm state={state} dispatch={dispatch} onSubmit={onSubmit} />
     ) : (
-      <CityForm cities={cities} setIsOpenFilter={setIsOpenFilter} />
+      <CityForm state={state} dispatch={dispatch} onSubmit={onSubmit} />
     );
 
   return (
     <section className={isOpenFilter ? "filter filter_open" : "filter"}>
-      <FilterTabs
-        activeForm={activeForm}
-        isOpenFilter={isOpenFilter}
-        setActiveForm={setActiveForm}
-        setIsOpenFilter={setIsOpenFilter}
-      />
+      <FilterTabs state={state} dispatch={dispatch} />
 
       {isOpenFilter && (
         <div className="filter__content">
-          <FilterNav activeForm={activeForm} setActiveForm={setActiveForm} />
+          <FilterNav activeForm={state.activeForm} dispatch={dispatch} />
           {loadingStatus === LoadingStatus.loading ? (
             <div>
               <div style={{ paddingTop: "20px", width: "200px", margin: "0 auto" }}>

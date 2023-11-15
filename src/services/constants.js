@@ -1,3 +1,5 @@
+import { object } from "prop-types";
+
 export const COMPANIES_PER_PAGE = 10;
 
 export function declinationsNumericalValues(value, text) {
@@ -316,6 +318,12 @@ export const LoadingStatus = {
   failed: "failed",
 };
 
+/**
+ *
+ * @param {number[]} array
+ * @param {[key: string]: boolean} modifications
+ * @returns {number[]}
+ */
 export const modifyArray = (array, modifications) => {
   Object.entries(modifications).forEach(([key, shouldAdd]) => {
     const number = Number(key);
