@@ -29,6 +29,8 @@ const meta = {
         "IconPin",
         "IconRound",
         "IconSearch",
+        "IconThemeDark",
+        "IconThemeLight",
       ],
     },
     size: {
@@ -100,6 +102,8 @@ export const Icons = {
       <Icon icon="IconPin" />
       <Icon icon="IconRound" symbol="Д" />
       <Icon icon="IconSearch" />
+      <Icon icon="IconThemeDark" />
+      <Icon icon="IconThemeLight" />
     </div>
   ),
 };
