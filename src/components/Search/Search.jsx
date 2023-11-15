@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
 import Input from "UI-KIT/Input/Input";
@@ -7,34 +7,30 @@ import Icon from "UI-KIT/Icons";
 import dropDownBlock from "services/dropDown";
 
 import "./Search.scss";
+import searchApi from "services/SearchApi";
+import IconFilter from "UI-KIT/Icons/IconFilter";
 
 export function Search({ extClassName, ...props }) {
-  const [isButtonDisabled, setIsButtonDisabled] = React.useState(true);
-  const [isStartHint, setIsStartHint] = React.useState(false);
-  const [query, setQuery] = React.useState("");
-  const [queryCity, setCityQuery] = React.useState("");
-  const [response, setResponse] = React.useState([]);
-  const [responseNotFound, setResponseNotFound] = React.useState(false);
-  const elementToggle = React.useRef(null);
-
-  React.useEffect(() => {
-    setIsButtonDisabled(true);
-    setIsStartHint(false);
-    setResponse([
-      {
-        title: "company",
-        element: [
-          { name: "Mentalstack", link: "/" },
-          { name: "Mentalist", link: "/" },
-        ],
-      },
-      { title: "city", element: [{ name: "Menesota", link: "/" }] },
-    ]);
-  }, []);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [isStartHint, setIsStartHint] = useState(false);
+  const [query, setQuery] = useState("");
+  const [queryCity, setCityQuery] = useState("");
+  const [response, setResponse] = useState([]);
+  const elementToggle = useRef(null);
 
   function handleSubmitSearch(event) {
     event.preventDefault();
     console.log("начинаем поиск");
+    // TODO переходим на страницу фильтра с выбранными параметрами
+    // TODO переходим на страницу компании если выбрана компания
+  }
+
+  async function addResponseSearchCities(searchQuery) {
+    // console.log(searchApi.getSearchCities(searchQuery));
+    return searchApi
+      .getSearchCities(searchQuery)
+      .then((res) => JSON.stringify(res))
+      .then(() => setCityQuery());
   }
 
   const hint = response.map((ul) => {
@@ -46,25 +42,10 @@ export function Search({ extClassName, ...props }) {
       </li>
     ));
 
-    let label;
-    switch (ul.title) {
-      case "company":
-        label = "компаниях";
-        break;
-      case "city":
-        label = "городах";
-        break;
-      case "service":
-        label = "услугах";
-        break;
-      default:
-        label = ul.title;
-    }
-
     return (
       <div className="search__hint-list-container">
         <div className="search__hint-list-header" key={ul.title}>
-          Найдено в {label}
+          {/* Найдено в {label} */}
         </div>
         <ul className="search__hint-list">{li}</ul>
       </div>
@@ -79,8 +60,9 @@ export function Search({ extClassName, ...props }) {
     </div>
   );
 
-  React.useEffect(() => {
-    if (query.length >= 3 || queryCity.length >= 3) {
+  useEffect(() => {
+    if (query.length >= 3 || queryCity.length >= 1) {
+      addResponseSearchCities(queryCity);
       setIsStartHint(true);
       dropDownBlock(elementToggle, true);
     } else {
@@ -123,7 +105,7 @@ export function Search({ extClassName, ...props }) {
         disabled={isButtonDisabled}
       />
       <div ref={elementToggle} className="search__hint">
-        {responseNotFound ? hintNotFound : hint}
+        {response.length === 0 ? hintNotFound : hint}
       </div>
     </form>
   );
