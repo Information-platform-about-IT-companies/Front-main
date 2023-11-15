@@ -1,4 +1,4 @@
-export const COMPANIES_PER_PAGE = 3;
+export const COMPANIES_PER_PAGE = 10;
 
 export function declinationsNumericalValues(value, text) {
   const v = Math.abs(value) % 100;

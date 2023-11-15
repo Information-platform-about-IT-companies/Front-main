@@ -1,4 +1,5 @@
 import { useSearchParams } from "react-router-dom";
+import ButtonIcon from "UI-KIT/ButtonIcon/ButtonIcon";
 import IconFilter from "UI-KIT/Icons/IconFilter";
 import { Tab } from "./FilterTab/FilterTab";
 import "./FilterTabs.scss";
@@ -27,10 +28,10 @@ export function FilterTabs({ activeForm, setActiveForm, setIsOpenFilter, isOpenF
           />
         ))}
       </div>
-
-      <button onClick={onClick} className="filter__tabs-button">
-        <IconFilter size="32" color="#4E4CBF" />
-      </button>
+      <ButtonIcon
+        onClick={onClick}
+        icon={<IconFilter cross={isOpenFilter} size="32" color="#4E4CBF" />}
+      />
     </div>
   );
 }

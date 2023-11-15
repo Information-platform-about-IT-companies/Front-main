@@ -8,8 +8,8 @@ import "./CityForm.scss";
 
 export function CityForm({ cities, setIsOpenFilter }) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const checkedSites = JSON.parse(searchParams.get("cities")) || [];
-  const [checkedItems, setCheckedItems] = useState(checkedSites);
+  const checkedCites = JSON.parse(searchParams.get("cities")) || [];
+  const [checkedItems, setCheckedItems] = useState(checkedCites);
 
   const onChange = (e) => {
     const { checked, id } = e.target;
@@ -38,7 +38,7 @@ export function CityForm({ cities, setIsOpenFilter }) {
             title={name}
             name={name}
             id={id}
-            defaultChecked={checkedSites.includes(id)}
+            defaultChecked={checkedCites.includes(id)}
           />
         ))}
       </div>

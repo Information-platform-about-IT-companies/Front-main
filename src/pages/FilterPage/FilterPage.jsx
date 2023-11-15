@@ -1,6 +1,6 @@
-/* eslint-disable camelcase */
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { LoadingStatus } from "services/constants";
 // components
 import Breadcrumbs from "components/Breadcrumbs/Breadcrumbs";
 import { Filter } from "components/Filter/Filter";
@@ -8,13 +8,6 @@ import CompanyCard from "components/CompanyCard/CompanyCard";
 import { getCompanies } from "mocks/services/companyController";
 import { Pagination } from "components/Pagination/Pagination";
 import "./FilterPage.scss";
-
-const LoadingStatus = {
-  idle: "idle",
-  loading: "loading",
-  succeeded: "succeeded",
-  failed: "failed",
-};
 
 function FilterPage() {
   const onIconHeartClick = () => {
@@ -68,14 +61,14 @@ function FilterPage() {
       )}
       <ul className="filterPage__list">
         {companies &&
-          companies.map(({ id, services, name, description, is_favorited }) => (
+          companies.map(({ id, services, name, description, is_favorited: isFavorited }) => (
             <li key={id} className="filterPage__listitem">
               <CompanyCard
                 type="filterCard"
                 key={id}
                 services={services}
                 name={name}
-                iconLikeState={is_favorited}
+                iconLikeState={isFavorited}
                 description={description}
               />
             </li>
