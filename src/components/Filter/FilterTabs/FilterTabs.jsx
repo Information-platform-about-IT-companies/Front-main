@@ -9,6 +9,7 @@ export function FilterTabs({ activeForm, setActiveForm, setIsOpenFilter, isOpenF
   const cities = JSON.parse(searchParams.get("cities"));
   const services = JSON.parse(searchParams.get("services"));
   const tabsValues = { cities, services };
+  const color = isOpenFilter ? "#4E4CBF" : "#111111";
   const onClick = () => {
     setIsOpenFilter((prevState) => !prevState);
   };
@@ -30,7 +31,7 @@ export function FilterTabs({ activeForm, setActiveForm, setIsOpenFilter, isOpenF
       </div>
       <ButtonIcon
         onClick={onClick}
-        icon={<IconFilter cross={isOpenFilter} size="32" color="#4E4CBF" />}
+        icon={<IconFilter cross={isOpenFilter} size="32" color={color} />}
       />
     </div>
   );
