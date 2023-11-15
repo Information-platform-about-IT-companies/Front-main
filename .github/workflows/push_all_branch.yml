@@ -1,0 +1,54 @@
+name: Test when push on all branch
+
+on:
+  push:
+    branches-ignore:
+      - 'main'
+      - 'develop'
+      - 'release-*'
+
+jobs:
+  frontend_tests:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.2'
+
+    - name: Install Dependencies
+      run: npm ci
+
+    - name: Run Tests
+      run: npm test
+
+  send_notification:
+    runs-on: ubuntu-latest
+    needs: frontend_tests
+    if: failure()
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+  
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+  
+      - name: Install dependences
+        run: pip install requests argparse
+  
+      - name: Send custom message
+        run: |
+          python send_telegram_message.py \
+            --bot_token "${{ secrets.TELEGRAM_TOKEN }}" \
+            --chat_id "${{ secrets.TELEGRAM_TO }}" \
+            --message_thread_id "${{ secrets.CHAT_THREAD }}" \
+            --actor "${{ github.actor }}" \
+            --message "${{ github.event.commits[0].message }}" \
+            --repository "${{ github.repository }}" \
+            --commit_url "https://github.com/${{ github.repository }}/commit/${{ github.sha }}" \
+            --info "⛔️ Has caused an error in the workflow."
