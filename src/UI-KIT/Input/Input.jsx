@@ -15,6 +15,7 @@ function Input({
   placeholder,
   error,
   onlyInput,
+  onBlur,
   children,
   ...props
 }) {
@@ -40,6 +41,7 @@ function Input({
       placeholder={placeholder}
       onChange={onChange}
       value={value}
+      onBlur={onBlur}
       {...props}
     />
   );
@@ -83,6 +85,7 @@ Input.propTypes = {
   required: PropTypes.bool,
   placeholder: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+  onBlur: PropTypes.func,
   value: PropTypes.string,
   error: PropTypes.string,
   onlyInput: PropTypes.bool,
@@ -99,4 +102,5 @@ Input.defaultProps = {
   value: null,
   error: null,
   onlyInput: false,
+  onBlur: () => {},
 };
