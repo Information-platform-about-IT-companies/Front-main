@@ -29,24 +29,59 @@ export function Search({ extClassName, ...props }) {
 
   // TODO функция запроса компаний и сервисов
 
+  function addResponseSearch(search) {
+    setResponse({
+      companies: [
+        {
+          id: 1,
+          name: "ВебЧел",
+        },
+        {
+          id: 2,
+          name: "Веб-кек",
+        },
+        {
+          id: 3,
+          name: "Веб_шмяк",
+        },
+      ],
+      services: [
+        {
+          id: 17,
+          name: "Веб-дизайн",
+        },
+        {
+          id: 27,
+          name: "Веб-разработка",
+        },
+      ],
+    });
+  }
+
   function addResponseSearchCities(searchQuery) {
-    // async function addResponseSearchCities(searchQuery) {
-    // console.log(searchApi.getSearchCities(searchQuery));
-    // return searchApi
-    //   .getSearchCities(searchQuery)
-    //   .then((res) => JSON.stringify(res))
-    //   .then(() => setResponseCity());
     setResponseCity([
       {
-        id: 22,
-        name: "Уфа",
+        id: 1,
+        name: "Веб-бург",
       },
       {
-        id: 12,
-        name: "СПб",
+        id: 2,
+        name: "ВебГрад",
+      },
+      {
+        id: 3,
+        name: "Веб_город",
       },
     ]);
   }
+
+  // async function addResponseSearchCities(searchQuery) {
+  //   console.log(searchApi.getSearchCities(searchQuery));
+  //   return searchApi
+  //     .getSearchCities(searchQuery)
+  //     .then((res) => JSON.stringify(res))
+  //     .then(() => setResponseCity());
+  // }
 
   function hintCity(res) {
     if (!res) {
@@ -68,27 +103,8 @@ export function Search({ extClassName, ...props }) {
     );
   }
 
-  // const hintCity = if (!responseCity) {
-  // 	return null
-  // }
-  // responseCity.map((ul) => {
-  //   const li = (
-  //     <li className="search__hint-list-element" key={ul.id}>
-  //       {ul.name}
-  //     </li>
-  //   );
-
-  //   return (
-  //     <div className="search__hint-list-container">
-  //       <div className="search__hint-list-header" key="cities">
-  //         Найдено в городах
-  //       </div>
-  //       <ul className="search__hint-list">{li}</ul>
-  //     </div>
-  //   );
-  // });
-
-  // const hint = response.map((ul) => {
+  // function hint(res) {
+  // res.map((ul) =>
   //   const li = ul.element.map((e) => (
   //     <li className="search__hint-list-element" key={e.name}>
   //       <Link to={e.link} className="search__hint-link">
@@ -117,11 +133,15 @@ export function Search({ extClassName, ...props }) {
 
   useEffect(() => {
     if (query.length >= 3) {
+      addResponseSearch(query);
       setIsStartHint(true);
       dropDownBlock(elementToggle, true);
+      setIsButtonDisabled(false);
     } else {
       setIsStartHint(false);
       dropDownBlock(elementToggle, false);
+      setIsButtonDisabled(true);
+      setResponse({});
     }
 
     if (query || queryCity) {
@@ -132,11 +152,12 @@ export function Search({ extClassName, ...props }) {
   }, [query]);
 
   useEffect(() => {
-    if (queryCity.length >= 1) {
+    if (queryCity.length >= 3) {
       addResponseSearchCities(queryCity);
       setIsStartHint(true);
       dropDownBlock(elementToggle, true);
     } else {
+      setResponseCity([]);
       setIsStartHint(false);
       dropDownBlock(elementToggle, false);
     }
@@ -176,7 +197,9 @@ export function Search({ extClassName, ...props }) {
         disabled={isButtonDisabled}
       />
       <div ref={elementToggle} className="search__hint">
-        {(response.length || responseCity.length) === 0 ? hintNotFound : hintCity(responseCity)}
+        {response.length === 0 && responseCity.length === 0 && hintNotFound}
+        {/* {response.length === 0 ? "" : hint(response)} */}
+        {responseCity.length === 0 ? "" : hintCity(responseCity)}
       </div>
     </form>
   );
