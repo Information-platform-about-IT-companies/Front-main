@@ -46,7 +46,7 @@ export function FilterTabs({ state, dispatch }) {
             onClick={onTabClick}
             formName={formName}
             tabName={forms[formName]}
-            total={length}
+            total={length || ""}
             direction={activeForm === formName && isOpenFilter ? "up" : "down"}
           />
         ))}
