@@ -13,8 +13,11 @@ export function Search({ extClassName, ...props }) {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [isStartHint, setIsStartHint] = useState(false);
   const [query, setQuery] = useState("");
+  const [response, setResponse] = useState({});
+  const [responseSelected, responseQuerySelected] = useState("");
   const [queryCity, setCityQuery] = useState("");
-  const [response, setResponse] = useState([]);
+  const [responseCity, setResponseCity] = useState([]);
+  const [responseCitySelected, responseCityQuerySelected] = useState("");
   const elementToggle = useRef(null);
 
   function handleSubmitSearch(event) {
@@ -26,32 +29,83 @@ export function Search({ extClassName, ...props }) {
 
   // TODO функция запроса компаний и сервисов
 
-  async function addResponseSearchCities(searchQuery) {
+  function addResponseSearchCities(searchQuery) {
+    // async function addResponseSearchCities(searchQuery) {
     // console.log(searchApi.getSearchCities(searchQuery));
-    return searchApi
-      .getSearchCities(searchQuery)
-      .then((res) => JSON.stringify(res))
-      .then(() => setCityQuery());
+    // return searchApi
+    //   .getSearchCities(searchQuery)
+    //   .then((res) => JSON.stringify(res))
+    //   .then(() => setResponseCity());
+    setResponseCity([
+      {
+        id: 22,
+        name: "Уфа",
+      },
+      {
+        id: 12,
+        name: "СПб",
+      },
+    ]);
   }
 
-  const hint = response.map((ul) => {
-    const li = ul.element.map((e) => (
-      <li className="search__hint-list-element" key={e.name}>
-        <Link to={e.link} className="search__hint-link">
-          {e.name}
-        </Link>
+  function hintCity(res) {
+    if (!res) {
+      return null;
+    }
+    const cityNames = res.map((city) => (
+      <li className="search__hint-list-element" key={city.id}>
+        {city.name}
       </li>
     ));
 
     return (
       <div className="search__hint-list-container">
-        <div className="search__hint-list-header" key={ul.title}>
-          {/* Найдено в {label} */}
+        <div className="search__hint-list-header" key="cities">
+          Найдено в городах
         </div>
-        <ul className="search__hint-list">{li}</ul>
+        <ul className="search__hint-list">{cityNames}</ul>
       </div>
     );
-  });
+  }
+
+  // const hintCity = if (!responseCity) {
+  // 	return null
+  // }
+  // responseCity.map((ul) => {
+  //   const li = (
+  //     <li className="search__hint-list-element" key={ul.id}>
+  //       {ul.name}
+  //     </li>
+  //   );
+
+  //   return (
+  //     <div className="search__hint-list-container">
+  //       <div className="search__hint-list-header" key="cities">
+  //         Найдено в городах
+  //       </div>
+  //       <ul className="search__hint-list">{li}</ul>
+  //     </div>
+  //   );
+  // });
+
+  // const hint = response.map((ul) => {
+  //   const li = ul.element.map((e) => (
+  //     <li className="search__hint-list-element" key={e.name}>
+  //       <Link to={e.link} className="search__hint-link">
+  //         {e.name}
+  //       </Link>
+  //     </li>
+  //   ));
+
+  //   return (
+  //     <div className="search__hint-list-container">
+  //       <div className="search__hint-list-header" key={ul.title}>
+  //         {/* Найдено в {label} */}
+  //       </div>
+  //       <ul className="search__hint-list">{li}</ul>
+  //     </div>
+  //   );
+  // });
 
   const hintNotFound = (
     <div className="search__hint-list-container">
@@ -122,7 +176,7 @@ export function Search({ extClassName, ...props }) {
         disabled={isButtonDisabled}
       />
       <div ref={elementToggle} className="search__hint">
-        {response.length === 0 ? hintNotFound : hint}
+        {(response.length || responseCity.length) === 0 ? hintNotFound : hintCity(responseCity)}
       </div>
     </form>
   );
