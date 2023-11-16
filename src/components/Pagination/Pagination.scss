@@ -7,6 +7,10 @@
 
   &__button {
     @include flex(center, center);
+
+    cursor: pointer;
+    border: none;
+    background: none;
   }
 
   &__item {
@@ -14,6 +18,9 @@
 
     height: 32px;
     width: 32px;
+    cursor: pointer;
+    border: none;
+    background: none;
     font-size: 14px;
     text-decoration: none;
     color: $black;
