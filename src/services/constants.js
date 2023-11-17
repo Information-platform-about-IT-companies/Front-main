@@ -31,9 +31,8 @@ export const API_ENDPOINTS = {
     GET: (id) => `companies/${id}`,
   },
   FAVORITE: {
-    FILTER: (params) => `companies/${new URLSearchParams(params).toString()}`,
-    GET: (id) => `companies/${id}`,
-    FAVORITE: (id) => `companies/${id}/favorite`,
+    ADD: (id) => `companies/${id}/favorite`,
+    REMOVE: (id) => `companies/${id}/favorite`,
   },
 };
 

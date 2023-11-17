@@ -97,7 +97,7 @@ export const confirmResetPassword = (formData) =>
     body: transform.resetPasswordFormData(formData),
   });
 
-export const infoAPI = {
+export const authAPI = {
   signup,
   confirmSignup,
   signin,

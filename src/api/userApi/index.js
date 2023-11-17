@@ -66,7 +66,7 @@ export const resetPassword = async (formData) => {
   });
 };
 
-export const infoAPI = {
+export const userAPI = {
   getCurrentUser,
   updateUser,
   resetPassword,
