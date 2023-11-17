@@ -1,4 +1,5 @@
 import { API_HOST } from "services/constants";
+import { HTTPError } from "api/http/error";
 
 const proxyCorsUrl = "https://api.allorigins.win/raw?url=";
 
@@ -46,10 +47,11 @@ export class HTTP {
         withCredentials,
         ...rest,
       });
+      const data = await response.json();
       if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        throw new HTTPError(response, data);
       }
-      return response.json();
+      return data;
     } catch (error) {
       console.error(error);
       throw error;
