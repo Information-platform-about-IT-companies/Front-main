@@ -2,6 +2,41 @@ import { object } from "prop-types";
 
 export const COMPANIES_PER_PAGE = 10;
 
+export const API_HOST = "https://dev.octopus-it.ru/api/v1/";
+
+export const API_ENDPOINTS = {
+  AUTH: {
+    SIGNUP: "auth/signup",
+    SIGNUP_CONFIRM: "auth/signup_confirm",
+    SIGNIN: "auth/signin",
+    RESET_PASSWORD: "auth/reset_password",
+    CHANGE_PASSWORD: "auth/reset_password_confirm",
+  },
+  USER: {
+    ME: "user/me",
+    UPDATE_PROFILE: "user/me/change_password",
+  },
+  INFO: {
+    INDUSTRIES: "info/industries",
+    CATEGORIES: "info/service_categories",
+    SERVICES: "info/services",
+    CITIES: "info/cities",
+    SEARCH: "info/search_services_companies",
+  },
+  TOKENS: {
+    REFRESH: "refresh",
+  },
+  COMPANIES: {
+    FETCH: (params) => `companies?${new URLSearchParams(params).toString()}`,
+    GET: (id) => `companies/${id}`,
+  },
+  FAVORITE: {
+    FILTER: (params) => `companies/${new URLSearchParams(params).toString()}`,
+    GET: (id) => `companies/${id}`,
+    FAVORITE: (id) => `companies/${id}/favorite`,
+  },
+};
+
 export function declinationsNumericalValues(value, text) {
   const v = Math.abs(value) % 100;
   const v1 = v % 10;
