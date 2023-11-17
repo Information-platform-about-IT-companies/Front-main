@@ -2,6 +2,15 @@ import { API_ENDPOINTS } from "services/constants";
 import { HTTP } from "api/http";
 
 /**
+ * @typedef {Object} HTTPError
+ * @property {string} message - Сообщение об ошибке.
+ * @property {number} status - Код статуса HTTP ошибки.
+ * @property {string} statusText - Текстовое описание статуса HTTP ошибки.
+ * @property {Object} data - Дополнительные данные, связанные с ошибкой.
+ *   @property {string} [query_param] - (400) Информация об ошибке, например, "User is inactive".
+ */
+
+/**
  * @typedef {Object} Industry
  * @property {number} id - Идентификатор отрасли.
  * @property {string} name - Название отрасли.
@@ -37,6 +46,7 @@ export const fetchIndustries = async (name) =>
  */
 export const fetchServiceCategories = (name) =>
   HTTP.get(`${API_ENDPOINTS.INFO.CATEGORIES}${name ? `?name=${name}` : ""}`);
+
 /**
  * @typedef {Object} Service
  * @property {number} id - Идентификатор категории услуг.
@@ -71,23 +81,11 @@ export const fetchCities = async (name) =>
   HTTP.get(`${API_ENDPOINTS.INFO.CITIES}${name ? `?name=${name}` : ""}`);
 
 /**
- * @typedef {Object} ServerResponse
- * @property {number} status - Код статуса ответа (200, 404).
- * @property {Object[]} companies - Массив компаний, соответствующих запросу.
- *   @property {number} id - Идентификатор компании.
- *   @property {string} name - Название компании.
- * @property {Object[]} services - Массив услуг, соответствующих запросу.
- *   @property {number} id - Идентификатор услуги.
- *   @property {string} name - Название услуги.
- * @property {"query_param": "The 'name' query parameter must contain at least three characters."} error - Объект с ошибками .
- */
-
-/**
  * Получает результаты поиска компаний и услуг с сервера с использованием опций запроса.
  *
  * @param {string} [name] - Название компании или услуги для поиска (опционально).
- * @returns {Promise<ServerResponse>} - Объект Promise, который возвращает объект с результатами поиска или описание ошибки.
- * @throws {Error} - В случае ошибки при выполнении запроса.
+ * @returns {Promise<void>} - Объект Promise.
+ * @throws {HTTPError} - В случае ошибки при выполнении запроса.
  */
 export const searchServicesCompanies = (name) =>
   HTTP.get(`${API_ENDPOINTS.INFO.SEARCH}${name ? `?name=${name}` : ""}`);

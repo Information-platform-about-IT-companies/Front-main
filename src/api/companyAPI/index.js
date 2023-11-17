@@ -3,9 +3,12 @@ import { transform } from "services/transform";
 import { HTTP } from "api/http";
 
 /**
- * @typedef {Object} ServerResponse
- * @property {number} status - Код статуса ответа (200, 404).
- * @property {"detail": "Страница не найдена."} error - Объект с ошибками .
+ * @typedef {Object} HTTPError
+ * @property {string} message - Сообщение об ошибке.
+ * @property {number} status - Код статуса HTTP ошибки.
+ * @property {string} statusText - Текстовое описание статуса HTTP ошибки.
+ * @property {Object} data - Дополнительные данные, связанные с ошибкой.
+ *   @property {string} [detail] - (404) Информация об ошибке.
  */
 
 /**
@@ -84,7 +87,7 @@ export const fetchCompanies = async (options) => {
  *
  * @param {number} id - Идентификатор компании.
  * @returns {Promise<CompanyDetails>} - Объект Promise, который разрешается с детальной информацией о компании.
- * @throws {Error} - В случае ошибки при выполнении запроса.
+ * @throws {HTTPError} - (404) В случае ошибки при выполнении запроса.
  */
 
 export const getCompany = (id) => {

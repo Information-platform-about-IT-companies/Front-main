@@ -3,10 +3,13 @@ import { transform } from "services/transform";
 import { HTTP } from "api/http";
 
 /**
- * @typedef {Object} ServerResponse
- * @property {number} status - Код статуса ответа (204, 400, 403).
- * @property {Object} errors - Объект с ошибками валидации в формате DRF.
- * @property {string[]} field_name - Массив ошибок для конкретного поля.
+ * @typedef {Object} HTTPError
+ * @property {string} message - Сообщение об ошибке.
+ * @property {number} status - Код статуса HTTP ошибки.
+ * @property {string} statusText - Текстовое описание статуса HTTP ошибки.
+ * @property {Object} data - Дополнительные данные, связанные с ошибкой.
+ *   @property {string} [detail] - (401,403) Информация об ошибке, например, "User is inactive".
+ *   @property {Object.<string, string[]>} [fieldErrors] - (400) Объект с ошибками полей, например, {"field_name": ["<field_error>"]}.
  */
 
 /**
@@ -20,8 +23,8 @@ import { HTTP } from "api/http";
  *   @property {string} password - Пароль пользователя.
  *   @property {string} repeatPassword - Повторение пароля пользователя.
  *
- * @returns {Promise<ServerResponse>}  - Объект Promise, с данными ответа от сервера.
- * @throws {Error} - В случае ошибки при выполнении запроса.
+ * @returns {Promise<void>>}  - Объект Promise, с данными ответа от сервера.
+ * @throws {HTTPError} - В случае ошибки при выполнении запроса.
  *
  */
 
@@ -36,8 +39,8 @@ export const signup = async (formData) =>
  *   @property {string} uid - Уникальный идентификатор пользователя.
  *   @property {string} token - Токен подтверждения регистрации.
  *
- * @returns {Promise<ServerResponse>}  - Объект Promise, с данными ответа от сервера.
- * @throws {Error} - В случае ошибки при выполнении запроса.
+ * @returns {Promise<void>}  - Объект Promise, с данными ответа от сервера.
+ * @throws {HTTPError} - (400) В случае ошибки при выполнении запроса.
  *
  */
 
@@ -52,8 +55,8 @@ export const confirmSignup = (formData) =>
  *   @property {string} email - Адрес электронной почты пользователя.
  *   @property {string} password - Пароль пользователя..
  *
- * @returns {Promise<ServerResponse>}  - Объект Promise, с данными ответа от сервера.
- * @throws {Error} - В случае ошибки при выполнении запроса.
+ * @returns {Promise<void>}  - Объект Promise, с данными ответа от сервера.
+ * @throws {HTTPError} - (400, 403) В случае ошибки при выполнении запроса.
  *
  */
 
@@ -66,8 +69,8 @@ export const signin = async (formData) => HTTP.post(API_ENDPOINTS.AUTH.SIGNIN, {
  * @param {Object} formData - Объект с данными для запроса сброса пароля.
  *   @property {string} email - Адрес электронной почты пользователя.
  *
- * @returns {Promise<ServerResponse>}  - Объект Promise, с данными ответа от сервера.
- * @throws {Error} - В случае ошибки при выполнении запроса.
+ * @returns {Promise<void>}  - Объект Promise, с данными ответа от сервера.
+ * @throws {HTTPError} - (400, 403) В случае ошибки при выполнении запроса.
  *
  */
 
@@ -84,8 +87,8 @@ export const resetPassword = async (formData) =>
  *   @property {string} newPassword - Новый пароль пользователя.
  *   @property {string} repeatNewPassword - Повторение нового пароля пользователя.
  *
- * @returns {Promise<ServerResponse>}  - Объект Promise, с данными ответа от сервера.
- * @throws {Error} - В случае ошибки при выполнении запроса.
+ * @returns {Promise<void>}  - Объект Promise, с данными ответа от сервера.
+ * @throws {HTTPError} - (400, 403) В случае ошибки при выполнении запроса.
  *
  */
 
