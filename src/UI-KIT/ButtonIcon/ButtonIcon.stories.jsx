@@ -31,7 +31,7 @@ const meta = {
 
 export default meta;
 
-export function ButtonLike({ fill }) {
+export function ButtonLike() {
   const [isFill, setIsFill] = React.useState(false);
 
   return (
