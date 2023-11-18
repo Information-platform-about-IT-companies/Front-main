@@ -175,6 +175,7 @@ export function Search({ extClassName, ...props }) {
         onlyInput
         name="search"
         id="search"
+        value={responseSelected}
         placeholder="Название компании или услуга"
         onChange={(event) => setQuery(event.target.value)}
         autocomplete="off"

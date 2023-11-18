@@ -1,11 +1,9 @@
 import { Search } from "components/Search/Search";
 import "./Main.scss";
 import { Link } from "react-router-dom";
-import Icon from "UI-KIT/Icons";
 import { Category } from "components/Category/Category";
 import { Button } from "UI-KIT/Button/Button";
 import { hardcode } from "services/constants";
-import Map from "components/Map/Map";
 
 function Main() {
   return (
