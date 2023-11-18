@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
 
 import Input from "UI-KIT/Input/Input";
 import { Button } from "UI-KIT/Button/Button";
@@ -7,7 +6,7 @@ import Icon from "UI-KIT/Icons";
 import dropDownBlock from "services/dropDown";
 
 import "./Search.scss";
-import searchApi from "services/SearchApi";
+import searchApi from "api/SearchAPI";
 
 export function Search({ extClassName, ...props }) {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -58,30 +57,32 @@ export function Search({ extClassName, ...props }) {
     });
   }
 
-  function addResponseSearchCities(searchQuery) {
-    setResponseCity([
-      {
-        id: 1,
-        name: "Веб-бург",
-      },
-      {
-        id: 2,
-        name: "ВебГрад",
-      },
-      {
-        id: 3,
-        name: "Веб_город",
-      },
-    ]);
-  }
-
-  // async function addResponseSearchCities(searchQuery) {
-  //   console.log(searchApi.getSearchCities(searchQuery));
-  //   return searchApi
-  //     .getSearchCities(searchQuery)
-  //     .then((res) => JSON.stringify(res))
-  //     .then(() => setResponseCity());
+  // function addResponseSearchCities(searchQuery) {
+  //   setResponseCity([
+  //     {
+  //       id: 1,
+  //       name: "Веб-бург",
+  //     },
+  //     {
+  //       id: 2,
+  //       name: "ВебГрад",
+  //     },
+  //     {
+  //       id: 3,
+  //       name: "Веб_город",
+  //     },
+  //   ]);
   // }
+
+  async function addResponseSearchCities(searchQuery) {
+    try {
+      const res = await searchApi.getSearchCities(searchQuery);
+      setResponseCity(res); // Установка ответа от API в состояние компонента
+    } catch (error) {
+      console.error("Error fetching cities:", error);
+      // Здесь можно обработать ошибку, если не удалось получить данные от API
+    }
+  }
 
   function hintCity(res) {
     if (!res) {
@@ -103,25 +104,25 @@ export function Search({ extClassName, ...props }) {
     );
   }
 
-  // function hint(res) {
-  // res.map((ul) =>
-  //   const li = ul.element.map((e) => (
-  //     <li className="search__hint-list-element" key={e.name}>
-  //       <Link to={e.link} className="search__hint-link">
-  //         {e.name}
-  //       </Link>
-  //     </li>
-  //   ));
+  function hint(res) {
+    console.log(res[0]);
+    // res.map((ul) => {
+    //   const li = ul.element.map((e) => (
+    //     <li className="search__hint-list-element" key={e.name}>
+    //       {e.name}
+    //     </li>
+    //   ));
 
-  //   return (
-  //     <div className="search__hint-list-container">
-  //       <div className="search__hint-list-header" key={ul.title}>
-  //         {/* Найдено в {label} */}
-  //       </div>
-  //       <ul className="search__hint-list">{li}</ul>
-  //     </div>
-  //   );
-  // });
+    //   return (
+    //     <div className="search__hint-list-container">
+    //       <div className="search__hint-list-header" key={ul.title}>
+    //         {/* Найдено в {label} */}
+    //       </div>
+    //       <ul className="search__hint-list">{li}</ul>
+    //     </div>
+    //   );
+    // });
+  }
 
   const hintNotFound = (
     <div className="search__hint-list-container">
@@ -197,8 +198,8 @@ export function Search({ extClassName, ...props }) {
         disabled={isButtonDisabled}
       />
       <div ref={elementToggle} className="search__hint">
-        {response.length === 0 && responseCity.length === 0 && hintNotFound}
-        {/* {response.length === 0 ? "" : hint(response)} */}
+        {Object.keys(response).length === 0 && responseCity.length === 0 && hintNotFound}
+        {Object.keys(response).length === 0 ? "" : hint(response)}
         {responseCity.length === 0 ? "" : hintCity(responseCity)}
       </div>
     </form>

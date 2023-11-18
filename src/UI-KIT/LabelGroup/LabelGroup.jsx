@@ -1,6 +1,6 @@
 import "./LabelGroup.scss";
 import { Link } from "react-router-dom";
-import PropTypes, { object } from "prop-types";
+import PropTypes from "prop-types";
 import { Label } from "UI-KIT/Label/Label";
 import { declinationsNumericalValues } from "services/constants";
 

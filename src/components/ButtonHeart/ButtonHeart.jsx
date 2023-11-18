@@ -5,7 +5,7 @@ import Icon from "UI-KIT/Icons";
 
 import "./ButtonHeart.scss";
 
-export default function ({ click, fill }) {
+export default function ButtonHeart({ click, fill }) {
   const [isFill, setIsFill] = React.useState(fill);
 
   const handlerClick = () => {
