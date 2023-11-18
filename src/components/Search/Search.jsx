@@ -5,9 +5,9 @@ import Input from "UI-KIT/Input/Input";
 import { Button } from "UI-KIT/Button/Button";
 import Icon from "UI-KIT/Icons";
 import DynamicHeightComponent from "components/DynamicHeightComponent/DynamicHeightComponent";
+import SearchHintList from "./SearchHintList/SearchHintList";
 
 import "./Search.scss";
-import SearchHintList from "./SearchHintList/SearchHintList";
 
 export function Search({ extClassName, ...props }) {
   const [isButtonActive, setIsButtonActive] = useState(false);
