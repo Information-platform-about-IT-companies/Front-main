@@ -7,6 +7,10 @@
 
   &__input-button {
     border-radius: 0 10px 10px 0 !important;
+
+    &:disabled {
+      transition: bacground $animation;
+    }
   }
 
   &__input_1 {
@@ -28,12 +32,10 @@
     top: 100%;
     left: 0;
     width: 100%;
-    overflow: hidden;
     border-radius: 10px;
     background-color: $sea-blue-light;
     grid-column: 1 / -1;
     z-index: 99;
-    transition: height $animation;
   }
 
   &__hint-list-container {
@@ -71,6 +73,11 @@
     &:last-of-type {
       padding-bottom: 0;
     }
+  }
+
+  &__hint-list-element-text {
+    display: inline;
+    cursor: pointer;
   }
 
   &__hint-link {

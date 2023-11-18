@@ -3,127 +3,102 @@ import { useEffect, useState, useRef } from "react";
 import Input from "UI-KIT/Input/Input";
 import { Button } from "UI-KIT/Button/Button";
 import Icon from "UI-KIT/Icons";
-import dropDownBlock from "services/dropDown";
+import DynamicHeightComponent from "components/DynamicHeightComponent/DynamicHeightComponent";
+import searchApi from "api/searchAPI";
 
 import "./Search.scss";
-import searchApi from "api/SearchAPI";
 
 export function Search({ extClassName, ...props }) {
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-  const [isStartHint, setIsStartHint] = useState(false);
+  const [isButtonActive, setIsButtonActive] = useState(false);
   const [query, setQuery] = useState("");
   const [response, setResponse] = useState({});
-  const [responseSelected, responseQuerySelected] = useState("");
+  const [isResponseNull, setIsResponseNull] = useState(null);
+  const [isHintOpen, setIsHintOpen] = useState(false);
+  // const [responseSelected, responseQuerySelected] = useState("");
   const [queryCity, setCityQuery] = useState("");
-  const [responseCity, setResponseCity] = useState([]);
-  const [responseCitySelected, responseCityQuerySelected] = useState("");
-  const elementToggle = useRef(null);
+  // const [responseCity, setResponseCity] = useState([]);
+  // const [responseCitySelected, responseCityQuerySelected] = useState("");
 
-  function handleSubmitSearch(event) {
+  const handleSubmitSearch = (event) => {
     event.preventDefault();
-    console.log("начинаем поиск");
+    console.log("нажата клавиша поиск");
     // TODO переходим на страницу фильтра с выбранными параметрами
     // TODO переходим на страницу компании если выбрана компания
-  }
+  };
 
-  // TODO функция запроса компаний и сервисов
+  // проверка свойств объекта, что они пустые массивы
+  const checkEmptyArrayProperties = (obj) => {
+    const keys = Object.keys(obj);
 
-  function addResponseSearch(search) {
-    setResponse({
-      companies: [
-        {
-          id: 1,
-          name: "ВебЧел",
-        },
-        {
-          id: 2,
-          name: "Веб-кек",
-        },
-        {
-          id: 3,
-          name: "Веб_шмяк",
-        },
-      ],
-      services: [
-        {
-          id: 17,
-          name: "Веб-дизайн",
-        },
-        {
-          id: 27,
-          name: "Веб-разработка",
-        },
-      ],
-    });
-  }
+    for (let i = 0; i < keys.length; i += 1) {
+      const value = obj[keys[i]];
 
-  // function addResponseSearchCities(searchQuery) {
-  //   setResponseCity([
-  //     {
-  //       id: 1,
-  //       name: "Веб-бург",
-  //     },
-  //     {
-  //       id: 2,
-  //       name: "ВебГрад",
-  //     },
-  //     {
-  //       id: 3,
-  //       name: "Веб_город",
-  //     },
-  //   ]);
+      // проверка свойства на массив и пустоту
+      if (Array.isArray(value) && value.length !== 0) return false;
+      // проверка на объект, и тогда рекурсивно вызываем эту же функцию
+      if (typeof value === "object" && !checkEmptyArrayProperties(value)) return false;
+      // проверка на другие типы данных, они все не подходят
+      if (typeof value === "string" || typeof value === "number" || typeof value === "boolean")
+        return false;
+    }
+    return true;
+  };
+
+  // функции запроса на сервер совпадающего ввода
+  const addResponseSearch = async (search) => {
+    try {
+      const res = await searchApi.getSearchServicesAndCompaneis(search);
+      setResponse(res);
+      setIsResponseNull(checkEmptyArrayProperties(res));
+    } catch (error) {
+      console.error("Ошибка запроса по компаниям и услугам:", error);
+    }
+  };
+
+  // async function addResponseSearchCities(searchQuery) {
+  //   try {
+  //     const res = await searchApi.getSearchCities(searchQuery);
+  //     setResponseCity(res);
+  //   } catch (error) {
+  //     console.error("Ошибка запроса по городам:", error);
+  //   }
   // }
 
-  async function addResponseSearchCities(searchQuery) {
-    try {
-      const res = await searchApi.getSearchCities(searchQuery);
-      setResponseCity(res); // Установка ответа от API в состояние компонента
-    } catch (error) {
-      console.error("Error fetching cities:", error);
-      // Здесь можно обработать ошибку, если не удалось получить данные от API
-    }
-  }
+  // декоратор отложения выполнения функций
+  const debounce = (func, delay) => {
+    let timeout;
+    const debounced = function (...args) {
+      const context = this;
 
-  function hintCity(res) {
-    if (!res) {
-      return null;
-    }
-    const cityNames = res.map((city) => (
-      <li className="search__hint-list-element" key={city.id}>
-        {city.name}
-      </li>
-    ));
+      const execute = () => {
+        timeout = null;
+        func.apply(context, args);
+      };
 
-    return (
-      <div className="search__hint-list-container">
-        <div className="search__hint-list-header" key="cities">
-          Найдено в городах
-        </div>
-        <ul className="search__hint-list">{cityNames}</ul>
-      </div>
-    );
-  }
+      if (!timeout) {
+        timeout = setTimeout(execute, delay);
+      }
+    };
 
-  function hint(res) {
-    console.log(res[0]);
-    // res.map((ul) => {
-    //   const li = ul.element.map((e) => (
-    //     <li className="search__hint-list-element" key={e.name}>
-    //       {e.name}
-    //     </li>
-    //   ));
+    return debounced;
+  };
 
-    //   return (
-    //     <div className="search__hint-list-container">
-    //       <div className="search__hint-list-header" key={ul.title}>
-    //         {/* Найдено в {label} */}
-    //       </div>
-    //       <ul className="search__hint-list">{li}</ul>
-    //     </div>
-    //   );
-    // });
-  }
+  //
+  const debouncedSearch = useRef(
+    debounce((search) => {
+      if (search.length >= 3) {
+        addResponseSearch(search);
+        setIsButtonActive(true);
+        setIsHintOpen(true);
+      } else {
+        setIsButtonActive(false);
+        setIsHintOpen(false);
+        setResponse({});
+      }
+    }, 500),
+  ).current;
 
+  // выпадающие подсказки
   const hintNotFound = (
     <div className="search__hint-list-container">
       <div className="search__hint-list-header search__hint-list-header_no-found">
@@ -132,43 +107,82 @@ export function Search({ extClassName, ...props }) {
     </div>
   );
 
+  const hint = (res) =>
+    Object.keys(res).map((title) => {
+      if (res[title].length === 0) {
+        return null;
+      }
+      let titleName;
+      switch (title) {
+        case "services":
+          titleName = "услугах";
+          break;
+        case "companies":
+          titleName = "компаниях";
+          break;
+        default:
+          titleName = title;
+      }
+
+      const servicesOrCompaneisNames = res[title].map((element) => (
+        <li className="search__hint-list-element" key={element.name}>
+          <div className="search__hint-list-element-text">{element.name}</div>
+        </li>
+      ));
+
+      return (
+        <div className="search__hint-list-container">
+          <div className="search__hint-list-header" key={title}>
+            Найдено в {titleName}
+          </div>
+          <ul className="search__hint-list">{servicesOrCompaneisNames}</ul>
+        </div>
+      );
+    });
+
+  // function hintCity(res) {
+  //   if (!res) {
+  //     return null;
+  //   }
+  //   const cityNames = res.map((city) => (
+  //     <li className="search__hint-list-element" key={city.id}>
+  //       <div className="search__hint-list-element-text">{city.name}</div>
+  //     </li>
+  //   ));
+
+  //   return (
+  //     <div className="search__hint-list-container">
+  //       <div className="search__hint-list-header" key="cities">
+  //         Найдено в городах
+  //       </div>
+  //       <ul className="search__hint-list">{cityNames}</ul>
+  //     </div>
+  //   );
+  // }
+
+  useEffect(() => {
+    if (query || queryCity) {
+      setIsButtonActive(true);
+    } else {
+      setIsButtonActive(false);
+    }
+  }, [query, queryCity]);
+
   useEffect(() => {
     if (query.length >= 3) {
-      addResponseSearch(query);
-      setIsStartHint(true);
-      dropDownBlock(elementToggle, true);
-      setIsButtonDisabled(false);
-    } else {
-      setIsStartHint(false);
-      dropDownBlock(elementToggle, false);
-      setIsButtonDisabled(true);
-      setResponse({});
+      debouncedSearch(query);
     }
+  }, [query, debouncedSearch]);
 
-    if (query || queryCity) {
-      setIsButtonDisabled(false);
-    } else {
-      setIsButtonDisabled(true);
-    }
-  }, [query]);
-
-  useEffect(() => {
-    if (queryCity.length >= 3) {
-      addResponseSearchCities(queryCity);
-      setIsStartHint(true);
-      dropDownBlock(elementToggle, true);
-    } else {
-      setResponseCity([]);
-      setIsStartHint(false);
-      dropDownBlock(elementToggle, false);
-    }
-
-    if (query || queryCity) {
-      setIsButtonDisabled(false);
-    } else {
-      setIsButtonDisabled(true);
-    }
-  }, [queryCity]);
+  // useEffect(() => {
+  //   if (queryCity.length >= 3) {
+  //     addResponseSearchCities(queryCity);
+  //     dropDownBlock(elementToggle, true);
+  //   } else {
+  //     setResponseCity([]);
+  //     dropDownBlock(elementToggle, false);
+  //   }
+  // }, [queryCity]);
 
   return (
     <form className={`search ${extClassName}`} onSubmit={handleSubmitSearch}>
@@ -180,6 +194,7 @@ export function Search({ extClassName, ...props }) {
         id="search"
         placeholder="Название компании или услуга"
         onChange={(event) => setQuery(event.target.value)}
+        autocomplete="off"
       />
       <Input
         icon={<Icon icon="IconPin" color="#4e4cbf" size="24" />}
@@ -189,19 +204,26 @@ export function Search({ extClassName, ...props }) {
         id="city"
         placeholder="Город"
         onChange={(event) => setCityQuery(event.target.value)}
+        autocomplete="off"
       />
       <Button
         extClassName="search__input-button"
         size="medium"
         title="Поиск"
         fill
-        disabled={isButtonDisabled}
+        disabled={!isButtonActive}
       />
-      <div ref={elementToggle} className="search__hint">
-        {Object.keys(response).length === 0 && responseCity.length === 0 && hintNotFound}
-        {Object.keys(response).length === 0 ? "" : hint(response)}
+
+      {isHintOpen && (
+        <DynamicHeightComponent extClassName="search__hint">
+          {isResponseNull === true && hintNotFound}
+          {hint(response)}
+        </DynamicHeightComponent>
+      )}
+      {/* <div ref={wrappedHintCity} className="search__hint">
+        {hint(response) === && responseCity.length === 0 && hintNotFound}
         {responseCity.length === 0 ? "" : hintCity(responseCity)}
-      </div>
+      </div> */}
     </form>
   );
 }
