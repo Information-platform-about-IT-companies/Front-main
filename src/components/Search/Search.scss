@@ -38,48 +38,6 @@
     z-index: 99;
   }
 
-  &__hint-list-container {
-    padding: 0 32px;
-    margin-bottom: 20px;
-
-    &:first-of-type {
-      padding-top: 32px;
-    }
-
-    &:last-of-type {
-      padding-bottom: 32px;
-      margin-bottom: 0;
-    }
-  }
-
-  &__hint-list-header {
-    margin: 0;
-    padding-bottom: 12px;
-    color: $blue;
-    font-size: $text-size-small;
-
-    &_no-found {
-      padding-bottom: 0;
-    }
-  }
-
-  &__hint-list {
-    margin: 0;
-  }
-
-  &__hint-list-element {
-    padding-bottom: 12px;
-
-    &:last-of-type {
-      padding-bottom: 0;
-    }
-  }
-
-  &__hint-list-element-text {
-    display: inline;
-    cursor: pointer;
-  }
-
   &__hint-link {
     text-decoration: none;
     color: $black;

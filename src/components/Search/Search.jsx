@@ -1,12 +1,13 @@
 import { useEffect, useState, useRef } from "react";
 
+import { infoAPI } from "api/infoApi";
 import Input from "UI-KIT/Input/Input";
 import { Button } from "UI-KIT/Button/Button";
 import Icon from "UI-KIT/Icons";
 import DynamicHeightComponent from "components/DynamicHeightComponent/DynamicHeightComponent";
-import searchApi from "api/searchAPI";
 
 import "./Search.scss";
+import SearchHintList from "./SearchHintList/SearchHintList";
 
 export function Search({ extClassName, ...props }) {
   const [isButtonActive, setIsButtonActive] = useState(false);
@@ -14,7 +15,7 @@ export function Search({ extClassName, ...props }) {
   const [response, setResponse] = useState({});
   const [isResponseNull, setIsResponseNull] = useState(null);
   const [isHintOpen, setIsHintOpen] = useState(false);
-  // const [responseSelected, responseQuerySelected] = useState("");
+  const [responseSelected, responseQuerySelected] = useState("");
   const [queryCity, setCityQuery] = useState("");
   // const [responseCity, setResponseCity] = useState([]);
   // const [responseCitySelected, responseCityQuerySelected] = useState("");
@@ -33,11 +34,8 @@ export function Search({ extClassName, ...props }) {
     for (let i = 0; i < keys.length; i += 1) {
       const value = obj[keys[i]];
 
-      // проверка свойства на массив и пустоту
       if (Array.isArray(value) && value.length !== 0) return false;
-      // проверка на объект, и тогда рекурсивно вызываем эту же функцию
       if (typeof value === "object" && !checkEmptyArrayProperties(value)) return false;
-      // проверка на другие типы данных, они все не подходят
       if (typeof value === "string" || typeof value === "number" || typeof value === "boolean")
         return false;
     }
@@ -47,7 +45,7 @@ export function Search({ extClassName, ...props }) {
   // функции запроса на сервер совпадающего ввода
   const addResponseSearch = async (search) => {
     try {
-      const res = await searchApi.getSearchServicesAndCompaneis(search);
+      const res = await infoAPI.searchServicesCompanies(search);
       setResponse(res);
       setIsResponseNull(checkEmptyArrayProperties(res));
     } catch (error) {
@@ -57,7 +55,7 @@ export function Search({ extClassName, ...props }) {
 
   // async function addResponseSearchCities(searchQuery) {
   //   try {
-  //     const res = await searchApi.getSearchCities(searchQuery);
+  //     const res = await infoAPI.fetchCities(searchQuery);
   //     setResponseCity(res);
   //   } catch (error) {
   //     console.error("Ошибка запроса по городам:", error);
@@ -98,14 +96,12 @@ export function Search({ extClassName, ...props }) {
     }, 500),
   ).current;
 
+  const handleSelect = (text) => {
+    responseQuerySelected(text);
+  };
+
   // выпадающие подсказки
-  const hintNotFound = (
-    <div className="search__hint-list-container">
-      <div className="search__hint-list-header search__hint-list-header_no-found">
-        По вашему запросу ничего не найдено
-      </div>
-    </div>
-  );
+  const hintNotFound = () => <SearchHintList title="По вашему запросу ничего не найдено" />;
 
   const hint = (res) =>
     Object.keys(res).map((title) => {
@@ -124,19 +120,8 @@ export function Search({ extClassName, ...props }) {
           titleName = title;
       }
 
-      const servicesOrCompaneisNames = res[title].map((element) => (
-        <li className="search__hint-list-element" key={element.name}>
-          <div className="search__hint-list-element-text">{element.name}</div>
-        </li>
-      ));
-
       return (
-        <div className="search__hint-list-container">
-          <div className="search__hint-list-header" key={title}>
-            Найдено в {titleName}
-          </div>
-          <ul className="search__hint-list">{servicesOrCompaneisNames}</ul>
-        </div>
+        <SearchHintList title={titleName} optionsObjectList={res[title]} onSelect={handleSelect} />
       );
     });
 
@@ -169,9 +154,7 @@ export function Search({ extClassName, ...props }) {
   }, [query, queryCity]);
 
   useEffect(() => {
-    if (query.length >= 3) {
-      debouncedSearch(query);
-    }
+    debouncedSearch(query);
   }, [query, debouncedSearch]);
 
   // useEffect(() => {
@@ -216,7 +199,7 @@ export function Search({ extClassName, ...props }) {
 
       {isHintOpen && (
         <DynamicHeightComponent extClassName="search__hint">
-          {isResponseNull === true && hintNotFound}
+          {isResponseNull === true && hintNotFound()}
           {hint(response)}
         </DynamicHeightComponent>
       )}
