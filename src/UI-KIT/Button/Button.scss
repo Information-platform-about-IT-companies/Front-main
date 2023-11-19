@@ -51,10 +51,10 @@
   }
 
   &_style_outline {
-    @include roboto-16($black);
+    @include roboto-16(var(--text-color));
 
     background: transparent;
-    outline: 1.5px $blue solid;
+    outline: 1.5px var(--button-border) solid;
     outline-offset: -1.5px;
 
     &:hover {

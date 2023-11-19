@@ -1,9 +1,11 @@
 import { Button } from "UI-KIT/Button/Button";
 import { Link } from "react-router-dom";
 import Icon from "UI-KIT/Icons";
-import "./Header.scss";
 import PropTypes from "prop-types";
 import ThemeSwitcher from "UI-KIT/ThemeSwitcher/ThemeSwitcher";
+
+import "./Header.scss";
+import "../../assets/style/main.scss";
 
 function Header({ loggedIn, userData }) {
   return (
@@ -13,7 +15,7 @@ function Header({ loggedIn, userData }) {
         {loggedIn ? (
           <>
             <Link to="/profile" className="header__userdata">
-              <Icon icon="IconAccount" size="32" color="#4E4CBF" />
+              <Icon icon="IconAccount" size="32" color="var(--icon-color)" />
               <span className="header__user">{userData}</span>
             </Link>
             <Button size="standard" fill={false} title="Выйти" />
@@ -23,6 +25,7 @@ function Header({ loggedIn, userData }) {
           <>
             <Button size="standard" fill={false} title="Войти" url="/signin" linkType="link" />
             <Button size="standard" fill title="Зарегистрироваться" url="signup" linkType="link" />
+            <ThemeSwitcher />
           </>
         )}
       </nav>

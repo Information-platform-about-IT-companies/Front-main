@@ -10,15 +10,12 @@ function ThemeSwitcher() {
     setTheme(theme === themes.light ? themes.dark : themes.light);
   }
 
-  /*   useEffect(() => {
-    setTheme(localStorage.getItem("theme"));
-  }, [theme]); */
   return (
     <div className="theme-switcher">
       <Icon
         icon="IconThemeLight"
         size="30"
-        color="#C0BFE2"
+        color="#6c6ad7"
         extClassName="theme-switcher__ligth-icon"
       />
       <Icon

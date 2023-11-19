@@ -1,11 +1,17 @@
 @import "src/assets/style/main";
 
 :root[data-theme="light"] {
-  --background: #f8f8f8;
+  --background: #{$white};
   --theme-transition: 0.5s;
+  --button-border: #{$blue};
+  --text-color: #{$black};
+  --icon-color: #{$blue};
 }
 
 :root[data-theme="dark"] {
-  --background: #141420;
+  --background: #{$blue-night};
   --theme-transition: 0.5s;
+  --button-border: #{$blue-dark};
+  --text-color: #{$snow-white};
+  --icon-color: #{$blue-dark};
 }
