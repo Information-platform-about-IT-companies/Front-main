@@ -7,6 +7,9 @@
   --text-color: #{$black};
   --icon-color: #{$blue};
   --link-underline: #{$sea-blue-middle-soft};
+  --input-border: #{$blue};
+  --input-background: #{$white};
+  --input-placeholder: #{$black};
 }
 
 :root[data-theme="dark"] {
@@ -16,4 +19,7 @@
   --text-color: #{$snow-white};
   --icon-color: #{$blue-dark};
   --link-underline: #{$blue-dark};
+  --input-border: #{$blue-dark};
+  --input-background: #{$blue-night};
+  --input-placeholder: #{$blue-dark};
 }

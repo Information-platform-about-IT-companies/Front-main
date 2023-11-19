@@ -98,7 +98,7 @@ export function Search({ extClassName, ...props }) {
   return (
     <form className={`search ${extClassName}`} onSubmit={handleSubmitSearch}>
       <Input
-        icon={<Icon icon="IconSearch" color="#4e4cbf" size="24" />}
+        icon={<Icon icon="IconSearch" color="var(--icon-color)" size="24" />}
         extClassNameInput="search__input_1"
         onlyInput
         name="search"
@@ -107,7 +107,7 @@ export function Search({ extClassName, ...props }) {
         onChange={(event) => setQuery(event.target.value)}
       />
       <Input
-        icon={<Icon icon="IconPin" color="#4e4cbf" size="24" />}
+        icon={<Icon icon="IconPin" color="var(--icon-color)" size="24" />}
         extClassNameInput="search__input_2"
         onlyInput
         name="city"
