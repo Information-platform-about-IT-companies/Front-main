@@ -84,7 +84,13 @@ export const fetchCities = async (name) =>
  * Получает результаты поиска компаний и услуг с сервера с использованием опций запроса.
  *
  * @param {string} [name] - Название компании или услуги для поиска (опционально).
- * @returns {Promise<void>} - Объект Promise.
+ * @returns {Promise<Object[]>} - Объект Promise, разрешаемый массивом объектов результатов поиска.
+ *   @property {Object[]} companies - Массив объектов компаний, найденных по заданному имени.
+ *     @property {number} id - Идентификатор компании.
+ *     @property {string} name - Название компании.
+ *   @property {Object[]} services - Массив объектов услуг, найденных по заданному имени.
+ *     @property {number} id - Идентификатор услуги.
+ *     @property {string} name - Название услуги.
  * @throws {HTTPError} - В случае ошибки при выполнении запроса.
  */
 export const searchServicesCompanies = (name) =>

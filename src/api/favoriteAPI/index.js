@@ -27,7 +27,7 @@ export const addFavorited = async (id) => HTTP.post(API_ENDPOINTS.FAVORITE.ADD(i
 * @throws {HTTPError} - В случае ошибки при выполнении запроса.
 */
 
-export const removeFavorited = async (id) => HTTP.delete(API_ENDPOINTS.FAVORITE.ADD(id));
+export const removeFavorited = async (id) => HTTP.delete(API_ENDPOINTS.FAVORITE.REMOVE(id));
 
 export const favoriteApi = {
   addFavorited,

@@ -29,7 +29,9 @@ import { HTTP } from "api/http";
  */
 
 export const signup = async (formData) =>
-  HTTP.post(API_ENDPOINTS.AUTH.SIGNUP, { body: transform.signupFormData(formData) });
+  HTTP.post(API_ENDPOINTS.AUTH.SIGNUP, {
+    body: JSON.stringify(transform.signupFormData(formData)),
+  });
 
 /**
  *
@@ -45,7 +47,7 @@ export const signup = async (formData) =>
  */
 
 export const confirmSignup = (formData) =>
-  HTTP.get(API_ENDPOINTS.AUTH.SIGNUP_CONFIRM, { body: formData });
+  HTTP.post(API_ENDPOINTS.AUTH.SIGNUP_CONFIRM, { body: JSON.stringify(formData) });
 
 /**
  *
@@ -55,12 +57,15 @@ export const confirmSignup = (formData) =>
  *   @property {string} email - Адрес электронной почты пользователя.
  *   @property {string} password - Пароль пользователя..
  *
- * @returns {Promise<void>}  - Объект Promise, с данными ответа от сервера.
+ * @returns {Promise<Object>} - Объект Promise, разрешаемый данными аутентификации.
+ *   @property {string} access - Токен доступа.
+ *   @property {string} refresh - Токен обновления.
  * @throws {HTTPError} - (400, 403) В случае ошибки при выполнении запроса.
  *
  */
 
-export const signin = async (formData) => HTTP.post(API_ENDPOINTS.AUTH.SIGNIN, { body: formData });
+export const signin = async (formData) =>
+  HTTP.post(API_ENDPOINTS.AUTH.SIGNIN, { body: JSON.stringify(formData) });
 
 /**
  *
@@ -75,7 +80,7 @@ export const signin = async (formData) => HTTP.post(API_ENDPOINTS.AUTH.SIGNIN, {
  */
 
 export const resetPassword = async (formData) =>
-  HTTP.post(API_ENDPOINTS.AUTH.RESET_PASSWORD, { body: formData });
+  HTTP.post(API_ENDPOINTS.AUTH.RESET_PASSWORD, { body: JSON.stringify(formData) });
 
 /**
  *
@@ -94,7 +99,7 @@ export const resetPassword = async (formData) =>
 
 export const confirmResetPassword = (formData) =>
   HTTP.post(API_ENDPOINTS.AUTH.CHANGE_PASSWORD, {
-    body: transform.resetPasswordFormData(formData),
+    body: JSON.stringify(transform.resetPasswordFormData(formData)),
   });
 
 export const authAPI = {

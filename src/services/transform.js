@@ -5,26 +5,24 @@ export const company = (client) => {
 };
 
 export const signupFormData = (formData) => {
-  const transformedData = new FormData();
-
-  transformedData.append("first_name", formData.get("userName") || "");
-  transformedData.append("last_name", formData.get("userSurname") || "");
-  transformedData.append("email", formData.get("email") || "");
-  transformedData.append("password", formData.get("password") || "");
-  transformedData.append("re_password", formData.get("repeatPassword") || "");
-
-  return transformedData;
+  const { userName, userSurname, email, password, repeatPassword } = formData;
+  return {
+    first_name: userName,
+    last_name: userSurname,
+    email,
+    password,
+    re_password: repeatPassword,
+  };
 };
 
 export const resetPasswordFormData = (formData) => {
-  const transformedData = new FormData();
-
-  transformedData.append("uid", formData.get("uid") || "");
-  transformedData.append("token", formData.get("token") || "");
-  transformedData.append("new_password", formData.get("newPassword") || "");
-  transformedData.append("re_new_password", formData.get("repeatNewPassword") || "");
-
-  return transformedData;
+  const { uid, token, newPassword, repeatNewPassword } = formData;
+  return {
+    uid,
+    token,
+    new_password: newPassword,
+    re_new_password: repeatNewPassword,
+  };
 };
 
 export const userData = (user) => {
@@ -33,22 +31,20 @@ export const userData = (user) => {
 };
 
 export const userFormData = (formData) => {
-  const transformedData = new FormData();
-
-  transformedData.append("first_name", formData.get("userName") || "");
-  transformedData.append("last_name", formData.get("userSurname") || "");
-
-  return transformedData;
+  const { userName, userSurname } = formData;
+  return {
+    first_name: userName,
+    last_name: userSurname,
+  };
 };
 
 export const resetCurrentUserPasswordFormData = (formData) => {
-  const transformedData = new FormData();
-
-  transformedData.append("current_password", formData.get("currentPassword") || "");
-  transformedData.append("new_password", formData.get("newPassword") || "");
-  transformedData.append("re_new_password", formData.get("repeatNewPassword") || "");
-
-  return transformedData;
+  const { newPassword, repeatNewPassword, currentPassword } = formData;
+  return {
+    current_password: currentPassword,
+    new_password: newPassword,
+    re_new_password: repeatNewPassword,
+  };
 };
 
 export const transform = {

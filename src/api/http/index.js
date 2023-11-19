@@ -40,21 +40,19 @@ export class HTTP {
     },
   ) {
     const baseURL = url ?? new URL(path, API_HOST);
-    try {
-      const response = await fetch(baseURL, {
-        headers,
-        method,
-        withCredentials,
-        ...rest,
-      });
-      const data = await response.json();
-      if (!response.ok) {
-        throw new HTTPError(response, data);
-      }
-      return data;
-    } catch (error) {
-      console.error(error);
-      throw error;
+
+    const response = await fetch(baseURL, {
+      headers,
+      method,
+      withCredentials,
+      ...rest,
+    });
+
+    if (response.ok) {
+      return response.json();
     }
+
+    const errorData = await response.json();
+    throw new HTTPError(response, errorData);
   }
 }

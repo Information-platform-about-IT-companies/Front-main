@@ -6,15 +6,15 @@ export const API_HOST = "https://dev.octopus-it.ru/api/v1/";
 
 export const API_ENDPOINTS = {
   AUTH: {
-    SIGNUP: "auth/signup",
-    SIGNUP_CONFIRM: "auth/signup_confirm",
-    SIGNIN: "auth/signin",
-    RESET_PASSWORD: "auth/reset_password",
-    CHANGE_PASSWORD: "auth/reset_password_confirm",
+    SIGNUP: "auth/signup/",
+    SIGNUP_CONFIRM: "auth/signup_confirm/",
+    SIGNIN: "auth/signin/",
+    RESET_PASSWORD: "auth/reset_password/",
+    CHANGE_PASSWORD: "auth/reset_password_confirm/",
   },
   USER: {
     ME: "user/me",
-    UPDATE_PROFILE: "user/me/change_password",
+    UPDATE_PROFILE: "user/me/change_password/",
   },
   INFO: {
     INDUSTRIES: "info/industries",
@@ -24,15 +24,15 @@ export const API_ENDPOINTS = {
     SEARCH: "info/search_services_companies",
   },
   TOKENS: {
-    REFRESH: "refresh",
+    REFRESH: "refresh/",
   },
   COMPANIES: {
     FETCH: (params) => `companies?${new URLSearchParams(params).toString()}`,
     GET: (id) => `companies/${id}`,
   },
   FAVORITE: {
-    ADD: (id) => `companies/${id}/favorite`,
-    REMOVE: (id) => `companies/${id}/favorite`,
+    ADD: (id) => `companies/${id}/favorite/`,
+    REMOVE: (id) => `companies/${id}/favorite/`,
   },
 };
 
