@@ -151,7 +151,7 @@ export function Search({ extClassName, ...props }) {
     } else {
       setIsButtonActive(false);
     }
-  }, [query, queryCity]);
+  }, [queryCity]);
 
   useEffect(() => {
     debouncedSearch(query);
