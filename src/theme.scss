@@ -11,6 +11,9 @@
   --input-background: #{$white};
   --input-placeholder: #{$black};
   --span-text: #{$blue};
+  --search-hint: #{$sea-blue-light};
+  --search-hint-title: #{$blue};
+  --search-hint-link: #{$black};
 }
 
 :root[data-theme="dark"] {
@@ -24,4 +27,7 @@
   --input-background: #{$blue-night};
   --input-placeholder: #{$blue-dark};
   --span-text: #{$blue-dark};
+  --search-hint: #{$sea-blue-light-night};
+  --search-hint-title: #{$blue-dark};
+  --search-hint-link: #{$snow-white};
 }

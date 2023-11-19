@@ -30,7 +30,7 @@
     width: 100%;
     overflow: hidden;
     border-radius: 10px;
-    background-color: $sea-blue-light;
+    background-color: var(--search-hint);
     grid-column: 1 / -1;
     z-index: 99;
     transition: height $animation;
@@ -53,7 +53,7 @@
   &__hint-list-header {
     margin: 0;
     padding-bottom: 12px;
-    color: $blue;
+    color: var(--search-hint-title);
     font-size: $text-size-small;
 
     &_no-found {
@@ -75,7 +75,7 @@
 
   &__hint-link {
     text-decoration: none;
-    color: $black;
+    color: var(--search-hint-link);
     font-size: $text-size-default;
   }
 }
