@@ -1,0 +1,11 @@
+@import "src/assets/style/main";
+
+:root[data-theme="light"] {
+  --background: #f8f8f8;
+  --theme-transition: 0.5s;
+}
+
+:root[data-theme="dark"] {
+  --background: #141420;
+  --theme-transition: 0.5s;
+}
