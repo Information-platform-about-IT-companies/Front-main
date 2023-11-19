@@ -1,5 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 
+import debounce from "services/debounce";
+
 import { infoAPI } from "api/infoApi";
 import Input from "UI-KIT/Input/Input";
 import { Button } from "UI-KIT/Button/Button";
@@ -11,14 +13,20 @@ import "./Search.scss";
 
 export function Search({ extClassName, ...props }) {
   const [isButtonActive, setIsButtonActive] = useState(false);
+
   const [query, setQuery] = useState("");
   const [response, setResponse] = useState({});
   const [isResponseNull, setIsResponseNull] = useState(null);
   const [isHintOpen, setIsHintOpen] = useState(false);
-  const [responseSelected, responseQuerySelected] = useState("");
-  const [queryCity, setCityQuery] = useState("");
-  // const [responseCity, setResponseCity] = useState([]);
-  // const [responseCitySelected, responseCityQuerySelected] = useState("");
+  const [responseSelected, setResponseSelected] = useState("");
+  const [isResponseSelected, setIsResponseSelected] = useState(false);
+
+  const [queryCity, setQueryCity] = useState("");
+  const [responseCity, setResponseCity] = useState([]);
+  const [isResponseCityNull, setIsResponseCityNull] = useState(null);
+  const [isHintCityOpen, setIsHintCityOpen] = useState(false);
+  const [responseCitySelected, setResponseCitySelected] = useState("");
+  const [isResponseCitySelected, setIsResponseCitySelected] = useState(false);
 
   const handleSubmitSearch = (event) => {
     event.preventDefault();
@@ -42,7 +50,7 @@ export function Search({ extClassName, ...props }) {
     return true;
   };
 
-  // функции запроса на сервер совпадающего ввода
+  // запросы на сервер совпадающего ввода
   const addResponseSearch = async (search) => {
     try {
       const res = await infoAPI.searchServicesCompanies(search);
@@ -53,35 +61,17 @@ export function Search({ extClassName, ...props }) {
     }
   };
 
-  // async function addResponseSearchCities(searchQuery) {
-  //   try {
-  //     const res = await infoAPI.fetchCities(searchQuery);
-  //     setResponseCity(res);
-  //   } catch (error) {
-  //     console.error("Ошибка запроса по городам:", error);
-  //   }
-  // }
-
-  // декоратор отложения выполнения функций
-  const debounce = (func, delay) => {
-    let timeout;
-    const debounced = function (...args) {
-      const context = this;
-
-      const execute = () => {
-        timeout = null;
-        func.apply(context, args);
-      };
-
-      if (!timeout) {
-        timeout = setTimeout(execute, delay);
-      }
-    };
-
-    return debounced;
+  const addResponseSearchCity = async (searchCity) => {
+    try {
+      const res = await infoAPI.fetchCities(searchCity);
+      setResponseCity(res);
+      setIsResponseCityNull(checkEmptyArrayProperties(res));
+    } catch (error) {
+      console.error("Ошибка запроса по городам:", error);
+    }
   };
 
-  //
+  // выполнение отложенного поиска
   const debouncedSearch = useRef(
     debounce((search) => {
       if (search.length >= 3) {
@@ -96,8 +86,44 @@ export function Search({ extClassName, ...props }) {
     }, 500),
   ).current;
 
+  const debouncedSearchCity = useRef(
+    debounce((search) => {
+      if (search.length >= 3) {
+        addResponseSearchCity(search);
+        setIsButtonActive(true);
+        setIsHintCityOpen(true);
+      } else {
+        setIsButtonActive(false);
+        setIsHintCityOpen(false);
+        setResponseCity([]);
+      }
+    }, 500),
+  ).current;
+
+  // функция выбора текста из выпадающей подсказки
   const handleSelect = (text) => {
-    responseQuerySelected(text);
+    setQuery(text);
+    setResponseSelected(text);
+    setIsHintOpen(false);
+    setIsResponseSelected(true);
+  };
+
+  const handleSelectCity = (text) => {
+    setQueryCity(text);
+    setResponseCitySelected(text);
+    setIsHintCityOpen(false);
+    setIsResponseCitySelected(true);
+  };
+
+  // функции обработчиков ввода
+  const handleInputChange = (event) => {
+    setQuery(event.target.value);
+    setResponseSelected("");
+  };
+
+  const handleInputCityChange = (event) => {
+    setQueryCity(event.target.value);
+    setResponseCitySelected("");
   };
 
   // выпадающие подсказки
@@ -105,9 +131,8 @@ export function Search({ extClassName, ...props }) {
 
   const hint = (res) =>
     Object.keys(res).map((title) => {
-      if (res[title].length === 0) {
-        return null;
-      }
+      if (res[title].length === 0) return null;
+
       let titleName;
       switch (title) {
         case "services":
@@ -125,25 +150,11 @@ export function Search({ extClassName, ...props }) {
       );
     });
 
-  // function hintCity(res) {
-  //   if (!res) {
-  //     return null;
-  //   }
-  //   const cityNames = res.map((city) => (
-  //     <li className="search__hint-list-element" key={city.id}>
-  //       <div className="search__hint-list-element-text">{city.name}</div>
-  //     </li>
-  //   ));
+  function hintCity(res) {
+    if (res.length === 0) return null;
 
-  //   return (
-  //     <div className="search__hint-list-container">
-  //       <div className="search__hint-list-header" key="cities">
-  //         Найдено в городах
-  //       </div>
-  //       <ul className="search__hint-list">{cityNames}</ul>
-  //     </div>
-  //   );
-  // }
+    return <SearchHintList title="городах" optionsObjectList={res} onSelect={handleSelectCity} />;
+  }
 
   useEffect(() => {
     if (query || queryCity) {
@@ -151,21 +162,27 @@ export function Search({ extClassName, ...props }) {
     } else {
       setIsButtonActive(false);
     }
-  }, [queryCity]);
+  }, [query, queryCity]);
 
   useEffect(() => {
-    debouncedSearch(query);
+    if (!isResponseSelected) debouncedSearch(query);
+
+    setIsResponseSelected(false);
+
+    return () => {
+      debouncedSearch.cancel();
+    };
   }, [query, debouncedSearch]);
 
-  // useEffect(() => {
-  //   if (queryCity.length >= 3) {
-  //     addResponseSearchCities(queryCity);
-  //     dropDownBlock(elementToggle, true);
-  //   } else {
-  //     setResponseCity([]);
-  //     dropDownBlock(elementToggle, false);
-  //   }
-  // }, [queryCity]);
+  useEffect(() => {
+    if (!isResponseCitySelected) debouncedSearchCity(queryCity);
+
+    setIsResponseCitySelected(false);
+
+    return () => {
+      debouncedSearchCity.cancel();
+    };
+  }, [queryCity, debouncedSearchCity]);
 
   return (
     <form className={`search ${extClassName}`} onSubmit={handleSubmitSearch}>
@@ -175,9 +192,11 @@ export function Search({ extClassName, ...props }) {
         onlyInput
         name="search"
         id="search"
-        value={responseSelected}
+        type="text"
+        value={query || responseSelected}
         placeholder="Название компании или услуга"
-        onChange={(event) => setQuery(event.target.value)}
+        onChange={handleInputChange}
+        onFocus={() => setIsHintCityOpen(false)}
         autocomplete="off"
       />
       <Input
@@ -186,8 +205,10 @@ export function Search({ extClassName, ...props }) {
         onlyInput
         name="city"
         id="city"
+        value={queryCity || responseCitySelected}
         placeholder="Город"
-        onChange={(event) => setCityQuery(event.target.value)}
+        onChange={handleInputCityChange}
+        onFocus={() => setIsHintOpen(false)}
         autocomplete="off"
       />
       <Button
@@ -204,10 +225,12 @@ export function Search({ extClassName, ...props }) {
           {hint(response)}
         </DynamicHeightComponent>
       )}
-      {/* <div ref={wrappedHintCity} className="search__hint">
-        {hint(response) === && responseCity.length === 0 && hintNotFound}
-        {responseCity.length === 0 ? "" : hintCity(responseCity)}
-      </div> */}
+      {isHintCityOpen && (
+        <DynamicHeightComponent extClassName="search__hint">
+          {isResponseCityNull === true && hintNotFound()}
+          {hintCity(responseCity)}
+        </DynamicHeightComponent>
+      )}
     </form>
   );
 }
