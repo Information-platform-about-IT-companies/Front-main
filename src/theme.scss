@@ -10,6 +10,7 @@
   --input-border: #{$blue};
   --input-background: #{$white};
   --input-placeholder: #{$black};
+  --span-text: #{$blue};
 }
 
 :root[data-theme="dark"] {
@@ -22,4 +23,5 @@
   --input-border: #{$blue-dark};
   --input-background: #{$blue-night};
   --input-placeholder: #{$blue-dark};
+  --span-text: #{$blue-dark};
 }
