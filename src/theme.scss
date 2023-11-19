@@ -6,6 +6,7 @@
   --button-border: #{$blue};
   --text-color: #{$black};
   --icon-color: #{$blue};
+  --link-underline: #{$sea-blue-middle-soft};
 }
 
 :root[data-theme="dark"] {
@@ -14,4 +15,5 @@
   --button-border: #{$blue-dark};
   --text-color: #{$snow-white};
   --icon-color: #{$blue-dark};
+  --link-underline: #{$blue-dark};
 }
