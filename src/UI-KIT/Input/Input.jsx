@@ -36,6 +36,7 @@ function Input({
       type={type}
       name={name}
       id={id}
+      data-testid="input"
       className={`input__field ${errorStyle()} ${inputWithIconStyle()} ${extClassNameInput}`}
       required={required}
       placeholder={placeholder}
@@ -65,7 +66,9 @@ function Input({
             {inputField}
             {children}
           </div>
-          <span className={`input__error-text ${errorShow()}`}>{error}</span>
+          <span className={`input__error-text ${errorShow()}`} data-testid="inputError">
+            {error}
+          </span>
         </>
       )}
     </div>

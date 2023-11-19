@@ -28,7 +28,7 @@ export default function () {
   }, []);
 
   return (
-    <button className="scroll" onClick={onClick}>
+    <button className="scroll" data-testid="skrollUp" onClick={onClick}>
       {showScroll && <Icon extClassName="scroll__icon" icon="IconOctopusArrow" size={60} />}
     </button>
   );

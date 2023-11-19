@@ -1,10 +1,17 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, useLocation } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
 import Header from "./Header";
 
-describe("Header component", () => {
+function LocationDisplay() {
+  const location = useLocation();
+
+  return <div data-testid="location-display">{location.pathname}</div>;
+}
+
+describe("Header component is renders", () => {
   it("renders Header component when is logged in", () => {
     render(
       <BrowserRouter>
@@ -23,20 +30,25 @@ describe("Header component", () => {
     const headerElem = screen.getByText(/Войти/i);
     expect(headerElem).toBeInTheDocument();
   });
+});
 
-  it("should navigate to / when logo is clicked", () => {
-    const { container } = render(
+describe("Header component navigation", () => {
+  it("should navigate to / when logo is clicked", async () => {
+    render(
       <BrowserRouter>
-        <Header loggedIn={true} userData="Test User" />
+        <Header loggedIn userData="Test User" />
       </BrowserRouter>,
     );
-    const linkElement = container.querySelector(".header__logo");
+    const linkElement = screen.getByTestId("headerLogoLink");
     expect(linkElement).toBeInTheDocument();
-    fireEvent.click(linkElement);
-    expect(window.location.pathname).toBe("/");
+
+    await waitFor(async () => {
+      await userEvent.click(linkElement);
+      expect(window.location.pathname).toBe("/");
+    });
   });
 
-  it("should navigate to /signin when enter button is clicked", () => {
+  it("should navigate to /signin when enter button is clicked", async () => {
     render(
       <BrowserRouter>
         <Header loggedIn={false} userData="Test User" />
@@ -44,11 +56,13 @@ describe("Header component", () => {
     );
     const linkElement = screen.getByText(/Войти/i);
     expect(linkElement).toBeInTheDocument();
-    fireEvent.click(linkElement);
-    expect(window.location.pathname).toBe("/signin");
+    await waitFor(async () => {
+      await userEvent.click(linkElement);
+      expect(window.location.pathname).toBe("/signin");
+    });
   });
 
-  it("should navigate to /signup when register button is clicked", () => {
+  it("should navigate to /signup when register button is clicked", async () => {
     render(
       <BrowserRouter>
         <Header loggedIn={false} userData="Test User" />
@@ -56,8 +70,10 @@ describe("Header component", () => {
     );
     const linkElement = screen.getByText(/Зарегистрироваться/i);
     expect(linkElement).toBeInTheDocument();
-    fireEvent.click(linkElement);
-    expect(window.location.pathname).toBe("/signup");
+    await waitFor(async () => {
+      await userEvent.click(linkElement);
+      expect(window.location.pathname).toBe("/signup");
+    });
   });
 
   // it('should navigate to /signout when exit button is clicked', () => {
@@ -74,15 +90,17 @@ describe("Header component", () => {
 
   // Дописать, когда будут эндпойнты выхода
 
-  it("should navigate to /profile when profile button is clicked", () => {
+  it("should navigate to /profile when profile button is clicked", async () => {
     render(
       <BrowserRouter>
-        <Header loggedIn={true} userData="Test User" />
+        <Header loggedIn userData="Test User" />
       </BrowserRouter>,
     );
     const linkElement = screen.getByText(/Test User/i);
     expect(linkElement).toBeInTheDocument();
-    fireEvent.click(linkElement);
-    expect(window.location.pathname).toBe("/profile");
+    await waitFor(async () => {
+      await userEvent.click(linkElement);
+      expect(window.location.pathname).toBe("/profile");
+    });
   });
 });

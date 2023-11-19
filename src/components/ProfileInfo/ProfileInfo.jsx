@@ -89,6 +89,7 @@ function ProfileInfo() {
       <Form
         extClassName={isChangePasswordOpen ? `form-info form-info_with-change` : `form-info`}
         onSubmit={formikInfo.handleSubmit}
+        data-testid="profileInfoForm"
       >
         <div className="form-info_name-container">
           <Input
@@ -96,6 +97,7 @@ function ProfileInfo() {
             label="Имя"
             type="text"
             name="firstName"
+            data-testid="firstName"
             value={formikInfo.values.firstName}
             onChange={formikInfo.handleChange}
             error={
@@ -110,6 +112,7 @@ function ProfileInfo() {
             type="text"
             id={`${id}-lastName`}
             name="lastName"
+            data-testid="lastName"
             value={formikInfo.values.lastName}
             onChange={formikInfo.handleChange}
             error={
@@ -125,6 +128,7 @@ function ProfileInfo() {
           type="email"
           name="email"
           id={`${id}-email`}
+          data-testid="email"
           value={formikInfo.values.email}
           onChange={formikInfo.handleChange}
           error={
@@ -137,6 +141,7 @@ function ProfileInfo() {
             fill
             size="standard"
             type="submit"
+            data-testid="submitInfoButton"
             title="Обновить профиль"
             disabled={!(formikInfo.isValid && formikInfo.dirty)}
           />

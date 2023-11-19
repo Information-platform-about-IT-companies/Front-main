@@ -8,7 +8,7 @@ import ScrollUp from "../ScrollUp/ScrollUp";
 function Header({ loggedIn, userData }) {
   return (
     <header className="header">
-      <Link to="/" className="header__logo" />
+      <Link to="/" className="header__logo" data-testid="headerLogoLink" />
       <nav className="header__navigation">
         {loggedIn ? (
           <>
