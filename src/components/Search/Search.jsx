@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import debounce from "services/debounce";
 
@@ -12,6 +13,7 @@ import SearchHintList from "./SearchHintList/SearchHintList";
 import "./Search.scss";
 
 export function Search({ extClassName, ...props }) {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [isButtonActive, setIsButtonActive] = useState(false);
 
   const [query, setQuery] = useState("");
@@ -28,11 +30,30 @@ export function Search({ extClassName, ...props }) {
   const [responseCitySelected, setResponseCitySelected] = useState("");
   const [isResponseCitySelected, setIsResponseCitySelected] = useState(false);
 
+  const navigate = useNavigate();
+
+  // TODO переходим на страницу компании если выбрана компания
+
   const handleSubmitSearch = (event) => {
     event.preventDefault();
-    console.log("нажата клавиша поиск");
-    // TODO переходим на страницу фильтра с выбранными параметрами
-    // TODO переходим на страницу компании если выбрана компания
+    const cityId = responseCity[0]?.id || "";
+    const serviceId =
+      response && response.services && response.services.length > 0 && response.services[0].id
+        ? response.services[0].id
+        : "";
+
+    const buildSearchParams = (city, service) => {
+      let params = "";
+      if (city) params += `cities=${encodeURIComponent(`[${city}]`)}`;
+      if (service) {
+        params += city
+          ? `&services=${encodeURIComponent(`[${service}]`)}`
+          : `services=${encodeURIComponent(`[${service}]`)}`;
+      }
+      return params;
+    };
+    const params = buildSearchParams(cityId, serviceId);
+    navigate(`/filter?${params}`);
   };
 
   // проверка свойств объекта, что они пустые массивы
@@ -76,10 +97,8 @@ export function Search({ extClassName, ...props }) {
     debounce((search) => {
       if (search.length >= 3) {
         addResponseSearch(search);
-        setIsButtonActive(true);
         setIsHintOpen(true);
       } else {
-        setIsButtonActive(false);
         setIsHintOpen(false);
         setResponse({});
       }
@@ -90,10 +109,8 @@ export function Search({ extClassName, ...props }) {
     debounce((search) => {
       if (search.length >= 3) {
         addResponseSearchCity(search);
-        setIsButtonActive(true);
         setIsHintCityOpen(true);
       } else {
-        setIsButtonActive(false);
         setIsHintCityOpen(false);
         setResponseCity([]);
       }
