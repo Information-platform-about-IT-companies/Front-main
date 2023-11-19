@@ -5,7 +5,8 @@ import { LoadingStatus } from "services/constants";
 import Breadcrumbs from "components/Breadcrumbs/Breadcrumbs";
 import { Filter } from "components/Filter/Filter";
 import CompanyCard from "components/CompanyCard/CompanyCard";
-import { getCompanies } from "mocks/services/companyController";
+import { companyAPI } from "api/companyAPI";
+import { addFavorited, removeFavorited } from "api/favoriteAPI";
 import { Pagination } from "components/Pagination/Pagination";
 import "./FilterPage.scss";
 
@@ -26,10 +27,10 @@ function FilterPage() {
     const filterServices = JSON.parse(searchParams.get("services"));
 
     const fetchData = async () => {
-      const response = await getCompanies({
-        page: Number(page),
-        city: filterCities,
-        service: filterServices,
+      const response = await companyAPI.fetchCompanies({
+        ...(page !== 1 ? { page: Number(page) } : {}),
+        ...(filterCities ? { city: filterCities } : {}),
+        ...(filterServices ? { services: filterServices } : {}),
       });
       setCompanies(response.results);
       setTotalPages(response.total_pages);
@@ -61,16 +62,23 @@ function FilterPage() {
       )}
       <ul className="filterPage__list">
         {companies &&
-          companies.map(({ id, services, name, description, is_favorited: isFavorited }) => (
-            <li key={id} className="filterPage__listitem">
+          companies.map(({ id, services, name, description, isFavorited }) => (
+            // eslint-disable-next-line react/no-unknown-property
+            <li
+              key={id}
+              className="filterPage__listitem"
+              data-favorited={JSON.stringify(isFavorited)}
+            >
               <CompanyCard
                 type="filterCard"
                 key={id}
                 services={services}
                 name={name}
-                iconLikeState={isFavorited}
+                {...(isFavorited ? { inFavorite: true } : {})}
                 description={description}
+                onIconHeartClick={onIconHeartClick}
               />
+              <span>{JSON.stringify(isFavorited)}</span>
             </li>
           ))}
       </ul>

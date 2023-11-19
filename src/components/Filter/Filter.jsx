@@ -1,7 +1,6 @@
 import { useEffect, useReducer } from "react";
 import { useSearchParams } from "react-router-dom";
-import { getCategories } from "mocks/services/categoryController";
-import { getCities } from "mocks/services/cityController";
+import { infoAPI } from "api/infoApi";
 import { LoadingStatus } from "services/constants";
 import { reducer, initialState } from "store/reducers/filterReducer";
 // components
@@ -17,8 +16,8 @@ export function Filter() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const citiesPromise = getCities();
-      const servicesPromise = getCategories();
+      const citiesPromise = infoAPI.fetchCities();
+      const servicesPromise = infoAPI.fetchServiceCategories();
       const response = await Promise.all([citiesPromise, servicesPromise]);
       dispatch({ type: "FETCH_CITIES", payload: response[0] });
       dispatch({ type: "FETCH_CATEGORIES", payload: response[1] });
