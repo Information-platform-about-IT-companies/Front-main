@@ -1,15 +1,9 @@
 import React from "react";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { BrowserRouter, useLocation } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 import Footer from "./Footer";
-
-function LocationDisplay() {
-  const location = useLocation();
-
-  return <div data-testid="location-display">{location.pathname}</div>;
-}
 
 describe("Header component is renders", () => {
   it("renders Footer component", () => {
