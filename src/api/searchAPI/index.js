@@ -9,8 +9,9 @@ class SearchApi {
     return result.ok ? result.json() : Promise.reject(result);
   }
 
-  request(endpoint, options) {
-    return fetch(`${this.baseUrl}${endpoint}`, options).then(this.checkResponse);
+  async request(endpoint, options) {
+    const result = await fetch(`${this.baseUrl}${endpoint}`, options);
+    return this.checkResponse(result);
   }
 
   getSearchCities(query) {
@@ -21,7 +22,7 @@ class SearchApi {
   }
 
   getSearchServicesAndCompaneis(query) {
-    return this.request(`/search_services_companies/?name==${query}`, {
+    return this.request(`/search_services_companies/?name=${query}`, {
       credentials: "include",
       headers: this.headers,
     });
