@@ -63,7 +63,8 @@ function ForgetPassword() {
             title="Войдите здесь"
             extClassName="password-recovery__link"
             weight="400"
-            lineColor="#479fba"
+            textColor="var(--text-color)"
+            lineColor="var(--link-underline)"
           />
         </p>
       </div>
@@ -93,7 +94,8 @@ function ForgetPassword() {
             title="Войдите здесь"
             extClassName="password-recovery__link"
             weight="400"
-            lineColor="#479fba"
+            textColor="var(--text-color)"
+            lineColor="var(--link-underline)"
           />
         </p>
       </div>

@@ -62,6 +62,10 @@
 
 .input__field-error {
   border-color: $red;
+
+  &:focus {
+    box-shadow: inset 0 0 0 0 $red;
+  }
 }
 
 .input__error-text {
