@@ -1,13 +1,34 @@
 import { Search } from "components/Search/Search";
 import "./Main.scss";
 import { Link } from "react-router-dom";
-import Icon from "UI-KIT/Icons";
 import { Category } from "components/Category/Category";
 import { Button } from "UI-KIT/Button/Button";
 import { hardcode } from "services/constants";
-import Map from "components/Map/Map";
+import { useMainContext } from "context/MainContext";
+import { useEffect } from "react";
+import { userAPI } from "api/userApi";
+import { useErrorHandler } from "hooks/useErrorHandler";
 
 function Main() {
+  const [Error, setError] = useErrorHandler();
+  const { data, setData } = useMainContext();
+  const { currentUser } = data || {};
+
+  useEffect(() => {
+    const fetchCurrentUser = async () => {
+      try {
+        const user = await userAPI.getCurrentUser();
+        setData({ ...data, currentUser: user });
+      } catch (error) {
+        setError(error);
+      }
+    };
+
+    if (!currentUser) {
+      fetchCurrentUser();
+    }
+  }, [currentUser]);
+
   return (
     <main className="mainPage">
       <section className="intro">
@@ -47,6 +68,7 @@ function Main() {
           title="Посмотреть все компании"
         />
       </section>
+      <Error />
     </main>
   );
 }

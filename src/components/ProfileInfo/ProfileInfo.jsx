@@ -1,5 +1,5 @@
 import "./ProfileInfo.scss";
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import Input from "UI-KIT/Input/Input";
@@ -7,13 +7,25 @@ import { Form } from "UI-KIT/Form/Form";
 import { Button } from "UI-KIT/Button/Button";
 import { ButtonChanges } from "UI-KIT/ButtonChanges/ButtonChanges";
 import { NAME_REGULAR, PASSWORD_REGULAR } from "services/regulars";
+import { userAPI } from "api/userApi";
+import { useErrorHandler } from "hooks/useErrorHandler";
+import { useMainContext } from "context/MainContext";
 
 function ProfileInfo() {
+  const [Error, setError] = useErrorHandler();
+
+  const setResult = (result) => {
+    setError(result);
+  };
+
+  const { data, setData } = useMainContext();
+  const { firstName, lastName, email } = data?.currentUser || {};
+
   const formikInfo = useFormik({
     initialValues: {
-      firstName: "Vasya", // тут будут данные из useContext
-      lastName: "Pupkin",
-      email: "VasyaPupkin@yandex.com",
+      firstName,
+      lastName,
+      email,
     },
     validationSchema: yup.object({
       firstName: yup
@@ -35,7 +47,18 @@ function ProfileInfo() {
         .max(254, "Длина поля от 6 до 254 символов")
         .required("Поле обязательно для заполнения"),
     }),
-    onSubmit: (values) => console.log(JSON.stringify(values, null, 2)),
+    onSubmit: async (values) => {
+      try {
+        const updatedCurrentUser = await userAPI.updateUser(values);
+        setData({ ...data, currentUser: { ...data.currentUser, ...updatedCurrentUser } });
+        formikInfo.setValues({
+          ...formikInfo.values,
+          ...updatedCurrentUser,
+        });
+      } catch (error) {
+        setError(error);
+      }
+    },
   });
   const formikPassword = useFormik({
     initialValues: {
@@ -64,7 +87,14 @@ function ProfileInfo() {
         .oneOf([yup.ref("newPassword"), null], "Пароли не совпадают")
         .required("Поле обязательно для заполнения"),
     }),
-    onSubmit: (values) => console.log(JSON.stringify(values, null, 2)),
+    onSubmit: async (values) => {
+      try {
+        await userAPI.resetPassword(values);
+        setResult({ text: "Пароль обновлен" });
+      } catch (error) {
+        setError(error);
+      }
+    },
   });
   const transformInfoBlur = (event) => {
     formikInfo.setFieldValue(event.target.name, event.target.value.trim());
@@ -211,6 +241,7 @@ function ProfileInfo() {
           </div>
         </Form>
       ) : null}
+      <Error />
     </>
   );
 }

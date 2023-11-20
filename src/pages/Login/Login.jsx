@@ -4,11 +4,15 @@ import { Form } from "UI-KIT/Form/Form";
 import Input from "UI-KIT/Input/Input";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { authAPI } from "api/authApi";
+import { useErrorHandler } from "hooks/useErrorHandler";
 
 import "./Login.scss";
 import { PASSWORD_REGULAR } from "services/regulars";
 
 function Login() {
+  const [Error, setError] = useErrorHandler();
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -28,7 +32,18 @@ function Login() {
         .matches(PASSWORD_REGULAR, "Введите корректный пароль")
         .required("Поле обязательно для заполнения"),
     }),
-    onSubmit: (values) => console.log(JSON.stringify(values, null, 2)),
+    onSubmit: async (values) => {
+      try {
+        const { access, refresh } = await authAPI.signin(values);
+        /*
+        document.cookie = `access_token=${access}; path=/;`;
+        document.cookie = `refresh_token=${refresh}; path=/;`;
+        navigate("/");
+        */
+      } catch (error) {
+        setError(error);
+      }
+    },
   });
 
   const transformBlur = (event) => {
@@ -84,6 +99,7 @@ function Login() {
           lineColor="#479fba"
         />
       </p>
+      <Error />
     </main>
   );
 }

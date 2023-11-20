@@ -4,11 +4,14 @@ import { Form } from "UI-KIT/Form/Form";
 import Input from "UI-KIT/Input/Input";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { authAPI } from "api/authApi";
+import { useErrorHandler } from "hooks/useErrorHandler";
 
 import "./Register.scss";
 import { NAME_REGULAR, PASSWORD_REGULAR } from "services/regulars";
 
 function Register() {
+  const [Error, setError] = useErrorHandler();
   const formik = useFormik({
     initialValues: {
       userName: "",
@@ -50,7 +53,13 @@ function Register() {
         .oneOf([yup.ref("password"), null], "Пароли не совпадают")
         .required("Поле обязательно для заполнения"),
     }),
-    onSubmit: (values) => console.log(JSON.stringify(values, null, 2)),
+    onSubmit: async (values) => {
+      try {
+        await authAPI.signup(values);
+      } catch (error) {
+        setError(error);
+      }
+    },
   });
 
   const transformBlur = (event) => {
@@ -159,6 +168,7 @@ function Register() {
           lineColor="#479fba"
         />
       </p>
+      <Error />
     </main>
   );
 }

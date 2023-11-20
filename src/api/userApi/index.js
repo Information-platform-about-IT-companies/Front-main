@@ -26,6 +26,7 @@ import { HTTP } from "api/http";
  * @returns {Promise<UserData>} - Объект Promise, который разрешается объектом с данными о текущем пользователе.
  * @throws {HTTPError} - В случае ошибки при выполнении запроса.
  */
+// нужно будет добавить токен к запросу
 export const getCurrentUser = async () => {
   const user = await HTTP.get(API_ENDPOINTS.USER.ME);
   return transform.userData(user);
@@ -49,6 +50,7 @@ export const getCurrentUser = async () => {
  * @returns {Promise<UserData>} - Объект Promise, который разрешается обновленными данными о текущем пользователе.
  * @throws {HTTPError} - В случае ошибки при выполнении запроса.
  */
+// нужно будет добавить токен к запросу
 export const updateUser = async (formData) => {
   const user = await HTTP.patch(API_ENDPOINTS.USER.ME, {
     body: JSON.stringify(transform.userFormData(formData)),
@@ -70,6 +72,7 @@ export const updateUser = async (formData) => {
  * @returns {Promise<void>} - Объект Promise без конкретных данных, разрешаемый при успешном выполнении запроса.
  * @throws {HTTPError} - В случае ошибки при выполнении запроса.
  */
+// нужно будет добавить токен к запросу
 export const resetPassword = async (formData) => {
   HTTP.post(API_ENDPOINTS.USER.CHANGE_PASSWORD, {
     body: JSON.stringify(transform.resetCurrentUserPasswordFormData(formData)),
