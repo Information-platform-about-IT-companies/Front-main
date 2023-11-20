@@ -26,7 +26,7 @@ export default function MainContextProvider({ children }) {
 export const useMainContext = () => {
   const context = useContext(MainContext);
   if (!context) {
-    throw new Error("Попытка использовать хук useThemeContext за пределами ThemeContextProvider");
+    // throw new Error("Попытка использовать хук useThemeContext за пределами ThemeContextProvider");
   }
   return context;
 };
