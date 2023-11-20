@@ -7,7 +7,7 @@
   margin-top: 80px;
 
   &__title {
-    @include roboto-32($color: $black);
+    @include roboto-32($color: var(--text-color));
 
     font-style: normal;
     line-height: normal;
@@ -15,7 +15,7 @@
   }
 
   &__subtitle {
-    @include roboto-16($color: $black);
+    @include roboto-16($color: var(--text-color));
 
     font-style: normal;
     line-height: normal;
@@ -37,7 +37,7 @@
   }
 
   &__suggestion {
-    @include roboto-16($color: $black);
+    @include roboto-16($color: var(--text-color));
 
     font-style: normal;
     line-height: normal;
@@ -47,7 +47,7 @@
   }
 
   &__link {
-    @include roboto-16($color: $black);
+    @include roboto-16($color: var(--text-color));
   }
 
   &__userName {
@@ -99,7 +99,7 @@
   }
 
   &__tooltip-item {
-    @include roboto-16($color: $white);
+    @include roboto-16($color: var(--tooltip-text));
 
     line-height: 140%;
     list-style: disc outside;

@@ -15,6 +15,7 @@
   --search-hint-title: #{$blue};
   --search-hint-link: #{$black};
   --form-background: #{$sea-blue-light};
+  --tooltip-text: #{$white};
 }
 
 :root[data-theme="dark"] {
@@ -32,4 +33,5 @@
   --search-hint-title: #{$blue-dark};
   --search-hint-link: #{$snow-white};
   --form-background: #{$sea-blue-light-night};
+  --tooltip-text: #{$black-night};
 }
