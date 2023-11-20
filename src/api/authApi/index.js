@@ -98,7 +98,7 @@ export const resetPassword = async (formData) =>
  */
 
 export const confirmResetPassword = (formData) =>
-  HTTP.post(API_ENDPOINTS.AUTH.CHANGE_PASSWORD, {
+  HTTP.post(API_ENDPOINTS.AUTH.CONFIRM_RESET_PASSWORD, {
     body: JSON.stringify(transform.resetPasswordFormData(formData)),
   });
 

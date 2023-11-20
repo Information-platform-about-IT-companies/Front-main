@@ -31,19 +31,19 @@ export const userData = (user) => {
 };
 
 export const userFormData = (formData) => {
-  const { userName, userSurname } = formData;
+  const { firstName, LastName } = formData;
   return {
-    first_name: userName,
-    last_name: userSurname,
+    first_name: firstName,
+    last_name: LastName,
   };
 };
 
 export const resetCurrentUserPasswordFormData = (formData) => {
-  const { newPassword, repeatNewPassword, currentPassword } = formData;
+  const { newPassword, approvePassword, currentPassword } = formData;
   return {
     current_password: currentPassword,
     new_password: newPassword,
-    re_new_password: repeatNewPassword,
+    re_new_password: approvePassword,
   };
 };
 

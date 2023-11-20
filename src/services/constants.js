@@ -10,11 +10,12 @@ export const API_ENDPOINTS = {
     SIGNUP_CONFIRM: "auth/signup_confirm/",
     SIGNIN: "auth/signin/",
     RESET_PASSWORD: "auth/reset_password/",
-    CHANGE_PASSWORD: "auth/reset_password_confirm/",
+    CONFIRM_RESET_PASSWORD: "auth/reset_password_confirm/",
   },
   USER: {
-    ME: "user/me",
-    UPDATE_PROFILE: "user/me/change_password/",
+    ME: "users/me/",
+    UPDATE_PROFILE: "users/me/",
+    CHANGE_PASSWORD: "users/me/change_password/",
   },
   INFO: {
     INDUSTRIES: "info/industries",

@@ -16,8 +16,8 @@ import { HTTP } from "api/http";
  * @typedef {Object} UserData
  * @property {number} id - Идентификатор пользователя.
  * @property {string} email - Адрес электронной почты пользователя.
- * @property {string} userName - Имя пользователя.
- * @property {string} userSurname - Фамилия пользователя.
+ * @property {string} firstName - Имя пользователя.
+ * @property {string} lastName - Фамилия пользователя.
  */
 
 /**
@@ -32,6 +32,14 @@ export const getCurrentUser = async () => {
 };
 
 /**
+ * @typedef {Object} UserData
+ * @property {number} id - Идентификатор пользователя.
+ * @property {string} email - Адрес электронной почты пользователя.
+ * @property {string} firstName - Имя пользователя.
+ * @property {string} lastName - Фамилия пользователя.
+ */
+
+/**
  * Изменение информации о текущем пользователе.
  *
  * @param {Object} formData - Объект с данными для обновления профиля пользователя.
@@ -42,7 +50,9 @@ export const getCurrentUser = async () => {
  * @throws {HTTPError} - В случае ошибки при выполнении запроса.
  */
 export const updateUser = async (formData) => {
-  const user = await HTTP.patch(API_ENDPOINTS.USER.ME, { body: transform.userFormData(formData) });
+  const user = await HTTP.patch(API_ENDPOINTS.USER.ME, {
+    body: JSON.stringify(transform.userFormData(formData)),
+  });
   return transform.userData(user);
 };
 
@@ -61,8 +71,8 @@ export const updateUser = async (formData) => {
  * @throws {HTTPError} - В случае ошибки при выполнении запроса.
  */
 export const resetPassword = async (formData) => {
-  HTTP.post(API_ENDPOINTS.AUTH.RESET_PASSWORD, {
-    body: transform.resetCurrentUserPasswordFormData(formData),
+  HTTP.post(API_ENDPOINTS.USER.CHANGE_PASSWORD, {
+    body: JSON.stringify(transform.resetCurrentUserPasswordFormData(formData)),
   });
 };
 
