@@ -16,6 +16,10 @@
   --search-hint-link: #{$black};
   --form-background: #{$sea-blue-light};
   --tooltip-text: #{$white};
+  --company-hide-text: #{$blue};
+  --company-lable-background: #{$sea-blue-light};
+  --company-lable-background-hover: #{$sea-blue-middle};
+  --profile-nav-active: #{$sea-blue-light};
 }
 
 :root[data-theme="dark"] {
@@ -34,4 +38,8 @@
   --search-hint-link: #{$snow-white};
   --form-background: #{$sea-blue-light-night};
   --tooltip-text: #{$black-night};
+  --company-hide-text: #{$blue-dark-soft};
+  --company-lable-background: #{$sea-blue-light-night};
+  --company-lable-background-hover: #{$sea-blue-middle-night};
+  --profile-nav-active: #{$sea-blue-light};
 }

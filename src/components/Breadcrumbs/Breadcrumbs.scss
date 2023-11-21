@@ -8,7 +8,7 @@
   @include flex(center, flex-start, row);
 
   &__link {
-    color: $black;
+    color: var(--text-color);
     text-decoration: none;
   }
 

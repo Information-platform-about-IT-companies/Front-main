@@ -30,6 +30,7 @@
     gap: 40px;
     line-height: 24px;
     padding: 8px 0;
+    color: var(--text-color);
   }
 
   &__full-info {
@@ -37,7 +38,7 @@
   }
 
   &__description {
-    @include roboto-14;
+    @include roboto-14(var(--text-color));
   }
 
   &__accent-text {
@@ -79,7 +80,7 @@
   }
 
   &__contact-title {
-    @include roboto($black, 20px, 23px, 700);
+    @include roboto(var(--text-color), 20px, 23px, 700);
   }
 
   &__contact-block {
@@ -88,11 +89,11 @@
     gap: 8px;
 
     &_title {
-      @include roboto($black, 20px, 23px, 400);
+      @include roboto(var(--text-color), 20px, 23px, 400);
     }
 
     &_subtitle {
-      @include roboto($black, 16px, 22px, 300);
+      @include roboto(var(--text-color), 16px, 22px, 300);
 
       line-height: 22px;
       margin: 0;
