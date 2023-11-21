@@ -83,15 +83,15 @@
 
   &_style_light_bg {
     border: none;
-    color: $black;
+    color: var(--text-color);
     background: transparent;
 
     &:hover {
-      background-color: $sea-blue-light;
+      background-color: var(--profile-nav-active);
     }
 
     &:visited {
-      color: $black;
+      color: var(--text-color);
     }
   }
 }
@@ -102,6 +102,6 @@
 
 .active {
   font-weight: 500;
-  background-color: $sea-blue-light;
+  background-color: var(--profile-nav-active);
   border: none;
 }
