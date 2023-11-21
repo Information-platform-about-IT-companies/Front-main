@@ -4,7 +4,7 @@
   @include flex(flex-start, space-between);
 
   margin-top: 80px;
-  color: $black;
+  color: var(--text-color);
 
   &_navigation {
     margin-right: 40px;
@@ -36,7 +36,6 @@
       line-height: 22px;
       text-align: left;
       margin-bottom: 20px;
-      color: var(--text-color);
     }
   }
 
