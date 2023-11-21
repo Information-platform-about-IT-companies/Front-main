@@ -7,12 +7,12 @@
   width: 100%;
   max-width: 586px;
   border-radius: 20px;
-  background-color: $snow-white;
+  background-color: var(--profile-company-card);
   padding: 20px;
 
   &_type_favourite {
     min-height: 163px;
-    max-width: unset;
+    width: 100%;
   }
 
   &__like-wrapper {
@@ -34,7 +34,7 @@
 
   &__fullInfo {
     align-self: flex-start;
-    color: $blue;
+    color: var(--profile-company-fullinfo);
   }
 
   &__emptyInfo {

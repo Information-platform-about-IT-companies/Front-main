@@ -21,6 +21,8 @@
   --company-lable-background-hover: #{$sea-blue-middle};
   --profile-nav-active: #{$sea-blue-light};
   --profile-button-change: #{$blue};
+  --profile-company-card: #{$snow-white};
+  --profile-company-fullinfo: #{$blue};
 }
 
 :root[data-theme="dark"] {
@@ -44,4 +46,6 @@
   --company-lable-background-hover: #{$sea-blue-middle-night};
   --profile-nav-active: #{$sea-blue-light-night};
   --profile-button-change: #{$blue-dark};
+  --profile-company-card: #{$sea-blue-light-night};
+  --profile-company-fullinfo: #{$blue-dark};
 }

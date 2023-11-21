@@ -59,8 +59,8 @@ export default function CompanyCard({
             <LinkItem
               title="Подробнее"
               url="/"
-              lineColor="#4e4cbf"
-              textColor="#4e4cbf"
+              lineColor="var(--profile-company-fullinfo)"
+              textColor="var(--profile-company-fullinfo)"
               weight="700"
               extClassName="companyCard__fullInfo"
             />
