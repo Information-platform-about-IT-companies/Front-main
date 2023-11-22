@@ -37,7 +37,7 @@ export function FilterTabs({
       </div>
 
       <button onClick={onClick} className="filter__tabs-button">
-        <IconFilter size="32" color="#4E4CBF" />
+        <IconFilter size="32" color="var(--icon-color)" />
       </button>
     </div>
   );

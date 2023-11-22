@@ -42,7 +42,7 @@
   }
 
   &__description {
-    @include roboto-14;
+    @include roboto-14(var(--text-color));
 
     height: 84px;
   }

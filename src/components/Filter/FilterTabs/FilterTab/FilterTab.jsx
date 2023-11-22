@@ -30,7 +30,7 @@ export function Tab({ value, count, activeForm, isOpenFilter, setActiveForm, set
     <div className="filter__tab" role="button" tabIndex={0} onClick={onClick} onKeyDown={onKeyDown}>
       <span>{tabName}</span>
       {count && <span className="filter__tab-count">{`(${count})`}</span>}
-      <IconArrow size="24" color="#111111" direction={iconDirection} />
+      <IconArrow size="24" color="var(--text-color)" direction={iconDirection} />
     </div>
   );
 }
