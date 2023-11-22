@@ -1,8 +1,7 @@
 // Сторонние библиотеки
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 // Компоненты
-import { ThemeContext } from "context/ThemeContext";
 import Login from "pages/Login/Login";
 import Register from "pages/Register/Register";
 import NotFound from "pages/NotFound/NotFound";

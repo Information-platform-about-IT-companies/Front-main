@@ -2,19 +2,39 @@ import { LinkItem } from "UI-KIT/Link/LinkItem";
 import { Button } from "UI-KIT/Button/Button";
 import { Form } from "UI-KIT/Form/Form";
 import Input from "UI-KIT/Input/Input";
-import { useFormAndValidation } from "hooks/useFormAndValidation";
+import { useFormik } from "formik";
+import * as yup from "yup";
 
 import "./Login.scss";
+import { PASSWORD_REGULAR } from "services/regulars";
 
 function Login() {
-  const formInputs = useFormAndValidation({
-    email: "",
-    password: "",
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: yup.object({
+      email: yup
+        .string()
+        .email("Введите корректный E-mail")
+        .min(6, "Длина поля от 6 до 254 символов")
+        .max(254, "Длина поля от 6 до 254 символов")
+        .required("Поле обязательно для заполнения"),
+      password: yup
+        .string()
+        .min(8, "Длина поля от 8 до 30 символов")
+        .max(30, "Длина поля от 8 до 30 символов")
+        .matches(PASSWORD_REGULAR, "Введите корректный пароль")
+        .required("Поле обязательно для заполнения"),
+    }),
+    onSubmit: (values) => console.log(JSON.stringify(values, null, 2)),
   });
 
-  function onSubmit() {
-    return "test";
-  }
+  const transformBlur = (event) => {
+    formik.setFieldValue(event.target.name, event.target.value.trim());
+    formik.handleBlur(event);
+  };
 
   return (
     <main className="login">
@@ -22,30 +42,28 @@ function Login() {
       <p className="login__subtitle">
         Войдите в систему, чтобы получить доступ к своей учетной записи
       </p>
-      <Form extClassName="login__form" onSubmit={onSubmit()}>
+      <Form extClassName="login__form" onSubmit={formik.handleSubmit}>
         <Input
           label="E-mail"
-          onChange={formInputs.handleChange}
-          value={formInputs.values.email}
-          error={formInputs.errors.email}
           extClassNameInput="login__input"
           type="email"
           name="email"
           id="authEmail"
-          required
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          error={formik.errors.email && formik.touched.email ? formik.errors.email : null}
+          onBlur={transformBlur}
         />
         <Input
           label="Введите пароль"
-          onChange={formInputs.handleChange}
-          value={formInputs.values.password}
-          error={formInputs.errors.password}
           extClassNameInput="login__input"
           type="password"
           name="password"
           id="authPassword"
-          minLength="3"
-          maxLength="20"
-          required
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          error={formik.errors.password && formik.touched.password ? formik.errors.password : null}
+          onBlur={transformBlur}
         />
         <LinkItem
           url="/passrecovery"
@@ -55,7 +73,7 @@ function Login() {
           textColor="var(--text-color)"
           lineColor="var(--link-underline)"
         />
-        <Button title="Войти" fill size="standard" disabled={!formInputs.isValid} />
+        <Button title="Войти" fill size="standard" disabled={!(formik.isValid && formik.dirty)} />
       </Form>
       <p className="login__suggestion">
         У вас нет учетной записи?{" "}

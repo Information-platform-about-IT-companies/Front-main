@@ -1,3 +1,41 @@
+import { object } from "prop-types";
+
+export const COMPANIES_PER_PAGE = 10;
+
+export const API_HOST = "https://dev.octopus-it.ru/api/v1/";
+
+export const API_ENDPOINTS = {
+  AUTH: {
+    SIGNUP: "auth/signup",
+    SIGNUP_CONFIRM: "auth/signup_confirm",
+    SIGNIN: "auth/signin",
+    RESET_PASSWORD: "auth/reset_password",
+    CHANGE_PASSWORD: "auth/reset_password_confirm",
+  },
+  USER: {
+    ME: "user/me",
+    UPDATE_PROFILE: "user/me/change_password",
+  },
+  INFO: {
+    INDUSTRIES: "info/industries",
+    CATEGORIES: "info/service_categories",
+    SERVICES: "info/services",
+    CITIES: "info/cities",
+    SEARCH: "info/search_services_companies",
+  },
+  TOKENS: {
+    REFRESH: "refresh",
+  },
+  COMPANIES: {
+    FETCH: (params) => `companies?${new URLSearchParams(params).toString()}`,
+    GET: (id) => `companies/${id}`,
+  },
+  FAVORITE: {
+    ADD: (id) => `companies/${id}/favorite`,
+    REMOVE: (id) => `companies/${id}/favorite`,
+  },
+};
+
 export function declinationsNumericalValues(value, text) {
   const v = Math.abs(value) % 100;
   const v1 = v % 10;
@@ -92,53 +130,53 @@ export const hardcode = {
 export const companies = [
   {
     name: "LukoilLukoilLukoilLukoilLukoil",
-    city: "Moscow",
-    inFavorite: true,
+    city: "Москва",
+    isFavourite: true,
   },
   {
     name: "GazpromIt",
-    city: "Taganrog",
-    inFavorite: false,
+    city: "Санкт-Петербург",
+    isFavourite: false,
   },
   {
     name: "Sberbank",
-    city: "Vakanda",
-    inFavorite: true,
+    city: "Сочи",
+    isFavourite: false,
   },
   {
     name: "Magnit-It",
-    city: "Moscow",
-    inFavorite: true,
+    city: "Москва",
+    isFavourite: true,
   },
   {
     name: "TNK-BP",
-    city: "Tyva",
-    inFavorite: true,
+    city: "Барнаул",
+    isFavourite: false,
   },
   {
     name: "GazpromIt",
-    city: "Samara",
-    inFavorite: true,
+    city: "Белгород",
+    isFavourite: true,
   },
   {
     name: "INOSTUDIO",
-    city: "Ufa",
-    inFavorite: true,
+    city: "Уфа",
+    isFavourite: true,
   },
   {
     name: "Novatek",
-    city: "DC2",
-    inFavorite: true,
+    city: "Сочи",
+    isFavourite: false,
   },
   {
     name: "Mentalstack",
-    city: "Taganrog",
-    inFavorite: true,
+    city: "Санкт-Петербург",
+    isFavourite: true,
   },
   {
     name: "Afterlogic.Works",
-    city: "Krasnodar",
-    inFavorite: true,
+    city: "Вологда",
+    isFavourite: true,
   },
 ];
 
@@ -182,4 +220,154 @@ export const company = {
   website: "https://commons.wikimedia.org/wiki/Category:Futurama",
   team_size: 6,
   year_founded: 1999,
+};
+
+export const sleep = (delay) =>
+  new Promise((res) => {
+    setTimeout(res, delay);
+  });
+
+export const allServices = [
+  {
+    id: 1,
+    category: "Разработка ПО",
+    services: [
+      "Разработка мобильных приложений",
+      "Разработка приложений для носимых устройств",
+      "Развитие электронной коммерции",
+      "Разработка программного обеспечения на заказ",
+      "Модернизация корпоративных приложений",
+      "Консалтинг в области IT-стратегии",
+      "Управление приложениями и поддержка",
+      "Тестирование приложений",
+      "Разработка IoT",
+      "Искусственный интеллект",
+      "Блокчейн",
+      "Консалтинг в области информационных технологий и больших данных",
+      "Разработка  AR/VR",
+      "Облачный консалтинг",
+      "Кибербезопасность",
+      "Разработка других приложений",
+    ],
+  },
+  {
+    id: 2,
+    category: "Дизайн",
+    services: [
+      "Веб-дизайн",
+      "UX/UI ",
+      "Графический дизайн",
+      "Дизайн логотипа",
+      "Продуктовый дизайн",
+      "Дизайн печати",
+      "Архитектурный дизайн",
+      "Брендинг",
+      "Дизайн упаковки",
+      "Наружная реклама",
+    ],
+  },
+  { id: 3, category: "Веб-разработка", services: ["Веб-разработка"] },
+  {
+    id: 4,
+    category: "Маркетинг",
+    services: [
+      "SEO",
+      "Реклама",
+      "Контент-маркетинг",
+      "Маркетинговая стратегия",
+      "PR",
+      "Медиапланирование и закупки",
+      "Маркетинг мобильных устройств и приложений",
+      "Прямой маркетинг",
+      "Партнерский маркетинг",
+      "Корпоративная фотография",
+      "SMM",
+      "Цифровая стратегия",
+    ],
+  },
+  {
+    id: 5,
+    category: "Бизнес-услуги",
+    services: [
+      "Видеопроизводство",
+      "IT-менеджмент",
+      "CRM Консалтинг",
+      "ERP Консалтинг",
+      "Озвучка",
+      "Консалтинг в области унифицированных коммуникаций",
+      "Дизайн интерьера",
+      "ECM консалтинг",
+      "Видео трансляции",
+      "Бизнес консалтинг",
+      "Увеличение числа IT-сотрудников",
+      "Человеческие ресурсы",
+    ],
+  },
+];
+
+export const cities = [
+  "Москва",
+  "Сочи",
+  "Санкт-Петербург",
+  "Барнаул",
+  "Белгород",
+  "Брянск",
+  "Владивосток",
+  "Волгоград",
+  "Вологда",
+  "Воронеж",
+  "Ижевск",
+  "Иваново",
+  "Иркутск",
+  "Краснодар",
+  "Томск",
+  "Красноярск",
+  "Тула",
+  "Набережные Челны",
+  "Ульяновск",
+  "Нижний Новгород",
+  "Уфа",
+  "Новороссийск",
+  "Хабаровск",
+  "Новосибирск",
+  "Челябинск",
+  "Новочеркасск",
+  "Омск",
+  "Орел",
+  "Пенза",
+  "Пермь",
+  "Йошкар-Ола",
+  "Таганрог",
+  "Казань",
+  "Ростов-на-Дону",
+  "Калининград",
+  "Калуга",
+  "Саратов",
+];
+
+export const LoadingStatus = {
+  idle: "idle",
+  loading: "loading",
+  succeeded: "succeeded",
+  failed: "failed",
+};
+
+/**
+ *
+ * @param {number[]} array
+ * @param {[key: string]: boolean} modifications
+ * @returns {number[]}
+ */
+export const modifyArray = (array, modifications) => {
+  Object.entries(modifications).forEach(([key, shouldAdd]) => {
+    const number = Number(key);
+    const index = array.indexOf(number);
+    if (shouldAdd && index === -1) {
+      array.push(number);
+    } else if (!shouldAdd && index !== -1) {
+      array.splice(index, 1);
+    }
+  });
+
+  return array;
 };
