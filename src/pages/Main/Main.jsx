@@ -1,33 +1,35 @@
 import { Search } from "components/Search/Search";
 import "./Main.scss";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Category } from "components/Category/Category";
 import { Button } from "UI-KIT/Button/Button";
-import { hardcode } from "services/constants";
-import { useMainContext } from "context/MainContext";
-import { useEffect } from "react";
-import { userAPI } from "api/userApi";
+import { hardcode, ROUTES } from "services/constants";
+import { SIGN_IN_CONFIRM_REGULAR } from "services/regulars";
+import { authAPI } from "api/authApi";
 import { useErrorHandler } from "hooks/useErrorHandler";
+import { useEffect } from "react";
 
 function Main() {
   const [Error, setError] = useErrorHandler();
-  const { data, setData } = useMainContext();
-  const { currentUser } = data || {};
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const confirmSignup = async (cb) => {
+    const [, , uid, token] = location.hash.split("/");
+    try {
+      await authAPI.confirmSignup({ uid, token });
+      cb();
+    } catch (error) {
+      setError(error);
+    }
+  };
 
   useEffect(() => {
-    const fetchCurrentUser = async () => {
-      try {
-        const user = await userAPI.getCurrentUser();
-        setData({ ...data, currentUser: user });
-      } catch (error) {
-        setError(error);
-      }
-    };
-
-    if (!currentUser) {
-      fetchCurrentUser();
+    /** Обработка данных регистрации, отправленных на почту */
+    if (SIGN_IN_CONFIRM_REGULAR.test(location.hash)) {
+      confirmSignup(() => navigate(ROUTES.SIGN_IN));
     }
-  }, [currentUser]);
+  }, []);
 
   return (
     <main className="mainPage">
