@@ -22,9 +22,9 @@ import { HTTP } from "api/http";
  */
 export const refreshToken = async (formData) =>
   HTTP.post(API_ENDPOINTS.TOKENS.REFRESH, {
-    body: formData,
+    body: JSON.stringify(formData),
   });
 
-export const tokensApi = {
+export const tokensAPI = {
   refreshToken,
 };

@@ -15,7 +15,7 @@ export const API_ENDPOINTS = {
   USER: {
     ME: "users/me/",
     UPDATE_PROFILE: "users/me/",
-    CHANGE_PASSWORD: "users/me/change_password/",
+    CHANGE_PASSWORD: "users/change_password/",
   },
   INFO: {
     INDUSTRIES: "info/industries",
@@ -25,7 +25,7 @@ export const API_ENDPOINTS = {
     SEARCH: "info/search_services_companies",
   },
   TOKENS: {
-    REFRESH: "refresh/",
+    REFRESH: "tokens/refresh/",
   },
   COMPANIES: {
     FETCH: (params) => `companies?${new URLSearchParams(params).toString()}`,
@@ -35,6 +35,17 @@ export const API_ENDPOINTS = {
     ADD: (id) => `companies/${id}/favorite/`,
     REMOVE: (id) => `companies/${id}/favorite/`,
   },
+};
+
+export const ROUTES = {
+  ROOT: "/",
+  SIGN_UP: "/signup",
+  SIGN_IN: "/signin",
+  FILTER: "/filter",
+  PROFILE: "/profile",
+  COMPANY: "/company",
+  PASS_RECOVERY: "/passrecovery",
+  NOT_FOUND: "/400",
 };
 
 export function declinationsNumericalValues(value, text) {

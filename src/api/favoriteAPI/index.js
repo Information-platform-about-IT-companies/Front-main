@@ -17,7 +17,11 @@ import { HTTP } from "api/http";
  * @returns {Promise<void>} - Объект Promise, разрешаемый при успешном добавлении в избранное.
  * @throws {HTTPError} - В случае ошибки при выполнении запроса.
  */
-export const addFavorited = async (id) => HTTP.post(API_ENDPOINTS.FAVORITE.ADD(id));
+export const addFavorited = async (id) =>
+  HTTP.post(API_ENDPOINTS.FAVORITE.ADD(id), {
+    withCredentials: true,
+    headers: { Authorization: `Bearer ${HTTP.accessToken}` },
+  });
 
 /**
 Удалить компанию из избранного.
@@ -27,9 +31,13 @@ export const addFavorited = async (id) => HTTP.post(API_ENDPOINTS.FAVORITE.ADD(i
 * @throws {HTTPError} - В случае ошибки при выполнении запроса.
 */
 
-export const removeFavorited = async (id) => HTTP.delete(API_ENDPOINTS.FAVORITE.REMOVE(id));
+export const removeFavorited = async (id) =>
+  HTTP.delete(API_ENDPOINTS.FAVORITE.REMOVE(id), {
+    withCredentials: true,
+    headers: { Authorization: `Bearer ${HTTP.accessToken}` },
+  });
 
-export const favoriteApi = {
+export const favoriteAPI = {
   addFavorited,
   removeFavorited,
 };

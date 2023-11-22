@@ -4,14 +4,18 @@ import { Form } from "UI-KIT/Form/Form";
 import Input from "UI-KIT/Input/Input";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { HTTP } from "api/http";
 import { authAPI } from "api/authApi";
 import { useErrorHandler } from "hooks/useErrorHandler";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "services/constants";
 
 import "./Login.scss";
 import { PASSWORD_REGULAR } from "services/regulars";
 
 function Login() {
   const [Error, setError] = useErrorHandler();
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -34,12 +38,9 @@ function Login() {
     }),
     onSubmit: async (values) => {
       try {
-        const { access, refresh } = await authAPI.signin(values);
-        /*
-        document.cookie = `access_token=${access}; path=/;`;
-        document.cookie = `refresh_token=${refresh}; path=/;`;
-        navigate("/");
-        */
+        const tokens = await authAPI.signin(values);
+        HTTP.setTokens(tokens);
+        navigate(ROUTES.PROFILE);
       } catch (error) {
         setError(error);
       }

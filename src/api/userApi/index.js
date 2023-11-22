@@ -28,7 +28,10 @@ import { HTTP } from "api/http";
  */
 // нужно будет добавить токен к запросу
 export const getCurrentUser = async () => {
-  const user = await HTTP.get(API_ENDPOINTS.USER.ME);
+  const user = await HTTP.get(API_ENDPOINTS.USER.ME, {
+    withCredentials: true,
+    headers: { Authorization: `Bearer ${HTTP.accessToken}` },
+  });
   return transform.userData(user);
 };
 
@@ -52,7 +55,9 @@ export const getCurrentUser = async () => {
  */
 // нужно будет добавить токен к запросу
 export const updateUser = async (formData) => {
-  const user = await HTTP.patch(API_ENDPOINTS.USER.ME, {
+  const user = await HTTP.put(API_ENDPOINTS.USER.ME, {
+    withCredentials: true,
+    headers: { Authorization: `Bearer ${HTTP.accessToken}` },
     body: JSON.stringify(transform.userFormData(formData)),
   });
   return transform.userData(user);
@@ -75,6 +80,8 @@ export const updateUser = async (formData) => {
 // нужно будет добавить токен к запросу
 export const resetPassword = async (formData) => {
   HTTP.post(API_ENDPOINTS.USER.CHANGE_PASSWORD, {
+    withCredentials: true,
+    headers: { Authorization: `Bearer ${HTTP.accessToken}` },
     body: JSON.stringify(transform.resetCurrentUserPasswordFormData(formData)),
   });
 };
