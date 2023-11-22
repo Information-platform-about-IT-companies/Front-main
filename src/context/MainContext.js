@@ -2,12 +2,7 @@ import { createContext, useContext, useMemo, useState } from "react";
 import PropTypes from "prop-types";
 
 const initialValues = {
-  currentUser: {
-    id: 1,
-    email: "VasyaPupkin@yandex.com",
-    firstName: "Vasya",
-    lastName: "Pupkin",
-  },
+  currentUser: null,
 };
 
 export const MainContext = createContext(null);

@@ -6,15 +6,10 @@ import Breadcrumbs from "components/Breadcrumbs/Breadcrumbs";
 import { Filter } from "components/Filter/Filter";
 import CompanyCard from "components/CompanyCard/CompanyCard";
 import { companyAPI } from "api/companyAPI";
-import { addFavorited, removeFavorited } from "api/favoriteAPI";
 import { Pagination } from "components/Pagination/Pagination";
 import "./FilterPage.scss";
 
 function FilterPage() {
-  const onIconHeartClick = () => {
-    console.log("функция добавления/удаления в БД");
-  };
-
   const [searchParams] = useSearchParams();
   const page = searchParams.get("page") ?? 1;
 
@@ -27,18 +22,23 @@ function FilterPage() {
     const filterServices = JSON.parse(searchParams.get("services"));
 
     const fetchData = async () => {
-      const response = await companyAPI.fetchCompanies({
-        ...(page !== 1 ? { page: Number(page) } : {}),
-        ...(filterCities ? { city: filterCities } : {}),
-        ...(filterServices ? { services: filterServices } : {}),
-      });
-      setCompanies(response.results);
-      setTotalPages(response.total_pages);
-      setLoadingStatus(LoadingStatus.succeeded);
+      const query = [
+        ...(page !== 1 ? [["page", 2]] : []),
+        ...(filterCities ? filterCities.map((id) => ["city", id]) : []),
+        ...(filterServices ? filterServices.map((id) => ["services", id]) : []),
+      ];
+      try {
+        const response = await companyAPI.fetchCompanies(query);
+        setCompanies(response.results);
+        setTotalPages(response.total_pages);
+        setLoadingStatus(LoadingStatus.succeeded);
+      } catch (error) {
+        console.error(error);
+      }
     };
     setLoadingStatus(LoadingStatus.loading);
 
-    fetchData().catch(console.error);
+    fetchData();
   }, [searchParams]);
 
   return (
@@ -72,13 +72,12 @@ function FilterPage() {
               <CompanyCard
                 type="filterCard"
                 key={id}
+                id={id}
                 services={services}
                 name={name}
                 {...(isFavorited ? { inFavorite: true } : {})}
                 description={description}
-                onIconHeartClick={onIconHeartClick}
               />
-              <span>{JSON.stringify(isFavorited)}</span>
             </li>
           ))}
       </ul>

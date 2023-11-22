@@ -14,12 +14,10 @@ import { useMainContext } from "context/MainContext";
 function ProfileInfo() {
   const [Error, setError] = useErrorHandler();
 
-  const setResult = (result) => {
-    setError(result);
-  };
-
   const { data, setData } = useMainContext();
-  const { firstName, lastName, email } = data?.currentUser || {};
+  const { currentUser } = data || {};
+  const { firstName, lastName, email } = currentUser || {};
+  let updateUser;
 
   const formikInfo = useFormik({
     initialValues: {
@@ -50,16 +48,41 @@ function ProfileInfo() {
     onSubmit: async (values) => {
       try {
         const updatedCurrentUser = await userAPI.updateUser(values);
-        setData({ ...data, currentUser: { ...data.currentUser, ...updatedCurrentUser } });
-        formikInfo.setValues({
-          ...formikInfo.values,
-          ...updatedCurrentUser,
-        });
+        updateUser(updatedCurrentUser);
       } catch (error) {
         setError(error);
       }
     },
   });
+
+  const updateFormikValues = (newValues) => {
+    formikInfo.setValues({
+      ...formikInfo.values,
+      ...newValues,
+    });
+  };
+
+  updateUser = (user) => {
+    setData({ ...data, currentUser: user });
+    updateFormikValues(user);
+  };
+
+  useEffect(() => {
+    const fetchCurrentUser = async () => {
+      try {
+        const user = await userAPI.getCurrentUser();
+        console.log("user", user);
+        updateUser(user);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (!currentUser) {
+      fetchCurrentUser();
+    }
+  }, [currentUser]);
+
   const formikPassword = useFormik({
     initialValues: {
       currentPassword: "",
@@ -90,12 +113,12 @@ function ProfileInfo() {
     onSubmit: async (values) => {
       try {
         await userAPI.resetPassword(values);
-        setResult({ text: "Пароль обновлен" });
       } catch (error) {
         setError(error);
       }
     },
   });
+
   const transformInfoBlur = (event) => {
     formikInfo.setFieldValue(event.target.name, event.target.value.trim());
     formikInfo.handleBlur(event);
