@@ -1,5 +1,3 @@
-import { object } from "prop-types";
-
 export const COMPANIES_PER_PAGE = 10;
 
 export const API_HOST = "https://dev.octopus-it.ru/api/v1/";

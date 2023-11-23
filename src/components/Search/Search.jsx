@@ -65,6 +65,7 @@ export function Search({ extClassName }) {
       dispatch({ type: ACTION.SET_RESPONSE, payload: res });
       dispatch({ type: ACTION.SET_IS_RESPONSE_NULL, payload: res });
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error("Ошибка запроса по компаниям и услугам:", error);
     }
   };
@@ -75,6 +76,7 @@ export function Search({ extClassName }) {
       dispatch({ type: ACTION.SET_RESPONSE_CITY, payload: res });
       dispatch({ type: ACTION.SET_IS_RESPONSE_CITY_NULL, payload: res });
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error("Ошибка запроса по городам:", error);
     }
   };
@@ -109,7 +111,7 @@ export function Search({ extClassName }) {
   // выбор текста из выпадающей подсказки
   const handleSelect = (text) => {
     dispatch({ type: ACTION.SET_QUERY, payload: text });
-    addResponseSearch(text); // необходимо для корректной логики функции кнопки «поиск»
+    addResponseSearch(text); // необходимо для корректной логики функции кнопки «поиск», проверки длинны ответа
     dispatch({ type: ACTION.SET_RESPONSE_SELECTED, payload: text });
     dispatch({ type: ACTION.SET_IS_HINT_OPEN, payload: false });
     dispatch({ type: ACTION.SET_IS_RESPONSE_SELECTED, payload: true });
@@ -178,6 +180,7 @@ export function Search({ extClassName }) {
     return () => {
       debouncedSearch.cancel();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.query, debouncedSearch]);
 
   useEffect(() => {
@@ -187,6 +190,7 @@ export function Search({ extClassName }) {
     return () => {
       debouncedSearchCity.cancel();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.queryCity, debouncedSearchCity]);
 
   return (

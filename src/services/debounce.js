@@ -1,6 +1,7 @@
 // декоратор отложения выполнения функций
 export default function debounce(func, delay) {
   let timeout;
+  // eslint-disable-next-line func-names
   const debounced = function (...args) {
     const context = this;
 
@@ -16,6 +17,7 @@ export default function debounce(func, delay) {
       timeout = setTimeout(execute, delay);
     }
 
+    // eslint-disable-next-line func-names
     debounced.cancel = function () {
       clearTimeout(timeout);
       timeout = null;
