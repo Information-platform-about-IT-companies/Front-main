@@ -31,7 +31,7 @@ export function Search({ extClassName }) {
       dispatch({ type: ACTION.SET_IS_HINT_NOT_FOUND_OPEN, payload: true });
       return;
     }
-    if (state.response.services.length !== 1) {
+    if (!!state.query && state.response.services?.length !== 1) {
       dispatch({ type: ACTION.SET_IS_HINT_OPEN, payload: true });
       return;
     }
@@ -201,7 +201,10 @@ export function Search({ extClassName }) {
         value={state.query || state.responseSelected}
         placeholder="Название компании или услуга"
         onChange={handleInputChange}
-        onFocus={() => dispatch({ type: ACTION.SET_IS_HINT_CITY_OPEN, payload: false })}
+        onFocus={() => {
+          dispatch({ type: ACTION.SET_IS_HINT_CITY_OPEN, payload: false });
+          dispatch({ type: ACTION.SET_IS_HINT_NOT_FOUND_OPEN, payload: false });
+        }}
         autocomplete="off"
       />
       <Input
@@ -213,7 +216,10 @@ export function Search({ extClassName }) {
         value={state.queryCity || state.responseCitySelected}
         placeholder="Город"
         onChange={handleInputCityChange}
-        onFocus={() => dispatch({ type: ACTION.SET_IS_HINT_OPEN, payload: false })}
+        onFocus={() => {
+          dispatch({ type: ACTION.SET_IS_HINT_OPEN, payload: false });
+          dispatch({ type: ACTION.SET_IS_HINT_NOT_FOUND_OPEN, payload: false });
+        }}
         autocomplete="off"
       />
       <Button
@@ -224,23 +230,13 @@ export function Search({ extClassName }) {
         disabled={!state.isButtonActive}
       />
 
-      {state.isHintOpen && (
-        <DynamicHeightComponent extClassName="search__hint">
-          {state.isResponseNull === true && hintNotFound()}
-          {hint(state.response)}
-        </DynamicHeightComponent>
-      )}
-      {state.isHintCityOpen && (
-        <DynamicHeightComponent extClassName="search__hint">
-          {state.isResponseCityNull === true && hintNotFound()}
-          {hintCity(state.responseCity)}
-        </DynamicHeightComponent>
-      )}
-      {state.isHintNotFoundOpen && (
-        <DynamicHeightComponent extClassName="search__hint">
-          {hintNotFound()}
-        </DynamicHeightComponent>
-      )}
+      <DynamicHeightComponent extClassName="search__hint">
+        {state.isHintOpen &&
+          (state.isResponseNull === true ? hintNotFound() : hint(state.response))}
+        {state.isHintCityOpen &&
+          (state.isResponseCityNull === true ? hintNotFound() : hintCity(state.responseCity))}
+        {state.isHintNotFoundOpen && hintNotFound()}
+      </DynamicHeightComponent>
     </form>
   );
 }
