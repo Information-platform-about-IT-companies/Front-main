@@ -9,10 +9,11 @@
   border-radius: 20px;
   background-color: var(--profile-company-card);
   padding: 20px;
+  gap: 20px;
 
   &_type_favourite {
     min-height: 163px;
-    width: 100%;
+    max-width: unset;
   }
 
   &__like-wrapper {

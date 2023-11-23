@@ -13,6 +13,7 @@ import ProfileInfo from "components/ProfileInfo/ProfileInfo";
 import ProfileSupport from "components/ProfileSupport/ProfileSupport";
 import ProfileFavourite from "components/ProfileFavourite/ProfileFavourite";
 import Layout from "components/Layout/Layout";
+
 // Стили
 import "./App.scss";
 import FilterPage from "pages/FilterPage/FilterPage";

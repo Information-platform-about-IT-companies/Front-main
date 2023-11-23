@@ -19,6 +19,7 @@
   --company-hide-text: #{$blue};
   --company-lable-background: #{$sea-blue-light};
   --company-lable-background-hover: #{$sea-blue-middle};
+  --company-lable-background-active: #{$sea-blue};
   --profile-nav-active: #{$sea-blue-light};
   --profile-button-change: #{$blue};
   --profile-company-card: #{$snow-white};
@@ -48,10 +49,11 @@
   --search-hint-title: #{$blue-dark};
   --search-hint-link: #{$snow-white};
   --form-background: #{$sea-blue-light-night};
-  --tooltip-text: #{$black-night};
+  --tooltip-text: #{$blue-night};
   --company-hide-text: #{$blue-dark-soft};
-  --company-lable-background: #{$sea-blue-light-night};
+  --company-lable-background: #{$blue-middle};
   --company-lable-background-hover: #{$sea-blue-middle-night};
+  --company-lable-background-active: #{$sea-blue};
   --profile-nav-active: #{$sea-blue-light-night};
   --profile-button-change: #{$blue-dark};
   --profile-company-card: #{$sea-blue-light-night};
@@ -59,7 +61,7 @@
   --filter-content-background: #{$blue-night};
   --filter-content-border: #{$blue-dark};
   --filter-nav-item-active: #{$blue-dark};
-  --filter-companycard-background: #{$blue-night};
+  --filter-companycard-background: #{$sea-blue-light-night};
   --checkbox-background: #{$blue-night};
   --checkbox-background-checked: #{$blue-dark};
   --button-heart-border: #{$blue-dark};

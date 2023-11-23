@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import ThemeSwitcher from "UI-KIT/ThemeSwitcher/ThemeSwitcher";
 
 import "./Header.scss";
-import "../../assets/style/main.scss";
+import "assets/style/main.scss";
 
 function Header({ loggedIn, userData }) {
   return (

@@ -13,7 +13,6 @@ export function Category({ categories, categoryTitle, id }) {
           <li className="category_link" key={category.title}>
             <LinkItem
               title={category.title}
-              withBullet={false}
               url={category.link}
               textColor="var(--text-color)"
               lineColor="var(--link-underline)"

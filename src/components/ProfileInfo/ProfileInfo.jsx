@@ -179,12 +179,12 @@ function ProfileInfo() {
               }
               onBlur={transformPasswordBlur}
             >
-              <ul className="form-info-change__tooltip-container">
+              {/*               <ul className="form-info-change__tooltip-container">
                 <li className="form-info-change__tooltip-item">от 8 до 30 символов</li>
                 <li className="form-info-change__tooltip-item">
                   должен содержать цифры и буквы / спецсимволы без пробелов
                 </li>
-              </ul>
+              </ul> */}
             </Input>
           </div>
           <Input

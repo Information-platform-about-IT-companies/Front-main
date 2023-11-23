@@ -9,10 +9,14 @@
   padding: 8px 12px;
   background-color: var(--company-lable-background);
   height: 35px;
-  width: fit-content;
+  max-width: fit-content;
   cursor: default;
 
   &:hover {
     background-color: var(--company-lable-background-hover);
+  }
+
+  &:active {
+    background-color: var(--company-lable-background-active);
   }
 }
