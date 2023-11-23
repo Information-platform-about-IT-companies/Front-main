@@ -19,10 +19,22 @@ export function Search({ extClassName }) {
   const navigate = useNavigate();
 
   // TODO переходим на страницу компании если выбрана компания
-  // TODO если ничего не найдено, не делать переход
 
   const handleSubmitSearch = (event) => {
     event.preventDefault();
+    if (
+      (!!state.query && (!state.response.services || state.response.services.length === 0)) ||
+      (!!state.queryCity && state.responseCity.length === 0)
+    ) {
+      dispatch({ type: ACTION.SET_IS_HINT_OPEN, payload: false });
+      dispatch({ type: ACTION.SET_IS_HINT_CITY_OPEN, payload: false });
+      dispatch({ type: ACTION.SET_IS_HINT_NOT_FOUND_OPEN, payload: true });
+      return;
+    }
+    if (state.response.services.length !== 1) {
+      dispatch({ type: ACTION.SET_IS_HINT_OPEN, payload: true });
+      return;
+    }
     const cityId = state.responseCity[0]?.id || "";
     const serviceId =
       state.response &&
@@ -72,6 +84,7 @@ export function Search({ extClassName }) {
     debounce((search) => {
       if (search.length >= 3) {
         addResponseSearch(search);
+        dispatch({ type: ACTION.SET_IS_HINT_NOT_FOUND_OPEN, payload: false });
         dispatch({ type: ACTION.SET_IS_HINT_OPEN, payload: true });
       } else {
         dispatch({ type: ACTION.SET_IS_HINT_OPEN, payload: false });
@@ -84,6 +97,7 @@ export function Search({ extClassName }) {
     debounce((search) => {
       if (search.length >= 3) {
         addResponseSearchCity(search);
+        dispatch({ type: ACTION.SET_IS_HINT_NOT_FOUND_OPEN, payload: false });
         dispatch({ type: ACTION.SET_IS_HINT_CITY_OPEN, payload: true });
       } else {
         dispatch({ type: ACTION.SET_IS_HINT_CITY_OPEN, payload: false });
@@ -95,6 +109,7 @@ export function Search({ extClassName }) {
   // выбор текста из выпадающей подсказки
   const handleSelect = (text) => {
     dispatch({ type: ACTION.SET_QUERY, payload: text });
+    addResponseSearch(text); // необходимо для корректной логики функции кнопки «поиск»
     dispatch({ type: ACTION.SET_RESPONSE_SELECTED, payload: text });
     dispatch({ type: ACTION.SET_IS_HINT_OPEN, payload: false });
     dispatch({ type: ACTION.SET_IS_RESPONSE_SELECTED, payload: true });
@@ -219,6 +234,11 @@ export function Search({ extClassName }) {
         <DynamicHeightComponent extClassName="search__hint">
           {state.isResponseCityNull === true && hintNotFound()}
           {hintCity(state.responseCity)}
+        </DynamicHeightComponent>
+      )}
+      {state.isHintNotFoundOpen && (
+        <DynamicHeightComponent extClassName="search__hint">
+          {hintNotFound()}
         </DynamicHeightComponent>
       )}
     </form>

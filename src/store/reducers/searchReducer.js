@@ -15,6 +15,7 @@ const checkEmptyArrayProperties = (obj) => {
 
 export const initialState = {
   isButtonActive: false,
+  isHintNotFoundOpen: false,
 
   query: "",
   response: {},
@@ -35,6 +36,8 @@ export function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case "setIsButtonActive":
       return { ...state, isButtonActive: action.payload };
+    case "setIsHintNotFoundOpen":
+      return { ...state, isHintNotFoundOpen: action.payload };
     case "setQuery":
       return { ...state, query: action.payload };
     case "setResponse":
@@ -66,6 +69,7 @@ export function reducer(state = initialState, action = {}) {
 
 export const ACTION = {
   SET_IS_BUTTON_ACTIVE: "setIsButtonActive",
+  SET_IS_HINT_NOT_FOUND_OPEN: "setIsHintNotFoundOpen",
   SET_QUERY: "setQuery",
   SET_RESPONSE: "setResponse",
   SET_IS_RESPONSE_NULL: "setIsResponseNull",
