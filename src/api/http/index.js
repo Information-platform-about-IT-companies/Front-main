@@ -15,10 +15,8 @@ export class HTTP {
   http = fetch;
 
   static setTokens({ access, refresh }) {
-    console.log("tokens", access, refresh);
     HTTP.accessToken = access;
     HTTP.refreshToken = refresh;
-    console.log("HTTP tokens", HTTP.accessToken, HTTP.refreshToken);
   }
 
   static get accessToken() {
@@ -26,7 +24,11 @@ export class HTTP {
   }
 
   static set accessToken(value) {
-    document.cookie = `access_token=${value}; path=/;`;
+    if (value) {
+      document.cookie = `access_token=${value}; path=/;`;
+    } else {
+      document.cookie = "access_token=; Max-Age=0; path=/;";
+    }
   }
 
   static get refreshToken() {
@@ -34,12 +36,18 @@ export class HTTP {
   }
 
   static set refreshToken(value) {
-    document.cookie = `refresh_token=${value}; path=/;`;
+    if (value) {
+      document.cookie = `refresh_token=${value}; path=/;`;
+    } else {
+      document.cookie = "refresh_token=; Max-Age=0; path=/;";
+    }
   }
 
   static async updateTokens() {
-    const tokens = await tokensAPI.refreshToken({ refresh: HTTP.refreshToken });
-    HTTP.setTokens(tokens);
+    if (HTTP.refreshToken) {
+      const tokens = await tokensAPI.refreshToken({ refresh: HTTP.refreshToken });
+      HTTP.setTokens(tokens);
+    }
   }
 
   static get(path, options) {
@@ -72,14 +80,15 @@ export class HTTP {
     let response = await fetch(baseURL, options);
 
     if (response.ok) {
-      return response.status === 204 ? false : response.json();
+      return response.status === 200 ? response.json() : false;
     }
 
     if (response.status === 401) {
-      if (path === API_ENDPOINTS.TOKENS.REFRESH || isRetry) {
+      if (path === API_ENDPOINTS.TOKENS.REFRESH || isRetry || !HTTP.refreshToken) {
         window.location = ROUTES.SIGN_IN;
         return false;
       }
+      // результаты ?
       await HTTP.updateTokens();
       response = await HTTP.#request(
         path,
