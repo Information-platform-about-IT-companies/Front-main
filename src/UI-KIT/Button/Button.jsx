@@ -1,6 +1,6 @@
-import "./Button.scss";
 import PropTypes from "prop-types";
 import { Link, NavLink } from "react-router-dom";
+import "./Button.scss";
 
 export function Button({ size, fill, title, linkType, url, onClick, extClassName, ...props }) {
   if (url) {

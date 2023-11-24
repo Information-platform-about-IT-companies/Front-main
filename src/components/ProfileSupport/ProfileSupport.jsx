@@ -1,12 +1,13 @@
 import { useId } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
+// UI-KIT
 import { Form } from "UI-KIT/Form/Form";
-import "./ProfileSupport.scss";
-
 import Input from "UI-KIT/Input/Input";
 import Textarea from "UI-KIT/Textarea/Textarea";
 import { Button } from "UI-KIT/Button/Button";
+// styles
+import "./ProfileSupport.scss";
 
 function ProfileSupport() {
   const formik = useFormik({

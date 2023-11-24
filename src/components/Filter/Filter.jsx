@@ -9,6 +9,7 @@ import { FilterTabs } from "./FilterTabs/FilterTabs";
 import { FilterNav } from "./FilterNav/FilterNav";
 import { ServiceForm } from "./FilterForms/ServiceForm/ServiceForm";
 import { CityForm } from "./FilterForms/CityForm/CityForm";
+// styles
 import "./Filter.scss";
 
 export function Filter() {

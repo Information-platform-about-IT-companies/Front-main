@@ -38,6 +38,7 @@
   }
 
   &__element-text {
+    color: var(--search-hint-link);
     display: inline;
     cursor: pointer;
   }

@@ -1,11 +1,16 @@
 @import "src/assets/style/main";
 
 .labels {
+  &__wrapper {
+    max-height: 110px;
+    overflow: hidden;
+  }
+
   &__text {
-    display: inline-block;
+    display: block;
     padding-bottom: 12px;
 
-    @include roboto-14(var(--text-color), 400);
+    @include roboto(var(--text-color), 14px, 16px, 400);
   }
 
   &__link {

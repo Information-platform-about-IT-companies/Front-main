@@ -3,7 +3,8 @@
 .companyCard {
   @include flex(stretch, space-between, column);
 
-  min-height: 441px;
+  height: 100%;
+  max-height: 441px;
   width: 100%;
   max-width: 586px;
   border-radius: 20px;

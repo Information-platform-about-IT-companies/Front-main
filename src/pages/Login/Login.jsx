@@ -1,12 +1,14 @@
+import { useFormik } from "formik";
+import * as yup from "yup";
+// functions
+import { PASSWORD_REGULAR } from "services/regulars";
+// UI-KIT
 import { LinkItem } from "UI-KIT/Link/LinkItem";
 import { Button } from "UI-KIT/Button/Button";
 import { Form } from "UI-KIT/Form/Form";
 import Input from "UI-KIT/Input/Input";
-import { useFormik } from "formik";
-import * as yup from "yup";
-
+// styles
 import "./Login.scss";
-import { PASSWORD_REGULAR } from "services/regulars";
 
 function Login() {
   const formik = useFormik({

@@ -1,7 +1,8 @@
 import { useSearchParams } from "react-router-dom";
+// UI-KIT
 import ButtonIcon from "UI-KIT/ButtonIcon/ButtonIcon";
 import IconArrow from "UI-KIT/Icons/IconArrow";
-
+// styles
 import "./Pagination.scss";
 
 export function Pagination({ totalPages, currentPage }) {
@@ -25,7 +26,7 @@ export function Pagination({ totalPages, currentPage }) {
           <ButtonIcon
             className="pagination__button"
             onClick={() => turnToPage(currentPage - 1)}
-            icon={<IconArrow direction="left" size={24} />}
+            icon={<IconArrow direction="left" size="24" />}
           />
         </li>
       )}
@@ -50,7 +51,7 @@ export function Pagination({ totalPages, currentPage }) {
           <ButtonIcon
             className="pagination__button"
             onClick={() => turnToPage(currentPage + 1)}
-            icon={<IconArrow direction="right" size={24} />}
+            icon={<IconArrow direction="right" size="24" />}
           />
         </li>
       )}

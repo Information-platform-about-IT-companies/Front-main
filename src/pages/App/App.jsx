@@ -2,23 +2,23 @@
 import { useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 // Компоненты
-import Login from "pages/Login/Login";
-import Register from "pages/Register/Register";
-import NotFound from "pages/NotFound/NotFound";
 import ProtectedRouteElement from "components/ProtectedRoute/ProtectedRoute";
-import Profile from "pages/Profile/Profile";
-import Main from "pages/Main/Main";
-import ForgetPassword from "pages/ForgetPassword/ForgetPassword";
 import ProfileInfo from "components/ProfileInfo/ProfileInfo";
 import ProfileSupport from "components/ProfileSupport/ProfileSupport";
 import ProfileFavourite from "components/ProfileFavourite/ProfileFavourite";
 import Layout from "components/Layout/Layout";
-
+import ScrollUp from "components/ScrollUp/ScrollUp";
+// pages
+import FilterPage from "pages/FilterPage/FilterPage";
+import CompanyPage from "pages/Company/CompanyPage";
+import Profile from "pages/Profile/Profile";
+import Main from "pages/Main/Main";
+import Login from "pages/Login/Login";
+import Register from "pages/Register/Register";
+import NotFound from "pages/NotFound/NotFound";
+import ForgetPassword from "pages/ForgetPassword/ForgetPassword";
 // Стили
 import "./App.scss";
-import FilterPage from "pages/FilterPage/FilterPage";
-import ScrollUp from "components/ScrollUp/ScrollUp";
-import CompanyPage from "../Company/CompanyPage";
 
 function App() {
   const [loggedIn, setLoggetIn] = useState(true);

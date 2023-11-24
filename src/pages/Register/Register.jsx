@@ -1,12 +1,14 @@
+import { useFormik } from "formik";
+import * as yup from "yup";
+// UI-KIT
 import { LinkItem } from "UI-KIT/Link/LinkItem";
 import { Button } from "UI-KIT/Button/Button";
 import { Form } from "UI-KIT/Form/Form";
 import Input from "UI-KIT/Input/Input";
-import { useFormik } from "formik";
-import * as yup from "yup";
-
-import "./Register.scss";
+// functions
 import { NAME_REGULAR, PASSWORD_REGULAR } from "services/regulars";
+// styles
+import "./Register.scss";
 
 function Register() {
   const formik = useFormik({

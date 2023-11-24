@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
-import React from "react";
+// Components
+import ButtonHeart from "components/ButtonHeart/ButtonHeart";
 // UI
 import CompanyLogo from "UI-KIT/CompanyLogo/CompanyLogo";
 import LabelGroup from "UI-KIT/LabelGroup/LabelGroup";
@@ -8,7 +9,6 @@ import { LinkItem } from "UI-KIT/Link/LinkItem";
 import { cutText } from "services/constants";
 // Стили
 import "./CompanyCard.scss";
-import ButtonHeart from "components/ButtonHeart/ButtonHeart";
 
 export default function CompanyCard({
   type,
@@ -78,8 +78,8 @@ CompanyCard.propTypes = {
   city: PropTypes.string,
   services: PropTypes.arrayOf(
     PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
-  ).isRequired,
-  description: PropTypes.string.isRequired,
+  ),
+  description: PropTypes.string,
   onIconHeartClick: PropTypes.func,
   inFavorite: PropTypes.bool.isRequired,
   extClassCardName: PropTypes.string,
@@ -90,4 +90,6 @@ CompanyCard.defaultProps = {
   city: "",
   onIconHeartClick: () => {},
   extClassCardName: "",
+  description: "",
+  services: [],
 };

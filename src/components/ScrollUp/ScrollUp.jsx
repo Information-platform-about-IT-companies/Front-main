@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-// Юай
+// UI-KIT
 import Icon from "UI-KIT/Icons";
-// Стили
+// styles
 import "./ScrollUp.scss";
 
-export default function () {
+export default function ScrollUp() {
   const [showScroll, setShowScroll] = useState(false);
   const scrollState = () => {
     if (window.scrollY > 100) {
