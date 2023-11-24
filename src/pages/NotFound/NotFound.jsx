@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
-
+// UI-KIT
 import { Button } from "UI-KIT/Button/Button";
-
+// styles
 import "./NotFound.scss";
 
 export default function NotFound() {

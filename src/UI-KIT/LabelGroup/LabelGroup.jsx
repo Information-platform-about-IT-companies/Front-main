@@ -45,8 +45,10 @@ LabelGroup.propTypes = {
     PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
   ).isRequired,
   isLink: PropTypes.bool,
+  extClass: PropTypes.string,
 };
 
 LabelGroup.defaultProps = {
   isLink: false,
+  extClass: "",
 };

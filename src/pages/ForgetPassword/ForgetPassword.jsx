@@ -1,13 +1,13 @@
+import { useState } from "react";
+import { useFormik } from "formik";
+import * as yup from "yup";
+// UI-KIT
 import { LinkItem } from "UI-KIT/Link/LinkItem";
 import { Button } from "UI-KIT/Button/Button";
 import { Form } from "UI-KIT/Form/Form";
 import Input from "UI-KIT/Input/Input";
-import { useFormik } from "formik";
-import * as yup from "yup";
-
-import { useState } from "react";
 import { ButtonChanges } from "UI-KIT/ButtonChanges/ButtonChanges";
-
+// styles
 import "./ForgetPassword.scss";
 
 function ForgetPassword() {

@@ -1,10 +1,12 @@
-import { Search } from "components/Search/Search";
-
 import { Link } from "react-router-dom";
-import { Category } from "components/Category/Category";
-import { Button } from "UI-KIT/Button/Button";
+// functions
 import { hardcode } from "services/constants";
-
+// Components
+import { Search } from "components/Search/Search";
+import { Category } from "components/Category/Category";
+// UI-KIT
+import { Button } from "UI-KIT/Button/Button";
+// styles
 import "./Main.scss";
 
 function Main() {

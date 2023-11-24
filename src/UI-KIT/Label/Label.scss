@@ -9,8 +9,14 @@
   padding: 8px 12px;
   background-color: var(--company-lable-background);
   height: 35px;
-  max-width: fit-content;
+
+  // max-width: fit-content;
+  // TODO решить что делать с леблами
+  max-width: 174px;
   cursor: default;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   &:hover {
     background-color: var(--company-lable-background-hover);

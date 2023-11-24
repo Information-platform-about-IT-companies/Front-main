@@ -1,6 +1,8 @@
 import { Outlet } from "react-router-dom";
-import "./Profile.scss";
+// UI-KIT
 import { Button } from "UI-KIT/Button/Button";
+// styles
+import "./Profile.scss";
 
 function Profile() {
   return (

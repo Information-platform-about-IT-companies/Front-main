@@ -1,9 +1,10 @@
-import { Button } from "UI-KIT/Button/Button";
-import { Link } from "react-router-dom";
-import Icon from "UI-KIT/Icons";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+// UI-KIT
+import { Button } from "UI-KIT/Button/Button";
+import Icon from "UI-KIT/Icons";
 import ThemeSwitcher from "UI-KIT/ThemeSwitcher/ThemeSwitcher";
-
+// styles
 import "./Header.scss";
 import "assets/style/main.scss";
 

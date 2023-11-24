@@ -1,12 +1,15 @@
-import "./ProfileInfo.scss";
 import { useId, useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
+// UI-KIT
 import Input from "UI-KIT/Input/Input";
 import { Form } from "UI-KIT/Form/Form";
 import { Button } from "UI-KIT/Button/Button";
 import { ButtonChanges } from "UI-KIT/ButtonChanges/ButtonChanges";
+// functions
 import { NAME_REGULAR, PASSWORD_REGULAR } from "services/regulars";
+// styles
+import "./ProfileInfo.scss";
 
 function ProfileInfo() {
   const formikInfo = useFormik({

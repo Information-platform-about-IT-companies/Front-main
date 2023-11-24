@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { LoadingStatus } from "services/constants";
 // components
 import Breadcrumbs from "components/Breadcrumbs/Breadcrumbs";
 import { Filter } from "components/Filter/Filter";
 import CompanyCard from "components/CompanyCard/CompanyCard";
-import { getCompanies } from "mocks/services/companyController";
 import { Pagination } from "components/Pagination/Pagination";
+// functions
+import { getCompanies } from "mocks/services/companyController";
+import { LoadingStatus } from "services/constants";
+// styles
 import "./FilterPage.scss";
 
 function FilterPage() {
   const onIconHeartClick = () => {
+    // TODO функция добавления/удаления в БД
     console.log("функция добавления/удаления в БД");
   };
 

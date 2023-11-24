@@ -1,8 +1,9 @@
-import "./Category.scss";
 import PropTypes from "prop-types";
-
+// UI-KIT
 import { CategoryTitle } from "UI-KIT/CategoryTitle/CategoryTitle";
 import { LinkItem } from "UI-KIT/Link/LinkItem";
+// styles
+import "./Category.scss";
 
 export function Category({ categories, categoryTitle, id }) {
   return (

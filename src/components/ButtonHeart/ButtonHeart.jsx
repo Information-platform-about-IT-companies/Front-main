@@ -1,12 +1,12 @@
-import React from "react";
-
+import { useState } from "react";
+// UI
 import ButtonIcon from "UI-KIT/ButtonIcon/ButtonIcon";
 import Icon from "UI-KIT/Icons";
-
+// styles
 import "./ButtonHeart.scss";
 
 export default function ButtonHeart({ click, fill }) {
-  const [isFill, setIsFill] = React.useState(fill);
+  const [isFill, setIsFill] = useState(fill);
 
   const handlerClick = () => {
     setIsFill(!isFill);

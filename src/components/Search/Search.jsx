@@ -1,16 +1,17 @@
 import { useEffect, useRef, useReducer } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-
+// services
 import debounce from "services/debounce";
-
 import { infoAPI } from "api/infoApi";
+import { reducer, initialState, ACTION } from "store/reducers/searchReducer";
+// UI-KIT
 import Input from "UI-KIT/Input/Input";
 import { Button } from "UI-KIT/Button/Button";
 import Icon from "UI-KIT/Icons";
+// Components
 import DynamicHeightComponent from "components/DynamicHeightComponent/DynamicHeightComponent";
-import { reducer, initialState, ACTION } from "store/reducers/searchReducer";
 import SearchHintList from "./SearchHintList/SearchHintList";
-
+// styles
 import "./Search.scss";
 
 export function Search({ extClassName }) {
