@@ -102,10 +102,17 @@ export const confirmResetPassword = (formData) =>
     body: JSON.stringify(transform.resetPasswordFormData(formData)),
   });
 
+export const logout = () => {
+  HTTP.accessToken = null;
+  HTTP.refreshToken = null;
+  window.location.href = "/";
+};
+
 export const authAPI = {
   signup,
   confirmSignup,
   signin,
   resetPassword,
   confirmResetPassword,
+  logout,
 };
