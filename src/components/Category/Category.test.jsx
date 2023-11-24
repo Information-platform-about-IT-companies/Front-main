@@ -9,24 +9,19 @@ import { Category } from "./Category";
 jest.mock("../../UI-KIT/Link/LinkItem.jsx");
 
 describe("Category component", () => {
-  it("renders Category component", () => {
+  beforeEach(() => {
     render(
       <BrowserRouter>
         <Category categories={makeFakeServices.companies} />
       </BrowserRouter>,
     );
+  });
+  it("renders Category component", () => {
     const categoryElem = screen.getByTestId("category");
     expect(categoryElem).toBeInTheDocument();
   });
-});
 
-describe("Category component list", () => {
   it("renders Category component links", () => {
-    render(
-      <BrowserRouter>
-        <Category categories={makeFakeServices.companies} />
-      </BrowserRouter>,
-    );
     expect(LinkItem).toHaveBeenCalled();
   });
 });

@@ -56,7 +56,7 @@ describe("App routing", () => {
     expect(screen.getByText(/Страница не найдена/i)).toBeInTheDocument();
   });
 
-  test("landing on a profile info page", () => {
+  it("landing on a profile info page", () => {
     const route = "/profile/info";
 
     render(
@@ -70,7 +70,7 @@ describe("App routing", () => {
     expect(screen.getByText(/Профиль пользователя/i)).toBeInTheDocument();
   });
 
-  test("landing on a profile favourite page", () => {
+  it("landing on a profile favourite page", () => {
     const route = "/profile/favourite";
 
     render(
@@ -84,7 +84,7 @@ describe("App routing", () => {
     expect(screen.getAllByText(/Избранные компании/i)[1]).toBeInTheDocument();
   });
 
-  test("landing on a profile support page", () => {
+  it("landing on a profile support page", () => {
     const route = "/profile/support";
 
     render(
@@ -98,7 +98,7 @@ describe("App routing", () => {
     expect(screen.getAllByText(/Поддержка/i)[1]).toBeInTheDocument();
   });
 
-  test("landing on a filter page", () => {
+  it("landing on a filter page", () => {
     const route = "/filter";
 
     render(
@@ -112,7 +112,7 @@ describe("App routing", () => {
     expect(screen.getByText(/Изучите лучшие компании России/i)).toBeInTheDocument();
   });
 
-  test("landing on a company page", () => {
+  it("landing on a company page", () => {
     const route = "/company";
 
     render(
@@ -126,7 +126,7 @@ describe("App routing", () => {
     //     expect(screen.getByText(/компания/i)).toBeInTheDocument();
   });
 
-  test("landing on a signin page", () => {
+  it("landing on a signin page", () => {
     const route = "/signin";
 
     render(
@@ -142,7 +142,7 @@ describe("App routing", () => {
     ).toBeInTheDocument();
   });
 
-  test("landing on a signup page", () => {
+  it("landing on a signup page", () => {
     const route = "/signup";
 
     render(
@@ -155,7 +155,7 @@ describe("App routing", () => {
     expect(screen.getByTestId("location-display")).toHaveTextContent(route);
   });
 
-  test("landing on a passrecovery page", () => {
+  it("landing on a passrecovery page", () => {
     const route = "/passrecovery";
 
     render(

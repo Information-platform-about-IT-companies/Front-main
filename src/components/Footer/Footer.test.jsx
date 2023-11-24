@@ -6,22 +6,19 @@ import userEvent from "@testing-library/user-event";
 import Footer from "./Footer";
 
 describe("Header component is renders", () => {
-  it("renders Footer component", () => {
+  beforeEach(() => {
     render(
       <BrowserRouter>
         <Footer />
       </BrowserRouter>,
     );
+  });
+  it("renders Footer component", () => {
     const findFooterElem = screen.getByText(/Copyright 2023 Octopus/i);
     expect(findFooterElem).toBeInTheDocument();
   });
 
   it("should navigate to https://practicum.yandex.ru/ when link is clicked", async () => {
-    render(
-      <BrowserRouter>
-        <Footer />
-      </BrowserRouter>,
-    );
     const findFooterLink = screen.getByText(/Сделано студентами Яндекс Практикума/i);
     expect(findFooterLink).toBeInTheDocument();
 
