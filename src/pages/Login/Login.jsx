@@ -6,16 +6,15 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { HTTP } from "api/http";
 import { authAPI } from "api/authApi";
+import { userAPI } from "api/userApi";
 import { useErrorHandler } from "hooks/useErrorHandler";
-import { useNavigate } from "react-router-dom";
-import { ROUTES } from "services/constants";
-
+import { useMainContext } from "context/MainContext";
 import "./Login.scss";
 import { PASSWORD_REGULAR } from "services/regulars";
 
 function Login() {
   const [Error, setError] = useErrorHandler();
-  const navigate = useNavigate();
+  const { setData } = useMainContext();
 
   const formik = useFormik({
     initialValues: {
@@ -40,10 +39,12 @@ function Login() {
       try {
         const tokens = await authAPI.signin(values);
         HTTP.setTokens(tokens);
-        navigate(ROUTES.PROFILE);
+        const currentUser = await userAPI.getCurrentUser();
+        setData((data) => ({ ...data, currentUser }));
       } catch (error) {
         setError(error);
       }
+      return false;
     },
   });
 

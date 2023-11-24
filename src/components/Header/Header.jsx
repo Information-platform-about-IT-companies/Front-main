@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Icon from "UI-KIT/Icons";
 import "./Header.scss";
 import PropTypes from "prop-types";
+import { logout } from "api/authApi";
 import ScrollUp from "../ScrollUp/ScrollUp";
 
 function Header({ loggedIn, userData }) {
@@ -14,9 +15,11 @@ function Header({ loggedIn, userData }) {
           <>
             <Link to="/profile" className="header__userdata">
               <Icon icon="IconAccount" size="32" color="#4E4CBF" />
-              <span className="header__user">{userData}</span>
+              <span className="header__user">
+                {userData && `${userData.firstName} ${userData.lastName}`}
+              </span>
             </Link>
-            <Button size="standard" fill={false} title="Выйти" />
+            <Button size="standard" fill={false} title="Выйти" onClick={() => logout()} />
           </>
         ) : (
           <>
@@ -33,9 +36,15 @@ export default Header;
 
 Header.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
-  userData: PropTypes.string,
+  userData: PropTypes.shape({
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+  }),
 };
 
 Header.defaultProps = {
-  userData: "",
+  userData: PropTypes.shape({
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+  }),
 };
