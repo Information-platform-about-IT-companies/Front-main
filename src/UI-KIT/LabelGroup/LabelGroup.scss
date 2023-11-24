@@ -5,7 +5,7 @@
     display: inline-block;
     padding-bottom: 12px;
 
-    @include roboto-14($black, 400);
+    @include roboto-14(var(--text-color), 400);
   }
 
   &__link {

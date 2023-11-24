@@ -70,6 +70,7 @@ function FilterPage() {
                 name={name}
                 iconLikeState={isFavorited}
                 description={description}
+                extClassCardName="filterPage__background"
               />
             </li>
           ))}

@@ -156,7 +156,8 @@ function Register() {
           title="Войти"
           extClassName="login__link"
           weight="400"
-          lineColor="#479fba"
+          textColor="var(--text-color)"
+          lineColor="var(--link-underline)"
         />
       </p>
     </main>

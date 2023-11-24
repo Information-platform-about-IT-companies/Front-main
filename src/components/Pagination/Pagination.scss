@@ -23,7 +23,7 @@
     background: none;
     font-size: 14px;
     text-decoration: none;
-    color: $black;
+    color: var(--text-color);
 
     &_active {
       position: relative;

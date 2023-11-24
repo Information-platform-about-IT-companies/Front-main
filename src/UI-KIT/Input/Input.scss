@@ -8,10 +8,9 @@
 }
 
 .input__container {
-  width: 100%;
-  position: relative;
+  @include flex(center, center, column);
 
-  @include flex(center, flex-start, row);
+  width: 100%;
 }
 
 .input__label {
@@ -20,31 +19,32 @@
   font-size: $text-size-default;
   font-style: normal;
   line-height: 140%;
+  color: var(--text-color);
 }
 
 .input__field {
   width: inherit;
   padding: 12px;
-  background-color: $white;
-  border: 1px solid $blue;
+  background-color: var(--input-background);
+  border: 1px solid var(--input-border);
   border-radius: 10px;
   font-size: $text-size-default;
-  color: $black;
+  color: var(--text-color);
   font-weight: 400;
   line-height: 22.4px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   outline: none;
-  box-shadow: inset 0 0 0 0 $blue;
+  box-shadow: inset 0 0 0 0 var(--input-border);
 
   &:focus {
-    box-shadow: inset 0 0 0 1px $blue;
+    box-shadow: inset 0 0 0 1px var(--input-border);
     z-index: 9;
   }
 
   &::placeholder {
-    color: $black;
+    color: var(--input-placeholder);
     opacity: 0.8;
   }
 }
@@ -55,13 +55,17 @@
 
 .input__field-icon {
   position: absolute;
+  transform: translateY(80%);
   max-height: 24px;
   left: 20px;
-  z-index: 10;
 }
 
 .input__field-error {
   border-color: $red;
+
+  &:focus {
+    box-shadow: inset 0 0 0 0 $red;
+  }
 }
 
 .input__error-text {

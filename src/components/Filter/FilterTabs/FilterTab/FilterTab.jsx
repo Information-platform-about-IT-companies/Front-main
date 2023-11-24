@@ -17,7 +17,7 @@ export function Tab({ formName, tabName, total, direction, onClick }) {
     >
       <span>{tabName}</span>
       {total && <span className="filter__tab-count">{`(${total})`}</span>}
-      <IconArrow size="24" color="#111111" direction={direction} />
+      <IconArrow size="24" color="var(--text-color)" direction={direction} />
     </div>
   );
 }

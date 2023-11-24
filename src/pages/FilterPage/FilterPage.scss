@@ -10,7 +10,7 @@
   }
 
   &__title {
-    @include roboto-32;
+    @include roboto-32(var(--text-color));
 
     line-height: 38px;
     text-align: center;
@@ -25,5 +25,9 @@
 
   &__listitem {
     display: block;
+  }
+
+  &__background {
+    background-color: var(--filter-companycard-background);
   }
 }

@@ -1,7 +1,7 @@
 @import "src/assets/style/main";
 
 .buttonHeart {
-  fill: $black;
+  fill: var(--button-heart-border);
   transition:
     transform $animation,
     fill $animation;

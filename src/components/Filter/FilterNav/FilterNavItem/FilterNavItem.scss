@@ -7,8 +7,9 @@
   font-weight: 500;
   background-color: transparent;
   border: none;
+  color: var(--text-color);
 
   &_active {
-    color: $blue;
+    color: var(--filter-nav-item-active);
   }
 }

@@ -64,7 +64,8 @@
 body {
   font-family: Roboto, sans-serif;
   margin: 0;
-  background-color: $white;
+  background-color: var(--background);
+  transition: var(--theme-transition);
 }
 
 ol,

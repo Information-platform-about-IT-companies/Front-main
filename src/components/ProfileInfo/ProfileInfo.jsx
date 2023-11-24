@@ -164,22 +164,29 @@ function ProfileInfo() {
             }
             onBlur={transformPasswordBlur}
           />
-
-          <Input
-            label="Новый пароль"
-            type="password"
-            name="newPassword"
-            id={`${id}-newPassword`}
-            value={formikPassword.values.newPassword}
-            onChange={formikPassword.handleChange}
-            error={
-              formikPassword.errors.newPassword && formikPassword.touched.newPassword
-                ? formikPassword.errors.newPassword
-                : null
-            }
-            onBlur={transformPasswordBlur}
-          />
-
+          <div className="form-info-change__tooltip-input">
+            <Input
+              label="Новый пароль"
+              type="password"
+              name="newPassword"
+              id={`${id}-newPassword`}
+              value={formikPassword.values.newPassword}
+              onChange={formikPassword.handleChange}
+              error={
+                formikPassword.errors.newPassword && formikPassword.touched.newPassword
+                  ? formikPassword.errors.newPassword
+                  : null
+              }
+              onBlur={transformPasswordBlur}
+            >
+              {/*               <ul className="form-info-change__tooltip-container">
+                <li className="form-info-change__tooltip-item">от 8 до 30 символов</li>
+                <li className="form-info-change__tooltip-item">
+                  должен содержать цифры и буквы / спецсимволы без пробелов
+                </li>
+              </ul> */}
+            </Input>
+          </div>
           <Input
             label="Подтвердите новый пароль"
             type="password"

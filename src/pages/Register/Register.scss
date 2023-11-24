@@ -6,8 +6,16 @@
 
   margin-top: 80px;
 
+  &__container {
+    @include flex(center, center, column);
+
+    &_hide {
+      display: none;
+    }
+  }
+
   &__title {
-    @include roboto-32($color: $black);
+    @include roboto-32($color: var(--text-color));
 
     font-style: normal;
     line-height: normal;
@@ -15,7 +23,7 @@
   }
 
   &__subtitle {
-    @include roboto-16($color: $black);
+    @include roboto-16($color: var(--text-color));
 
     font-style: normal;
     line-height: normal;
@@ -37,17 +45,17 @@
   }
 
   &__suggestion {
-    @include roboto-16($color: $black);
+    @include roboto-16($color: var(--text-color));
 
     font-style: normal;
     line-height: normal;
     font-weight: 300;
     margin-top: 24px;
-    margin-bottom: 95px;
+    margin-bottom: 105px;
   }
 
   &__link {
-    @include roboto-16($color: $black);
+    @include roboto-16($color: var(--text-color));
   }
 
   &__userName {
@@ -71,7 +79,7 @@
     padding: 13px;
     border-radius: 20px;
     max-width: 300px;
-    transform: translateX(106%) translateY(-15%);
+    transform: translateX(106%) translateY(6%);
     background-color: $purple;
     border-color: none;
     opacity: 0;
@@ -99,11 +107,59 @@
   }
 
   &__tooltip-item {
-    @include roboto-16($color: $white);
+    @include roboto-16($color: var(--tooltip-text));
 
     line-height: 140%;
     list-style: disc outside;
     margin-left: 23px;
     padding-right: -100px;
+  }
+
+  &__message {
+    display: none;
+
+    &_show {
+      @include flex(center, center, column);
+
+      margin-top: 50px;
+    }
+  }
+
+  &__confirm-form {
+    @include flex(center, center, column);
+
+    min-width: 773px;
+    min-height: 468px;
+    padding: 32px;
+    gap: 20px;
+    border-radius: 20px;
+  }
+
+  &__confirm-title {
+    @include roboto-32($color: var(--text-color));
+
+    margin-bottom: -5px;
+  }
+
+  &__confirm-textbox {
+    @include flex(center, center, column);
+  }
+
+  &__confirm-text {
+    @include flex(center, center, row);
+    @include roboto-16($color: var(--text-color));
+
+    font-weight: 300;
+    line-height: 140%;
+  }
+
+  &__confirm-link {
+    outline: none;
+    margin-left: 4px;
+    border-radius: 0;
+
+    &:hover {
+      border-bottom: 1px solid var(--link-underline);
+    }
   }
 }
