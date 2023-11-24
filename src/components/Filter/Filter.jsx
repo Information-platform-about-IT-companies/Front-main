@@ -63,7 +63,7 @@ export function Filter() {
     );
 
   return (
-    <section className={isOpenFilter ? "filter filter_open" : "filter"}>
+    <section className={isOpenFilter ? "filter filter_open" : "filter"} data-testid="filterSection">
       <FilterTabs state={state} dispatch={dispatch} />
 
       {isOpenFilter && (
