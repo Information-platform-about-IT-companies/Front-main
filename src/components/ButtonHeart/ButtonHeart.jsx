@@ -5,19 +5,12 @@ import Icon from "UI-KIT/Icons";
 
 import "./ButtonHeart.scss";
 
-export default function ({ click, fill }) {
-  const [isFill, setIsFill] = React.useState(fill);
-
-  const handlerClick = () => {
-    setIsFill(!isFill);
-    click();
-  };
-
+export default function ButtonHeart({ click, fill }) {
   return (
     <ButtonIcon
-      extClassName={isFill ? "buttonHeart_active" : "buttonHeart"}
-      onClick={handlerClick}
-      icon={<Icon icon="IconHeart" size="32" {...(isFill ? { fill: "fill" } : {})} />}
+      extClassName={fill ? "buttonHeart_active" : "buttonHeart"}
+      onClick={click}
+      icon={<Icon icon="IconHeart" size="32" {...(fill ? { fill: "fill" } : {})} />}
     />
   );
 }
