@@ -7,6 +7,10 @@
 
   &__input-button {
     border-radius: 0 10px 10px 0 !important;
+
+    &:disabled {
+      transition: background $animation;
+    }
   }
 
   &__input_1 {
@@ -28,7 +32,6 @@
     top: 100%;
     left: 0;
     width: 100%;
-    overflow: hidden;
     border-radius: 10px;
     background-color: var(--search-hint);
     grid-column: 1 / -1;

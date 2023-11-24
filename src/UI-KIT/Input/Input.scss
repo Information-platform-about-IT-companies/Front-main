@@ -55,8 +55,8 @@
 
 .input__field-icon {
   position: absolute;
-  transform: translateY(80%);
-  max-height: 24px;
+  top: 18px;
+  z-index: 10;
   left: 20px;
 }
 

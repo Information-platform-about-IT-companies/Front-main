@@ -50,6 +50,7 @@ const meta = {
       description:
         "Обязательный параметр для иконки фильтра. Отвечает за добавление крестика к иконке фильтра",
       options: [true, false],
+      control: "text",
     },
     direction: {
       description:
