@@ -1,0 +1,70 @@
+@import "/src/assets/style/main";
+
+.theme-switcher {
+  max-width: 95px;
+
+  @include flex(center, space-between, row);
+
+  position: relative;
+
+  &__theme-button {
+    margin: 0;
+    position: relative;
+    width: 95px;
+    height: 43px;
+    appearance: none;
+    background-color: none;
+    border-radius: 50px;
+    border: 1.5px solid $blue;
+    outline: none;
+    transition: 0.5s;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: inset 0 0 0 1.5px $blue;
+    }
+
+    &:checked {
+      border: 1.5px solid $blue-dark;
+    }
+
+    &:checked:hover {
+      box-shadow: inset 0 0 0 1.5px $blue-dark;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 5px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50px;
+      background: $blue;
+      transition: 0.5s;
+      background-image: url("../../images/Light-theme-icon.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    &:checked::before {
+      left: 55px;
+      background: $blue-dark;
+      background-image: url("../../images/Dark-theme-icon.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+
+  &__ligth-icon {
+    position: absolute;
+    top: 14%;
+    left: 7%;
+  }
+
+  &__dark-icon {
+    position: absolute;
+    top: 14%;
+    right: 7%;
+  }
+}

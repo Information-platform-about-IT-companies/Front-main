@@ -8,9 +8,10 @@
   cursor: pointer;
   font-size: $text-size-medium;
   font-weight: 500;
+  color: var(--text-color);
 
   &-count {
-    color: $blue;
+    color: var(--span-text);
     display: flex;
   }
 }

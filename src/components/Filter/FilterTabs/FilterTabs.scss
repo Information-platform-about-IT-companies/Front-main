@@ -9,7 +9,7 @@
     @include flex(stretch, space-between);
 
     padding: 8px 20px;
-    outline: 1px solid $blue;
+    outline: 1px solid var(--input-border);
     border-radius: 10px;
   }
 

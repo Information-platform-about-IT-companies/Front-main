@@ -1,7 +1,7 @@
 @import "src/assets/style/main";
 
 .checkbox {
-  color: $black;
+  color: var(--text-color);
   display: flex;
   align-items: center;
   max-width: 200px;
@@ -17,9 +17,9 @@
     appearance: none;
     min-width: 15px;
     height: 15px;
-    border: 1px solid $black;
+    border: 1px solid var(--text-color);
     border-radius: 4px;
-    background-color: $white;
+    background-color: var(--checkbox-background);
 
     &:checked::before {
       content: "";
@@ -27,7 +27,7 @@
       height: 10px;
       border: none;
       border-radius: 2px;
-      background-color: $blue;
+      background-color: var(--checkbox-background-checked);
     }
   }
 }

@@ -26,6 +26,6 @@
   }
 
   &__user {
-    @include roboto-16($black);
+    @include roboto-16(var(--text-color));
   }
 }

@@ -13,7 +13,7 @@ export function FilterTabs({ state, dispatch }) {
     isOpenFilter,
   } = state;
   const tabsValues = { city: cities?.length, service: services.length };
-  const color = isOpenFilter ? "#4E4CBF" : "#111111";
+  const color = isOpenFilter ? "var(--icon-color)" : "var(--text-color)";
   const isFilterNotEmpty = cities?.length || services?.length;
 
   const onTabClick = (formName) => {

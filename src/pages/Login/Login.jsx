@@ -70,7 +70,8 @@ function Login() {
           title="Забыли пароль?"
           extClassName="login__link-recovery"
           weight="400"
-          lineColor="#479fba"
+          textColor="var(--text-color)"
+          lineColor="var(--link-underline)"
         />
         <Button title="Войти" fill size="standard" disabled={!(formik.isValid && formik.dirty)} />
       </Form>
@@ -81,7 +82,8 @@ function Login() {
           title="Зарегистрируйтесь"
           extClassName="login__link"
           weight="400"
-          lineColor="#479fba"
+          textColor="var(--text-color)"
+          lineColor="var(--link-underline)"
         />
       </p>
     </main>

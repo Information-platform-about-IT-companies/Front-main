@@ -1,18 +1,22 @@
 @import "src/assets/style/main";
 
 .label {
-  @include roboto-16;
+  @include roboto-16(var(--text-color));
 
   display: block;
   border-radius: 10px;
   border: none;
   padding: 8px 12px;
-  background-color: $sea-blue-light;
+  background-color: var(--company-lable-background);
   height: 35px;
-  width: fit-content;
+  max-width: fit-content;
   cursor: default;
 
   &:hover {
-    background-color: $sea-blue-middle;
+    background-color: var(--company-lable-background-hover);
+  }
+
+  &:active {
+    background-color: var(--company-lable-background-active);
   }
 }

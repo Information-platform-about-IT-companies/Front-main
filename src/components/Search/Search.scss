@@ -33,14 +33,52 @@
     left: 0;
     width: 100%;
     border-radius: 10px;
-    background-color: $sea-blue-light;
+    background-color: var(--search-hint);
     grid-column: 1 / -1;
     z-index: 99;
+    transition: height $animation;
+  }
+
+  &__hint-list-container {
+    padding: 0 32px;
+    margin-bottom: 20px;
+
+    &:first-of-type {
+      padding-top: 32px;
+    }
+
+    &:last-of-type {
+      padding-bottom: 32px;
+      margin-bottom: 0;
+    }
+  }
+
+  &__hint-list-header {
+    margin: 0;
+    padding-bottom: 12px;
+    color: var(--search-hint-title);
+    font-size: $text-size-small;
+
+    &_no-found {
+      padding-bottom: 0;
+    }
+  }
+
+  &__hint-list {
+    margin: 0;
+  }
+
+  &__hint-list-element {
+    padding-bottom: 12px;
+
+    &:last-of-type {
+      padding-bottom: 0;
+    }
   }
 
   &__hint-link {
     text-decoration: none;
-    color: $black;
+    color: var(--search-hint-link);
     font-size: $text-size-default;
   }
 }

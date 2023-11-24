@@ -17,7 +17,7 @@ export function CategoryTitle({ title, id }) {
 
   return (
     <span className="category_title">
-      <Icon icon={iconName} extClassName="category_icon" />
+      <Icon icon={iconName} color="var(--icon-color)" extClassName="category_icon" />
       {title}
     </span>
   );

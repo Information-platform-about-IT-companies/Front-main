@@ -1,0 +1,69 @@
+@import "src/assets/style/main";
+
+:root[data-theme="light"] {
+  --background: #{$white};
+  --theme-transition: 0.5s;
+  --button-border: #{$blue};
+  --text-color: #{$black};
+  --icon-color: #{$blue};
+  --link-underline: #{$sea-blue-middle-soft};
+  --input-border: #{$blue};
+  --input-background: #{$white};
+  --input-placeholder: #{$black};
+  --span-text: #{$blue};
+  --search-hint: #{$sea-blue-light};
+  --search-hint-title: #{$blue};
+  --search-hint-link: #{$black};
+  --form-background: #{$sea-blue-light};
+  --tooltip-text: #{$white};
+  --company-hide-text: #{$blue};
+  --company-lable-background: #{$sea-blue-light};
+  --company-lable-background-hover: #{$sea-blue-middle};
+  --company-lable-background-active: #{$sea-blue};
+  --profile-nav-active: #{$sea-blue-light};
+  --profile-button-change: #{$blue};
+  --profile-company-card: #{$snow-white};
+  --profile-company-fullinfo: #{$blue};
+  --filter-content-background: #{$white};
+  --filter-content-border: #{$blue};
+  --filter-nav-item-active: #{$blue};
+  --filter-companycard-background: #{$snow-white};
+  --checkbox-background: #{$white};
+  --checkbox-background-checked: #{$blue};
+  --button-heart-border: #{$black};
+  --pagination-background: #{$snow-white};
+}
+
+:root[data-theme="dark"] {
+  --background: #{$blue-night};
+  --theme-transition: 0.5s;
+  --button-border: #{$blue-dark};
+  --text-color: #{$snow-white};
+  --icon-color: #{$blue-dark};
+  --link-underline: #{$blue-dark};
+  --input-border: #{$blue-dark};
+  --input-background: #{$blue-night};
+  --input-placeholder: #{$blue-dark};
+  --span-text: #{$blue-dark};
+  --search-hint: #{$sea-blue-light-night};
+  --search-hint-title: #{$blue-dark};
+  --search-hint-link: #{$snow-white};
+  --form-background: #{$sea-blue-light-night};
+  --tooltip-text: #{$blue-night};
+  --company-hide-text: #{$blue-dark-soft};
+  --company-lable-background: #{$blue-middle};
+  --company-lable-background-hover: #{$sea-blue-middle-night};
+  --company-lable-background-active: #{$sea-blue};
+  --profile-nav-active: #{$sea-blue-light-night};
+  --profile-button-change: #{$blue-dark};
+  --profile-company-card: #{$sea-blue-light-night};
+  --profile-company-fullinfo: #{$blue-dark};
+  --filter-content-background: #{$blue-night};
+  --filter-content-border: #{$blue-dark};
+  --filter-nav-item-active: #{$blue-dark};
+  --filter-companycard-background: #{$sea-blue-light-night};
+  --checkbox-background: #{$blue-night};
+  --checkbox-background-checked: #{$blue-dark};
+  --button-heart-border: #{$blue-dark};
+  --pagination-background: #{$sea-blue-light-night};
+}

@@ -9,12 +9,11 @@ import ProtectedRouteElement from "components/ProtectedRoute/ProtectedRoute";
 import Profile from "pages/Profile/Profile";
 import Main from "pages/Main/Main";
 import ForgetPassword from "pages/ForgetPassword/ForgetPassword";
-
 import ProfileInfo from "components/ProfileInfo/ProfileInfo";
 import ProfileSupport from "components/ProfileSupport/ProfileSupport";
 import ProfileFavourite from "components/ProfileFavourite/ProfileFavourite";
-
 import Layout from "components/Layout/Layout";
+
 // Стили
 import "./App.scss";
 import FilterPage from "pages/FilterPage/FilterPage";
@@ -24,6 +23,7 @@ import CompanyPage from "../Company/CompanyPage";
 function App() {
   const [loggedIn, setLoggetIn] = useState(true);
   const [userData, setUserData] = useState("Вася Пупкин");
+
   return (
     <>
       <Routes>
