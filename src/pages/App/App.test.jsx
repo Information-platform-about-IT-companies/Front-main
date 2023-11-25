@@ -1,8 +1,8 @@
-import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
-import "@testing-library/jest-dom";
 import { BrowserRouter, MemoryRouter, useLocation } from "react-router-dom";
+import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
+import MainContextProvider from "context/MainContext";
 import App from "./App";
 
 function LocationDisplay() {
@@ -14,9 +14,11 @@ function LocationDisplay() {
 describe("App component is renders", () => {
   it("Renders welcome message", () => {
     render(
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>,
+      <MainContextProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </MainContextProvider>,
     );
     const appElem = screen.getByText(/Найдите подходящие для вас IT-компании в России/i);
     expect(appElem).toBeInTheDocument();

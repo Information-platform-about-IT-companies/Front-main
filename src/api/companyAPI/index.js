@@ -49,8 +49,15 @@ import { HTTP } from "api/http";
  * @returns {Promise<ServerResponse>}  - Объект Promise, с данными ответа от сервера.
  */
 
-export const fetchCompanies = async (options) => {
-  const response = await HTTP.get(API_ENDPOINTS.COMPANIES.FETCH(options));
+export const fetchCompanies = async (options, { withCredentials }) => {
+  const response = await HTTP.get(API_ENDPOINTS.COMPANIES.FETCH(options), {
+    ...(withCredentials
+      ? {
+          withCredentials,
+          headers: { Authorization: `Bearer ${HTTP.accessToken}` },
+        }
+      : {}),
+  });
   response.results = response?.results.map((item) => transform.company(item));
   return response;
 };

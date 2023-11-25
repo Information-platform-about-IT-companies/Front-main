@@ -11,6 +11,7 @@ jest.mock("../../UI-KIT/Link/LinkItem.jsx");
 
 describe("Category component", () => {
   beforeEach(() => {
+    // eslint-disable-next-line testing-library/no-render-in-lifecycle
     render(
       <BrowserRouter>
         <Category categories={makeFakeServices.companies} />

@@ -1,6 +1,10 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 // functions
-import { hardcode } from "services/constants";
+import { hardcode, ROUTES } from "services/constants";
+import { SIGN_IN_CONFIRM_REGULAR } from "services/regulars";
+import { authAPI } from "api/authApi";
+import { useErrorHandler } from "hooks/useErrorHandler";
 // Components
 import { Search } from "components/Search/Search";
 import { Category } from "components/Category/Category";
@@ -10,6 +14,27 @@ import { Button } from "UI-KIT/Button/Button";
 import "./Main.scss";
 
 function Main() {
+  const [Error, setError] = useErrorHandler();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const confirmSignup = async (cb) => {
+    const [, , uid, token] = location.hash.split("/");
+    try {
+      await authAPI.confirmSignup({ uid, token });
+      cb();
+    } catch (error) {
+      setError(error);
+    }
+  };
+
+  useEffect(() => {
+    /** Обработка данных регистрации, отправленных на почту */
+    if (SIGN_IN_CONFIRM_REGULAR.test(location.hash)) {
+      confirmSignup(() => navigate(ROUTES.SIGN_IN));
+    }
+  }, []);
+
   return (
     <main className="mainPage">
       <section className="intro">
@@ -43,12 +68,13 @@ function Main() {
         </ul>
         <Button
           linkType="link"
-          url="/filter"
+          url="/filter?page=1"
           size="standard"
           fill
           title="Посмотреть все компании"
         />
       </section>
+      <Error />
     </main>
   );
 }

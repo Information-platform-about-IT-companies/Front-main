@@ -1,11 +1,13 @@
 import { createContext, useContext, useMemo, useState } from "react";
 import PropTypes from "prop-types";
 
+const initialValues = {
+  currentUser: null,
+};
+
 export const MainContext = createContext(null);
 export default function MainContextProvider({ children }) {
-  const [data, setData] = useState({
-    // тут будет дата
-  });
+  const [data, setData] = useState(initialValues);
   const value = useMemo(
     () => ({
       data,
@@ -21,6 +23,7 @@ export const useMainContext = () => {
   if (!context) {
     throw new Error("Попытка использовать хук useThemeContext за пределами ThemeContextProvider");
   }
+  return context;
 };
 
 MainContextProvider.PropTypes = {

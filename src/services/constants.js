@@ -4,15 +4,16 @@ export const API_HOST = "https://dev.octopus-it.ru/api/v1/";
 
 export const API_ENDPOINTS = {
   AUTH: {
-    SIGNUP: "auth/signup",
-    SIGNUP_CONFIRM: "auth/signup_confirm",
-    SIGNIN: "auth/signin",
-    RESET_PASSWORD: "auth/reset_password",
-    CHANGE_PASSWORD: "auth/reset_password_confirm",
+    SIGNUP: "auth/signup/",
+    SIGNUP_CONFIRM: "auth/signup_confirm/",
+    SIGNIN: "auth/signin/",
+    RESET_PASSWORD: "auth/reset_password/",
+    CONFIRM_RESET_PASSWORD: "auth/reset_password_confirm/",
   },
   USER: {
-    ME: "user/me",
-    UPDATE_PROFILE: "user/me/change_password",
+    ME: "users/me/",
+    UPDATE_PROFILE: "users/me/",
+    CHANGE_PASSWORD: "users/change_password/",
   },
   INFO: {
     INDUSTRIES: "info/industries",
@@ -22,16 +23,27 @@ export const API_ENDPOINTS = {
     SEARCH: "info/search_services_companies",
   },
   TOKENS: {
-    REFRESH: "refresh",
+    REFRESH: "tokens/refresh/",
   },
   COMPANIES: {
     FETCH: (params) => `companies?${new URLSearchParams(params).toString()}`,
     GET: (id) => `companies/${id}`,
   },
   FAVORITE: {
-    ADD: (id) => `companies/${id}/favorite`,
-    REMOVE: (id) => `companies/${id}/favorite`,
+    ADD: (id) => `companies/${id}/favorite/`,
+    REMOVE: (id) => `companies/${id}/favorite/`,
   },
+};
+
+export const ROUTES = {
+  ROOT: "/",
+  SIGN_UP: "/signup",
+  SIGN_IN: "/signin",
+  FILTER: "/filter",
+  PROFILE: "/profile",
+  COMPANY: "/company",
+  PASS_RECOVERY: "/passrecovery",
+  NOT_FOUND: "/400",
 };
 
 export function declinationsNumericalValues(value, text) {
