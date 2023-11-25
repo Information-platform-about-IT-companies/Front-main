@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
+// functions
+import { authAPI } from "api/authApi";
+import { useErrorHandler } from "hooks/useErrorHandler";
 // UI-KIT
 import { LinkItem } from "UI-KIT/Link/LinkItem";
 import { Button } from "UI-KIT/Button/Button";
@@ -12,6 +15,7 @@ import "./ForgetPassword.scss";
 
 function ForgetPassword() {
   const [noErrorServerResponse, setNoErrorServerResponse] = useState(false);
+  const [Error, setError] = useErrorHandler();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -24,11 +28,13 @@ function ForgetPassword() {
         .max(254, "Длина поля от 6 до 254 символов")
         .required("Поле обязательно для заполнения"),
     }),
-    onSubmit: (values) => {
-      console.log(JSON.stringify(values, null, 2));
-      setNoErrorServerResponse(true);
-      console.log("Успешный запрос на сервер, выведено сообщение пользователю об успехе");
-      console.log(values);
+    onSubmit: async (values) => {
+      try {
+        await authAPI.resetPassword(values);
+        setNoErrorServerResponse(true);
+      } catch (error) {
+        setError(error);
+      }
     },
   });
 
@@ -122,6 +128,7 @@ function ForgetPassword() {
           />
         </p>
       </div>
+      <Error />
     </main>
   );
 }

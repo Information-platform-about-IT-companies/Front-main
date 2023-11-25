@@ -7,6 +7,7 @@ import Footer from "./Footer";
 
 describe("Header component is renders", () => {
   beforeEach(() => {
+    // eslint-disable-next-line testing-library/no-render-in-lifecycle
     render(
       <BrowserRouter>
         <Footer />

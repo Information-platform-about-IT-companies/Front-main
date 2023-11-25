@@ -11,6 +11,7 @@ import { cutText } from "services/constants";
 import "./CompanyCard.scss";
 
 export default function CompanyCard({
+  id,
   type,
   logo,
   name,
@@ -31,7 +32,7 @@ export default function CompanyCard({
         <div className="companyCard__info">
           <CompanyLogo logo={logo} name={name} city={city} />
           <div className="companyCard__buttonHeartContainer">
-            <ButtonHeart click={onIconHeartClick} fill={inFavorite} />
+            <ButtonHeart click={() => onIconHeartClick(id)} fill={inFavorite} />
           </div>
         </div>
         {description ? <p className="companyCard__description">{cutDescription}</p> : null}
@@ -54,7 +55,7 @@ export default function CompanyCard({
           <CompanyLogo logo={logo} name={name} city={city} />
           <div className="companyCard__like-wrapper">
             <div className="companyCard__buttonHeartContainer">
-              <ButtonHeart click={onIconHeartClick} fill={inFavorite} />
+              <ButtonHeart click={() => onIconHeartClick(id)} fill={inFavorite} />
             </div>
             <LinkItem
               title="Подробнее"

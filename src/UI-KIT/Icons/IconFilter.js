@@ -31,11 +31,12 @@ IconFilter.propTypes = {
   size: PropTypes.oneOf(["24", "32", "60"]),
   color: PropTypes.string,
   extClassName: PropTypes.string,
-  cross: PropTypes.bool.isRequired,
+  cross: PropTypes.bool,
 };
 
 IconFilter.defaultProps = {
   size: "32",
   color: "#111",
+  cross: false,
   extClassName: "",
 };

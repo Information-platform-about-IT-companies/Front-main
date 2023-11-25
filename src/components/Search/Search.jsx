@@ -225,7 +225,7 @@ export function Search({ extClassName }) {
           dispatch({ type: ACTION.SET_IS_HINT_OPEN, payload: false });
           dispatch({ type: ACTION.SET_IS_HINT_NOT_FOUND_OPEN, payload: false });
         }}
-        autocomplete="off"
+        autoComplete="off"
       />
       <Button
         extClassName="search__input-button"

@@ -16,8 +16,8 @@ import { HTTP } from "api/http";
  * @typedef {Object} UserData
  * @property {number} id - Идентификатор пользователя.
  * @property {string} email - Адрес электронной почты пользователя.
- * @property {string} userName - Имя пользователя.
- * @property {string} userSurname - Фамилия пользователя.
+ * @property {string} firstName - Имя пользователя.
+ * @property {string} lastName - Фамилия пользователя.
  */
 
 /**
@@ -26,10 +26,22 @@ import { HTTP } from "api/http";
  * @returns {Promise<UserData>} - Объект Promise, который разрешается объектом с данными о текущем пользователе.
  * @throws {HTTPError} - В случае ошибки при выполнении запроса.
  */
+// нужно будет добавить токен к запросу
 export const getCurrentUser = async () => {
-  const user = await HTTP.get(API_ENDPOINTS.USER.ME);
+  const user = await HTTP.get(API_ENDPOINTS.USER.ME, {
+    withCredentials: true,
+    headers: { Authorization: `Bearer ${HTTP.accessToken}` },
+  });
   return transform.userData(user);
 };
+
+/**
+ * @typedef {Object} UserData
+ * @property {number} id - Идентификатор пользователя.
+ * @property {string} email - Адрес электронной почты пользователя.
+ * @property {string} firstName - Имя пользователя.
+ * @property {string} lastName - Фамилия пользователя.
+ */
 
 /**
  * Изменение информации о текущем пользователе.
@@ -41,8 +53,13 @@ export const getCurrentUser = async () => {
  * @returns {Promise<UserData>} - Объект Promise, который разрешается обновленными данными о текущем пользователе.
  * @throws {HTTPError} - В случае ошибки при выполнении запроса.
  */
+// нужно будет добавить токен к запросу
 export const updateUser = async (formData) => {
-  const user = await HTTP.patch(API_ENDPOINTS.USER.ME, { body: transform.userFormData(formData) });
+  const user = await HTTP.put(API_ENDPOINTS.USER.ME, {
+    withCredentials: true,
+    headers: { Authorization: `Bearer ${HTTP.accessToken}` },
+    body: JSON.stringify(transform.userFormData(formData)),
+  });
   return transform.userData(user);
 };
 
@@ -60,9 +77,12 @@ export const updateUser = async (formData) => {
  * @returns {Promise<void>} - Объект Promise без конкретных данных, разрешаемый при успешном выполнении запроса.
  * @throws {HTTPError} - В случае ошибки при выполнении запроса.
  */
+// нужно будет добавить токен к запросу
 export const resetPassword = async (formData) => {
-  HTTP.post(API_ENDPOINTS.AUTH.RESET_PASSWORD, {
-    body: transform.resetCurrentUserPasswordFormData(formData),
+  HTTP.post(API_ENDPOINTS.USER.CHANGE_PASSWORD, {
+    withCredentials: true,
+    headers: { Authorization: `Bearer ${HTTP.accessToken}` },
+    body: JSON.stringify(transform.resetCurrentUserPasswordFormData(formData)),
   });
 };
 

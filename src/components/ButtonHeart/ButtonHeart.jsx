@@ -15,9 +15,9 @@ export default function ButtonHeart({ click, fill }) {
 
   return (
     <ButtonIcon
-      extClassName={isFill ? "buttonHeart_active" : "buttonHeart"}
+      extClassName={fill ? "buttonHeart_active" : "buttonHeart"}
       onClick={handlerClick}
-      icon={<Icon icon="IconHeart" size="32" {...(isFill ? { fill: "fill" } : {})} />}
+      icon={<Icon icon="IconHeart" size="32" {...(fill ? { fill: "fill" } : {})} />}
     />
   );
 }

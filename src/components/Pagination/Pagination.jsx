@@ -5,8 +5,10 @@ import IconArrow from "UI-KIT/Icons/IconArrow";
 // styles
 import "./Pagination.scss";
 
-export function Pagination({ totalPages, currentPage }) {
+export function Pagination({ totalPages }) {
   const [searchParams, setSearchParams] = useSearchParams();
+  const currentPage = Number(searchParams.get("page")) ?? 1;
+  console.log("currentPage", currentPage);
   const turnToPage = (page) => {
     searchParams.set("page", page);
     setSearchParams(searchParams);

@@ -1,4 +1,4 @@
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 // UI-KIT
@@ -8,15 +8,24 @@ import { Button } from "UI-KIT/Button/Button";
 import { ButtonChanges } from "UI-KIT/ButtonChanges/ButtonChanges";
 // functions
 import { NAME_REGULAR, PASSWORD_REGULAR } from "services/regulars";
+import { useErrorHandler } from "hooks/useErrorHandler";
+import { useMainContext } from "context/MainContext";
+import { userAPI } from "api/userApi";
 // styles
 import "./ProfileInfo.scss";
 
 function ProfileInfo() {
+  const [Error, setError] = useErrorHandler();
+  const { data, setData } = useMainContext();
+  const { currentUser } = data || {};
+  const { firstName, lastName, email } = currentUser || {};
+  let updateUser;
+
   const formikInfo = useFormik({
     initialValues: {
-      firstName: "Vasya", // тут будут данные из useContext
-      lastName: "Pupkin",
-      email: "VasyaPupkin@yandex.com",
+      firstName,
+      lastName,
+      email,
     },
     validationSchema: yup.object({
       firstName: yup
@@ -38,8 +47,44 @@ function ProfileInfo() {
         .max(254, "Длина поля от 6 до 254 символов")
         .required("Поле обязательно для заполнения"),
     }),
-    onSubmit: (values) => console.log(JSON.stringify(values, null, 2)),
+    onSubmit: async (values) => {
+      try {
+        const updatedCurrentUser = await userAPI.updateUser(values);
+        updateUser(updatedCurrentUser);
+      } catch (error) {
+        setError(error);
+      }
+    },
   });
+
+  const updateFormikValues = (newValues) => {
+    formikInfo.setValues({
+      ...formikInfo.values,
+      ...newValues,
+    });
+  };
+
+  updateUser = (user) => {
+    setData({ ...data, currentUser: user });
+    updateFormikValues(user);
+  };
+
+  useEffect(() => {
+    const fetchCurrentUser = async () => {
+      try {
+        const user = await userAPI.getCurrentUser();
+        console.log("user", user);
+        updateUser(user);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (!currentUser) {
+      fetchCurrentUser();
+    }
+  }, [currentUser]);
+
   const formikPassword = useFormik({
     initialValues: {
       currentPassword: "",
@@ -67,8 +112,15 @@ function ProfileInfo() {
         .oneOf([yup.ref("newPassword"), null], "Пароли не совпадают")
         .required("Поле обязательно для заполнения"),
     }),
-    onSubmit: (values) => console.log(JSON.stringify(values, null, 2)),
+    onSubmit: async (values) => {
+      try {
+        await userAPI.resetPassword(values);
+      } catch (error) {
+        setError(error);
+      }
+    },
   });
+
   const transformInfoBlur = (event) => {
     formikInfo.setFieldValue(event.target.name, event.target.value.trim());
     formikInfo.handleBlur(event);
@@ -226,6 +278,7 @@ function ProfileInfo() {
           </div>
         </Form>
       ) : null}
+      <Error />
     </>
   );
 }

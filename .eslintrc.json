@@ -49,7 +49,7 @@
       2,
       { "caseSensitive": false }
     ],
-    "no-undefined": 2,
+    "no-undefined": "off",
     "react/jsx-uses-vars": 2,
     "react/no-typos": 0,
     "react/prop-types": ["off"],
