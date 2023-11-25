@@ -1,5 +1,6 @@
 import { useEffect, useRef, useReducer } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import PropTypes from "prop-types";
 // services
 import debounce from "services/debounce";
 import { infoAPI } from "api/infoApi";
@@ -210,7 +211,7 @@ export function Search({ extClassName }) {
           dispatch({ type: ACTION.SET_IS_HINT_CITY_OPEN, payload: false });
           dispatch({ type: ACTION.SET_IS_HINT_NOT_FOUND_OPEN, payload: false });
         }}
-        autocomplete="off"
+        autoComplete="off"
       />
       <Input
         icon={<Icon icon="IconPin" color="var(--icon-color)" size="24" />}
@@ -225,7 +226,7 @@ export function Search({ extClassName }) {
           dispatch({ type: ACTION.SET_IS_HINT_OPEN, payload: false });
           dispatch({ type: ACTION.SET_IS_HINT_NOT_FOUND_OPEN, payload: false });
         }}
-        autocomplete="off"
+        autoComplete="off"
       />
       <Button
         extClassName="search__input-button"
@@ -245,3 +246,11 @@ export function Search({ extClassName }) {
     </form>
   );
 }
+
+Search.propTypes = {
+  extClassName: PropTypes.string,
+};
+
+Search.defaultProps = {
+  extClassName: "",
+};

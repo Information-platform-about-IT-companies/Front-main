@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 // UI
 import ButtonIcon from "UI-KIT/ButtonIcon/ButtonIcon";
@@ -21,3 +22,13 @@ export default function ButtonHeart({ click, fill }) {
     />
   );
 }
+
+ButtonHeart.propTypes = {
+  click: PropTypes.func,
+  fill: PropTypes.oneOf[("fill", {})],
+};
+
+ButtonHeart.defaultProps = {
+  click: () => console.log("функция не передана"),
+  fill: {},
+};
