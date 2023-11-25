@@ -1,5 +1,5 @@
 import CompanyCard from "components/CompanyCard/CompanyCard";
-import { favoriteAPI } from "api/FavoriteAPI";
+import { favoriteAPI } from "api/favoriteAPI";
 import { Pagination } from "components/Pagination/Pagination";
 import { useErrorHandler } from "hooks/useErrorHandler";
 
