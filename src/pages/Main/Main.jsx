@@ -44,9 +44,9 @@ function Main() {
           <span>Самые популярные запросы в этом месяце: </span>
           <ul className="intro__search-list">
             {hardcode.requests.map((req, i, arr) => (
-              <li>
-                <Link className="intro__search-list-item" to="/">
-                  {req}
+              <li key={req.id}>
+                <Link className="intro__search-list-item" to={req.link}>
+                  {req.name}
                   {i < arr.length - 1 && ", "}
                 </Link>
               </li>

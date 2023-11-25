@@ -1,17 +1,17 @@
-import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
-import userEvent from "@testing-library/user-event";
-import { makeFakeUser } from "mocks/tests/mocks";
+import MainContextProvider from "context/MainContext";
 import ProfileInfo from "./ProfileInfo";
 
 describe("ProfileInfo component", () => {
   it("renders ProfileInfo component", () => {
     render(
-      <BrowserRouter>
-        <ProfileInfo />
-      </BrowserRouter>,
+      <MainContextProvider>
+        <BrowserRouter>
+          <ProfileInfo />
+        </BrowserRouter>
+      </MainContextProvider>,
     );
     const profileElement = screen.getByText(/Профиль пользователя/i);
     expect(profileElement).toBeInTheDocument();

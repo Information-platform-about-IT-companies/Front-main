@@ -19,13 +19,13 @@ export default function IconThemeLight({ size, color, extClassName }) {
 }
 
 IconThemeLight.propTypes = {
-  size: PropTypes.oneOf(["24", "32", "60"]),
+  size: PropTypes.oneOf(["24", "30", "60"]),
   color: PropTypes.string,
   extClassName: PropTypes.string,
 };
 
 IconThemeLight.defaultProps = {
-  size: "32",
+  size: "30",
   color: "#4e4cbf",
   extClassName: null,
 };

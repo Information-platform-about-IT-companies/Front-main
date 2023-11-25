@@ -50,9 +50,11 @@ describe("App routing", () => {
     const badRoute = "/some/bad/route";
 
     render(
-      <MemoryRouter initialEntries={[badRoute]}>
-        <App />
-      </MemoryRouter>,
+      <MainContextProvider>
+        <MemoryRouter initialEntries={[badRoute]}>
+          <App />
+        </MemoryRouter>
+      </MainContextProvider>,
     );
 
     expect(screen.getByText(/Страница не найдена/i)).toBeInTheDocument();
@@ -62,10 +64,12 @@ describe("App routing", () => {
     const route = "/profile/info";
 
     render(
-      <MemoryRouter initialEntries={[route]}>
-        <App />
-        <LocationDisplay />
-      </MemoryRouter>,
+      <MainContextProvider>
+        <MemoryRouter initialEntries={[route]}>
+          <App />
+          <LocationDisplay />
+        </MemoryRouter>
+      </MainContextProvider>,
     );
 
     expect(screen.getByTestId("location-display")).toHaveTextContent(route);
@@ -76,10 +80,12 @@ describe("App routing", () => {
     const route = "/profile/favourite";
 
     render(
-      <MemoryRouter initialEntries={[route]}>
-        <App />
-        <LocationDisplay />
-      </MemoryRouter>,
+      <MainContextProvider>
+        <MemoryRouter initialEntries={[route]}>
+          <App />
+          <LocationDisplay />
+        </MemoryRouter>
+      </MainContextProvider>,
     );
 
     expect(screen.getByTestId("location-display")).toHaveTextContent(route);
@@ -90,10 +96,12 @@ describe("App routing", () => {
     const route = "/profile/support";
 
     render(
-      <MemoryRouter initialEntries={[route]}>
-        <App />
-        <LocationDisplay />
-      </MemoryRouter>,
+      <MainContextProvider>
+        <MemoryRouter initialEntries={[route]}>
+          <App />
+          <LocationDisplay />
+        </MemoryRouter>
+      </MainContextProvider>,
     );
 
     expect(screen.getByTestId("location-display")).toHaveTextContent(route);
@@ -104,10 +112,12 @@ describe("App routing", () => {
     const route = "/filter";
 
     render(
-      <MemoryRouter initialEntries={[route]}>
-        <App />
-        <LocationDisplay />
-      </MemoryRouter>,
+      <MainContextProvider>
+        <MemoryRouter initialEntries={[route]}>
+          <App />
+          <LocationDisplay />
+        </MemoryRouter>
+      </MainContextProvider>,
     );
 
     expect(screen.getByTestId("location-display")).toHaveTextContent(route);
@@ -118,10 +128,12 @@ describe("App routing", () => {
     const route = "/company";
 
     render(
-      <MemoryRouter initialEntries={[route]}>
-        <App />
-        <LocationDisplay />
-      </MemoryRouter>,
+      <MainContextProvider>
+        <MemoryRouter initialEntries={[route]}>
+          <App />
+          <LocationDisplay />
+        </MemoryRouter>
+      </MainContextProvider>,
     );
 
     expect(screen.getByTestId("location-display")).toHaveTextContent(route);
@@ -132,10 +144,12 @@ describe("App routing", () => {
     const route = "/signin";
 
     render(
-      <MemoryRouter initialEntries={[route]}>
-        <App />
-        <LocationDisplay />
-      </MemoryRouter>,
+      <MainContextProvider>
+        <MemoryRouter initialEntries={[route]}>
+          <App />
+          <LocationDisplay />
+        </MemoryRouter>
+      </MainContextProvider>,
     );
 
     expect(screen.getByTestId("location-display")).toHaveTextContent(route);
@@ -148,10 +162,12 @@ describe("App routing", () => {
     const route = "/signup";
 
     render(
-      <MemoryRouter initialEntries={[route]}>
-        <App />
-        <LocationDisplay />
-      </MemoryRouter>,
+      <MainContextProvider>
+        <MemoryRouter initialEntries={[route]}>
+          <App />
+          <LocationDisplay />
+        </MemoryRouter>
+      </MainContextProvider>,
     );
 
     expect(screen.getByTestId("location-display")).toHaveTextContent(route);
@@ -161,10 +177,12 @@ describe("App routing", () => {
     const route = "/passrecovery";
 
     render(
-      <MemoryRouter initialEntries={[route]}>
-        <App />
-        <LocationDisplay />
-      </MemoryRouter>,
+      <MainContextProvider>
+        <MemoryRouter initialEntries={[route]}>
+          <App />
+          <LocationDisplay />
+        </MemoryRouter>
+      </MainContextProvider>,
     );
 
     expect(screen.getByTestId("location-display")).toHaveTextContent(route);

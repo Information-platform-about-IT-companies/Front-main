@@ -26,6 +26,6 @@ export const useMainContext = () => {
   return context;
 };
 
-MainContextProvider.PropTypes = {
+MainContextProvider.propTypes = {
   children: PropTypes.element.isRequired,
 };

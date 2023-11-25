@@ -9,7 +9,7 @@ describe("Header component is renders", () => {
   it("renders Header component when is logged in", () => {
     render(
       <BrowserRouter>
-        <Header loggedIn userData="Test User" />
+        <Header loggedIn userData={{ firstName: "Test", lastName: "User" }} />
       </BrowserRouter>,
     );
     const headerElem = screen.getByText(/Test User/i);

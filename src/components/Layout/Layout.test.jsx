@@ -18,7 +18,7 @@ describe("Layout component", () => {
   it("renders Layout component when is logged out", () => {
     render(
       <BrowserRouter>
-        <Layout loggedIn={false} userData="Test User" />
+        <Layout loggedIn={false} userData={{ firstName: "Test", lastName: "User" }} />
       </BrowserRouter>,
     );
     const findLayoutElem = screen.getByText(/Войти/i);

@@ -66,7 +66,23 @@ export function cutText(text, limit) {
   return `${text.slice(0, limit)}...`;
 }
 export const hardcode = {
-  requests: ["Веб-дизайн", "Разработка для Android", "Москва"],
+  requests: [
+    {
+      id: "001",
+      name: "Веб-разработка",
+      link: "/filter?services=%5B27%5D",
+    },
+    {
+      id: "002",
+      name: "Веб-дизайн",
+      link: "/filter?services=%5B17%5D",
+    },
+    {
+      id: "003",
+      name: "Москва",
+      link: "/filter?cities=%5B9%5D",
+    },
+  ],
   companies: [
     {
       title: "Веб-разработка",
