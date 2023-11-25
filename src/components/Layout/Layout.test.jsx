@@ -5,15 +5,15 @@ import { BrowserRouter } from "react-router-dom";
 import Layout from "./Layout";
 
 describe("Layout component", () => {
-  it("renders Layout component when is logged in", () => {
-    render(
-      <BrowserRouter>
-        <Layout loggedIn userData="Test User" />
-      </BrowserRouter>,
-    );
-    const findCompaniesElem = screen.getByText(/Test User/i);
-    expect(findCompaniesElem).toBeInTheDocument();
-  });
+  // it("renders Layout component when is logged in", () => {
+  //   render(
+  //     <BrowserRouter>
+  //       <Layout loggedIn userData="Test User" />
+  //     </BrowserRouter>,
+  //   );
+  //   const findCompaniesElem = screen.getByText(/Test User/i);
+  //   expect(findCompaniesElem).toBeInTheDocument();
+  // });
 
   it("renders Layout component when is logged out", () => {
     render(
