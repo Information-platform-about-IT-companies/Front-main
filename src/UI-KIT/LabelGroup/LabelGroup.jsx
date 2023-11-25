@@ -20,7 +20,7 @@ export default function LabelGroup({ title, items, extClass, isLink }) {
 
       <ul className="labels__list">
         {filterServices.map((item) => (
-          <li>
+          <li key={item.name}>
             {isLink ? (
               // заменить потом на item.link
               <Link to="/" className="labels__list-item">
