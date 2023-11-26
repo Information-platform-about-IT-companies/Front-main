@@ -21,7 +21,7 @@
     cursor: pointer;
 
     &:hover {
-      box-shadow: inset 0 0 0 1.5px $blue;
+      box-shadow: inset 0 0 0 1px $blue;
     }
 
     &:checked {
@@ -29,7 +29,7 @@
     }
 
     &:checked:hover {
-      box-shadow: inset 0 0 0 1.5px $blue-dark;
+      box-shadow: inset 0 0 0 1px $blue-dark;
     }
 
     &::before {
