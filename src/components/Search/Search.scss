@@ -6,7 +6,7 @@
   position: relative;
 
   &__input-button {
-    border-radius: 0 10px 10px 0 !important;
+    border-radius: 0 10px 10px 0;
 
     &:disabled {
       transition: background $animation;
@@ -14,7 +14,6 @@
   }
 
   &__input_1 {
-    box-sizing: border-box;
     padding-top: 20px;
     padding-bottom: 20px;
     border-right: none;
