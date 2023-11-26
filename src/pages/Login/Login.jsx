@@ -2,6 +2,11 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 // functions
 import { PASSWORD_REGULAR } from "services/regulars";
+import { HTTP } from "api/http";
+import { authAPI } from "api/authApi";
+import { userAPI } from "api/userApi";
+import { useErrorHandler } from "hooks/useErrorHandler";
+import { useMainContext } from "context/MainContext";
 // UI-KIT
 import { LinkItem } from "UI-KIT/Link/LinkItem";
 import { Button } from "UI-KIT/Button/Button";
@@ -11,6 +16,9 @@ import Input from "UI-KIT/Input/Input";
 import "./Login.scss";
 
 function Login() {
+  const [Error, setError] = useErrorHandler();
+  const { setData } = useMainContext();
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -30,7 +38,17 @@ function Login() {
         .matches(PASSWORD_REGULAR, "Введите корректный пароль")
         .required("Поле обязательно для заполнения"),
     }),
-    onSubmit: (values) => console.log(JSON.stringify(values, null, 2)),
+    onSubmit: async (values) => {
+      try {
+        const tokens = await authAPI.signin(values);
+        HTTP.setTokens(tokens);
+        const currentUser = await userAPI.getCurrentUser();
+        setData((data) => ({ ...data, currentUser }));
+      } catch (error) {
+        setError(error);
+      }
+      return false;
+    },
   });
 
   const transformBlur = (event) => {
@@ -88,6 +106,7 @@ function Login() {
           lineColor="var(--link-underline)"
         />
       </p>
+      <Error />
     </main>
   );
 }

@@ -94,7 +94,7 @@ Input.defaultProps = {
   extClassNameInput: "",
   required: false,
   placeholder: "",
-  value: null,
+  value: undefined,
   error: null,
   onlyInput: false,
   onBlur: () => {},

@@ -1,37 +1,27 @@
 // UI-KIT
 import { Button } from "UI-KIT/Button/Button";
 // Components
-import CompanyCard from "components/CompanyCard/CompanyCard";
-import { Pagination } from "components/Pagination/Pagination";
+import { CompanyList } from "components/CompanyList/CompanyList";
 // functions
-import { companies } from "services/constants";
+import { useFetchCompanies } from "hooks/useFetchCompanies";
 // styles
 import "./ProfileFavourite.scss";
 
 function ProfileFavourite() {
-  // TODO апи, пагинация
-  const page = 1;
-  const totalPages = 2;
+  const [state, { updateCompany }] = useFetchCompanies("page", "isFavorited");
+
   return (
     <div className="profile_favourite">
       <h1 className="profile_title">Избранные компании</h1>
-      {companies ? (
-        <>
-          <ul className="profile_favourite-cards">
-            {companies.map((company) => (
-              <li key={`${company.name}`}>
-                <CompanyCard
-                  city={company.city}
-                  name={company.name}
-                  onIconHeartClick={() => {}}
-                  inFavorite={company.inFavorite}
-                  type="favoriteCard"
-                />
-              </li>
-            ))}
-          </ul>
-          <Pagination totalPages={totalPages} currentPage={page} />
-        </>
+
+      {state.companies ? (
+        <CompanyList
+          className="profile_favourite-cards"
+          type="favoriteCard"
+          companies={state.companies}
+          totalPages={state.totalPages}
+          onCompanyUpdate={updateCompany}
+        />
       ) : (
         <div className="profile_favourite-details">
           <h4 className="profile_subtitle">Тут пока пусто</h4>

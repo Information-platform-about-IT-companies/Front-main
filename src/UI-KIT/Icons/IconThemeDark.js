@@ -19,13 +19,13 @@ export default function IconThemeDark({ size, color, extClassName }) {
 }
 
 IconThemeDark.propTypes = {
-  size: PropTypes.oneOf(["24", "32", "60"]),
+  size: PropTypes.oneOf(["24", "30", "60"]),
   color: PropTypes.string,
   extClassName: PropTypes.string,
 };
 
 IconThemeDark.defaultProps = {
-  size: "32",
+  size: "30",
   color: "#4e4cbf",
   extClassName: null,
 };
