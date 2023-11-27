@@ -137,7 +137,6 @@ function Register() {
             </ul>
           </Input>
         </div>
-
         <Input
           label="Повторите пароль"
           extClassNameInput="login__input"
@@ -154,6 +153,7 @@ function Register() {
           onBlur={transformBlur}
         />
         <Button
+          type="submit"
           title="Зарегистрироваться"
           fill
           size="standard"
