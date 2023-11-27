@@ -19,9 +19,6 @@ const meta = {
     extClassName: {
       description: "Необязательный параметр. Для дополнительных стилей",
     },
-    tooltip: {
-      description: "Небязательный параметр. Полное название title",
-    },
   },
 };
 

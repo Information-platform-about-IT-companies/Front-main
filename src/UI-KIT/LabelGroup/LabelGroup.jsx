@@ -44,7 +44,7 @@ export default function LabelGroup({ title, items, extClass, isLink }) {
                   })
                 }
               >
-                <Label title={item.name} extClassName="labels__link" tooltip={item.name} />
+                <Label title={item.name} extClassName="labels__link" />
                 <span
                   className="labels__tooltip"
                   style={{ display: isHovered[index] && item.name.length > 15 ? "block" : "none" }}
