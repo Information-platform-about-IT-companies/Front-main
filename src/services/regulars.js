@@ -4,5 +4,5 @@ export const PASSWORD_REGULAR =
 export const NAME_REGULAR =
   /^(?!.*-.*-|.*\s.*\s|.*-.*\s)(?!.*- $)(?!-\s)[a-zA-ZА-яЁё\s-]{2,30}$/gim;
 
-export const SIGN_IN_CONFIRM_REGULAR =
-  /^#\/signin_confirm\/[a-zA-Z0-9-]+\/[a-zA-Z0-9-]+-[a-zA-Z0-9]+$/;
+export const SIGN_UP_CONFIRM_REGULAR =
+  /^#\/signup_confirm\/[a-zA-Z0-9-]+\/[a-zA-Z0-9-]+-[a-zA-Z0-9]+$/;
