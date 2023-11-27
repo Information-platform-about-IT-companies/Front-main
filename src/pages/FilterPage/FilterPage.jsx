@@ -2,7 +2,7 @@
 import Breadcrumbs from "components/Breadcrumbs/Breadcrumbs";
 import { Filter } from "components/Filter/Filter";
 import { CompanyList } from "components/CompanyList/CompanyList";
-import { Spinner } from "components/Spinner/Spinner";
+import { Loader } from "components/Loader/Loader";
 import { useFetchCompanies } from "hooks/useFetchCompanies";
 // functions
 import { LoadingStatus } from "services/constants";
@@ -18,7 +18,7 @@ function FilterPage() {
         <h1 className="filterPage__title">Изучите лучшие компании России</h1>
         <Filter />
       </div>
-      {state.loadingStatus === LoadingStatus.loading && <Spinner />}
+      {state.loadingStatus === LoadingStatus.loading && <Loader />}
       <CompanyList
         className="filterPage__list"
         type="filterCard"

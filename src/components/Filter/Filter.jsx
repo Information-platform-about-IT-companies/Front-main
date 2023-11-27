@@ -4,6 +4,7 @@ import { infoAPI } from "api/infoApi";
 import { LoadingStatus } from "services/constants";
 import { reducer, initialState } from "store/reducers/filterReducer";
 // components
+import { Loader } from "components/Loader/Loader";
 import { FilterTabs } from "./FilterTabs/FilterTabs";
 import { FilterNav } from "./FilterNav/FilterNav";
 import { ServiceForm } from "./FilterForms/ServiceForm/ServiceForm";
@@ -69,20 +70,7 @@ export function Filter() {
       {isOpenFilter && (
         <div className="filter__content">
           <FilterNav activeForm={state.activeForm} dispatch={dispatch} />
-          {loadingStatus === LoadingStatus.loading ? (
-            <div>
-              <div style={{ paddingTop: "20px", width: "200px", margin: "0 auto" }}>
-                <img
-                  decoding="async"
-                  alt="spinner"
-                  src="https://gderadost.ru/catalog/view/theme/default/img/lazy-img.gif?is-pending-load=1"
-                />
-                Здесь крутится спиннер
-              </div>
-            </div>
-          ) : (
-            ActiveFilterForm
-          )}
+          {loadingStatus === LoadingStatus.loading ? <Loader /> : ActiveFilterForm}
         </div>
       )}
     </section>
