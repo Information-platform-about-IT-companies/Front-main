@@ -4,6 +4,8 @@ import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
 import MainContextProvider from "context/MainContext";
 import App from "./App";
+import { HTTP } from "api/http";
+import ThemeProvider from "context/ThemeContext";
 
 function LocationDisplay() {
   const location = useLocation();
