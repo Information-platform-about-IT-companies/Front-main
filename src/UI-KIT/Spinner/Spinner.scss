@@ -1,0 +1,28 @@
+@import "src/assets/style/main";
+
+.spinner {
+  width: 89.6px;
+  height: 89.6px;
+  border: 11.2px solid $snow-white;
+  background:
+    radial-gradient(farthest-side, $blue 98%, $blue) 0 0 / 22.4px 22.4px,
+    radial-gradient(farthest-side, $blue 98%, $blue) 100% 0 / 22.4px 22.4px,
+    radial-gradient(farthest-side, $blue 98%, $blue) 100% 100% / 22.4px 22.4px,
+    radial-gradient(farthest-side, $blue 98%, $blue) 0 100% / 22.4px 22.4px,
+    linear-gradient($blue 0 0) center/44.8px 44.8px,
+    $snow-white;
+  background-repeat: no-repeat;
+  filter: blur(4.5px) contrast(10);
+  animation: blob 0.8s infinite;
+}
+
+@keyframes blob {
+  100% {
+    background-position:
+      100% 0,
+      100% 100%,
+      0 100%,
+      0 0,
+      center;
+  }
+}
