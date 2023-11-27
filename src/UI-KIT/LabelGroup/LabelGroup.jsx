@@ -5,6 +5,9 @@ import { Label } from "UI-KIT/Label/Label";
 import { declinationsNumericalValues } from "services/constants";
 import { useState } from "react";
 
+export default function LabelGroup({ title, items, extClass, isLink }) {
+  const [isHovered, setIsHovered] = useState(Array(items.length).fill(false));
+
 export default function LabelGroup({ title, items, extClass, isLink, full }) {
   const [isHovered, setIsHovered] = useState(Array(items.length).fill(false));
 
