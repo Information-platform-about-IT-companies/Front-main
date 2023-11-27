@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Checkbox } from "UI-KIT/Checkbox/Checkbox";
 import { Button } from "UI-KIT/Button/Button";
 import "./CityForm.scss";
@@ -33,3 +34,17 @@ export function CityForm({ state: { cities, checkedCities }, dispatch, onSubmit 
     </form>
   );
 }
+
+CityForm.propTypes = {
+  state: PropTypes.shape({
+    cities: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      }),
+    ).isRequired,
+    checkedCities: PropTypes.arrayOf(PropTypes.number).isRequired,
+  }).isRequired,
+  dispatch: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};
