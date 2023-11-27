@@ -23,6 +23,7 @@ import NotFound from "pages/NotFound/NotFound";
 import ForgetPassword from "pages/ForgetPassword/ForgetPassword";
 // Стили
 import "./App.scss";
+import RecoveryPassword from "../RecoveryPassword/RecoveryPassword";
 
 function App() {
   const { data, setData } = useMainContext();
@@ -62,6 +63,10 @@ function App() {
           <Route path="/company" element={<CompanyPage />} />
           <Route path="/signin" element={loggedIn ? <Navigate to="/" /> : <Login />} />
           <Route path="/signup" element={loggedIn ? <Navigate to="/" /> : <Register />} />
+          <Route
+            path="/recoverypassword"
+            element={loggedIn ? <Navigate to="/" /> : <RecoveryPassword />}
+          />
           <Route path="/passrecovery" element={<ForgetPassword />} />
           <Route path="/404" element={<NotFound />} />
           <Route
