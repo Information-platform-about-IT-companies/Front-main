@@ -19,17 +19,9 @@ function Input({
   children,
   ...props
 }) {
-  function errorStyle() {
-    return error ? "input__field-error" : "";
-  }
-
-  function errorShow() {
-    return error ? "input__error-text_show" : "";
-  }
-
-  function inputWithIconStyle() {
-    return icon ? "input__field_icon" : "";
-  }
+  const isError = error ? "input__field-error" : "";
+  const showError = error ? "input__error-text_show" : "";
+  const inputWithIconStyle = icon ? "input__field_icon" : "";
 
   const inputField = (
     <input
@@ -37,7 +29,7 @@ function Input({
       name={name}
       id={id}
       data-testid="input"
-      className={`input__field ${errorStyle()} ${inputWithIconStyle()} ${extClassNameInput}`}
+      className={`input__field ${isError} ${inputWithIconStyle} ${extClassNameInput}`}
       required={required}
       placeholder={placeholder}
       onChange={onChange}
@@ -66,7 +58,7 @@ function Input({
             {inputField}
             {children}
           </div>
-          <span className={`input__error-text ${errorShow()}`} data-testid="inputError">
+          <span className={`input__error-text ${showError}`} data-testid="inputError">
             {error}
           </span>
         </>

@@ -1,7 +1,9 @@
 import PropTypes from "prop-types";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 // functions
 import { logout } from "api/authApi";
+import { ThemeContext } from "context/ThemeContext";
 // UI-KIT
 import { Button } from "UI-KIT/Button/Button";
 import Icon from "UI-KIT/Icons";
@@ -11,6 +13,7 @@ import "./Header.scss";
 import "assets/style/main.scss";
 
 function Header({ loggedIn, userData }) {
+  const { theme, setTheme } = useContext(ThemeContext);
   return (
     <header className="header">
       <Link to="/" className="header__logo" data-testid="headerLogoLink" />
@@ -24,7 +27,7 @@ function Header({ loggedIn, userData }) {
               </span>
             </Link>
             <Button size="standard" fill={false} title="Выйти" onClick={() => logout()} />
-            <ThemeSwitcher />
+            <ThemeSwitcher theme={theme} setTheme={setTheme} />
           </>
         ) : (
           <>
