@@ -1,11 +1,10 @@
-import React, { useContext, useEffect } from "react";
-import { ThemeContext, themes } from "context/ThemeContext";
+import React from "react";
+import { themes } from "context/ThemeContext";
+import PropTypes from "prop-types";
 import Icon from "UI-KIT/Icons";
 import "./ThemeSwitcher.scss";
 
-function ThemeSwitcher() {
-  const { theme, setTheme } = useContext(ThemeContext);
-
+function ThemeSwitcher({ theme, setTheme }) {
   function toggleTheme() {
     setTheme(theme === themes.light ? themes.dark : themes.light);
   }
@@ -33,5 +32,10 @@ function ThemeSwitcher() {
     </div>
   );
 }
+
+ThemeSwitcher.propTypes = {
+  theme: PropTypes.string.isRequired,
+  setTheme: PropTypes.func.isRequired,
+};
 
 export default ThemeSwitcher;
