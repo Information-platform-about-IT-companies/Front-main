@@ -33,7 +33,7 @@ function Header({ loggedIn, userData }) {
           <>
             <Button size="standard" title="Войти" url="/signin" linkType="link" />
             <Button size="standard" fill title="Зарегистрироваться" url="/signup" linkType="link" />
-            <ThemeSwitcher />
+            <ThemeSwitcher theme={theme} setTheme={setTheme} />
           </>
         )}
       </nav>
