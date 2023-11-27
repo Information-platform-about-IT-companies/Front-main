@@ -51,7 +51,7 @@
     line-height: normal;
     font-weight: 300;
     margin-top: 24px;
-    margin-bottom: 105px;
+    margin-bottom: 102px;
   }
 
   &__link {
@@ -154,6 +154,7 @@
   }
 
   &__confirm-link {
+    line-height: 110%;
     outline: none;
     margin-left: 4px;
     border-radius: 0;

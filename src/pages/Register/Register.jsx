@@ -1,4 +1,5 @@
 import { useFormik } from "formik";
+import { useState } from "react";
 import * as yup from "yup";
 // functions
 import { authAPI } from "api/authApi";
@@ -13,6 +14,7 @@ import Input from "UI-KIT/Input/Input";
 import "./Register.scss";
 
 function Register() {
+  const [isSuccessReg, setSuccessReg] = useState(false);
   const [Error, setError] = useErrorHandler();
   const formik = useFormik({
     initialValues: {
@@ -58,6 +60,7 @@ function Register() {
     onSubmit: async (values) => {
       try {
         await authAPI.signup(values);
+        setSuccessReg(true);
       } catch (error) {
         setError(error);
       }
@@ -72,105 +75,142 @@ function Register() {
   return (
     <main className="register">
       <h1 className="register__title">Добро пожаловать в Octopus</h1>
-      <p className="register__subtitle">Заполните все поля, чтобы зарегистрироваться </p>
-      <Form extClassName="register__form" onSubmit={formik.handleSubmit}>
-        <div className="register__userName">
+      <div className={`register__container ${isSuccessReg ? "register__container_hide" : ""}`}>
+        <p className="register__subtitle">Заполните все поля, чтобы зарегистрироваться </p>
+        <Form extClassName="register__form" onSubmit={formik.handleSubmit}>
+          <div className="register__userName">
+            <Input
+              label="Имя"
+              extClassNameInput="login__input"
+              type="text"
+              name="userName"
+              id="registerUserName"
+              value={formik.values.userName}
+              onChange={formik.handleChange}
+              error={
+                formik.errors.userName && formik.touched.userName ? formik.errors.userName : null
+              }
+              onBlur={transformBlur}
+            />
+            <Input
+              label="Фамилия"
+              extClassNameInput="login__input"
+              type="text"
+              name="userSurname"
+              id="registerUserSurname"
+              value={formik.values.userSurname}
+              onChange={formik.handleChange}
+              error={
+                formik.errors.userSurname && formik.touched.userSurname
+                  ? formik.errors.userSurname
+                  : null
+              }
+              onBlur={transformBlur}
+            />
+          </div>
           <Input
-            label="Имя"
+            label="E-mail"
             extClassNameInput="login__input"
-            type="text"
-            name="userName"
-            id="registerUserName"
-            value={formik.values.userName}
+            type="email"
+            name="email"
+            id="authEmail"
+            value={formik.values.email}
             onChange={formik.handleChange}
-            error={
-              formik.errors.userName && formik.touched.userName ? formik.errors.userName : null
-            }
+            error={formik.errors.email && formik.touched.email ? formik.errors.email : null}
             onBlur={transformBlur}
           />
+          <div className="register__tooltip-input">
+            <Input
+              label="Пароль"
+              extClassNameInput="register__input"
+              type="password"
+              name="password"
+              id="registerPassword"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              error={
+                formik.errors.password && formik.touched.password ? formik.errors.password : null
+              }
+              onBlur={transformBlur}
+            >
+              <ul className="register__tooltip-container">
+                <li className="register__tooltip-item">от 8 до 30 символов</li>
+                <li className="register__tooltip-item">
+                  должен содержать цифры и буквы / спецсимволы без пробелов
+                </li>
+              </ul>
+            </Input>
+          </div>
+
           <Input
-            label="Фамилия"
+            label="Повторите пароль"
             extClassNameInput="login__input"
-            type="text"
-            name="userSurname"
-            id="registerUserSurname"
-            value={formik.values.userSurname}
+            type="password"
+            name="repeatPassword"
+            id="registerRepeatPassword"
+            value={formik.values.repeatPassword}
             onChange={formik.handleChange}
             error={
-              formik.errors.userSurname && formik.touched.userSurname
-                ? formik.errors.userSurname
+              formik.errors.repeatPassword && formik.touched.repeatPassword
+                ? formik.errors.repeatPassword
                 : null
             }
             onBlur={transformBlur}
           />
-        </div>
-        <Input
-          label="E-mail"
-          extClassNameInput="login__input"
-          type="email"
-          name="email"
-          id="authEmail"
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          error={formik.errors.email && formik.touched.email ? formik.errors.email : null}
-          onBlur={transformBlur}
-        />
-        <div className="register__tooltip-input">
-          <Input
-            label="Пароль"
-            extClassNameInput="register__input"
-            type="password"
-            name="password"
-            id="registerPassword"
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            error={
-              formik.errors.password && formik.touched.password ? formik.errors.password : null
-            }
-            onBlur={transformBlur}
-          >
-            <ul className="register__tooltip-container">
-              <li className="register__tooltip-item">от 8 до 30 символов</li>
-              <li className="register__tooltip-item">
-                должен содержать цифры и буквы / спецсимволы без пробелов
-              </li>
-            </ul>
-          </Input>
-        </div>
-
-        <Input
-          label="Повторите пароль"
-          extClassNameInput="login__input"
-          type="password"
-          name="repeatPassword"
-          id="registerRepeatPassword"
-          value={formik.values.repeatPassword}
-          onChange={formik.handleChange}
-          error={
-            formik.errors.repeatPassword && formik.touched.repeatPassword
-              ? formik.errors.repeatPassword
-              : null
-          }
-          onBlur={transformBlur}
-        />
-        <Button
-          title="Зарегистрироваться"
-          fill
-          size="standard"
-          disabled={!(formik.isValid && formik.dirty)}
-        />
-      </Form>
-      <p className="register__suggestion">
-        У вас уже есть учетная запись?{" "}
-        <LinkItem
-          url="/signin"
-          title="Войти"
-          extClassName="login__link"
-          weight="400"
-          textColor="var(--text-color)"
-          lineColor="var(--link-underline)"
-        />
-      </p>
+          <Button
+            title="Зарегистрироваться"
+            fill
+            size="standard"
+            disabled={!(formik.isValid && formik.dirty)}
+          />
+        </Form>
+        <p className="register__suggestion">
+          У вас уже есть учетная запись?{" "}
+          <LinkItem
+            url="/signin"
+            title="Войти"
+            extClassName="login__link"
+            weight="400"
+            textColor="var(--text-color)"
+            lineColor="var(--link-underline)"
+          />
+        </p>
+      </div>
+      <div className={`register__message ${isSuccessReg ? "register__message_show" : ""}`}>
+        <Form extClassName="register__confirm-form">
+          <h3 className="register__confirm-title">Учетная запись создана</h3>
+          <p className="register__confirm-textbox">
+            <p className="register__confirm-text">
+              Мы отправили электронное письмо с подтверждением на почту.
+            </p>{" "}
+            <p className="register__confirm-text">Нажмите на ссылку внутри, чтобы начать.</p>
+          </p>
+          <p className="register__confirm-textbox">
+            <p className="register__confirm-text">Не получили письмо?</p>{" "}
+            <p className="register__confirm-text">
+              Чтобы отправить электронное письмо повторно,
+              <Button
+                title="нажмите здесь"
+                fill={false}
+                url="#"
+                linkType="link"
+                extClassName="register__confirm-link"
+              />
+            </p>
+          </p>
+        </Form>
+        <p className="register__suggestion">
+          У вас уже есть учетная запись?{" "}
+          <LinkItem
+            url="/signin"
+            title="Войти"
+            extClassName="login__link"
+            weight="400"
+            textColor="var(--text-color)"
+            lineColor="var(--link-underline)"
+          />
+        </p>
+      </div>
       <Error />
     </main>
   );
