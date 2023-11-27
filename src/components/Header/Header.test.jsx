@@ -75,20 +75,6 @@ describe("Header component navigation", () => {
     });
   });
 
-  // it('should navigate to /signout when exit button is clicked', () => {
-  //   render(
-  //     <BrowserRouter>
-  //       <Header loggedIn={true} userData="Test User" />
-  //     </BrowserRouter>
-  //    );
-  //    const linkElement = screen.getByText(/Выйти/i);
-  //    expect(linkElement).toBeInTheDocument();
-  //    fireEvent.click(linkElement);
-  //    expect(window.location.pathname).toBe("/signout");
-  // });
-
-  // Дописать, когда будут эндпойнты выхода
-
   it("should navigate to /profile when profile button is clicked", async () => {
     render(
       <BrowserRouter>
