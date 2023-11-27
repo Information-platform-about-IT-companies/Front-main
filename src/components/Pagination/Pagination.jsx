@@ -2,13 +2,13 @@ import { useSearchParams } from "react-router-dom";
 // UI-KIT
 import ButtonIcon from "UI-KIT/ButtonIcon/ButtonIcon";
 import IconArrow from "UI-KIT/Icons/IconArrow";
-// styles
+import PropTypes from "prop-types";
+
 import "./Pagination.scss";
 
 export function Pagination({ totalPages }) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentPage = Number(searchParams.get("page")) ?? 1;
-  console.log("currentPage", currentPage);
+  const currentPage = Number(searchParams.get("page") ?? 1);
   const turnToPage = (page) => {
     searchParams.set("page", page);
     setSearchParams(searchParams);
@@ -60,3 +60,7 @@ export function Pagination({ totalPages }) {
     </ul>
   );
 }
+
+Pagination.propTypes = {
+  totalPages: PropTypes.number.isRequired,
+};

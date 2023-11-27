@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import "./FilterNavItem.scss";
 import IconArrow from "UI-KIT/Icons/IconArrow";
 
@@ -16,3 +17,9 @@ export function FilterNavItem({ formName, activeForm, dispatch }) {
     </button>
   );
 }
+
+FilterNavItem.propTypes = {
+  formName: PropTypes.string.isRequired,
+  activeForm: PropTypes.oneOf(["city", "service"]).isRequired,
+  dispatch: PropTypes.func.isRequired,
+};

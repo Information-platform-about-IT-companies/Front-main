@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import PropTypes from "prop-types";
 import ButtonIcon from "UI-KIT/ButtonIcon/ButtonIcon";
 import IconFilter from "UI-KIT/Icons/IconFilter";
 import { Tab } from "./FilterTab/FilterTab";
@@ -58,3 +58,17 @@ export function FilterTabs({ state, dispatch }) {
     </div>
   );
 }
+
+FilterTabs.propTypes = {
+  state: PropTypes.shape({
+    checkedCities: PropTypes.PropTypes.arrayOf(PropTypes.number),
+    checkedServices: PropTypes.arrayOf(PropTypes.number),
+    forms: PropTypes.shape({
+      city: PropTypes.string,
+      service: PropTypes.string,
+    }).isRequired,
+    activeForm: PropTypes.oneOf(["city", "service"]).isRequired,
+    isOpenFilter: PropTypes.bool,
+  }).isRequired,
+  dispatch: PropTypes.func.isRequired,
+};

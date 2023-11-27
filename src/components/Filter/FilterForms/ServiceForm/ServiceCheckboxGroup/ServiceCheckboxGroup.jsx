@@ -1,6 +1,6 @@
-import "./ServiceCheckboxGroup.scss";
-
+import PropTypes from "prop-types";
 import { Checkbox } from "UI-KIT/Checkbox/Checkbox";
+import "./ServiceCheckboxGroup.scss";
 
 export function ServiceCheckboxGroup({ title, services, checkedServices, onChange }) {
   return (
@@ -20,3 +20,15 @@ export function ServiceCheckboxGroup({ title, services, checkedServices, onChang
     </fieldset>
   );
 }
+
+ServiceCheckboxGroup.propTypes = {
+  title: PropTypes.string.isRequired,
+  services: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  checkedServices: PropTypes.arrayOf(PropTypes.number).isRequired,
+  onChange: PropTypes.func.isRequired,
+};

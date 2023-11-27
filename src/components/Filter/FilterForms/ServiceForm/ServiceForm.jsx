@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Button } from "UI-KIT/Button/Button";
 import { ServiceCheckboxGroup } from "components/Filter/FilterForms/ServiceForm/ServiceCheckboxGroup/ServiceCheckboxGroup";
 import "./ServiceForm.scss";
@@ -33,3 +34,18 @@ export function ServiceForm({ state: { categories, checkedServices }, dispatch, 
     </form>
   );
 }
+
+ServiceForm.propTypes = {
+  state: PropTypes.shape({
+    categories: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        services: PropTypes.shape({ id: PropTypes.number, name: PropTypes.string }).isRequired,
+      }),
+    ),
+    checkedServices: PropTypes.arrayOf(PropTypes.number).isRequired,
+  }).isRequired,
+  dispatch: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};

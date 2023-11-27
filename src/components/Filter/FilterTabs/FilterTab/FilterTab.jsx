@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import "./FilterTab.scss";
 import IconArrow from "UI-KIT/Icons/IconArrow";
 
@@ -21,3 +22,11 @@ export function Tab({ formName, tabName, total, direction, onClick }) {
     </div>
   );
 }
+
+Tab.propTypes = {
+  formName: PropTypes.string.isRequired,
+  tabName: PropTypes.string.isRequired,
+  total: PropTypes.number.isRequired,
+  direction: PropTypes.oneOf(["up", "down"]).isRequired,
+  onClick: PropTypes.func.isRequired,
+};
