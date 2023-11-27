@@ -3,12 +3,16 @@
 .labels {
   &__wrapper {
     max-height: 120px;
-    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    // overflow: hidden;
 
     &.labels_full {
       max-height: none;
       overflow: auto;
     }
+
+
   }
 
   &__text {
@@ -32,7 +36,27 @@
     margin: 0;
 
     &-item {
+      position: relative;
       text-decoration: none;
     }
   }
+}
+
+.labels__tooltip {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  left: initial;
+  margin: initial;
+  height: max-content;
+  width: max-content;
+  white-space: wrap;
+  max-width: 300px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: $sea-blue-middle;
+  color: $black;
+  text-align: center;
+  z-index: 3;
 }
