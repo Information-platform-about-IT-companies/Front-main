@@ -1,7 +1,10 @@
-import { useEffect } from "react";
+import { useMemo, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { infoAPI } from "api/infoApi";
+import { useMainContext } from "context/MainContext";
+
 // functions
-import { hardcode, ROUTES } from "services/constants";
+import { hardcode, selectedCategoriesMap, ROUTES } from "services/constants";
 import { SIGN_UP_CONFIRM_REGULAR } from "services/regulars";
 import { authAPI } from "api/authApi";
 import { useErrorHandler } from "hooks/useErrorHandler";
@@ -14,9 +17,20 @@ import { Button } from "UI-KIT/Button/Button";
 import "./Main.scss";
 
 function Main() {
+  const { data, setData } = useMainContext();
   const [Error, setError] = useErrorHandler();
   const navigate = useNavigate();
   const location = useLocation();
+  const isCategoriesFetched = data.categories?.length;
+
+  const selectedCategories = useMemo(
+    () =>
+      selectedCategoriesMap.map(({ id, icon }) => {
+        const found = data.categories.find((item) => item.id === id);
+        return { ...found, icon };
+      }),
+    [data],
+  );
 
   const confirmSignup = async (cb) => {
     const [, , uid, token] = location.hash.split("/");
@@ -28,12 +42,24 @@ function Main() {
     }
   };
 
+  const fetchCategories = async () => {
+    try {
+      const categories = await infoAPI.fetchServiceCategories();
+      setData({ ...data, categories });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     /** Обработка данных регистрации, отправленных на почту */
     if (SIGN_UP_CONFIRM_REGULAR.test(location.hash)) {
       confirmSignup(() => navigate(ROUTES.SIGN_IN));
     }
-  }, []);
+    if (!isCategoriesFetched) {
+      fetchCategories();
+    }
+  });
 
   return (
     <main className="mainPage">
@@ -60,11 +86,12 @@ function Main() {
           Мы разбили все компании на основные <span>4 категории</span> для вашего удобства
         </p>
         <ul className="companies__list">
-          {hardcode.companies.map((company) => (
-            <li className="companies__category">
-              <Category categoryTitle={company.title} categories={company.comp} id={company.id} />
-            </li>
-          ))}
+          {isCategoriesFetched &&
+            selectedCategories.map(({ id, ...rest }) => (
+              <li className="companies__category" key={id}>
+                <Category {...rest} />
+              </li>
+            ))}
         </ul>
         <Button
           linkType="link"

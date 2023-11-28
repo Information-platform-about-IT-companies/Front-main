@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 const initialValues = {
   currentUser: null,
+  categories: [],
 };
 
 export const MainContext = createContext(null);
