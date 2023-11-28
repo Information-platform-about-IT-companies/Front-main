@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-export default function IconСategorySoftware({ size, color, extClassName }) {
+export default function IconCategorySoftware({ size, color, extClassName }) {
   return (
     <svg
       width={size}
@@ -19,13 +19,13 @@ export default function IconСategorySoftware({ size, color, extClassName }) {
   );
 }
 
-IconСategorySoftware.propTypes = {
+IconCategorySoftware.propTypes = {
   size: PropTypes.oneOf(["24", "32", "60"]),
   color: PropTypes.string,
   extClassName: PropTypes.string,
 };
 
-IconСategorySoftware.defaultProps = {
+IconCategorySoftware.defaultProps = {
   size: "32",
   color: "#4E4CBF",
   extClassName: null,
