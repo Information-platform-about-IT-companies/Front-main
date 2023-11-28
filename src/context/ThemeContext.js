@@ -7,11 +7,26 @@ export const themes = {
 
 function getTheme() {
   const theme = localStorage.getItem("theme");
-  if (Object.values(themes).includes(theme)) return theme;
 
-  const userMedia = window.matchMedia("(prefers-color-scheme: light)");
-  if (userMedia.matches) return themes.light;
+  const userMediaLight = window.matchMedia("(prefers-color-scheme: light)");
+  const userMediaDark = window.matchMedia("(prefers-color-scheme: dark)");
 
+  const systemTheme = userMediaLight.matches ? userMediaLight : userMediaDark;
+
+  const userSystemTheme = systemTheme.media.split(/(:\s)/)[2].split(")")[0];
+
+  if (Object.values(themes).includes(theme)) {
+    if (localStorage.getItem("userSystemTheme") !== userSystemTheme) {
+      localStorage.setItem("userSystemTheme", userSystemTheme);
+      localStorage.setItem("theme", userSystemTheme);
+    }
+    return theme;
+  }
+
+  localStorage.setItem("userSystemTheme", userSystemTheme);
+  if (userMediaLight.matches) {
+    return themes.light;
+  }
   return themes.dark;
 }
 
