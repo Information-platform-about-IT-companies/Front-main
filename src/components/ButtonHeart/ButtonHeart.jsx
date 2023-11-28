@@ -29,6 +29,7 @@ ButtonHeart.propTypes = {
 };
 
 ButtonHeart.defaultProps = {
+  // eslint-disable-next-line no-console
   click: () => console.log("функция не передана"),
   fill: {},
 };

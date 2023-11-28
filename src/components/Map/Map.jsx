@@ -32,6 +32,7 @@ export default function Map({ company, address }) {
 
   useEffect(() => {
     geocodeAddress();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [address]);
 
   if (error) {
