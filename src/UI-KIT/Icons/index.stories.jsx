@@ -19,10 +19,10 @@ const meta = {
       options: [
         "IconAccount",
         "IconArrow",
-        "IconСategoryDesign",
-        "IconСategoryMarketing",
-        "IconСategorySoftware",
-        "IconСategoryWeb",
+        "IconCategoryDesign",
+        "IconCategoryMarketing",
+        "IconCategorySoftware",
+        "IconCategoryWeb",
         "IconFilter",
         "IconHeart",
         "IconOctopusArrow",
@@ -93,10 +93,10 @@ export const Icons = {
     >
       <Icon icon="IconAccount" />
       <Icon icon="IconArrow" />
-      <Icon icon="IconСategoryDesign" />
-      <Icon icon="IconСategoryMarketing" />
-      <Icon icon="IconСategorySoftware" />
-      <Icon icon="IconСategoryWeb" />
+      <Icon icon="IconCategoryDesign" />
+      <Icon icon="IconCategoryMarketing" />
+      <Icon icon="IconCategorySoftware" />
+      <Icon icon="IconCategoryWeb" />
       <Icon icon="IconFilter" />
       <Icon icon="IconHeart" />
       <Icon icon="IconOctopusArrow" />
