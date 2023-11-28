@@ -1,8 +1,9 @@
 // Сторонние библиотеки
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 // functions
 import { useMainContext } from "context/MainContext";
+import { ThemeContext } from "context/ThemeContext";
 import { userAPI } from "api/userApi";
 import { HTTP } from "api/http";
 // Компоненты
@@ -26,6 +27,7 @@ import "./App.scss";
 import RecoveryPassword from "../RecoveryPassword/RecoveryPassword";
 
 function App() {
+  const { theme, setTheme } = useContext(ThemeContext);
   const { data, setData } = useMainContext();
   const { currentUser } = data || {};
 
