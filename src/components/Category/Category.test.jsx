@@ -14,7 +14,12 @@ describe("Category component", () => {
     // eslint-disable-next-line testing-library/no-render-in-lifecycle
     render(
       <BrowserRouter>
-        <Category categories={makeFakeServices.companies} />
+        <Category
+          id={1}
+          name="Разработка ПО"
+          icon="IconCategorySoftware"
+          services={makeFakeServices.companies[0].services}
+        />
       </BrowserRouter>,
     );
   });
