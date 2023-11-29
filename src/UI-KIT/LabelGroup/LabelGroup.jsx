@@ -5,7 +5,7 @@ import { Label } from "UI-KIT/Label/Label";
 import { declinationsNumericalValues } from "services/constants";
 import { useState } from "react";
 
-export default function LabelGroup({ title, items, extClass, isLink }) {
+export default function LabelGroup({ title, items, extClass, isLink, full }) {
   const [isHovered, setIsHovered] = useState(Array(items.length).fill(false));
 
   const text = ["услуга", "услуги", "услуг"];
@@ -13,7 +13,7 @@ export default function LabelGroup({ title, items, extClass, isLink }) {
   if (!items) return null;
   let filterServices;
   let filterCount;
-  if (items.length > 3) {
+  if (!full && items.length > 3) {
     filterServices = items.slice(0, 3);
     filterCount = items.length - 3;
   } else filterServices = items.slice(0);
@@ -27,7 +27,7 @@ export default function LabelGroup({ title, items, extClass, isLink }) {
             {isLink ? (
               // заменить потом на item.link
               <Link
-                to="/"
+                to={`/filter?services=[${item.id}]`}
                 className="labels__list-item"
                 onMouseEnter={() =>
                   setIsHovered((prev) => {
@@ -68,13 +68,18 @@ export default function LabelGroup({ title, items, extClass, isLink }) {
 LabelGroup.propTypes = {
   title: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(
-    PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    }),
   ).isRequired,
   isLink: PropTypes.bool,
+  full: PropTypes.bool,
   extClass: PropTypes.string,
 };
 
 LabelGroup.defaultProps = {
   isLink: false,
+  full: false,
   extClass: "",
 };

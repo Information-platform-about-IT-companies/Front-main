@@ -2,11 +2,12 @@
 
 .labels {
   &__wrapper {
-    max-height: 110px;
-
-    // overflow: hidden;
-
+    max-height: 120px;
     position: relative;
+
+    &.labels_full {
+      max-height: none;
+    }
   }
 
   &__text {

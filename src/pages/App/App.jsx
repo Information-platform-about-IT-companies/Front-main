@@ -63,6 +63,7 @@ function App() {
           <Route index element={<Main />} />
           <Route path="/filter/*" element={<FilterPage />} />
           <Route path="/company" element={<CompanyPage />} />
+          <Route path="/companies/:companyId" element={<CompanyPage />} />
           <Route path="/signin" element={loggedIn ? <Navigate to="/" /> : <Login />} />
           <Route path="/signup" element={loggedIn ? <Navigate to="/" /> : <Register />} />
           <Route
