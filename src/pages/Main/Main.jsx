@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 // functions
 import { hardcode, ROUTES } from "services/constants";
-import { SIGN_IN_CONFIRM_REGULAR } from "services/regulars";
+import { SIGN_UP_CONFIRM_REGULAR } from "services/regulars";
 import { authAPI } from "api/authApi";
 import { useErrorHandler } from "hooks/useErrorHandler";
 // Components
@@ -30,7 +30,7 @@ function Main() {
 
   useEffect(() => {
     /** Обработка данных регистрации, отправленных на почту */
-    if (SIGN_IN_CONFIRM_REGULAR.test(location.hash)) {
+    if (SIGN_UP_CONFIRM_REGULAR.test(location.hash)) {
       confirmSignup(() => navigate(ROUTES.SIGN_IN));
     }
   }, []);
