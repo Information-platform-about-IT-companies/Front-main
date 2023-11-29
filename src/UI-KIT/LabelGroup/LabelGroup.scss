@@ -5,14 +5,11 @@
     max-height: 120px;
     position: relative;
     z-index: 1;
-    // overflow: hidden;
 
     &.labels_full {
       max-height: none;
       overflow: auto;
     }
-
-
   }
 
   &__text {
