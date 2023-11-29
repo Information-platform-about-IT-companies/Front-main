@@ -97,9 +97,16 @@ export const fetchCompanies = async (options, { withCredentials }) => {
  * @throws {HTTPError} - (404) В случае ошибки при выполнении запроса.
  */
 
-export const getCompany = (id) => {
-  const company = HTTP.get(API_ENDPOINTS.COMPANIES.GET(id));
+export const fetchCompany = async (id, { withCredentials }) => {
+  const company = await HTTP.get(API_ENDPOINTS.COMPANIES.GET(id), {
+    ...(withCredentials
+      ? {
+          withCredentials,
+          headers: { Authorization: `Bearer ${HTTP.accessToken}` },
+        }
+      : {}),
+  });
   return transform.company(company);
 };
 
-export const companyAPI = { fetchCompanies, getCompany };
+export const companyAPI = { fetchCompanies, fetchCompany };
