@@ -6,13 +6,13 @@ export function CategoryTitle({ title, id }) {
   let iconName;
 
   if (id === "1") {
-    iconName = "IconСategoryWeb";
+    iconName = "IconCategoryWeb";
   } else if (id === "2") {
-    iconName = "IconСategorySoftware";
+    iconName = "IconCategorySoftware";
   } else if (id === "3") {
-    iconName = "IconСategoryDesign";
+    iconName = "IconCategoryDesign";
   } else {
-    iconName = "IconСategoryMarketing";
+    iconName = "IconCategoryMarketing";
   }
 
   return (
