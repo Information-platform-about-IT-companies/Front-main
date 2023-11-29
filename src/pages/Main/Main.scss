@@ -70,9 +70,14 @@
   }
 
   &__list {
-    display: flex;
-    align-self: stretch;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 100%;
+    margin: 0;
+  }
+
+  &__category {
     margin: 0;
   }
 }

@@ -61,7 +61,7 @@ function Main() {
         </p>
         <ul className="companies__list">
           {hardcode.companies.map((company) => (
-            <li>
+            <li className="companies__category">
               <Category categoryTitle={company.title} categories={company.comp} id={company.id} />
             </li>
           ))}
