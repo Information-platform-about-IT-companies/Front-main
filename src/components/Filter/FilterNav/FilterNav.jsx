@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { FilterNavItem } from "./FilterNavItem/FilterNavItem";
 import "./FilterNav.scss";
 
@@ -10,3 +11,8 @@ export function FilterNav({ activeForm, dispatch }) {
     </nav>
   );
 }
+
+FilterNav.propTypes = {
+  activeForm: PropTypes.oneOf(["city", "service"]).isRequired,
+  dispatch: PropTypes.func.isRequired,
+};
