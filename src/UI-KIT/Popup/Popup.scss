@@ -11,7 +11,7 @@
   position: fixed;
   background: $popup-overlay;
   inset: 0;
-  z-index: 3;
+  z-index: 10;
   margin: 0 auto;
 
   &_opened {
@@ -30,7 +30,6 @@
     background: #fff;
     position: relative;
     margin: 0 auto;
-    z-index: 4;
     border-radius: 20px;
   }
 
