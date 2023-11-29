@@ -69,6 +69,8 @@ export function Search({ extClassName }) {
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error("Ошибка запроса по компаниям и услугам:", error);
+      dispatch({ type: ACTION.SET_IS_RESPONSE_NULL, payload: true });
+      dispatch({ type: ACTION.SET_IS_HINT_OPEN, payload: true });
     }
   };
 
@@ -80,6 +82,8 @@ export function Search({ extClassName }) {
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error("Ошибка запроса по городам:", error);
+      dispatch({ type: ACTION.SET_IS_RESPONSE_CITY_NULL, payload: true });
+      dispatch({ type: ACTION.SET_IS_HINT_CITY_OPEN, payload: true });
     }
   };
 
