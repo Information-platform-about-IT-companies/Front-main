@@ -1,0 +1,16 @@
+@import "src/assets/style/main";
+
+.popup__buttons {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+
+  .button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .button:first-child {
+    margin-right: 20px;
+  }
+}
