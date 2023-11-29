@@ -8,9 +8,6 @@ import { useState } from "react";
 export default function LabelGroup({ title, items, extClass, isLink, full }) {
   const [isHovered, setIsHovered] = useState(Array(items.length).fill(false));
 
-export default function LabelGroup({ title, items, extClass, isLink, full }) {
-  const [isHovered, setIsHovered] = useState(Array(items.length).fill(false));
-
   const text = ["услуга", "услуги", "услуг"];
   // для кнопок "ЕЩЕ N УСЛУГ"
   if (!items) return null;
