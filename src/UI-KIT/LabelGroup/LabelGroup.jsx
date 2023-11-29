@@ -4,13 +4,13 @@ import PropTypes from "prop-types";
 import { Label } from "UI-KIT/Label/Label";
 import { declinationsNumericalValues } from "services/constants";
 
-export default function LabelGroup({ title, items, extClass, isLink }) {
+export default function LabelGroup({ title, items, extClass, isLink, full }) {
   const text = ["услуга", "услуги", "услуг"];
   // для кнопок "ЕЩЕ N УСЛУГ"
   if (!items) return null;
   let filterServices;
   let filterCount;
-  if (items.length > 3) {
+  if (!full && items.length > 3) {
     filterServices = items.slice(0, 3);
     filterCount = items.length - 3;
   } else filterServices = items.slice(0);
@@ -23,7 +23,7 @@ export default function LabelGroup({ title, items, extClass, isLink }) {
           <li key={item.name}>
             {isLink ? (
               // заменить потом на item.link
-              <Link to="/" className="labels__list-item">
+              <Link to={`/filter?services=[${item.id}]`} className="labels__list-item">
                 <Label title={item.name} extClassName="labels__link" />
               </Link>
             ) : (
@@ -42,13 +42,18 @@ export default function LabelGroup({ title, items, extClass, isLink }) {
 LabelGroup.propTypes = {
   title: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(
-    PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    }),
   ).isRequired,
   isLink: PropTypes.bool,
+  full: PropTypes.bool,
   extClass: PropTypes.string,
 };
 
 LabelGroup.defaultProps = {
   isLink: false,
+  full: false,
   extClass: "",
 };

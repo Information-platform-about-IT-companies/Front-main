@@ -84,17 +84,17 @@ export const hardcode = {
     {
       id: "001",
       name: "Веб-разработка",
-      link: "/filter?services=%5B27%5D",
+      link: "/filter?services=[27]",
     },
     {
       id: "002",
       name: "Веб-дизайн",
-      link: "/filter?services=%5B17%5D",
+      link: "/filter?services=[17]",
     },
     {
       id: "003",
       name: "Москва",
-      link: "/filter?cities=%5B9%5D",
+      link: "/filter?cities=[9]",
     },
   ],
 };

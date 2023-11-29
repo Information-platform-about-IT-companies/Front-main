@@ -2,8 +2,13 @@
 
 .labels {
   &__wrapper {
-    max-height: 110px;
+    max-height: 120px;
     overflow: hidden;
+
+    &.labels_full {
+      max-height: none;
+      overflow: auto;
+    }
   }
 
   &__text {
