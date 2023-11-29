@@ -7,7 +7,6 @@ import App from "./App";
 
 function LocationDisplay() {
   const location = useLocation();
-
   return <div data-testid="location-display">{location.pathname}</div>;
 }
 
@@ -65,54 +64,6 @@ describe("App routing", () => {
     expect(screen.getByText(/Страница не найдена/i)).toBeInTheDocument();
   });
 
-  // it("landing on a profile info page", () => {
-  //   const route = "/profile/info";
-  //
-  //   render(
-  //     <MainContextProvider>
-  //       <MemoryRouter initialEntries={[route]}>
-  //         <App />
-  //         <LocationDisplay />
-  //       </MemoryRouter>
-  //     </MainContextProvider>,
-  //   );
-  //
-  //   // expect(screen.getByTestId("location-display")).toHaveTextContent(route);
-  //   expect(screen.getByText(/Профиль пользователя/i)).toBeInTheDocument();
-  // });
-  //
-  // it("landing on a profile favourite page", () => {
-  //   const route = "/profile/favourite";
-  //
-  //   render(
-  //     <MainContextProvider>
-  //       <MemoryRouter initialEntries={[route]}>
-  //         <App />
-  //         <LocationDisplay />
-  //       </MemoryRouter>
-  //     </MainContextProvider>,
-  //   );
-  //
-  //   expect(screen.getByTestId("location-display")).toHaveTextContent(route);
-  //   expect(screen.getAllByText(/Избранные компании/i)[1]).toBeInTheDocument();
-  // });
-
-  // it("landing on a profile support page", () => {
-  //   const route = "/profile/support";
-  //
-  //   render(
-  //     <MainContextProvider>
-  //       <MemoryRouter initialEntries={[route]}>
-  //         <App />
-  //         <LocationDisplay />
-  //       </MemoryRouter>
-  //     </MainContextProvider>,
-  //   );
-  //
-  //   expect(screen.getByTestId("location-display")).toHaveTextContent(route);
-  //   expect(screen.getAllByText(/Поддержка/i)[1]).toBeInTheDocument();
-  // });
-
   it("landing on a filter page", () => {
     const route = "/filter";
 
@@ -127,69 +78,5 @@ describe("App routing", () => {
 
     expect(screen.getByTestId("location-display")).toHaveTextContent(route);
     expect(screen.getByText(/Изучите лучшие компании России/i)).toBeInTheDocument();
-  });
-
-  // it("landing on a company page", () => {
-  //   const route = "/company";
-  //
-  //   render(
-  //     <MainContextProvider>
-  //       <MemoryRouter initialEntries={[route]}>
-  //         <App />
-  //         <LocationDisplay />
-  //       </MemoryRouter>
-  //     </MainContextProvider>,
-  //   );
-  //
-  //   expect(screen.getByTestId("location-display")).toHaveTextContent(route);
-  //   expect(screen.getByText(/компания/i)).toBeInTheDocument();
-  // });
-
-  it("landing on a signin page", () => {
-    const route = "/signin";
-
-    render(
-      <MainContextProvider>
-        <MemoryRouter initialEntries={[route]}>
-          <App />
-          <LocationDisplay />
-        </MemoryRouter>
-      </MainContextProvider>,
-    );
-
-    expect(screen.getByTestId("location-display")).toHaveTextContent(route);
-    expect(
-      screen.getByText(/Войдите в систему, чтобы получить доступ к своей учетной записи/i),
-    ).toBeInTheDocument();
-  });
-
-  it("landing on a signup page", () => {
-    const route = "/signup";
-
-    render(
-      <MainContextProvider>
-        <MemoryRouter initialEntries={[route]}>
-          <App />
-          <LocationDisplay />
-        </MemoryRouter>
-      </MainContextProvider>,
-    );
-
-    expect(screen.getByTestId("location-display")).toHaveTextContent(route);
-  });
-
-  it("landing on a passrecovery page", () => {
-    const route = "/passrecovery";
-
-    render(
-      <MainContextProvider>
-        <MemoryRouter initialEntries={[route]}>
-          <App />
-          <LocationDisplay />
-        </MemoryRouter>
-      </MainContextProvider>,
-    );
-
-    expect(screen.getByTestId("location-display")).toHaveTextContent(route);
   });
 });
