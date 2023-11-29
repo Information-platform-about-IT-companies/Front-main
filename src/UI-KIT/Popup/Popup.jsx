@@ -29,7 +29,7 @@ export function Popup({ title, isOpen, onClose, extClassName, children }) {
 
 Popup.propTypes = {
   title: PropTypes.string.isRequired,
-  isOpen: PropTypes.func,
+  isOpen: PropTypes.bool,
   onClose: PropTypes.func,
   extClassName: PropTypes.string,
   children: PropTypes.node,
