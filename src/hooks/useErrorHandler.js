@@ -1,23 +1,14 @@
-import { useEffect, useState } from "react";
-import { Popup } from "UI-KIT/Popup/Popup";
+import { usePopUp } from "./usePopUp";
 
-export const useErrorHandler = () => {
-  const [error, setError] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
+export const useErrorHandler = (defaultTitle = "При выполнении операции возникла ошибка") => {
+  const [PopUp, setPopUp] = usePopUp();
 
-  useEffect(() => {
-    setIsOpen(true);
-  }, [error]);
+  const setError = (error, title) => {
+    setPopUp({
+      title: title ?? defaultTitle,
+      content: error instanceof Error ? error.message : error,
+    });
+  };
 
-  function Error() {
-    const onClose = () => {
-      setIsOpen(false);
-    };
-    return error ? (
-      <Popup title="При выполнении операции возникла ошибка" isOpen={isOpen} onClose={onClose}>
-        {error.message}
-      </Popup>
-    ) : null;
-  }
-  return [Error, setError];
+  return [PopUp, setError];
 };
