@@ -117,9 +117,8 @@ export function Search({ extClassName }) {
       navigate(`/companies/${res.id}`);
       return;
     }
-
     dispatch({ type: ACTION.SET_QUERY, payload: res.name });
-    addResponseSearch(res); // необходимо для корректной логики функции кнопки «поиск», проверки длинны ответа
+    addResponseSearch(res.name); // необходимо для корректной логики функции кнопки «поиск», проверки длинны ответа
     dispatch({ type: ACTION.SET_RESPONSE_SELECTED, payload: res.name });
     dispatch({ type: ACTION.SET_IS_HINT_OPEN, payload: false });
     dispatch({ type: ACTION.SET_IS_RESPONSE_SELECTED, payload: true });
