@@ -1,7 +1,8 @@
+import { useLocation } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 // functions
-import { PASSWORD_REGULAR } from "services/regulars";
+import { PASSWORD_REGULAR, SIGN_UP_CONFIRM_REGULAR } from "services/regulars";
 import { HTTP } from "api/http";
 import { authAPI } from "api/authApi";
 import { userAPI } from "api/userApi";
@@ -14,10 +15,33 @@ import { Form } from "UI-KIT/Form/Form";
 import Input from "UI-KIT/Input/Input";
 // styles
 import "./Login.scss";
+import { useEffect, useRef, useState } from "react";
 
 function Login() {
   const [Error, setError] = useErrorHandler();
   const { setData } = useMainContext();
+  const location = useLocation();
+  const [signupConfirmed, setSignupConfirmed] = useState(false);
+  const requestSent = useRef(false);
+  const isNeedConfirmSignUp = SIGN_UP_CONFIRM_REGULAR.test(location.hash);
+
+  const confirmSignup = async () => {
+    const [, , uid, token] = location.hash.split("/");
+    try {
+      /** для того чтобы избежать повторного запроса из-за StrictMode */
+      requestSent.current = true;
+      await authAPI.confirmSignup({ uid, token });
+      setSignupConfirmed(true);
+    } catch (error) {
+      setError(error);
+    }
+  };
+
+  useEffect(() => {
+    if (isNeedConfirmSignUp && !requestSent.current) {
+      confirmSignup();
+    }
+  });
 
   const formik = useFormik({
     initialValues: {
@@ -60,7 +84,9 @@ function Login() {
     <main className="login">
       <h1 className="login__title">Добро пожаловать в Octopus</h1>
       <p className="login__subtitle">
-        Войдите в систему, чтобы получить доступ к своей учетной записи
+        {signupConfirmed
+          ? "Ваш email подтвержден. Войдите в систему"
+          : "Войдите в систему, чтобы получить доступ к своей учетной записи"}
       </p>
       <Form extClassName="login__form" onSubmit={formik.handleSubmit}>
         <Input
@@ -95,17 +121,19 @@ function Login() {
         />
         <Button title="Войти" fill size="standard" disabled={!(formik.isValid && formik.dirty)} />
       </Form>
-      <p className="login__suggestion">
-        У вас нет учетной записи?{" "}
-        <LinkItem
-          url="/signup"
-          title="Зарегистрируйтесь"
-          extClassName="login__link"
-          weight="400"
-          textColor="var(--text-color)"
-          lineColor="var(--link-underline)"
-        />
-      </p>
+      {!signupConfirmed && (
+        <p className="login__suggestion">
+          У вас нет учетной записи?{" "}
+          <LinkItem
+            url="/signup"
+            title="Зарегистрируйтесь"
+            extClassName="login__link"
+            weight="400"
+            textColor="var(--text-color)"
+            lineColor="var(--link-underline)"
+          />
+        </p>
+      )}
       <Error />
     </main>
   );
