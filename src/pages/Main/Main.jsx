@@ -32,34 +32,23 @@ function Main() {
     [data],
   );
 
-  const confirmSignup = async (cb) => {
-    const [, , uid, token] = location.hash.split("/");
-    try {
-      await authAPI.confirmSignup({ uid, token });
-      cb();
-    } catch (error) {
-      setError(error);
-    }
-  };
-
   const fetchCategories = async () => {
     try {
       const categories = await infoAPI.fetchServiceCategories();
       setData({ ...data, categories });
     } catch (error) {
-      console.log(error);
+      setError(error);
     }
   };
 
   useEffect(() => {
-    /** Обработка данных регистрации, отправленных на почту */
     if (SIGN_UP_CONFIRM_REGULAR.test(location.hash)) {
-      confirmSignup(() => navigate(ROUTES.SIGN_IN));
-    }
-    if (!isCategoriesFetched) {
+      navigate(ROUTES.SIGN_IN + location.hash);
+      // confirmSignup(() => navigate(ROUTES.SIGN_IN, { state: { signupConfirmed: true } }));
+    } else if (!isCategoriesFetched) {
       fetchCategories();
     }
-  });
+  }, [isCategoriesFetched]);
 
   return (
     <main className="mainPage">
