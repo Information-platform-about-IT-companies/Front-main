@@ -113,7 +113,7 @@ export function Search({ extClassName }) {
 
   // выбор текста из выпадающей подсказки
   const handleSelect = (res) => {
-    if (!!state.query && state.response.companies?.length !== 0) {
+    if (!!state.query && state.response.companies?.length) {
       navigate(`/companies/${res.id}`);
       return;
     }
