@@ -50,8 +50,8 @@
   max-width: 300px;
   padding: 8px 12px;
   border-radius: 10px;
-  background: $sea-blue-middle;
-  color: $black;
+  background: var(--company-lable-background-hover);
+  color: var(--text-color);
   text-align: center;
   z-index: 1;
 }
