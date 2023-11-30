@@ -39,7 +39,7 @@ export default function CompanyCard({
         <LabelGroup items={services} title="Услуги" isLink />
         <LinkItem
           title="Подробнее"
-          url="/"
+          url={`/companies/${id}`}
           lineColor="var(--profile-company-fullinfo)"
           textColor="var(--profile-company-fullinfo)"
           weight="700"
@@ -59,7 +59,7 @@ export default function CompanyCard({
             </div>
             <LinkItem
               title="Подробнее"
-              url="/"
+              url={`/companies/${id}`}
               lineColor="var(--profile-company-fullinfo)"
               textColor="var(--profile-company-fullinfo)"
               weight="700"

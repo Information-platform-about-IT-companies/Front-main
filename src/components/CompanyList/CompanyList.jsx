@@ -1,25 +1,30 @@
 import CompanyCard from "components/CompanyCard/CompanyCard";
-import { favoriteAPI } from "api/favoriteAPI";
 import { Pagination } from "components/Pagination/Pagination";
+import { useToggleFavorited } from "hooks/useFavorited";
 import { useErrorHandler } from "hooks/useErrorHandler";
+import { SignInOrSignUp } from "UI-KIT/SignInOrSignUp/SignInOrSignUp";
 
-export function CompanyList({ type, className, companies = [], onCompanyUpdate, totalPages }) {
+export function CompanyList({
+  type,
+  className,
+  companies = [],
+  onCompanyUpdate: updateCompany,
+  totalPages,
+}) {
   const [Error, setError] = useErrorHandler();
+  const toggleFavorited = useToggleFavorited();
 
-  const onIconHeartClick = async (companyId) => {
-    const company = companies.find((item) => item.id === companyId);
-    if (company) {
-      try {
-        if (company.isFavorited) {
-          await favoriteAPI.removeFavorited(companyId);
-        } else {
-          await favoriteAPI.addFavorited(companyId);
-        }
-        const updatedCompany = { ...company, isFavorited: !company.isFavorited };
-        onCompanyUpdate(updatedCompany);
-      } catch (error) {
-        setError(error);
-      }
+  const onIconHeartClick = async (id) => {
+    const company = companies.find((item) => item.id === id);
+    updateCompany({ ...company, isFavorited: !company.isFavorited });
+    try {
+      await toggleFavorited(company);
+    } catch (error) {
+      setError(
+        <SignInOrSignUp />,
+        "Чтобы добавить компанию в избранное, необходимо войти в личный кабинет или зарегистрироваться",
+      );
+      updateCompany(company);
     }
   };
 
