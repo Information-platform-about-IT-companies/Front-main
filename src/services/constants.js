@@ -54,7 +54,7 @@ const ICONS = {
 };
 
 export const selectedCategoriesMap = [
-  { id: 3, icon: ICONS.WEB },
+  { id: 5, icon: ICONS.WEB },
   { id: 1, icon: ICONS.SOFTWARE },
   { id: 2, icon: ICONS.DESIGN },
   { id: 4, icon: ICONS.MARKETING },
