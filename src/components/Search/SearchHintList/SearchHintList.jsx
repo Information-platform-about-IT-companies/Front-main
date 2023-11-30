@@ -28,8 +28,8 @@ export default function SearchHintList({ title, optionsObjectList, onSelect }) {
         <li className="search-hint-list__element" key={option.name}>
           <div
             className="search-hint-list__element-text"
-            onClick={() => handleSelect(option.name)}
-            onKeyDown={(e) => handleKeyPress(e, option.name)}
+            onClick={() => handleSelect(option)}
+            onKeyDown={(e) => handleKeyPress(e, option)}
             role="button"
             tabIndex={0}
           >

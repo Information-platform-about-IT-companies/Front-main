@@ -17,10 +17,7 @@ import "./Search.scss";
 
 export function Search({ extClassName }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
-
-  // TODO переходим на страницу компании если выбрана компания
 
   const handleSubmitSearch = (event) => {
     event.preventDefault();
@@ -115,16 +112,21 @@ export function Search({ extClassName }) {
   ).current;
 
   // выбор текста из выпадающей подсказки
-  const handleSelect = (text) => {
-    dispatch({ type: ACTION.SET_QUERY, payload: text });
-    addResponseSearch(text); // необходимо для корректной логики функции кнопки «поиск», проверки длинны ответа
-    dispatch({ type: ACTION.SET_RESPONSE_SELECTED, payload: text });
+  const handleSelect = (res) => {
+    if (!!state.query && state.response.companies?.length !== 0) {
+      navigate(`/companies/${res.id}`);
+      return;
+    }
+
+    dispatch({ type: ACTION.SET_QUERY, payload: res.name });
+    addResponseSearch(res); // необходимо для корректной логики функции кнопки «поиск», проверки длинны ответа
+    dispatch({ type: ACTION.SET_RESPONSE_SELECTED, payload: res.name });
     dispatch({ type: ACTION.SET_IS_HINT_OPEN, payload: false });
     dispatch({ type: ACTION.SET_IS_RESPONSE_SELECTED, payload: true });
   };
-  const handleSelectCity = (text) => {
-    dispatch({ type: ACTION.SET_QUERY_CITY, payload: text });
-    dispatch({ type: ACTION.SET_RESPONSE_CITY_SELECTED, payload: text });
+  const handleSelectCity = (res) => {
+    dispatch({ type: ACTION.SET_QUERY_CITY, payload: res.name });
+    dispatch({ type: ACTION.SET_RESPONSE_CITY_SELECTED, payload: res.name });
     dispatch({ type: ACTION.SET_IS_HINT_CITY_OPEN, payload: false });
     dispatch({ type: ACTION.SET_IS_RESPONSE_CITY_SELECTED, payload: true });
   };
