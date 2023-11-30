@@ -47,17 +47,17 @@ export const ROUTES = {
 };
 
 const ICONS = {
-  WEB: "IconCategoryWeb",
+  BUSINESS: "IconCategoryBusiness",
   SOFTWARE: "IconCategorySoftware",
   DESIGN: "IconCategoryDesign",
   MARKETING: "IconCategoryMarketing",
 };
 
 export const selectedCategoriesMap = [
-  { id: 5, icon: ICONS.WEB },
   { id: 1, icon: ICONS.SOFTWARE },
   { id: 2, icon: ICONS.DESIGN },
   { id: 4, icon: ICONS.MARKETING },
+  { id: 5, icon: ICONS.BUSINESS },
 ];
 
 export function declinationsNumericalValues(value, text) {

@@ -5,7 +5,7 @@ import IconArrow from "./IconArrow";
 import IconCategoryDesign from "./IconCategoryDesign";
 import IconCategoryMarketing from "./IconCategoryMarketing";
 import IconCategorySoftware from "./IconCategorySoftware";
-import IconCategoryWeb from "./IconCategoryWeb";
+import IconCategoryBusiness from "./IconCategoryBusiness";
 import IconFilter from "./IconFilter";
 import IconHeart from "./IconHeart";
 import IconOctopusArrow from "./IconOctopusArrow";
@@ -21,7 +21,7 @@ const icons = {
   IconCategoryDesign,
   IconCategoryMarketing,
   IconCategorySoftware,
-  IconCategoryWeb,
+  IconCategoryBusiness,
   IconFilter,
   IconHeart,
   IconOctopusArrow,

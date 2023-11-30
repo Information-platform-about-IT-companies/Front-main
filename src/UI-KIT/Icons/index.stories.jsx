@@ -22,7 +22,7 @@ const meta = {
         "IconCategoryDesign",
         "IconCategoryMarketing",
         "IconCategorySoftware",
-        "IconCategoryWeb",
+        "IconCategoryBusiness",
         "IconFilter",
         "IconHeart",
         "IconOctopusArrow",
@@ -96,7 +96,7 @@ export const Icons = {
       <Icon icon="IconCategoryDesign" />
       <Icon icon="IconCategoryMarketing" />
       <Icon icon="IconCategorySoftware" />
-      <Icon icon="IconCategoryWeb" />
+      <Icon icon="IconCategoryBusiness" />
       <Icon icon="IconFilter" />
       <Icon icon="IconHeart" />
       <Icon icon="IconOctopusArrow" />
