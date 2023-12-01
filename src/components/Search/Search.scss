@@ -18,12 +18,30 @@
     padding-bottom: 20px;
     border-right: none;
     border-radius: 10px 0 0 10px;
+    font-size: $text-size-medium;
+
+    &::placeholder {
+      color: var(--input-placeholder-search);
+    }
+
+    &:hover::placeholder {
+      color: var(--input-placeholder-search-hover);
+    }
   }
 
   &__input_2 {
     padding-top: 20px;
     padding-bottom: 20px;
     border-radius: 0;
+    font-size: $text-size-medium;
+
+    &::placeholder {
+      color: var(--input-placeholder-search);
+    }
+
+    &:hover::placeholder {
+      color: var(--input-placeholder-search-hover);
+    }
   }
 
   &__hint {
@@ -50,34 +68,5 @@
       padding-bottom: 32px;
       margin-bottom: 0;
     }
-  }
-
-  &__hint-list-header {
-    margin: 0;
-    padding-bottom: 12px;
-    color: var(--search-hint-title);
-    font-size: $text-size-small;
-
-    &_no-found {
-      padding-bottom: 0;
-    }
-  }
-
-  &__hint-list {
-    margin: 0;
-  }
-
-  &__hint-list-element {
-    padding-bottom: 12px;
-
-    &:last-of-type {
-      padding-bottom: 0;
-    }
-  }
-
-  &__hint-link {
-    text-decoration: none;
-    color: var(--search-hint-link);
-    font-size: $text-size-default;
   }
 }

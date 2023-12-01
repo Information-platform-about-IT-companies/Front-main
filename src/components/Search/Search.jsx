@@ -1,5 +1,5 @@
 import { useEffect, useRef, useReducer } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 // services
 import debounce from "services/debounce";
@@ -97,7 +97,6 @@ export function Search({ extClassName }) {
       }
     }, 500),
   ).current;
-
   const debouncedSearchCity = useRef(
     debounce((search) => {
       if (search.length >= 3) {
