@@ -37,15 +37,10 @@
 
     &::placeholder {
       color: var(--input-placeholder-search);
-      transition: color $animation;
     }
 
     &:hover::placeholder {
       color: var(--input-placeholder-search-hover);
-    }
-
-    &:focus::placeholder {
-      opacity: 0;
     }
   }
 
