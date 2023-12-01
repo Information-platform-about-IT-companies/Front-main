@@ -15,6 +15,14 @@ function FilterPage() {
     <main className="filterPage">
       <div className="filterPage__intro">
         <Breadcrumbs />
+        {!state.companies && (
+          <div className="filterPage__no-results">
+            <div className="filterPage__no-results-image" />
+            <h2 className="filterPage__title">По вашему запросу ничего не найдено</h2>
+            <span className="filterPage__subtitle">Попробуйте поискать по другим критериям</span>
+          </div>
+        )}
+        {/* тут вывод компаний по всем городам по этой услуге, если не найдено в этом городе */}
         <h1 className="filterPage__title">Изучите лучшие компании России</h1>
         <Filter />
       </div>
