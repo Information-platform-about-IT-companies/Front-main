@@ -1,5 +1,5 @@
 import { useEffect, useRef, useReducer } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 // services
 import debounce from "services/debounce";
@@ -97,7 +97,6 @@ export function Search({ extClassName }) {
       }
     }, 500),
   ).current;
-
   const debouncedSearchCity = useRef(
     debounce((search) => {
       if (search.length >= 3) {
@@ -117,9 +116,8 @@ export function Search({ extClassName }) {
       navigate(`/companies/${res.id}`);
       return;
     }
-
     dispatch({ type: ACTION.SET_QUERY, payload: res.name });
-    addResponseSearch(res); // необходимо для корректной логики функции кнопки «поиск», проверки длинны ответа
+    addResponseSearch(res.name); // необходимо для корректной логики функции кнопки «поиск», проверки длинны ответа
     dispatch({ type: ACTION.SET_RESPONSE_SELECTED, payload: res.name });
     dispatch({ type: ACTION.SET_IS_HINT_OPEN, payload: false });
     dispatch({ type: ACTION.SET_IS_RESPONSE_SELECTED, payload: true });

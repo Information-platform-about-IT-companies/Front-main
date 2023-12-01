@@ -10,6 +10,9 @@
   --input-border: #{$blue};
   --input-background: #{$white};
   --input-placeholder: #{$black};
+  --input-placeholder-hover: #{$black-middle};
+  --input-placeholder-search: #{$black-middle};
+  --input-placeholder-search-hover: #{$black-light};
   --span-text: #{$blue};
   --search-hint: #{$sea-blue-light};
   --search-hint-title: #{$blue};
@@ -44,6 +47,9 @@
   --input-border: #{$blue-dark};
   --input-background: #{$blue-night};
   --input-placeholder: #{$blue-dark};
+  --input-placeholder-hover: #{$blue-dark-soft};
+  --input-placeholder-search: #{$blue-dark-soft2};
+  --input-placeholder-search-hover: #{$sea-blue-light-night};
   --span-text: #{$blue-dark};
   --search-hint: #{$sea-blue-light-night};
   --search-hint-title: #{$blue-dark};

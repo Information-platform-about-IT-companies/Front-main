@@ -44,6 +44,15 @@
     &::placeholder {
       color: var(--input-placeholder);
       opacity: 0.8;
+      transition: color $animation;
+    }
+
+    &:focus::placeholder {
+      opacity: 0;
+    }
+
+    &:hover::placeholder {
+      color: var(--input-placeholder-hover);
     }
   }
 

@@ -7,6 +7,7 @@
   border-radius: 10px;
   border: none;
   text-decoration: none;
+  z-index: 1;
 
   &:hover {
     cursor: pointer;
@@ -17,7 +18,7 @@
   }
 
   &_style_fill {
-    @include roboto-16($white);
+    @include roboto-16($snow-white);
 
     background: $gradient-blue;
 
