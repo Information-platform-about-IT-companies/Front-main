@@ -1,6 +1,8 @@
 @import "/src/assets/style/main";
 
 .footer {
+  position: relative;
+
   @include flex(center, space-between, row);
 
   width: 100%;
