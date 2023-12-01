@@ -79,7 +79,7 @@ export const updateUser = async (formData) => {
  */
 // нужно будет добавить токен к запросу
 export const resetPassword = async (formData) => {
-  HTTP.post(API_ENDPOINTS.USER.CHANGE_PASSWORD, {
+  await HTTP.post(API_ENDPOINTS.USER.CHANGE_PASSWORD, {
     withCredentials: true,
     headers: { Authorization: `Bearer ${HTTP.accessToken}` },
     body: JSON.stringify(transform.resetCurrentUserPasswordFormData(formData)),
