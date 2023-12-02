@@ -1,8 +1,7 @@
-import { useEffect, useReducer } from "react";
+import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { infoAPI } from "api/infoApi";
 import { LoadingStatus } from "services/constants";
-import { reducer, initialState } from "store/reducers/filterReducer";
 // components
 import { Loader } from "components/Loader/Loader";
 import { FilterTabs } from "./FilterTabs/FilterTabs";
@@ -12,8 +11,7 @@ import { CityForm } from "./FilterForms/CityForm/CityForm";
 // styles
 import "./Filter.scss";
 
-export function Filter() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+export function Filter({ state, dispatch }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
