@@ -3,12 +3,7 @@
 .header {
   width: 100%;
 
-  /*   position: fixed;
-  top: 12px;
-  max-width: 1200px; */
   @include flex(center, space-between, row);
-
-  background-color: var(--background);
 
   &__userdata {
     @include flex(center, center);
