@@ -51,14 +51,13 @@ export default function Breadcrumbs({ state, dispatch, company }) {
         );
         break;
       case state.checkedCities.length === 1 && state.checkedServices.length === 1:
-        // TODO не работает корректно функционал перехода на город, во вкладке поиска остается обозначение выборанного фильтра по услуге
         crumbs = (
           <>
             <li className="breadcrumbs__element" key="city">
               <Link
                 to={`/filter?cities=[${state.checkedCities[0]}]`}
                 className="breadcrumbs__link"
-                onClick={() => dispatch({ type: "CHANGE_CHECKED_SERVICES", payload: [] })}
+                onClick={() => dispatch({ type: "RESET_SERVICES" })}
               >
                 {state.cities.find((city) => city.id === state.checkedCities[0])?.name}
               </Link>
