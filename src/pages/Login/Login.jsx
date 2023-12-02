@@ -92,11 +92,6 @@ function Login() {
         <Input
           label="E-mail"
           extClassNameInput="login__input"
-          Чтобы
-          отправить
-          электронное
-          письмо
-          повторно
           type="email"
           name="email"
           id="authEmail"
