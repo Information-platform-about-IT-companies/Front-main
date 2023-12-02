@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { infoAPI } from "api/infoApi";
@@ -74,3 +76,17 @@ export function Filter({ state, dispatch }) {
     </section>
   );
 }
+
+Filter.propTypes = {
+  state: PropTypes.shape({
+    categories: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        services: PropTypes.shape({ id: PropTypes.number, name: PropTypes.string }).isRequired,
+      }),
+    ),
+    checkedServices: PropTypes.arrayOf(PropTypes.number).isRequired,
+  }).isRequired,
+  dispatch: PropTypes.func.isRequired,
+};

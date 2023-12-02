@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import { Link, useLocation } from "react-router-dom";
 
 import "./Breadcrumbs.scss";
@@ -13,6 +15,8 @@ export default function Breadcrumbs({ state, dispatch, company }) {
 
     return foundObject ? foundObject.services.find((service) => service.id === idToFind) : null;
   };
+
+  console.log(company);
 
   let currentLink = "";
   let crumbs;
@@ -126,3 +130,24 @@ export default function Breadcrumbs({ state, dispatch, company }) {
     </ul>
   );
 }
+
+Breadcrumbs.propTypes = {
+  state: PropTypes.shape({
+    categories: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        services: PropTypes.shape({ id: PropTypes.number, name: PropTypes.string }).isRequired,
+      }),
+    ),
+    checkedServices: PropTypes.arrayOf(PropTypes.number).isRequired,
+  }),
+  dispatch: PropTypes.func,
+  company: PropTypes.shape({ id: PropTypes.number, name: PropTypes.string }),
+};
+
+Breadcrumbs.defaultProps = {
+  state: null,
+  dispatch: null,
+  company: null,
+};
