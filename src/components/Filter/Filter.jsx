@@ -37,7 +37,7 @@ export function Filter() {
       dispatch({ type: "CHANGE_LOADING_STATUS", payload: LoadingStatus.failed });
       dispatch({ type: "SET_LOADING_ERROR", payload: e });
     });
-  }, []);
+  }, [searchParams]);
 
   const { isOpenFilter, loadingStatus, checkedCities, checkedServices } = state;
 

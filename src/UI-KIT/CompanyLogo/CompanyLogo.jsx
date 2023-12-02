@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import { ROUTES } from "services/constants";
 import "./CompanyLogo.scss";
 
 export default function CompanyLogo({ logo, name, city }) {
@@ -10,7 +12,9 @@ export default function CompanyLogo({ logo, name, city }) {
       )}
       <div className="сompanyLogo__title">
         <h2 className="сompanyLogo__name">{name}</h2>
-        <span className="сompanyLogo__city">{city}</span>
+        <Link to={`${ROUTES.FILTER}/?cities=[${city?.id}]`} className="сompanyLogo__city-link">
+          <span className="сompanyLogo__city">{city?.name}</span>
+        </Link>
       </div>
     </div>
   );

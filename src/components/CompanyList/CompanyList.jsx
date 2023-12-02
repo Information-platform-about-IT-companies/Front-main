@@ -40,7 +40,7 @@ export function CompanyList({
                 type={type}
                 inFavorite={isFavorited}
                 onIconHeartClick={onIconHeartClick}
-                city={city.name}
+                city={city}
                 {...rest}
               />
             </li>
