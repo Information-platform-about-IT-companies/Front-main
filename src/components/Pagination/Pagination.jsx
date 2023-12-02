@@ -9,9 +9,17 @@ import "./Pagination.scss";
 export function Pagination({ totalPages }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = Number(searchParams.get("page") ?? 1);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   const turnToPage = (page) => {
     searchParams.set("page", page);
     setSearchParams(searchParams);
+    scrollToTop();
   };
 
   const firstPage = 1;
