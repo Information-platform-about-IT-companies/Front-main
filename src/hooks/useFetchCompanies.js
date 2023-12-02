@@ -26,7 +26,7 @@ export const useFetchCompanies = (...params) => {
       ...(params.includes("page") && page ? [["page", Number(page)]] : []),
       ...(params.includes("cities") && filterCities ? filterCities.map((id) => ["city", id]) : []),
       ...(params.includes("services") && filterServices
-        ? filterServices.map((id) => ["services", id])
+        ? filterServices.map((id) => ["service", id])
         : []),
       ...(params.includes("isFavorited") ? [["is_favorited", 1]] : []),
     ];
