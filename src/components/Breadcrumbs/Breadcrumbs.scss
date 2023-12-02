@@ -8,7 +8,7 @@
   @include flex(center, flex-start, row);
 
   &__link {
-    color: $black;
+    color: var(--text-color);
     text-decoration: none;
   }
 
@@ -35,14 +35,15 @@
 
     &::after {
       position: absolute;
-      right: -32px;
-      top: 50%;
-      width: 24px;
-      height: 24px;
       content: "";
-      background-image: url('data:image/svg+xml;charset=utf-8, <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="2" fill="$black"/></svg>');
+      right: -22px;
+      top: 50%;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
       pointer-events: none;
       transform: translate(0, -50%);
+      background-color: var(--text-color);
     }
 
     &:first-of-type {

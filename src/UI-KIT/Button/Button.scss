@@ -18,7 +18,7 @@
   }
 
   &_style_fill {
-    @include roboto-16($white);
+    @include roboto-16($snow-white);
 
     background: $gradient-blue;
 
@@ -51,10 +51,10 @@
   }
 
   &_style_outline {
-    @include roboto-16($black);
+    @include roboto-16(var(--text-color));
 
     background: transparent;
-    outline: 1.5px $blue solid;
+    outline: 1.5px var(--button-border) solid;
     outline-offset: -1.5px;
 
     &:hover {
@@ -83,15 +83,15 @@
 
   &_style_light_bg {
     border: none;
-    color: $black;
+    color: var(--text-color);
     background: transparent;
 
     &:hover {
-      background-color: $sea-blue-light;
+      background-color: var(--profile-nav-active);
     }
 
     &:visited {
-      color: $black;
+      color: var(--text-color);
     }
   }
 }
@@ -102,6 +102,6 @@
 
 .active {
   font-weight: 500;
-  background-color: $sea-blue-light;
+  background-color: var(--profile-nav-active);
   border: none;
 }

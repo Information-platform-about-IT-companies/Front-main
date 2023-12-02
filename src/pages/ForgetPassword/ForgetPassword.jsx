@@ -1,25 +1,47 @@
+import { useState } from "react";
+import { useFormik } from "formik";
+import * as yup from "yup";
+// functions
+import { authAPI } from "api/authApi";
+import { useErrorHandler } from "hooks/useErrorHandler";
+// UI-KIT
 import { LinkItem } from "UI-KIT/Link/LinkItem";
 import { Button } from "UI-KIT/Button/Button";
 import { Form } from "UI-KIT/Form/Form";
 import Input from "UI-KIT/Input/Input";
-import { useFormAndValidation } from "hooks/useFormAndValidation";
-
-import { useState } from "react";
 import { ButtonChanges } from "UI-KIT/ButtonChanges/ButtonChanges";
-
+// styles
 import "./ForgetPassword.scss";
 
 function ForgetPassword() {
   const [noErrorServerResponse, setNoErrorServerResponse] = useState(false);
-  const formInputs = useFormAndValidation({
-    email: "",
+  const [Error, setError] = useErrorHandler();
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+    },
+    validationSchema: yup.object({
+      email: yup
+        .string()
+        .email("Введите корректный E-mail")
+        .min(6, "Длина поля от 6 до 254 символов")
+        .max(254, "Длина поля от 6 до 254 символов")
+        .required("Поле обязательно для заполнения"),
+    }),
+    onSubmit: async (values) => {
+      try {
+        await authAPI.resetPassword(values);
+        setNoErrorServerResponse(true);
+      } catch (error) {
+        setError(error);
+      }
+    },
   });
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    setNoErrorServerResponse(true);
-    console.log("Успешный запрос на сервер, выведено сообщение пользователю об успехе");
-  }
+  const transformBlur = (event) => {
+    formik.setFieldValue(event.target.name, event.target.value.trim());
+    formik.handleBlur(event);
+  };
 
   function repeatRequestForConfirm() {
     console.log("Повторный запрос на сервер для получения письма на почту");
@@ -38,23 +60,30 @@ function ForgetPassword() {
         </p>
         <Form
           extClassName="password-recovery__form"
-          onSubmit={(event) => {
-            handleSubmit(event);
+          onSubmit={(e) => {
+            e.preventDefault();
+            formik.handleSubmit(e);
           }}
         >
           <Input
             label="E-mail"
-            onChange={formInputs.handleChange}
-            value={formInputs.values.email}
-            error={formInputs.errors.email}
             extClassNameInput="login__input"
             type="email"
             name="email"
             id="recoveryEmail"
-            required
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            error={formik.errors.email && formik.touched.email ? formik.errors.email : null}
+            onBlur={transformBlur}
           />
 
-          <Button title="Восстановить пароль" fill size="standard" disabled={!formInputs.isValid} />
+          <Button
+            title="Восстановить пароль"
+            type="submit"
+            fill
+            size="standard"
+            disabled={!(formik.isValid && formik.dirty)}
+          />
         </Form>
         <p className="password-recovery__suggestion">
           Вспомнили свой пароль?{" "}
@@ -63,7 +92,8 @@ function ForgetPassword() {
             title="Войдите здесь"
             extClassName="password-recovery__link"
             weight="400"
-            lineColor="#479fba"
+            textColor="var(--text-color)"
+            lineColor="var(--link-underline)"
           />
         </p>
       </div>
@@ -93,10 +123,12 @@ function ForgetPassword() {
             title="Войдите здесь"
             extClassName="password-recovery__link"
             weight="400"
-            lineColor="#479fba"
+            textColor="var(--text-color)"
+            lineColor="var(--link-underline)"
           />
         </p>
       </div>
+      <Error />
     </main>
   );
 }

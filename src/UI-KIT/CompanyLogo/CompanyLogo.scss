@@ -30,6 +30,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      color: var(--text-color);
     }
   }
 
@@ -42,7 +43,7 @@
   }
 
   &__name {
-    @include roboto-24;
+    @include roboto-24(var(--text-color));
 
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -51,6 +52,6 @@
   }
 
   &__city {
-    @include roboto-16;
+    @include roboto-16(var(--text-color));
   }
 }

@@ -2,6 +2,8 @@ import { Link, useLocation } from "react-router-dom";
 
 import "./Breadcrumbs.scss";
 
+// TODO сделать swich с основными путями filter → фильтр; ?; cities=%5B0%5D → Москва; services=%5B0%5D → Разработка мобильных приложений
+
 export default function Breadcrumbs() {
   const location = useLocation();
   let currentLink = "";

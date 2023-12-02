@@ -1,5 +1,4 @@
-@import "assets/style/variables";
-@import "assets/style/mixins";
+@import "src/assets/style/main";
 
 .filter__tabs {
   display: flex;
@@ -9,7 +8,7 @@
     @include flex(stretch, space-between);
 
     padding: 8px 20px;
-    outline: 1px solid $blue;
+    outline: 1px solid var(--input-border);
     border-radius: 10px;
   }
 

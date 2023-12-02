@@ -2,8 +2,8 @@
 
 .filter {
   position: relative;
-  z-index: 1;
-  background-color: $white;
+  z-index: 2;
+  background-color: var(--input-backgrounds);
 
   &__content {
     position: absolute;
@@ -13,8 +13,8 @@
     gap: 20px;
     padding: 78px 20px 20px;
     width: 100%;
-    background-color: $white;
-    outline: 1px solid $blue;
+    background-color: var(--filter-content-background);
+    outline: 1px solid var(--filter-content-border);
     border-radius: 10px 10px 20px 20px;
   }
 }

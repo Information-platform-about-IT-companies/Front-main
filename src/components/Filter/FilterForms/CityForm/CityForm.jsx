@@ -1,30 +1,24 @@
-import "./CityForm.scss";
-
+import PropTypes from "prop-types";
 import { Checkbox } from "UI-KIT/Checkbox/Checkbox";
 import { Button } from "UI-KIT/Button/Button";
+import "./CityForm.scss";
 
-export function CityForm({ cities, checkedValues, setChekedValues, onSubmit }) {
-  const checkedCities = checkedValues.cities;
-
+export function CityForm({ state: { cities, checkedCities }, dispatch, onSubmit }) {
   const onChange = (e) => {
-    const { checked, name } = e.target;
-    setChekedValues((lastValues) => ({
-      ...lastValues,
-      cities: { ...lastValues.cities, [name]: checked },
-    }));
+    const { checked, id } = e.target;
+    dispatch({ type: "CHANGE_CHECKED_CITIES", payload: { [id]: checked } });
   };
-
   return (
     <form name="cities" className="filter__city-form city-form" onSubmit={onSubmit}>
       <div className="city-form__checkboxes">
-        {cities.map((city) => (
+        {cities.map(({ id, name }) => (
           <Checkbox
-            key={city}
+            key={id}
             onChange={onChange}
-            title={city}
-            name={city}
-            id={city}
-            checked={!!checkedCities[city]}
+            title={name}
+            name={name}
+            id={id}
+            defaultChecked={checkedCities.includes(id)}
           />
         ))}
       </div>
@@ -40,3 +34,17 @@ export function CityForm({ cities, checkedValues, setChekedValues, onSubmit }) {
     </form>
   );
 }
+
+CityForm.propTypes = {
+  state: PropTypes.shape({
+    cities: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      }),
+    ).isRequired,
+    checkedCities: PropTypes.arrayOf(PropTypes.number).isRequired,
+  }).isRequired,
+  dispatch: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};

@@ -1,5 +1,5 @@
-import "./ButtonChanges.scss";
 import PropTypes from "prop-types";
+import "./ButtonChanges.scss";
 
 export function ButtonChanges({ title, onClick, extClassName, ...props }) {
   return (

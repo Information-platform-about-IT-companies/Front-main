@@ -1,5 +1,3 @@
-import { MemoryRouter } from "react-router-dom";
-
 import Icon from "./index";
 
 const meta = {
@@ -21,16 +19,18 @@ const meta = {
       options: [
         "IconAccount",
         "IconArrow",
-        "IconСategoryDesign",
-        "IconСategoryMarketing",
-        "IconСategorySoftware",
-        "IconСategoryWeb",
+        "IconCategoryDesign",
+        "IconCategoryMarketing",
+        "IconCategorySoftware",
+        "IconCategoryBusiness",
         "IconFilter",
         "IconHeart",
         "IconOctopusArrow",
         "IconPin",
         "IconRound",
         "IconSearch",
+        "IconThemeDark",
+        "IconThemeLight",
       ],
     },
     size: {
@@ -40,7 +40,8 @@ const meta = {
       options: ["24", "32", "60"],
     },
     color: {
-      description: "Обязательный параметр отвечающий за цвет иконки",
+      description:
+        "Обязательный параметр отвечающий за цвет иконки. (У иконки IconHeart нет этого поля, необходимо передавать цвет в стиле CSS, и стоило так делать везде)",
     },
     extClassName: {
       description: "Необязательный параметр. Для дополнительных стилей",
@@ -49,6 +50,7 @@ const meta = {
       description:
         "Обязательный параметр для иконки фильтра. Отвечает за добавление крестика к иконке фильтра",
       options: [true, false],
+      control: "text",
     },
     direction: {
       description:
@@ -59,9 +61,6 @@ const meta = {
     fill: {
       description: "Обязательный параметр для иконки сердечка. Отвечает за заливку сердечка цветом",
       options: [true, false],
-    },
-    colorFill: {
-      description: "Обязательный параметр отвечающий за цвет заполненной иконки",
     },
     symbol: {
       description: "Обязательный параметр для иконки буквы в кружочке. Принимает букву",
@@ -94,16 +93,18 @@ export const Icons = {
     >
       <Icon icon="IconAccount" />
       <Icon icon="IconArrow" />
-      <Icon icon="IconСategoryDesign" />
-      <Icon icon="IconСategoryMarketing" />
-      <Icon icon="IconСategorySoftware" />
-      <Icon icon="IconСategoryWeb" />
+      <Icon icon="IconCategoryDesign" />
+      <Icon icon="IconCategoryMarketing" />
+      <Icon icon="IconCategorySoftware" />
+      <Icon icon="IconCategoryBusiness" />
       <Icon icon="IconFilter" />
       <Icon icon="IconHeart" />
       <Icon icon="IconOctopusArrow" />
       <Icon icon="IconPin" />
       <Icon icon="IconRound" symbol="Д" />
       <Icon icon="IconSearch" />
+      <Icon icon="IconThemeDark" />
+      <Icon icon="IconThemeLight" />
     </div>
   ),
 };

@@ -1,84 +1,39 @@
 // components
 import Breadcrumbs from "components/Breadcrumbs/Breadcrumbs";
 import { Filter } from "components/Filter/Filter";
-import CompanyCard from "components/CompanyCard/CompanyCard";
-import { Pagination } from "components/Pagination/Pagination";
-// стили
+import { CompanyList } from "components/CompanyList/CompanyList";
+import { Loader } from "components/Loader/Loader";
+import { useFetchCompanies } from "hooks/useFetchCompanies";
+// functions
+import { LoadingStatus } from "services/constants";
+// styles
 import "./FilterPage.scss";
 
 function FilterPage() {
+  const [state, { updateCompany }] = useFetchCompanies("cities", "services", "page");
   return (
     <main className="filterPage">
       <div className="filterPage__intro">
         <Breadcrumbs />
+        {!state.companies && (
+          <div className="filterPage__no-results">
+            <div className="filterPage__no-results-image" />
+            <h2 className="filterPage__title">По вашему запросу ничего не найдено</h2>
+            <span className="filterPage__subtitle">Попробуйте поискать по другим критериям</span>
+          </div>
+        )}
+        {/* тут вывод компаний по всем городам по этой услуге, если не найдено в этом городе */}
         <h1 className="filterPage__title">Изучите лучшие компании России</h1>
         <Filter />
       </div>
-      <ul className="filterPage__list">
-        <li className="filterPage__listitem">
-          <CompanyCard
-            type="filterCard"
-            services={[
-              { id: 1, name: "Исчезновение Статуи Свободы" },
-              { id: 2, name: "Полет перед зрителями на сцене" },
-              { id: 3, name: "Проход вскозь Великую китайскую стену" },
-              { id: 4, name: "Разрезание ассистентки" },
-              { id: 5, name: "блаблабла" },
-            ]}
-            city="Город N"
-            name="Дэвид Блейн"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi beatae laborum nam nobis reprehenderit, tempora? Ab dolor dolorum esse, explicabo fugiat labore molestiae nulla officiis, omnis pariatur quaerat quasi quibusdam rerum suscipit veritatis. Accusamus, accusantium enim iusto libero magnam neque nihil porro praesentium qui ratione vero voluptate! Quia, quos similique?"
-          />
-        </li>
-        <li className="filterPage__listitem">
-          <CompanyCard
-            type="filterCard"
-            inFavorite
-            services={[
-              { id: 1, name: "Исчезновение Статуи Свободы" },
-              { id: 2, name: "Полет перед зрителями на сцене" },
-              { id: 3, name: "Проход вскозь Великую китайскую стену" },
-              { id: 4, name: "Разрезание ассистентки" },
-              { id: 5, name: "блаблабла" },
-            ]}
-            city="Город N"
-            name="Дэвид Блейн"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi beatae laborum nam nobis reprehenderit, tempora? Ab dolor dolorum esse, explicabo fugiat labore molestiae nulla officiis, omnis pariatur quaerat quasi quibusdam rerum suscipit veritatis. Accusamus, accusantium enim iusto libero magnam neque nihil porro praesentium qui ratione vero voluptate! Quia, quos similique?"
-          />
-        </li>
-        <li className="filterPage__listitem">
-          <CompanyCard
-            type="filterCard"
-            services={[
-              { id: 1, name: "Исчезновение Статуи Свободы" },
-              { id: 2, name: "Полет перед зрителями на сцене" },
-              { id: 3, name: "Проход вскозь Великую китайскую стену" },
-              { id: 4, name: "Разрезание ассистентки" },
-              { id: 5, name: "блаблабла" },
-            ]}
-            city="Город N"
-            name="Дэвид Блейн"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi beatae laborum nam nobis reprehenderit, tempora? Ab dolor dolorum esse, explicabo fugiat labore molestiae nulla officiis, omnis pariatur quaerat quasi quibusdam rerum suscipit veritatis. Accusamus, accusantium enim iusto libero magnam neque nihil porro praesentium qui ratione vero voluptate! Quia, quos similique?"
-          />
-        </li>
-        <li className="filterPage__listitem">
-          <CompanyCard
-            type="filterCard"
-            inFavorite
-            services={[
-              { id: 1, name: "Исчезновение Статуи Свободы" },
-              { id: 2, name: "Полет перед зрителями на сцене" },
-              { id: 3, name: "Проход вскозь Великую китайскую стену" },
-              { id: 4, name: "Разрезание ассистентки" },
-              { id: 5, name: "блаблабла" },
-            ]}
-            city="Город N"
-            name="Дэвид Блейн"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi beatae laborum nam nobis reprehenderit, tempora? Ab dolor dolorum esse, explicabo fugiat labore molestiae nulla officiis, omnis pariatur quaerat quasi quibusdam rerum suscipit veritatis. Accusamus, accusantium enim iusto libero magnam neque nihil porro praesentium qui ratione vero voluptate! Quia, quos similique?"
-          />
-        </li>
-      </ul>
-      <Pagination currentPage="1" totalPages="3" />
+      {state.loadingStatus === LoadingStatus.loading && <Loader />}
+      <CompanyList
+        className="filterPage__list"
+        type="filterCard"
+        companies={state.companies}
+        totalPages={state.totalPages}
+        onCompanyUpdate={updateCompany}
+      />
     </main>
   );
 }

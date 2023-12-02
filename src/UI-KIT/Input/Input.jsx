@@ -15,31 +15,26 @@ function Input({
   placeholder,
   error,
   onlyInput,
+  onBlur,
   children,
   ...props
 }) {
-  function errorStyle() {
-    return error ? "input__field-error" : "";
-  }
-
-  function errorShow() {
-    return error ? "input__error-text_show" : "";
-  }
-
-  function inputWithIconStyle() {
-    return icon ? "input__field_icon" : "";
-  }
+  const isError = error ? "input__field-error" : "";
+  const showError = error ? "input__error-text_show" : "";
+  const inputWithIconStyle = icon ? "input__field_icon" : "";
 
   const inputField = (
     <input
       type={type}
       name={name}
       id={id}
-      className={`input__field ${errorStyle()} ${inputWithIconStyle()} ${extClassNameInput}`}
+      data-testid="input"
+      className={`input__field ${isError} ${inputWithIconStyle} ${extClassNameInput}`}
       required={required}
       placeholder={placeholder}
       onChange={onChange}
       value={value}
+      onBlur={onBlur}
       {...props}
     />
   );
@@ -63,7 +58,9 @@ function Input({
             {inputField}
             {children}
           </div>
-          <span className={`input__error-text ${errorShow()}`}>{error}</span>
+          <span className={`input__error-text ${showError}`} data-testid="inputError">
+            {error}
+          </span>
         </>
       )}
     </div>
@@ -83,6 +80,7 @@ Input.propTypes = {
   required: PropTypes.bool,
   placeholder: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+  onBlur: PropTypes.func,
   value: PropTypes.string,
   error: PropTypes.string,
   onlyInput: PropTypes.bool,
@@ -96,7 +94,8 @@ Input.defaultProps = {
   extClassNameInput: "",
   required: false,
   placeholder: "",
-  value: null,
+  value: undefined,
   error: null,
   onlyInput: false,
+  onBlur: () => {},
 };

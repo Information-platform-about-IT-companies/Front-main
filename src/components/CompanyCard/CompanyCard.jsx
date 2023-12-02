@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
+// Components
+import ButtonHeart from "components/ButtonHeart/ButtonHeart";
 // UI
-import Icon from "UI-KIT/Icons";
 import CompanyLogo from "UI-KIT/CompanyLogo/CompanyLogo";
 import LabelGroup from "UI-KIT/LabelGroup/LabelGroup";
-import ButtonIcon from "UI-KIT/ButtonIcon/ButtonIcon";
 import { LinkItem } from "UI-KIT/Link/LinkItem";
 // Функции
 import { cutText } from "services/constants";
@@ -11,13 +11,14 @@ import { cutText } from "services/constants";
 import "./CompanyCard.scss";
 
 export default function CompanyCard({
+  id,
   type,
   logo,
   name,
   city,
   services,
   description,
-  onIconLikeClick,
+  onIconHeartClick,
   extClassCardName,
   inFavorite,
 }) {
@@ -30,19 +31,17 @@ export default function CompanyCard({
       <div className={`companyCard ${extClassCardName}`}>
         <div className="companyCard__info">
           <CompanyLogo logo={logo} name={name} city={city} />
-          <ButtonIcon
-            icon={<Icon icon="IconHeart" size="32" fill={inFavorite} />}
-            onClick={() => onIconLikeClick()}
-            extClassName="companyCard__like"
-          />
+          <div className="companyCard__buttonHeartContainer">
+            <ButtonHeart click={() => onIconHeartClick(id)} fill={inFavorite} />
+          </div>
         </div>
         {description ? <p className="companyCard__description">{cutDescription}</p> : null}
         <LabelGroup items={services} title="Услуги" isLink />
         <LinkItem
           title="Подробнее"
-          url="/"
-          lineColor="#4e4cbf"
-          textColor="#4e4cbf"
+          url={`/companies/${id}`}
+          lineColor="var(--profile-company-fullinfo)"
+          textColor="var(--profile-company-fullinfo)"
           weight="700"
           extClassName="companyCard__fullInfo"
         />
@@ -55,16 +54,14 @@ export default function CompanyCard({
         <div className="companyCard__info">
           <CompanyLogo logo={logo} name={name} city={city} />
           <div className="companyCard__like-wrapper">
-            <ButtonIcon
-              icon={<Icon icon="IconHeart" size="32" fill={inFavorite} />}
-              onClick={() => onIconLikeClick()}
-              extClassName="companyCard__like"
-            />
+            <div className="companyCard__buttonHeartContainer">
+              <ButtonHeart click={() => onIconHeartClick(id)} fill={inFavorite} />
+            </div>
             <LinkItem
               title="Подробнее"
-              url="/"
-              lineColor="#4e4cbf"
-              textColor="#4e4cbf"
+              url={`/companies/${id}`}
+              lineColor="var(--profile-company-fullinfo)"
+              textColor="var(--profile-company-fullinfo)"
               weight="700"
               extClassName="companyCard__fullInfo"
             />
@@ -82,9 +79,9 @@ CompanyCard.propTypes = {
   city: PropTypes.string,
   services: PropTypes.arrayOf(
     PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
-  ).isRequired,
-  description: PropTypes.string.isRequired,
-  onIconLikeClick: PropTypes.func,
+  ),
+  description: PropTypes.string,
+  onIconHeartClick: PropTypes.func,
   inFavorite: PropTypes.bool.isRequired,
   extClassCardName: PropTypes.string,
 };
@@ -92,6 +89,8 @@ CompanyCard.propTypes = {
 CompanyCard.defaultProps = {
   logo: null,
   city: "",
-  onIconLikeClick: () => {},
+  onIconHeartClick: () => {},
   extClassCardName: "",
+  description: "",
+  services: [],
 };

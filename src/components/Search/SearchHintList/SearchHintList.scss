@@ -1,0 +1,46 @@
+@import "src/assets/style/main";
+
+.search-hint-list {
+  margin: 0;
+
+  &__container {
+    padding: 0 32px;
+    margin-bottom: 20px;
+
+    &:first-of-type {
+      padding-top: 32px;
+    }
+
+    &:last-of-type {
+      padding-bottom: 32px;
+      margin-bottom: 0;
+    }
+  }
+
+  &__header {
+    margin: 0;
+    padding-bottom: 12px;
+    color: var(--search-hint-title);
+    font-size: $text-size-small;
+
+    &_no-found {
+      padding-bottom: 0;
+    }
+  }
+
+  &__element {
+    padding-bottom: 12px;
+    list-style: none;
+
+    &:last-of-type {
+      padding-bottom: 0;
+    }
+  }
+
+  &__element-text {
+    display: inline;
+    color: var(--search-hint-link);
+    font-size: $text-size-default;
+    cursor: pointer;
+  }
+}

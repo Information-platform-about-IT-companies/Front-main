@@ -4,19 +4,13 @@
   @include flex(flex-start, space-between);
 
   margin-top: 80px;
-  color: $black;
+  color: var(--text-color);
 
   &_navigation {
     margin-right: 40px;
-    margin-top: 78px;
+    margin-top: 73px;
     max-width: 285px;
     width: 100%;
-
-    &_button {
-      width: 100%;
-      text-align: left;
-      margin-bottom: 20px;
-    }
 
     &_button:last-child {
       margin-bottom: 0;
@@ -36,7 +30,6 @@
       line-height: 22px;
       text-align: left;
       margin-bottom: 20px;
-      color: #000;
     }
   }
 
@@ -50,5 +43,13 @@
     line-height: 38px;
     text-align: left;
     margin-bottom: 34px;
+    color: var(--text-color);
   }
+}
+
+.button.profile_navigation_button {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 20px;
+  justify-content: flex-start;
 }

@@ -1,6 +1,6 @@
-import "./Button.scss";
 import PropTypes from "prop-types";
 import { Link, NavLink } from "react-router-dom";
+import "./Button.scss";
 
 export function Button({ size, fill, title, linkType, url, onClick, extClassName, ...props }) {
   if (url) {
@@ -54,7 +54,7 @@ Button.propTypes = {
   linkType: PropTypes.string,
   url: PropTypes.string,
   size: PropTypes.string.isRequired,
-  fill: PropTypes.bool.isRequired,
+  fill: PropTypes.bool,
   title: PropTypes.string.isRequired,
   onClick: PropTypes.func,
   extClassName: PropTypes.string,
@@ -64,5 +64,6 @@ Button.defaultProps = {
   linkType: null,
   onClick: null,
   url: null,
+  fill: false,
   extClassName: "",
 };

@@ -1,11 +1,20 @@
 @import "src/assets/style/main";
 
 .labels {
+  &__wrapper {
+    max-height: 120px;
+    position: relative;
+
+    &.labels_full {
+      max-height: none;
+    }
+  }
+
   &__text {
-    display: inline-block;
+    display: block;
     padding-bottom: 12px;
 
-    @include roboto-14($black, 400);
+    @include roboto(var(--text-color), 14px, 16px, 400);
   }
 
   &__link {
@@ -22,7 +31,27 @@
     margin: 0;
 
     &-item {
+      position: relative;
       text-decoration: none;
     }
   }
+}
+
+.labels__tooltip {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  left: initial;
+  margin: initial;
+  height: max-content;
+  width: max-content;
+  white-space: wrap;
+  max-width: 300px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: var(--company-lable-background-hover);
+  color: var(--text-color);
+  text-align: center;
+  z-index: 1;
 }

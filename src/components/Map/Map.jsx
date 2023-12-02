@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 
 import CustomMarker from "./CustomMarker/CusomMarker";
@@ -6,9 +6,9 @@ import CustomMarker from "./CustomMarker/CusomMarker";
 import "./Map.scss";
 
 export default function Map({ company, address }) {
-  const [latitude, setLatitude] = React.useState(null);
-  const [longitude, setLongitude] = React.useState(null);
-  const [error, setError] = React.useState(null);
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
+  const [error, setError] = useState(null);
   const position = [latitude, longitude];
 
   async function geocodeAddress() {
@@ -30,8 +30,9 @@ export default function Map({ company, address }) {
     }
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     geocodeAddress();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [address]);
 
   if (error) {

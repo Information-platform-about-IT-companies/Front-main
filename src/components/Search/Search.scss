@@ -6,21 +6,42 @@
   position: relative;
 
   &__input-button {
-    border-radius: 0 10px 10px 0 !important;
+    border-radius: 0 10px 10px 0;
+
+    &:disabled {
+      transition: background $animation;
+    }
   }
 
   &__input_1 {
-    box-sizing: border-box;
     padding-top: 20px;
     padding-bottom: 20px;
     border-right: none;
     border-radius: 10px 0 0 10px;
+    font-size: $text-size-medium;
+
+    &::placeholder {
+      color: var(--input-placeholder-search);
+    }
+
+    &:hover::placeholder {
+      color: var(--input-placeholder-search-hover);
+    }
   }
 
   &__input_2 {
     padding-top: 20px;
     padding-bottom: 20px;
     border-radius: 0;
+    font-size: $text-size-medium;
+
+    &::placeholder {
+      color: var(--input-placeholder-search);
+    }
+
+    &:hover::placeholder {
+      color: var(--input-placeholder-search-hover);
+    }
   }
 
   &__hint {
@@ -28,11 +49,10 @@
     top: 100%;
     left: 0;
     width: 100%;
-    overflow: hidden;
     border-radius: 10px;
-    background-color: $sea-blue-light;
+    background-color: var(--search-hint);
     grid-column: 1 / -1;
-    z-index: 99;
+    z-index: 1;
     transition: height $animation;
   }
 
@@ -48,34 +68,5 @@
       padding-bottom: 32px;
       margin-bottom: 0;
     }
-  }
-
-  &__hint-list-header {
-    margin: 0;
-    padding-bottom: 12px;
-    color: $blue;
-    font-size: $text-size-small;
-
-    &_no-found {
-      padding-bottom: 0;
-    }
-  }
-
-  &__hint-list {
-    margin: 0;
-  }
-
-  &__hint-list-element {
-    padding-bottom: 12px;
-
-    &:last-of-type {
-      padding-bottom: 0;
-    }
-  }
-
-  &__hint-link {
-    text-decoration: none;
-    color: $black;
-    font-size: $text-size-default;
   }
 }

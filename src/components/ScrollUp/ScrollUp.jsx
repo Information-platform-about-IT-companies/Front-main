@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-// Юай
+// UI-KIT
 import Icon from "UI-KIT/Icons";
-// Стили
+// styles
 import "./ScrollUp.scss";
 
-export default function () {
+export default function ScrollUp() {
   const [showScroll, setShowScroll] = useState(false);
   const scrollState = () => {
     if (window.scrollY > 100) {
@@ -28,7 +28,7 @@ export default function () {
   }, []);
 
   return (
-    <button className="scroll" onClick={onClick}>
+    <button className="scroll" data-testid="skrollUp" onClick={onClick}>
       {showScroll && <Icon extClassName="scroll__icon" icon="IconOctopusArrow" size={60} />}
     </button>
   );

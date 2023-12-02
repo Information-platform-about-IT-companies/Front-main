@@ -1,35 +1,39 @@
-import { Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+// UI-KIT
+import ButtonIcon from "UI-KIT/ButtonIcon/ButtonIcon";
 import IconArrow from "UI-KIT/Icons/IconArrow";
+import PropTypes from "prop-types";
 
 import "./Pagination.scss";
 
-export function Pagination({ totalPages, currentPage }) {
+export function Pagination({ totalPages }) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const currentPage = Number(searchParams.get("page") ?? 1);
+  const turnToPage = (page) => {
+    searchParams.set("page", page);
+    setSearchParams(searchParams);
+  };
+
   const firstPage = 1;
-  let visiblePageNumbers = [];
-
-  if (currentPage === firstPage) {
-    visiblePageNumbers = [...Array(3)].map((e, i) => i + currentPage);
-  }
-
-  if (currentPage >= 2) {
-    visiblePageNumbers = [...Array(3)].map((e, i) => i + currentPage - 1);
-  }
-
-  if (currentPage === totalPages) {
-    visiblePageNumbers = [...Array(4)].map((e, i) => i + currentPage - 3);
-  }
+  const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
+  const visiblePages = pages.slice(
+    Math.max(0, currentPage - 2),
+    Math.min(currentPage + 1, totalPages),
+  );
 
   return (
     <ul className="pagination">
       {currentPage > firstPage && (
         <li>
-          <Link className="pagination__button" to={`/companies/${currentPage - 1}`}>
-            <IconArrow direction="left" size={24} />
-          </Link>
+          <ButtonIcon
+            className="pagination__button"
+            onClick={() => turnToPage(currentPage - 1)}
+            icon={<IconArrow direction="left" size="24" />}
+          />
         </li>
       )}
 
-      {visiblePageNumbers.map((page) => {
+      {visiblePages.map((page) => {
         const isActive = currentPage === page;
 
         return (
@@ -37,21 +41,26 @@ export function Pagination({ totalPages, currentPage }) {
             {isActive ? (
               <span className="pagination__item pagination__item_active">{page}</span>
             ) : (
-              <Link to={`/companies/${page}`} className="pagination__item">
+              <button className="pagination__item" onClick={() => turnToPage(page)}>
                 {page}
-              </Link>
+              </button>
             )}
           </li>
         );
       })}
-
       {currentPage < totalPages && (
         <li>
-          <Link className="pagination__button" to={`/companies/${currentPage + 1}`}>
-            <IconArrow direction="right" size={24} />
-          </Link>
+          <ButtonIcon
+            className="pagination__button"
+            onClick={() => turnToPage(currentPage + 1)}
+            icon={<IconArrow direction="right" size="24" />}
+          />
         </li>
       )}
     </ul>
   );
 }
+
+Pagination.propTypes = {
+  totalPages: PropTypes.number.isRequired,
+};

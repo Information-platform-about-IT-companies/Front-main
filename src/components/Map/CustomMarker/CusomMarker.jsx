@@ -1,4 +1,3 @@
-import React from "react";
 import { Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 
@@ -6,8 +5,6 @@ export default function CustomMarker({ position, text }) {
   const customIcon = L.divIcon({
     className: "custom-icon",
     html: `<svg
-		width={size}
-		height={size}
 		viewBox="0 0 32 32"
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"

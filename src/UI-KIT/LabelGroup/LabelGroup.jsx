@@ -1,16 +1,19 @@
 import "./LabelGroup.scss";
 import { Link } from "react-router-dom";
-import PropTypes, { object } from "prop-types";
+import PropTypes from "prop-types";
 import { Label } from "UI-KIT/Label/Label";
 import { declinationsNumericalValues } from "services/constants";
+import { useState } from "react";
 
-export default function LabelGroup({ title, items, extClass, isLink }) {
+export default function LabelGroup({ title, items, extClass, isLink, full }) {
+  const [isHovered, setIsHovered] = useState(Array(items.length).fill(false));
+
   const text = ["услуга", "услуги", "услуг"];
   // для кнопок "ЕЩЕ N УСЛУГ"
   if (!items) return null;
   let filterServices;
   let filterCount;
-  if (items.length > 3) {
+  if (!full && items.length > 3) {
     filterServices = items.slice(0, 3);
     filterCount = items.length - 3;
   } else filterServices = items.slice(0);
@@ -19,12 +22,35 @@ export default function LabelGroup({ title, items, extClass, isLink }) {
       <span className="labels__text">{title}</span>
 
       <ul className="labels__list">
-        {filterServices.map((item) => (
-          <li>
+        {filterServices.map((item, index) => (
+          <li key={item.name}>
             {isLink ? (
               // заменить потом на item.link
-              <Link to="/" className="labels__list-item">
+              <Link
+                to={`/filter?services=[${item.id}]`}
+                className="labels__list-item"
+                onMouseEnter={() =>
+                  setIsHovered((prev) => {
+                    const newHovered = [...prev];
+                    newHovered[index] = true;
+                    return newHovered;
+                  })
+                }
+                onMouseLeave={() =>
+                  setIsHovered((prev) => {
+                    const newHovered = [...prev];
+                    newHovered[index] = false;
+                    return newHovered;
+                  })
+                }
+              >
                 <Label title={item.name} extClassName="labels__link" />
+                <span
+                  className="labels__tooltip"
+                  style={{ display: isHovered[index] && item.name.length > 15 ? "block" : "none" }}
+                >
+                  {item.name}
+                </span>{" "}
               </Link>
             ) : (
               <Label title={item.name} />
@@ -42,11 +68,18 @@ export default function LabelGroup({ title, items, extClass, isLink }) {
 LabelGroup.propTypes = {
   title: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(
-    PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    }),
   ).isRequired,
   isLink: PropTypes.bool,
+  full: PropTypes.bool,
+  extClass: PropTypes.string,
 };
 
 LabelGroup.defaultProps = {
   isLink: false,
+  full: false,
+  extClass: "",
 };

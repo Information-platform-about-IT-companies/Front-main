@@ -11,9 +11,8 @@
   position: fixed;
   background: $popup-overlay;
   inset: 0;
-  z-index: 3;
+  z-index: 10;
   margin: 0 auto;
-  background-color: $white;
 
   &_opened {
     visibility: visible;
@@ -25,13 +24,12 @@
 
   &_container {
     padding: 30px 32px;
-    max-width: 500px;
+    max-width: 564px;
     width: 100%;
     min-height: 191px;
     background: #fff;
     position: relative;
     margin: 0 auto;
-    z-index: 4;
     border-radius: 20px;
   }
 

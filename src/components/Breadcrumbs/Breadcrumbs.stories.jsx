@@ -1,4 +1,4 @@
-import { MemoryRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { MemoryRouter, Routes, Route } from "react-router-dom";
 
 import { Button } from "UI-KIT/Button/Button";
 import Breadcrumbs from "./Breadcrumbs";

@@ -1,9 +1,9 @@
 @import "src/assets/style/main";
 
 .category {
-  color: $black;
+  color: var(--text-color);
   margin: 12px 0 0;
-  min-width: 285px;
+  min-width: 100%;
 
   &_link {
     font-weight: 400;

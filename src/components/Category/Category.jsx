@@ -1,17 +1,23 @@
-import "./Category.scss";
-import PropTypes, { string } from "prop-types";
-
+import PropTypes from "prop-types";
+// UI-KIT
 import { CategoryTitle } from "UI-KIT/CategoryTitle/CategoryTitle";
 import { LinkItem } from "UI-KIT/Link/LinkItem";
+// styles
+import "./Category.scss";
 
-export function Category({ categories, categoryTitle, id }) {
+export function Category({ name, icon, services = [] }) {
   return (
     <>
-      <CategoryTitle title={categoryTitle} id={id} />
-      <ul className="category">
-        {categories.map((category) => (
-          <li className="category_link" key={category.title}>
-            <LinkItem title={category.title} withBullet={false} url={category.link} />
+      <CategoryTitle title={name} icon={icon} />
+      <ul className="category" data-testid="category">
+        {services.map((service) => (
+          <li className="category_link" key={service.name}>
+            <LinkItem
+              title={service.name}
+              url={`/filter/?services=[${service.id}]`}
+              textColor="var(--text-color)"
+              lineColor="var(--link-underline)"
+            />
           </li>
         ))}
       </ul>
@@ -20,11 +26,12 @@ export function Category({ categories, categoryTitle, id }) {
 }
 
 Category.propTypes = {
-  categoryTitle: PropTypes.string.isRequired,
-  categories: PropTypes.arrayOf(
+  name: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  services: PropTypes.arrayOf(
     PropTypes.shape({
-      title: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
     }),
   ).isRequired,
-  id: PropTypes.string.isRequired,
 };
