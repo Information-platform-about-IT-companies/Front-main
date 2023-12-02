@@ -190,6 +190,7 @@ function ProfileInfo() {
             formikInfo.errors.email && formikInfo.touched.email ? formikInfo.errors.email : null
           }
           onBlur={transformInfoBlur}
+          disabled
         />
         <div className="info-buttons">
           <Button
