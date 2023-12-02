@@ -1,4 +1,4 @@
-import { API_HOST, API_ENDPOINTS, ROUTES, API_PATH } from "services/constants";
+import { API_HOST, API_ENDPOINTS, ROUTES } from "services/constants";
 import { HTTPError } from "api/http/error";
 import { getCookie } from "services/getCookie";
 import { tokensAPI } from "api/tokensAPI";
@@ -71,14 +71,12 @@ export class HTTP {
   }
 
   static async #request(path, { method, headers, url, ...rest }, isRetry = false) {
-    // const baseURL = url ?? new URL(path, API_HOST);
-    const baseURL = url ?? API_PATH + path;
+    const baseURL = url ?? new URL(path, API_HOST);
     const options = {
       headers: { "Content-Type": "application/json", ...headers },
       method,
       ...rest,
     };
-    console.log(baseURL, options);
     let response = await fetch(baseURL, options);
 
     if (response.ok) {
