@@ -12,10 +12,12 @@ import { Form } from "UI-KIT/Form/Form";
 import Input from "UI-KIT/Input/Input";
 // styles
 import "./Register.scss";
+import { ButtonChanges } from "UI-KIT/ButtonChanges/ButtonChanges";
 
 function Register() {
   const [isSuccessReg, setSuccessReg] = useState(false);
   const [Error, setError] = useErrorHandler();
+
   const formik = useFormik({
     initialValues: {
       userName: "",
@@ -66,6 +68,15 @@ function Register() {
       }
     },
   });
+
+  const repeatSignupConfirm = async () => {
+    try {
+      const { email, password } = formik.values;
+      await authAPI.repeatConfirmSignup({ email, password });
+    } catch (error) {
+      setError(error);
+    }
+  };
 
   const transformBlur = (event) => {
     formik.setFieldValue(event.target.name, event.target.value.trim());
@@ -189,11 +200,9 @@ function Register() {
             <p className="register__confirm-text">Не получили письмо?</p>{" "}
             <p className="register__confirm-text">
               Чтобы отправить электронное письмо повторно,
-              <Button
-                title="нажмите здесь"
-                fill={false}
-                url="#"
-                linkType="link"
+              <ButtonChanges
+                title="нажмите здесь."
+                onClick={repeatSignupConfirm}
                 extClassName="register__confirm-link"
               />
             </p>
