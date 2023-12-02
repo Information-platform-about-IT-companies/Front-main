@@ -3,7 +3,6 @@ import { Pagination } from "components/Pagination/Pagination";
 import { useToggleFavorited } from "hooks/useFavorited";
 import { useErrorHandler } from "hooks/useErrorHandler";
 import { SignInOrSignUp } from "UI-KIT/SignInOrSignUp/SignInOrSignUp";
-import CompanyCardFavouriteNone from "components/CompanyCardFavouriteNone/CompanyCardFavouriteNone";
 
 export function CompanyList({
   type,
@@ -32,22 +31,18 @@ export function CompanyList({
   return (
     <>
       <ul className={className}>
-        {companies.length ? (
-          companies.map(({ id, isFavorited, city, ...rest }) => (
-            <li key={id} className={type === "filterCard" && "filterPage__listitem"}>
-              <CompanyCard
-                id={id}
-                type={type}
-                inFavorite={isFavorited}
-                onIconHeartClick={onIconHeartClick}
-                city={city.name}
-                {...rest}
-              />
-            </li>
-          ))
-        ) : (
-          <CompanyCardFavouriteNone />
-        )}
+        {companies.map(({ id, isFavorited, city, ...rest }) => (
+          <li key={id} className={type === "filterCard" && "filterPage__listitem"}>
+            <CompanyCard
+              id={id}
+              type={type}
+              inFavorite={isFavorited}
+              onIconHeartClick={onIconHeartClick}
+              city={city.name}
+              {...rest}
+            />
+          </li>
+        ))}
       </ul>
       <Pagination totalPages={totalPages} />
       <Error />
