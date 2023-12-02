@@ -1,0 +1,29 @@
+@import "src/assets/style/main";
+
+.companyCardFfvouriteNone {
+  @include flex(flex-start, space-between, column);
+
+  gap: 20px;
+  height: 100%;
+  max-height: 192px;
+  width: 100%;
+  max-width: unset;
+  border-radius: 20px;
+  background-color: var(--profile-nav-active);
+  padding: 32px;
+
+  &__header {
+    width: inherit;
+    font-size: $text-size-medium;
+    line-height: 23.44px;
+    font-weight: 400;
+    color: var(--text-color);
+  }
+
+  &__text {
+    font-size: $text-size-default;
+    line-height: 22.4px;
+    font-weight: 300;
+    color: var(--text-color);
+  }
+}
