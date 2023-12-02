@@ -1,25 +1,23 @@
+import { useNavigate, useLocation } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 // functions
 import { PASSWORD_REGULAR } from "services/regulars";
-import { HTTP } from "api/http";
+import { ROUTES } from "services/constants";
 import { authAPI } from "api/authApi";
-import { userAPI } from "api/userApi";
 import { useErrorHandler } from "hooks/useErrorHandler";
-import { useMainContext } from "context/MainContext";
 // UI-KIT
-import { LinkItem } from "UI-KIT/Link/LinkItem";
 import { Button } from "UI-KIT/Button/Button";
 import { Form } from "UI-KIT/Form/Form";
 import Input from "UI-KIT/Input/Input";
 // styles
 import "./RecoveryPassword.scss";
-import { useNavigate } from "react-router-dom";
 
 function RecoveryPassword() {
-  const [Error, setError] = useErrorHandler();
-  const { setData } = useMainContext();
+  const location = useLocation();
   const navigate = useNavigate();
+  const [, , uid, token] = location.hash.split("/");
+  const [Error, setError] = useErrorHandler();
 
   const formik = useFormik({
     initialValues: {
@@ -43,10 +41,10 @@ function RecoveryPassword() {
     }),
     onSubmit: async (values) => {
       try {
-        // api восстановление пароля
-        navigate("../signin");
-      } catch (e) {
-        console.log(e);
+        await authAPI.confirmResetPassword({ uid, token, ...values });
+        navigate(ROUTES.SIGN_IN);
+      } catch (error) {
+        setError(error);
       }
     },
   });

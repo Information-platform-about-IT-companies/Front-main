@@ -43,6 +43,7 @@ export const ROUTES = {
   PROFILE: "/profile",
   COMPANY: "/company",
   PASS_RECOVERY: "/passrecovery",
+  RESET_PASSWORD_CONFIRM: "/reset-password-confirm",
   NOT_FOUND: "/400",
 };
 
