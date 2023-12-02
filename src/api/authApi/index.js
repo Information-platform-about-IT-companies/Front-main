@@ -105,7 +105,6 @@ export const confirmResetPassword = (formData) =>
 export const logout = () => {
   HTTP.accessToken = null;
   HTTP.refreshToken = null;
-  window.location.href = "/";
 };
 
 export const authAPI = {
