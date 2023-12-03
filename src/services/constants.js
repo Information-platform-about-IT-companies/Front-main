@@ -7,6 +7,7 @@ export const API_ENDPOINTS = {
   AUTH: {
     SIGNUP: "auth/signup/",
     SIGNUP_CONFIRM: "auth/signup_confirm/",
+    REPEAT_SIGNUP_CONFIRM: "auth/re_signup_confirm/",
     SIGNIN: "auth/signin/",
     RESET_PASSWORD: "auth/reset_password/",
     CONFIRM_RESET_PASSWORD: "auth/reset_password_confirm/",
