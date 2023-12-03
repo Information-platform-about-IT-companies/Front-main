@@ -1,9 +1,12 @@
+// Components
 import CompanyCard from "components/CompanyCard/CompanyCard";
+import CompanyCardFavouriteNone from "components/CompanyCardFavouriteNone/CompanyCardFavouriteNone";
 import { Pagination } from "components/Pagination/Pagination";
+// UI-KIT
+import { SignInOrSignUp } from "UI-KIT/SignInOrSignUp/SignInOrSignUp";
+// functions
 import { useToggleFavorited } from "hooks/useFavorited";
 import { useErrorHandler } from "hooks/useErrorHandler";
-import { SignInOrSignUp } from "UI-KIT/SignInOrSignUp/SignInOrSignUp";
-import CompanyCardFavouriteNone from "components/CompanyCardFavouriteNone/CompanyCardFavouriteNone";
 
 export function CompanyList({
   type,
@@ -40,7 +43,7 @@ export function CompanyList({
                 type={type}
                 inFavorite={isFavorited}
                 onIconHeartClick={onIconHeartClick}
-                city={city.name}
+                city={city}
                 {...rest}
               />
             </li>

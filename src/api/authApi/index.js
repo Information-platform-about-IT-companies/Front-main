@@ -51,6 +51,22 @@ export const confirmSignup = (formData) =>
 
 /**
  *
+ * Повторная отправка письма для подтверждения регистрации .
+ *
+ * @param {FormData} formData -  Объект с данными для для повторного запроса письма для регистрации.
+ *   @property {string} email - Адрес электронной почты пользователя.
+ *   @property {string} password - Пароль пользователя..
+ *
+ * @returns {Promise<void>}  - Объект Promise, с данными ответа от сервера.
+ * @throws {HTTPError} - (400) В случае ошибки при выполнении запроса.
+ *
+ */
+
+export const repeatConfirmSignup = (formData) =>
+  HTTP.post(API_ENDPOINTS.AUTH.REPEAT_SIGNUP_CONFIRM, { body: JSON.stringify(formData) });
+
+/**
+ *
  * Авторизует пользователя на сервере.
  *
  * @param {Object} formData - Объект с данными для авторизации.
@@ -105,12 +121,12 @@ export const confirmResetPassword = (formData) =>
 export const logout = () => {
   HTTP.accessToken = null;
   HTTP.refreshToken = null;
-  window.location.href = "/";
 };
 
 export const authAPI = {
   signup,
   confirmSignup,
+  repeatConfirmSignup,
   signin,
   resetPassword,
   confirmResetPassword,
