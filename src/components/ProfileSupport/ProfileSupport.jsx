@@ -34,10 +34,10 @@ function ProfileSupport() {
   const id = useId();
   return (
     <>
-      <h1 className="profile_title">Поддержка</h1>
+      <h1 className="profile__title">Поддержка</h1>
       <Form extClassName="form-info" onSubmit={formik.handleSubmit}>
-        <h4 className="profile_subtitle">Это самый быстрый способ связаться с нами!</h4>
-        <p className="profile_description">
+        <h4 className="form-info__subtitle">Это самый быстрый способ связаться с нами</h4>
+        <p className="form-info__description">
           Наша служба поддержки ответит на запросы из этой формы. Чтобы получить максимально быстрое
           решение, пожалуйста, изложите свой запрос как можно более подробно.
         </p>
@@ -75,7 +75,7 @@ function ProfileSupport() {
           disabled={!(formik.isValid && formik.dirty)}
           fill
           size="standard"
-          extClassName="support_button"
+          extClassName="form-info__button"
           type="submit"
           title="Отправить сообщение"
         />
