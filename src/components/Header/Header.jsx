@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 // functions
 import { logout } from "api/authApi";
+import { useMainContext } from "context/MainContext";
 import { ThemeContext } from "context/ThemeContext";
 // UI-KIT
 import { Button } from "UI-KIT/Button/Button";
@@ -14,6 +15,12 @@ import "assets/style/main.scss";
 
 function Header({ loggedIn, userData }) {
   const { theme, setTheme } = useContext(ThemeContext);
+  const { setData } = useMainContext();
+
+  const onLogout = () => {
+    logout();
+    setData((data) => ({ ...data, currentUser: null }));
+  };
   return (
     <header className="header">
       <Link to="/" className="header__logo" data-testid="headerLogoLink" />
@@ -26,7 +33,7 @@ function Header({ loggedIn, userData }) {
                 {userData && `${userData.firstName} ${userData.lastName}`}
               </span>
             </Link>
-            <Button size="standard" fill={false} title="Выйти" onClick={() => logout()} />
+            <Button size="standard" fill={false} title="Выйти" onClick={onLogout} />
             <ThemeSwitcher theme={theme} setTheme={setTheme} />
           </>
         ) : (
