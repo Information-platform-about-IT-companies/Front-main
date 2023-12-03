@@ -36,11 +36,18 @@ export const useFetchCompanies = (...params) => {
     const fetchData = async () => {
       try {
         const query = constructQuery();
-        const { results: companies, total_pages: totalPages } = await companyAPI.fetchCompanies(
-          query,
-          { withCredentials: loggedIn },
-        );
-        setState({ ...state, companies, totalPages, loadingStatus: LoadingStatus.succeeded });
+        const {
+          results: companies,
+          total_objects: totalCompanies,
+          total_pages: totalPages,
+        } = await companyAPI.fetchCompanies(query, { withCredentials: loggedIn });
+        setState({
+          ...state,
+          companies,
+          totalCompanies,
+          totalPages,
+          loadingStatus: LoadingStatus.succeeded,
+        });
       } catch {
         setState({ ...state, loadingStatus: LoadingStatus.failed });
       }

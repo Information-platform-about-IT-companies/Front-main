@@ -4,7 +4,7 @@
   padding: 40px 0 86px;
 
   &__intro {
-    @include flex(stretch, center, column);
+    @include flex(stcenterretch, center, column);
 
     gap: 40px;
   }
@@ -19,6 +19,7 @@
   &__subtitle {
     display: block;
     margin-top: 20px;
+    margin-bottom: 32px;
 
     @include roboto(var(--text-color), 16px, 22px, 300);
   }
@@ -36,6 +37,10 @@
 
   &__background {
     background-color: var(--filter-companycard-background);
+  }
+
+  &__button-back {
+    align-self: center;
   }
 
   &__no-results {
