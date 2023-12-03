@@ -35,6 +35,8 @@
   --checkbox-background-checked: #{$blue};
   --button-heart-border: #{$black-middle};
   --pagination-background: #{$snow-white};
+  --popup-button-text: #{$black};
+  --popup-background: #{$snow-white};
 }
 
 :root[data-theme="dark"] {
@@ -72,4 +74,6 @@
   --checkbox-background-checked: #{$blue-dark};
   --button-heart-border: #{$blue-dark};
   --pagination-background: #{$sea-blue-light-night};
+  --popup-button-text: #{$snow-white};
+  --popup-background: #{$blue-night};
 }
