@@ -1,8 +1,9 @@
-import { useEffect, useReducer } from "react";
+import PropTypes from "prop-types";
+
+import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { infoAPI } from "api/infoApi";
 import { LoadingStatus } from "services/constants";
-import { reducer, initialState } from "store/reducers/filterReducer";
 // components
 import { Loader } from "components/Loader/Loader";
 import { FilterTabs } from "./FilterTabs/FilterTabs";
@@ -12,8 +13,7 @@ import { CityForm } from "./FilterForms/CityForm/CityForm";
 // styles
 import "./Filter.scss";
 
-export function Filter() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+export function Filter({ state, dispatch }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
@@ -76,3 +76,17 @@ export function Filter() {
     </section>
   );
 }
+
+Filter.propTypes = {
+  state: PropTypes.shape({
+    categories: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        services: PropTypes.shape({ id: PropTypes.number, name: PropTypes.string }).isRequired,
+      }),
+    ),
+    checkedServices: PropTypes.arrayOf(PropTypes.number).isRequired,
+  }).isRequired,
+  dispatch: PropTypes.func.isRequired,
+};

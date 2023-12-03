@@ -60,7 +60,7 @@ export default function CompanyPage() {
 
   return (
     <main className="company-page">
-      <Breadcrumbs />
+      <Breadcrumbs company={company} />
       <section className="company__basic-info">
         {isCompanyFetched ? (
           <>
