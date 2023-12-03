@@ -43,8 +43,9 @@
   }
 
   &__name {
-    @include roboto-24(var(--text-color));
+    @include roboto-32(var(--text-color));
 
+    line-height: 28px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
