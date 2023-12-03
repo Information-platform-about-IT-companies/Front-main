@@ -17,19 +17,8 @@ export default function FilterPageHeader({ filterInfo, companyInfo }) {
       ? searchNameServiceByIdInArrayCategories(filterInfo.categories, filterInfo.checkedServices[0])
           ?.name
       : null;
-  let transformedServiceName = null;
-
-  if (serviceName?.length) {
-    const words = serviceName.split(" ");
-    if (/^[A-ZА-Я]/.test(words[0]) && /[a-zа-яё]/.test(words[0][1])) {
-      words[0] = words[0][0].toLowerCase() + words[0].slice(1);
-    }
-    transformedServiceName = words.join(" ");
-  }
 
   let textHeader;
-
-  console.log(cityFrom(!transformedServiceName ? "" : transformedServiceName));
 
   switch (true) {
     case totalCompany === 0:
@@ -41,7 +30,7 @@ export default function FilterPageHeader({ filterInfo, companyInfo }) {
       textHeader = `В России ${totalCompany} ${declinationsNumericalValues(
         totalCompany,
         company,
-      )} ${declinationsNumericalValues(totalCompany, provide)} услугу «${transformedServiceName}»`;
+      )} ${declinationsNumericalValues(totalCompany, provide)} услугу «${serviceName}»`;
       break;
     case !filterInfo.checkedCities.length && filterInfo.checkedServices.length > 1:
       textHeader = `В России ${totalCompany} ${declinationsNumericalValues(
@@ -59,7 +48,7 @@ export default function FilterPageHeader({ filterInfo, companyInfo }) {
       textHeader = `В ${cityName} ${totalCompany} ${declinationsNumericalValues(
         totalCompany,
         company,
-      )} ${declinationsNumericalValues(totalCompany, provide)} услугу «${transformedServiceName}»`;
+      )} ${declinationsNumericalValues(totalCompany, provide)} услугу «${serviceName}»`;
       break;
     case filterInfo.checkedCities.length === 1 && filterInfo.checkedServices.length > 1:
       textHeader = `В ${cityName} ${totalCompany} ${declinationsNumericalValues(
@@ -77,7 +66,7 @@ export default function FilterPageHeader({ filterInfo, companyInfo }) {
       textHeader = `В выбранных городах ${totalCompany} ${declinationsNumericalValues(
         totalCompany,
         company,
-      )} ${declinationsNumericalValues(totalCompany, provide)} услугу «${transformedServiceName}»`;
+      )} ${declinationsNumericalValues(totalCompany, provide)} услугу «${serviceName}»`;
       break;
     case filterInfo.checkedCities.length > 1 && filterInfo.checkedServices.length > 1:
       textHeader = `В выбранных городах ${totalCompany} ${declinationsNumericalValues(
