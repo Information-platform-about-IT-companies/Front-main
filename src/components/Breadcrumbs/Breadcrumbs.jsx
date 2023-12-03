@@ -1,20 +1,12 @@
 import PropTypes from "prop-types";
-
 import { Link, useLocation } from "react-router-dom";
-
+// функции
+import searchNameServiceByIdInArrayCategories from "services/searchNameServiceByIdInArrayCategories";
+// стили
 import "./Breadcrumbs.scss";
 
 export default function Breadcrumbs({ state, dispatch, company }) {
   const location = useLocation();
-
-  const searchNameByIdInArrayOfObjects = (categories, idToFind) => {
-    const foundObject = categories.find(
-      ({ services }) =>
-        services && Array.isArray(services) && services.some((service) => service.id === idToFind),
-    );
-
-    return foundObject ? foundObject.services.find((service) => service.id === idToFind) : null;
-  };
 
   let currentLink = "";
   let crumbs;
@@ -43,11 +35,15 @@ export default function Breadcrumbs({ state, dispatch, company }) {
           <li className="breadcrumbs__element" key="service">
             <Link
               to={`/filter?services=[${
-                searchNameByIdInArrayOfObjects(state.categories, state.checkedServices[0])?.id
+                searchNameServiceByIdInArrayCategories(state.categories, state.checkedServices[0])
+                  ?.id
               }]`}
               className="breadcrumbs__link"
             >
-              {searchNameByIdInArrayOfObjects(state.categories, state.checkedServices[0])?.name}
+              {
+                searchNameServiceByIdInArrayCategories(state.categories, state.checkedServices[0])
+                  ?.name
+              }
             </Link>
           </li>
         );
@@ -67,11 +63,15 @@ export default function Breadcrumbs({ state, dispatch, company }) {
             <li className="breadcrumbs__element" key="service">
               <Link
                 to={`/filter?services=[${
-                  searchNameByIdInArrayOfObjects(state.categories, state.checkedServices[0])?.id
+                  searchNameServiceByIdInArrayCategories(state.categories, state.checkedServices[0])
+                    ?.id
                 }]`}
                 className="breadcrumbs__link"
               >
-                {searchNameByIdInArrayOfObjects(state.categories, state.checkedServices[0])?.name}
+                {
+                  searchNameServiceByIdInArrayCategories(state.categories, state.checkedServices[0])
+                    ?.name
+                }
               </Link>
             </li>
           </>
