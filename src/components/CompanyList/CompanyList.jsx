@@ -1,9 +1,11 @@
+// Components
 import CompanyCard from "components/CompanyCard/CompanyCard";
 import { Pagination } from "components/Pagination/Pagination";
+// UI-KIT
+import { SignInOrSignUp } from "UI-KIT/SignInOrSignUp/SignInOrSignUp";
+// functions
 import { useToggleFavorited } from "hooks/useFavorited";
 import { useErrorHandler } from "hooks/useErrorHandler";
-import { SignInOrSignUp } from "UI-KIT/SignInOrSignUp/SignInOrSignUp";
-import CompanyCardFavouriteNone from "components/CompanyCardFavouriteNone/CompanyCardFavouriteNone";
 
 export function CompanyList({
   type,

@@ -1,11 +1,13 @@
 export const COMPANIES_PER_PAGE = 10;
 
 export const API_HOST = "https://dev.octopus-it.ru/api/v1/";
+export const API_PATH = "/api/v1/";
 
 export const API_ENDPOINTS = {
   AUTH: {
     SIGNUP: "auth/signup/",
     SIGNUP_CONFIRM: "auth/signup_confirm/",
+    REPEAT_SIGNUP_CONFIRM: "auth/re_signup_confirm/",
     SIGNIN: "auth/signin/",
     RESET_PASSWORD: "auth/reset_password/",
     CONFIRM_RESET_PASSWORD: "auth/reset_password_confirm/",
@@ -16,18 +18,18 @@ export const API_ENDPOINTS = {
     CHANGE_PASSWORD: "users/change_password/",
   },
   INFO: {
-    INDUSTRIES: "info/industries",
-    CATEGORIES: "info/service_categories",
-    SERVICES: "info/services",
-    CITIES: "info/cities",
-    SEARCH: "info/search_services_companies",
+    INDUSTRIES: "info/industries/",
+    CATEGORIES: "info/service_categories/",
+    SERVICES: "info/services/",
+    CITIES: "info/cities/",
+    SEARCH: "info/search_services_companies/",
   },
   TOKENS: {
     REFRESH: "tokens/refresh/",
   },
   COMPANIES: {
-    FETCH: (params) => `companies?${new URLSearchParams(params).toString()}`,
-    GET: (id) => `companies/${id}`,
+    FETCH: (params) => `companies/?${new URLSearchParams(params).toString()}`,
+    GET: (id) => `companies/${id}/`,
   },
   FAVORITE: {
     ADD: (id) => `companies/${id}/favorite/`,
@@ -43,6 +45,7 @@ export const ROUTES = {
   PROFILE: "/profile",
   COMPANY: "/company",
   PASS_RECOVERY: "/passrecovery",
+  RESET_PASSWORD_CONFIRM: "/reset-password-confirm",
   NOT_FOUND: "/400",
 };
 
