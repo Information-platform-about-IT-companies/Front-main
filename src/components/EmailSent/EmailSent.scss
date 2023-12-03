@@ -1,0 +1,70 @@
+@import "src/assets/style/main";
+
+.email-sent {
+  @include flex(center, center, column);
+
+  margin-top: 80px;
+
+  &__message {
+    @include flex(center, center, column);
+
+    margin-top: 50px;
+  }
+
+  &__title {
+    @include roboto-32($color: var(--text-color));
+
+    font-style: normal;
+    line-height: normal;
+    margin-bottom: 20px;
+  }
+
+  &__suggestion {
+    @include roboto-16($color: var(--text-color));
+
+    font-style: normal;
+    line-height: normal;
+    font-weight: 300;
+    margin-top: 24px;
+    margin-bottom: 102px;
+  }
+
+  &__confirm-form {
+    @include flex(center, center, column);
+
+    min-width: 773px;
+    min-height: 468px;
+    padding: 32px;
+    gap: 20px;
+    border-radius: 20px;
+  }
+
+  &__confirm-title {
+    @include roboto-32($color: var(--text-color));
+
+    margin-bottom: -5px;
+  }
+
+  &__confirm-textbox {
+    @include flex(center, center, column);
+  }
+
+  &__confirm-text {
+    @include flex(center, center, row);
+    @include roboto-16($color: var(--text-color));
+
+    font-weight: 300;
+    line-height: 140%;
+  }
+
+  &__confirm-link {
+    line-height: 110%;
+    outline: none;
+    margin-left: 4px;
+    border-radius: 0;
+
+    &:hover {
+      border-bottom: 1px solid var(--link-underline);
+    }
+  }
+}

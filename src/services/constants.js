@@ -40,6 +40,7 @@ export const API_ENDPOINTS = {
 export const ROUTES = {
   ROOT: "/",
   SIGN_UP: "/signup",
+  SIGN_UP_SUCCESS: "/signup/#/success",
   SIGN_IN: "/signin",
   FILTER: "/filter",
   PROFILE: "/profile",
