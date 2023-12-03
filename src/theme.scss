@@ -29,7 +29,8 @@
   --profile-company-fullinfo: #{$blue};
   --filter-content-background: #{$white};
   --filter-content-border: #{$blue};
-  --filter-nav-item-active: #{$gradient-blue};
+  --filter-nav-item-active: #{$blue};
+  --filter-nav-item-arrow-active: #{$gradient-blue};
   --filter-companycard-background: #{$snow-white};
   --checkbox-background: #{$white};
   --checkbox-background-checked: #{$blue};
@@ -69,7 +70,8 @@
   --profile-company-fullinfo: #{$blue-light};
   --filter-content-background: #{$blue-night};
   --filter-content-border: #{$blue-dark};
-  --filter-nav-item-active: #{$gradient-blue};
+  --filter-nav-item-active: #{$blue-dark};
+  --filter-nav-item-arrow-active: #{$gradient-blue};
   --filter-companycard-background: #{$sea-blue-light-night};
   --checkbox-background: #{$blue-night};
   --checkbox-background-checked: #{$blue-dark};
