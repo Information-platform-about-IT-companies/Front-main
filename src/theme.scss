@@ -33,8 +33,11 @@
   --filter-companycard-background: #{$snow-white};
   --checkbox-background: #{$white};
   --checkbox-background-checked: #{$blue};
-  --button-heart-border: #{$black};
+  --button-heart-border: #{$black-middle};
   --pagination-background: #{$snow-white};
+  --breadcrumbs-underline-hover: #{$gradient-blue};
+  --popup-button-text: #{$black};
+  --popup-background: #{$snow-white};
 }
 
 :root[data-theme="dark"] {
@@ -72,4 +75,7 @@
   --checkbox-background-checked: #{$blue-dark};
   --button-heart-border: #{$blue-dark};
   --pagination-background: #{$sea-blue-light-night};
+  --breadcrumbs-underline-hover: #{$sea-blue};
+  --popup-button-text: #{$snow-white};
+  --popup-background: #{$blue-night};
 }

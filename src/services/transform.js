@@ -16,12 +16,12 @@ export const signupFormData = (formData) => {
 };
 
 export const resetPasswordFormData = (formData) => {
-  const { uid, token, newPassword, repeatNewPassword } = formData;
+  const { uid, token, password, confirmPassword } = formData;
   return {
     uid,
     token,
-    new_password: newPassword,
-    re_new_password: repeatNewPassword,
+    new_password: password,
+    re_new_password: confirmPassword,
   };
 };
 

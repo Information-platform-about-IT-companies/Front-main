@@ -54,6 +54,10 @@
     &:hover::placeholder {
       color: var(--input-placeholder-hover);
     }
+
+    &:disabled {
+      color: $black-light;
+    }
   }
 
   &__field_icon {

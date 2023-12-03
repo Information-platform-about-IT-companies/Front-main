@@ -4,17 +4,19 @@ import * as yup from "yup";
 import { authAPI } from "api/authApi";
 import { useErrorHandler } from "hooks/useErrorHandler";
 import { NAME_REGULAR, PASSWORD_REGULAR } from "services/regulars";
+import { withEmailSentScreen } from "hoc/withEmailSentScreen";
 // UI-KIT
 import { LinkItem } from "UI-KIT/Link/LinkItem";
 import { Button } from "UI-KIT/Button/Button";
 import { Form } from "UI-KIT/Form/Form";
 import Input from "UI-KIT/Input/Input";
+import { ButtonChanges } from "UI-KIT/ButtonChanges/ButtonChanges";
 // styles
 import "./Register.scss";
-import { withEmailSentScreen } from "hoc/withEmailSentScreen";
 
 function Register({ showEmailSentScreen }) {
   const [Error, setError] = useErrorHandler();
+
   const formik = useFormik({
     initialValues: {
       userName: "",
@@ -67,6 +69,15 @@ function Register({ showEmailSentScreen }) {
     },
   });
 
+  const repeatSignupConfirm = async () => {
+    try {
+      const { email, password } = formik.values;
+      await authAPI.repeatConfirmSignup({ email, password });
+    } catch (error) {
+      setError(error);
+    }
+  };
+
   const transformBlur = (event) => {
     formik.setFieldValue(event.target.name, event.target.value.trim());
     formik.handleBlur(event);
@@ -76,7 +87,7 @@ function Register({ showEmailSentScreen }) {
     <main className="register">
       <h1 className="register__title">Добро пожаловать в Octopus</h1>
       <div className="register__container">
-        <p className="register__subtitle">Заполните все поля, чтобы зарегистрироваться </p>
+        <p className="register__subtitle">Заполните все поля, чтобы зарегистрироваться</p>
         <Form extClassName="register__form" onSubmit={formik.handleSubmit}>
           <div className="register__userName">
             <Input

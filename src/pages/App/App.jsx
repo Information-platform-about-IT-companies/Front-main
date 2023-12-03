@@ -67,7 +67,7 @@ function App() {
           <Route path="/signin" element={loggedIn ? <Navigate to="/" /> : <Login />} />
           <Route path="/signup" element={loggedIn ? <Navigate to="/" /> : <Register />} />
           <Route
-            path="/recoverypassword"
+            path="/reset-password-confirm"
             element={loggedIn ? <Navigate to="/" /> : <RecoveryPassword />}
           />
           <Route path="/passrecovery" element={<ForgetPassword />} />

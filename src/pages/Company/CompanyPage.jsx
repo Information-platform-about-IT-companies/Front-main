@@ -60,11 +60,11 @@ export default function CompanyPage() {
 
   return (
     <main className="company-page">
-      <Breadcrumbs />
+      <Breadcrumbs company={company} />
       <section className="company__basic-info">
         {isCompanyFetched ? (
           <>
-            <CompanyLogo logo={company.logo} name={company.name} city={company.city?.name} />
+            <CompanyLogo logo={company.logo} name={company.name} city={company?.city} />
             <div className="company__size-info">
               <p>
                 Год основания: <span className="company__accent-text">{company.year_founded}</span>
