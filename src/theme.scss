@@ -35,6 +35,7 @@
   --checkbox-background-checked: #{$blue};
   --button-heart-border: #{$black};
   --pagination-background: #{$snow-white};
+  --breadcrumbs-underline-hover: #{$gradient-blue};
 }
 
 :root[data-theme="dark"] {
@@ -72,4 +73,5 @@
   --checkbox-background-checked: #{$blue-dark};
   --button-heart-border: #{$blue-dark};
   --pagination-background: #{$sea-blue-light-night};
+  --breadcrumbs-underline-hover: #{$sea-blue};
 }

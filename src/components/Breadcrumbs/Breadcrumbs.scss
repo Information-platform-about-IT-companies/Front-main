@@ -29,7 +29,7 @@
     &:hover {
       border-bottom-width: 1px;
       border-bottom-style: solid;
-      border-image: $gradient-blue;
+      border-color: var(--breadcrumbs-underline-hover);
       border-image-slice: 1;
     }
 
