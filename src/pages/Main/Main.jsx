@@ -6,7 +6,6 @@ import { useMainContext } from "context/MainContext";
 // functions
 import { hardcode, selectedCategoriesMap, ROUTES } from "services/constants";
 import { SIGN_UP_CONFIRM_REGULAR } from "services/regulars";
-import { authAPI } from "api/authApi";
 import { useErrorHandler } from "hooks/useErrorHandler";
 // Components
 import { Search } from "components/Search/Search";
@@ -44,7 +43,6 @@ function Main() {
   useEffect(() => {
     if (SIGN_UP_CONFIRM_REGULAR.test(location.hash)) {
       navigate(ROUTES.SIGN_IN + location.hash);
-      // confirmSignup(() => navigate(ROUTES.SIGN_IN, { state: { signupConfirmed: true } }));
     } else if (!isCategoriesFetched) {
       fetchCategories();
     }

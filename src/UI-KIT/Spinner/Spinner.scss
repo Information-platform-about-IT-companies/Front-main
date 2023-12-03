@@ -1,13 +1,17 @@
 .spinner {
   width: 100px;
   height: 100px;
-  animation:
-    rotate 1.6s infinite ease-out,
-    transf 0.8s infinite ease-out;
   filter: blur(1px);
   animation:
     rotate 1s infinite ease-out,
     transf 0.8s infinite ease-out;
+
+  &__wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 @keyframes rotate {

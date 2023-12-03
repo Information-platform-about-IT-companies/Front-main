@@ -1,5 +1,4 @@
 import { useFormik } from "formik";
-import { useState } from "react";
 import * as yup from "yup";
 // functions
 import { authAPI } from "api/authApi";
@@ -12,9 +11,9 @@ import { Form } from "UI-KIT/Form/Form";
 import Input from "UI-KIT/Input/Input";
 // styles
 import "./Register.scss";
+import { withEmailSentScreen } from "hoc/withEmailSentScreen";
 
-function Register() {
-  const [isSuccessReg, setSuccessReg] = useState(false);
+function Register({ showEmailSentScreen }) {
   const [Error, setError] = useErrorHandler();
   const formik = useFormik({
     initialValues: {
@@ -60,7 +59,8 @@ function Register() {
     onSubmit: async (values) => {
       try {
         await authAPI.signup(values);
-        setSuccessReg(true);
+        const { email, password } = formik.values;
+        showEmailSentScreen({ email, password });
       } catch (error) {
         setError(error);
       }
@@ -75,7 +75,7 @@ function Register() {
   return (
     <main className="register">
       <h1 className="register__title">Добро пожаловать в Octopus</h1>
-      <div className={`register__container ${isSuccessReg ? "register__container_hide" : ""}`}>
+      <div className="register__container">
         <p className="register__subtitle">Заполните все поля, чтобы зарегистрироваться </p>
         <Form extClassName="register__form" onSubmit={formik.handleSubmit}>
           <div className="register__userName">
@@ -176,44 +176,9 @@ function Register() {
           />
         </p>
       </div>
-      <div className={`register__message ${isSuccessReg ? "register__message_show" : ""}`}>
-        <Form extClassName="register__confirm-form">
-          <h3 className="register__confirm-title">Учетная запись создана</h3>
-          <p className="register__confirm-textbox">
-            <p className="register__confirm-text">
-              Мы отправили электронное письмо с подтверждением на почту.
-            </p>{" "}
-            <p className="register__confirm-text">Нажмите на ссылку внутри, чтобы начать.</p>
-          </p>
-          <p className="register__confirm-textbox">
-            <p className="register__confirm-text">Не получили письмо?</p>{" "}
-            <p className="register__confirm-text">
-              Чтобы отправить электронное письмо повторно,
-              <Button
-                title="нажмите здесь"
-                fill={false}
-                url="#"
-                linkType="link"
-                extClassName="register__confirm-link"
-              />
-            </p>
-          </p>
-        </Form>
-        <p className="register__suggestion">
-          У вас уже есть учетная запись?{" "}
-          <LinkItem
-            url="/signin"
-            title="Войти"
-            extClassName="login__link"
-            weight="400"
-            textColor="var(--text-color)"
-            lineColor="var(--link-underline)"
-          />
-        </p>
-      </div>
       <Error />
     </main>
   );
 }
 
-export default Register;
+export default withEmailSentScreen(Register);
