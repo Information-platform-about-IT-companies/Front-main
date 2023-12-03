@@ -44,7 +44,7 @@ function ForgetPassword() {
   };
 
   function repeatRequestForConfirm() {
-    console.log("Повторный запрос на сервер для получения письма на почту");
+    setNoErrorServerResponse(false);
   }
 
   return (
