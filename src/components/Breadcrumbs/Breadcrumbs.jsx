@@ -16,8 +16,6 @@ export default function Breadcrumbs({ state, dispatch, company }) {
     return foundObject ? foundObject.services.find((service) => service.id === idToFind) : null;
   };
 
-  console.log(company);
-
   let currentLink = "";
   let crumbs;
   if (state) {
