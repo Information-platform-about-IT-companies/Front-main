@@ -1,32 +1,63 @@
 @import "src/assets/style/main";
 
-.fullwidth {
-  width: calc(100 * var(--vw, 1vw));
-  margin-left: calc(50% - 50 * var(--vw, 1vw));
-}
-
 .not-found {
-  @include flex(center, center, column);
+  margin-top: 100px;
+  position: relative;
 
-  background-image: url("../../images/NotFound.svg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  @include flex(center, flex-start, column);
 
   &__header {
-    padding-bottom: 20px;
     background-color: $purple;
     background-image: $gradient-pink;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 200px;
+    line-height: 234px;
     font-weight: 700;
   }
 
   &__paragraph {
-    padding-bottom: 32px;
-    font-size: $text-size-large;
-    font-weight: 400;
-    color: var(--text-color);
+    padding: 20px 0 32px;
+
+    @include roboto(var(--text-color), $text-size-large, 38px, 400);
+  }
+
+  &__tentacle-left {
+    position: absolute;
+    width: 399px;
+    height: 511px;
+    top: 0;
+    left: -120px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    z-index: -1;
+    background-image: url("../../images/404/left.svg");
+  }
+
+  &__tentacle-right-top {
+    position: absolute;
+    width: 168px;
+    height: 145px;
+    top: 179px;
+    right: -120px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    z-index: -1;
+    background-image: url("../../images/404/right_1.svg");
+  }
+
+  &__tentacle-right-bottom {
+    position: absolute;
+    width: 517px;
+    height: 243px;
+    top: 373px;
+    right: -120px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center right;
+    z-index: -1;
+    background-image: url("../../images/404/right_2.svg");
   }
 }
