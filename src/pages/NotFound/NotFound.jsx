@@ -19,12 +19,15 @@ export default function NotFound() {
   };
 
   return (
-    <main className="not-found fullwidth">
+    <main className="not-found">
       <h1 className="not-found__header">404</h1>
       <p className="not-found__paragraph">Страница не найдена</p>
+      <div className="not-found__tentacle-left" />
+      <div className="not-found__tentacle-right-top" />
+      <div className="not-found__tentacle-right-bottom" />
       <Button
+        type="button"
         title={isSameSite ? "Назад" : "На главную"}
-        fill={false}
         size="standard"
         onClick={handleButtonNotFound}
       />

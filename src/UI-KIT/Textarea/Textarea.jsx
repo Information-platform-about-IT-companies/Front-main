@@ -24,12 +24,12 @@ function Textarea({
   }
 
   return (
-    <label className={`textarea_label ${extClassNameLabel}`} htmlFor={id}>
+    <label className={`textarea__label ${extClassNameLabel}`} htmlFor={id}>
       {label}
       <textarea
         name={name}
         id={id}
-        className={`textarea_field ${extClassNameTextarea} ${errorStyle()} `}
+        className={`textarea__field ${extClassNameTextarea} ${errorStyle()} `}
         required={required}
         placeholder={placeholder}
         onChange={onChange}
@@ -59,8 +59,8 @@ Textarea.propTypes = {
 };
 
 Textarea.defaultProps = {
-  extClassNameLabel: null,
-  extClassNameTextarea: null,
+  extClassNameLabel: "",
+  extClassNameTextarea: "",
   required: false,
   placeholder: "",
   value: null,

@@ -16,35 +16,17 @@
     &_button:last-child {
       margin-bottom: 0;
     }
-
-    &_subtitle {
-      font-size: 20px;
-      font-weight: 400;
-      line-height: 23px;
-      text-align: left;
-      margin-bottom: 20px;
-    }
-
-    &_description {
-      font-size: 16px;
-      font-weight: 300;
-      line-height: 22px;
-      text-align: left;
-      margin-bottom: 20px;
-    }
   }
 
   &_details {
     width: 100%;
   }
 
-  &_title {
-    font-size: 32px;
-    font-weight: 400;
-    line-height: 38px;
+  &__title {
+    @include roboto(var(--text-color), 32px, 38px, 400);
+
     text-align: left;
     margin-bottom: 34px;
-    color: var(--text-color);
   }
 }
 
