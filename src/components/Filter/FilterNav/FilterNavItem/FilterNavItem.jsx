@@ -3,7 +3,7 @@ import "./FilterNavItem.scss";
 import IconArrow from "UI-KIT/Icons/IconArrow";
 
 export function FilterNavItem({ formName, activeForm, dispatch }) {
-  const color = activeForm === formName ? "#4E4CBF" : "#111111";
+  const color = activeForm === formName ? "var(--filter-nav-item-active)" : "var(--text-color)";
   const className = activeForm === formName ? "filter__nav-item_active" : "";
   const itemName = formName === "city" ? "Город" : "Услуги";
 

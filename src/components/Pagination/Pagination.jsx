@@ -36,7 +36,7 @@ export function Pagination({ totalPages }) {
           <ButtonIcon
             className="pagination__button"
             onClick={() => turnToPage(currentPage - 1)}
-            icon={<IconArrow direction="left" size="24" />}
+            icon={<IconArrow direction="left" size="24" color="var(--text-color)" />}
           />
         </li>
       )}
@@ -61,7 +61,7 @@ export function Pagination({ totalPages }) {
           <ButtonIcon
             className="pagination__button"
             onClick={() => turnToPage(currentPage + 1)}
-            icon={<IconArrow direction="right" size="24" />}
+            icon={<IconArrow direction="right" size="24" color="var(--text-color)" />}
           />
         </li>
       )}
