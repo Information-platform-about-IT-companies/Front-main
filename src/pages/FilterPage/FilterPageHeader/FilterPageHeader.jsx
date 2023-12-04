@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { cityIn, cityFrom } from "lvovich";
+import { cityIn } from "lvovich";
 // функции
 import { declinationsNumericalValues } from "services/constants";
 import findServiceById from "services/findServiceById";
@@ -12,8 +12,9 @@ export default function FilterPageHeader({ filterInfo, companyInfo }) {
   const porvideDeclension = declinationsNumericalValues(totalCompany, provide);
   const cityName =
     filterInfo.checkedCities.length === 1
-      ? cityIn(filterInfo.cities.find((city) => city.id === filterInfo.checkedCities[0])?.name)
-      : null;
+      ? filterInfo.cities.find((city) => city.id === filterInfo.checkedCities[0])?.name || ""
+      : "";
+  const cityNameFormatted = cityName ? cityIn(cityName) : "";
   const serviceName =
     filterInfo.checkedServices.length === 1
       ? findServiceById(filterInfo.categories, filterInfo.checkedServices[0])?.name
@@ -34,13 +35,13 @@ export default function FilterPageHeader({ filterInfo, companyInfo }) {
       textHeader = `В России ${totalCompany} ${companyDeclension} ${porvideDeclension} выбранные услуги`;
       break;
     case filterInfo.checkedCities.length === 1 && !filterInfo.checkedServices.length:
-      textHeader = `В ${cityName} ${totalCompany} IT-${companyDeclension}`;
+      textHeader = `В ${cityNameFormatted} ${totalCompany} IT-${companyDeclension}`;
       break;
     case filterInfo.checkedCities.length === 1 && filterInfo.checkedServices.length === 1:
-      textHeader = `В ${cityName} ${totalCompany} ${companyDeclension} ${porvideDeclension} услугу «${serviceName}»`;
+      textHeader = `В ${cityNameFormatted} ${totalCompany} ${companyDeclension} ${porvideDeclension} услугу «${serviceName}»`;
       break;
     case filterInfo.checkedCities.length === 1 && filterInfo.checkedServices.length > 1:
-      textHeader = `В ${cityName} ${totalCompany} ${companyDeclension} ${porvideDeclension} выбранные услуги`;
+      textHeader = `В ${cityNameFormatted} ${totalCompany} ${companyDeclension} ${porvideDeclension} выбранные услуги`;
       break;
     case filterInfo.checkedCities.length > 1 && !filterInfo.checkedServices.length:
       textHeader = `В выбранных городах ${totalCompany} IT-${companyDeclension}`;
