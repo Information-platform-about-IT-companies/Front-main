@@ -3,6 +3,7 @@ import * as yup from "yup";
 // functions
 import { authAPI } from "api/authApi";
 import { useErrorHandler } from "hooks/useErrorHandler";
+import { API_ERRORS } from "services/constants";
 import { NAME_REGULAR, PASSWORD_REGULAR } from "services/regulars";
 import { withEmailSentScreen } from "hoc/withEmailSentScreen";
 // UI-KIT
@@ -10,7 +11,6 @@ import { LinkItem } from "UI-KIT/Link/LinkItem";
 import { Button } from "UI-KIT/Button/Button";
 import { Form } from "UI-KIT/Form/Form";
 import Input from "UI-KIT/Input/Input";
-import { ButtonChanges } from "UI-KIT/ButtonChanges/ButtonChanges";
 // styles
 import "./Register.scss";
 
@@ -64,19 +64,16 @@ function Register({ showEmailSentScreen }) {
         const { email, password } = formik.values;
         showEmailSentScreen({ email, password });
       } catch (error) {
-        setError(error);
+        switch (error.message) {
+          case API_ERRORS.EMAIL_EXISTS:
+            formik.setFieldError("email", "Такой E-mail уже зарегистрирован");
+            break;
+          default:
+            setError(error);
+        }
       }
     },
   });
-
-  const repeatSignupConfirm = async () => {
-    try {
-      const { email, password } = formik.values;
-      await authAPI.repeatConfirmSignup({ email, password });
-    } catch (error) {
-      setError(error);
-    }
-  };
 
   const transformBlur = (event) => {
     formik.setFieldValue(event.target.name, event.target.value.trim());
