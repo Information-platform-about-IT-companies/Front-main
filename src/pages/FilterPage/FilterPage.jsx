@@ -24,7 +24,7 @@ function FilterPage() {
     <main className="filterPage">
       <div className="filterPage__intro">
         <Breadcrumbs state={state} dispatch={dispatch} />
-        {!stateFetch.totalCompanies ? (
+        {stateFetch.loadingStatus === LoadingStatus.succeeded && !stateFetch.totalCompanies ? (
           <div className="filterPage__no-results">
             <div className="filterPage__no-results-image" />
             <h2 className="filterPage__title">По вашему запросу ничего не найдено</h2>
