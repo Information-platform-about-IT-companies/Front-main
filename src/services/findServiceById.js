@@ -1,5 +1,5 @@
 export default function findServiceById(categories, id) {
-  const foundCategory = categories.find(
+  const foundCategory = categories?.find(
     ({ services }) =>
       services && Array.isArray(services) && services.some((service) => service.id === id),
   );

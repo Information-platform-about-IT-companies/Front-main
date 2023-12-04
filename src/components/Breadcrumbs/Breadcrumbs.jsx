@@ -10,7 +10,7 @@ export default function Breadcrumbs({ state, dispatch, company }) {
 
   let currentLink = "";
   let crumbs;
-  const service = findServiceById(state.categories, state.checkedServices[0]);
+  const service = findServiceById(state?.categories, state?.checkedServices[0]);
 
   if (state) {
     switch (true) {
