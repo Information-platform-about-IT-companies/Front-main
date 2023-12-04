@@ -79,7 +79,7 @@ export default function Breadcrumbs({ state, dispatch, company }) {
             {company.city.name}
           </Link>
         </li>
-        <li className="breadcrumbs__element" key="company">
+        <li className="breadcrumbs__element breadcrumbs__element_type_company" key="company">
           <div className="breadcrumbs__link">{company.name}</div>
         </li>
       </>
