@@ -199,7 +199,6 @@ function ProfileInfo() {
             type="submit"
             data-testid="submitInfoButton"
             title="Обновить профиль"
-            disabled={!(formikInfo.isValid && formikInfo.dirty)}
           />
           <ButtonChanges
             type="button"
@@ -240,12 +239,10 @@ function ProfileInfo() {
               }
               onBlur={transformPasswordBlur}
             >
-              {/*               <ul className="form-info-change__tooltip-container">
+              <ul className="form-info-change__tooltip-container">
                 <li className="form-info-change__tooltip-item">от 8 до 30 символов</li>
-                <li className="form-info-change__tooltip-item">
-                  должен содержать цифры и буквы / спецсимволы без пробелов
-                </li>
-              </ul> */}
+                <li className="form-info-change__tooltip-item">содержит буквы и цифры</li>
+              </ul>
             </Input>
           </div>
           <Input
