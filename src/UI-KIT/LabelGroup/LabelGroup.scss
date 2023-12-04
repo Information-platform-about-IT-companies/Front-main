@@ -52,6 +52,10 @@
   border-radius: 10px;
   background: var(--company-lable-background-hover);
   color: var(--text-color);
-  text-align: center;
+  text-align: left;
   z-index: 1;
+
+  &:active {
+    background-color: var(--company-lable-background-active);
+  }
 }
