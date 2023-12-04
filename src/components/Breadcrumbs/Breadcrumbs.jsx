@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { Link, useLocation } from "react-router-dom";
 // функции
-import searchNameServiceByIdInArrayCategories from "services/searchNameServiceByIdInArrayCategories";
+import findServiceById from "services/findServiceById";
 // стили
 import "./Breadcrumbs.scss";
 
@@ -10,6 +10,8 @@ export default function Breadcrumbs({ state, dispatch, company }) {
 
   let currentLink = "";
   let crumbs;
+  const service = findServiceById(state.categories, state.checkedServices[0]);
+
   if (state) {
     switch (true) {
       case !state.checkedCities.length && !state.checkedServices.length:
@@ -33,17 +35,8 @@ export default function Breadcrumbs({ state, dispatch, company }) {
       case !state.checkedCities.length && state.checkedServices.length === 1:
         crumbs = (
           <li className="breadcrumbs__element" key="service">
-            <Link
-              to={`/filter?services=[${
-                searchNameServiceByIdInArrayCategories(state.categories, state.checkedServices[0])
-                  ?.id
-              }]`}
-              className="breadcrumbs__link"
-            >
-              {
-                searchNameServiceByIdInArrayCategories(state.categories, state.checkedServices[0])
-                  ?.name
-              }
+            <Link to={`/filter?services=[${service?.id}]`} className="breadcrumbs__link">
+              {service?.name}
             </Link>
           </li>
         );
@@ -61,17 +54,8 @@ export default function Breadcrumbs({ state, dispatch, company }) {
               </Link>
             </li>
             <li className="breadcrumbs__element" key="service">
-              <Link
-                to={`/filter?services=[${
-                  searchNameServiceByIdInArrayCategories(state.categories, state.checkedServices[0])
-                    ?.id
-                }]`}
-                className="breadcrumbs__link"
-              >
-                {
-                  searchNameServiceByIdInArrayCategories(state.categories, state.checkedServices[0])
-                    ?.name
-                }
+              <Link to={`/filter?services=[${service?.id}]`} className="breadcrumbs__link">
+                {service?.name}
               </Link>
             </li>
           </>
