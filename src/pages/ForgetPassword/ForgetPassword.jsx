@@ -77,13 +77,7 @@ function ForgetPassword() {
             onBlur={transformBlur}
           />
 
-          <Button
-            title="Восстановить пароль"
-            type="submit"
-            fill
-            size="standard"
-            disabled={!(formik.isValid && formik.dirty)}
-          />
+          <Button title="Восстановить пароль" type="submit" fill size="standard" />
         </Form>
         <p className="password-recovery__suggestion">
           Вспомнили свой пароль?{" "}
