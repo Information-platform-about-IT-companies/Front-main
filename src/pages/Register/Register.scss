@@ -9,6 +9,15 @@
     @include flex(center, center, column);
   }
 
+  &__title {
+    @include roboto-32($color: var(--text-color));
+
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 20px;
+  }
+
   &__subtitle {
     @include roboto-16($color: var(--text-color));
 
@@ -41,6 +50,16 @@
     @include flex(start, space-between, row);
 
     gap: 32px;
+  }
+
+  &__suggestion {
+    @include roboto-16($color: var(--text-color));
+
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    margin-bottom: 102px;
+    margin-top: 24px;
   }
 
   &__tooltip-input {

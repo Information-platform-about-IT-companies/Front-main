@@ -146,9 +146,7 @@ function Register({ showEmailSentScreen }) {
             >
               <ul className="register__tooltip-container">
                 <li className="register__tooltip-item">от 8 до 30 символов</li>
-                <li className="register__tooltip-item">
-                  должен содержать цифры и буквы / спецсимволы без пробелов
-                </li>
+                <li className="register__tooltip-item">содержит буквы и цифры</li>
               </ul>
             </Input>
           </div>
