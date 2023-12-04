@@ -23,6 +23,7 @@
 
     &:checked::before {
       content: "";
+      margin: 2px;
       width: 10px;
       height: 10px;
       border: none;
