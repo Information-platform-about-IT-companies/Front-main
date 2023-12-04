@@ -134,7 +134,7 @@ function Login({ askForEmail, showEmailSentScreen }) {
           textColor="var(--text-color)"
           lineColor="var(--link-underline)"
         />
-        <Button title="Войти" fill size="standard" disabled={!(formik.isValid && formik.dirty)} />
+        <Button title="Войти" fill size="standard" />
       </Form>
       {!signupConfirmed && (
         <p className="login__suggestion">
