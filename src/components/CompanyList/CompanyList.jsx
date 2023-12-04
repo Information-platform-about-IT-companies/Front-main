@@ -37,7 +37,7 @@ export function CompanyList({
       <ul className={className}>
         {companies.length ? (
           companies.map(({ id, isFavorited, city, ...rest }) => (
-            <li key={id} className={type === "filterCard" && "filterPage__listitem"}>
+            <li key={id} className={type === "filterCard" ? "filterPage__listitem" : ""}>
               <CompanyCard
                 id={id}
                 type={type}
