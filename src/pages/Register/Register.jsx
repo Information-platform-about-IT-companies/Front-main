@@ -3,7 +3,7 @@ import * as yup from "yup";
 // functions
 import { authAPI } from "api/authApi";
 import { useErrorHandler } from "hooks/useErrorHandler";
-import { NAME_REGULAR, PASSWORD_REGULAR } from "services/regulars";
+import { EMAIL_REGULAR, NAME_REGULAR, PASSWORD_REGULAR } from "services/regulars";
 import { withEmailSentScreen } from "hoc/withEmailSentScreen";
 // UI-KIT
 import { LinkItem } from "UI-KIT/Link/LinkItem";
@@ -40,7 +40,7 @@ function Register({ showEmailSentScreen }) {
         .required("Поле обязательно для заполнения"),
       email: yup
         .string()
-        .email("Введите корректный E-mail")
+        .matches(EMAIL_REGULAR, "Введите корректный E-mail")
         .min(6, "Длина поля от 6 до 254 символов")
         .max(254, "Длина поля от 6 до 254 символов")
         .required("Поле обязательно для заполнения"),
