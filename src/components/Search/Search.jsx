@@ -171,7 +171,10 @@ export function Search({ extClassName }) {
   }
 
   useEffect(() => {
-    if (!!state.response.services && state.response.services[0]?.name === state.query) {
+    if (
+      !!state.response.services &&
+      state.response.services[0]?.name.toLowerCase() === state.query.toLowerCase()
+    ) {
       dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: true });
     } else {
       dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: false });
@@ -179,7 +182,10 @@ export function Search({ extClassName }) {
   }, [state.query, state.response]);
 
   useEffect(() => {
-    if (!!state.responseCity.length && state.responseCity[0]?.name === state.queryCity) {
+    if (
+      !!state.responseCity.length &&
+      state.responseCity[0]?.name.toLowerCase() === state.queryCity.toLowerCase()
+    ) {
       dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: true });
     } else {
       dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: false });
