@@ -11,7 +11,7 @@ function ProfileFavourite() {
 
   return (
     <div className="profile_favourite">
-      <h1 className="profile_title">Избранные компании</h1>
+      <h1 className="profile__title">Избранные компании</h1>
 
       {state.companies.length ? (
         <CompanyList

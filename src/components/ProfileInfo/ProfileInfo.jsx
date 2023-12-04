@@ -69,11 +69,14 @@ function ProfileInfo() {
     updateFormikValues(user);
   };
 
+  const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
+  const [isPassResetSuccessful, setPassResetSuccessful] = useState(false);
+
   useEffect(() => {
+    setPassResetSuccessful(false);
     const fetchCurrentUser = async () => {
       try {
         const user = await userAPI.getCurrentUser();
-        console.log("user", user);
         updateUser(user);
       } catch (error) {
         console.log(error);
@@ -115,8 +118,11 @@ function ProfileInfo() {
     onSubmit: async (values) => {
       try {
         await userAPI.resetPassword(values);
+        setPassResetSuccessful(true);
       } catch (error) {
         setError(error);
+      } finally {
+        setIsChangePasswordOpen(false);
       }
     },
   });
@@ -131,15 +137,13 @@ function ProfileInfo() {
   };
   const id = useId();
 
-  const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
-
   function handleChangePasswordForm() {
     setIsChangePasswordOpen((prevIsChangePasswordOpen) => !prevIsChangePasswordOpen);
   }
 
   return (
     <>
-      <h1 className="profile_title">Профиль пользователя</h1>
+      <h1 className="profile__title">Профиль пользователя</h1>
 
       <Form
         extClassName={isChangePasswordOpen ? `form-info form-info_with-change` : `form-info`}
@@ -206,6 +210,9 @@ function ProfileInfo() {
             onClick={() => handleChangePasswordForm()}
           />
         </div>
+        {isPassResetSuccessful && (
+          <div className="form-info-change__status">Ваш пароль успешно изменен</div>
+        )}
       </Form>
 
       {isChangePasswordOpen ? (

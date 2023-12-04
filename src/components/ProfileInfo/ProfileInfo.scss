@@ -34,6 +34,12 @@
   row-gap: 20px;
 }
 
+.form-info-change {
+  &__status {
+    @include roboto-20;
+  }
+}
+
 .form-info-change__tooltip-input {
   width: 100%;
   position: relative;
