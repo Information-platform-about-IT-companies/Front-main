@@ -73,9 +73,6 @@ function Login({ askForEmail, showEmailSentScreen }) {
         const currentUser = await userAPI.getCurrentUser();
         setData((data) => ({ ...data, currentUser }));
       } catch (error) {
-        console.log("error wrong", error.message, error.message === API_ERRORS.WRONG_CREDENTIALS);
-        console.log("error inactive", error.message, error.message === API_ERRORS.USER_IS_INACTIVE);
-
         switch (error.message) {
           case API_ERRORS.USER_IS_INACTIVE:
             setError(
