@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { cityIn, cityFrom } from "lvovich";
+import { cityIn } from "lvovich";
 // функции
 import { declinationsNumericalValues } from "services/constants";
 import findServiceById from "services/findServiceById";
