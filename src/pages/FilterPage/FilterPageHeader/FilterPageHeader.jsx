@@ -2,20 +2,21 @@
 import { cityIn, cityFrom } from "lvovich";
 // функции
 import { declinationsNumericalValues } from "services/constants";
-import searchNameServiceByIdInArrayCategories from "services/searchNameServiceByIdInArrayCategories";
+import findServiceById from "services/findServiceById";
 
 export default function FilterPageHeader({ filterInfo, companyInfo }) {
   const company = ["компания", "компании", "компаний"];
   const provide = ["предоставляет", "предоставляют", "предоставляют"];
   const totalCompany = companyInfo.totalCompanies;
+  const companyDeclension = declinationsNumericalValues(totalCompany, company);
+  const porvideDeclension = declinationsNumericalValues(totalCompany, provide);
   const cityName =
     filterInfo.checkedCities.length === 1
       ? cityIn(filterInfo.cities.find((city) => city.id === filterInfo.checkedCities[0])?.name)
       : null;
   const serviceName =
     filterInfo.checkedServices.length === 1
-      ? searchNameServiceByIdInArrayCategories(filterInfo.categories, filterInfo.checkedServices[0])
-          ?.name
+      ? findServiceById(filterInfo.categories, filterInfo.checkedServices[0])?.name
       : null;
 
   let textHeader;
@@ -27,52 +28,28 @@ export default function FilterPageHeader({ filterInfo, companyInfo }) {
       textHeader = "Изучите лучшие компании России";
       break;
     case !filterInfo.checkedCities.length && filterInfo.checkedServices.length === 1:
-      textHeader = `В России ${totalCompany} ${declinationsNumericalValues(
-        totalCompany,
-        company,
-      )} ${declinationsNumericalValues(totalCompany, provide)} услугу «${serviceName}»`;
+      textHeader = `В России ${totalCompany} ${companyDeclension} ${porvideDeclension} услугу «${serviceName}»`;
       break;
     case !filterInfo.checkedCities.length && filterInfo.checkedServices.length > 1:
-      textHeader = `В России ${totalCompany} ${declinationsNumericalValues(
-        totalCompany,
-        company,
-      )} ${declinationsNumericalValues(totalCompany, provide)} выбранные услуги`;
+      textHeader = `В России ${totalCompany} ${companyDeclension} ${porvideDeclension} выбранные услуги`;
       break;
     case filterInfo.checkedCities.length === 1 && !filterInfo.checkedServices.length:
-      textHeader = `В ${cityName} ${totalCompany} IT-${declinationsNumericalValues(
-        totalCompany,
-        company,
-      )}`;
+      textHeader = `В ${cityName} ${totalCompany} IT-${companyDeclension}`;
       break;
     case filterInfo.checkedCities.length === 1 && filterInfo.checkedServices.length === 1:
-      textHeader = `В ${cityName} ${totalCompany} ${declinationsNumericalValues(
-        totalCompany,
-        company,
-      )} ${declinationsNumericalValues(totalCompany, provide)} услугу «${serviceName}»`;
+      textHeader = `В ${cityName} ${totalCompany} ${companyDeclension} ${porvideDeclension} услугу «${serviceName}»`;
       break;
     case filterInfo.checkedCities.length === 1 && filterInfo.checkedServices.length > 1:
-      textHeader = `В ${cityName} ${totalCompany} ${declinationsNumericalValues(
-        totalCompany,
-        company,
-      )} ${declinationsNumericalValues(totalCompany, provide)} выбранные услуги`;
+      textHeader = `В ${cityName} ${totalCompany} ${companyDeclension} ${porvideDeclension} выбранные услуги`;
       break;
     case filterInfo.checkedCities.length > 1 && !filterInfo.checkedServices.length:
-      textHeader = `В выбранных городах ${totalCompany} IT-${declinationsNumericalValues(
-        totalCompany,
-        company,
-      )}`;
+      textHeader = `В выбранных городах ${totalCompany} IT-${companyDeclension}`;
       break;
     case filterInfo.checkedCities.length > 1 && filterInfo.checkedServices.length === 1:
-      textHeader = `В выбранных городах ${totalCompany} ${declinationsNumericalValues(
-        totalCompany,
-        company,
-      )} ${declinationsNumericalValues(totalCompany, provide)} услугу «${serviceName}»`;
+      textHeader = `В выбранных городах ${totalCompany} ${companyDeclension} ${porvideDeclension} услугу «${serviceName}»`;
       break;
     case filterInfo.checkedCities.length > 1 && filterInfo.checkedServices.length > 1:
-      textHeader = `В выбранных городах ${totalCompany} ${declinationsNumericalValues(
-        totalCompany,
-        company,
-      )} ${declinationsNumericalValues(totalCompany, provide)} выбранные услуги`;
+      textHeader = `В выбранных городах ${totalCompany} ${companyDeclension} ${porvideDeclension} выбранные услуги`;
       break;
     default:
       textHeader = "Ой, произошла ошибка";
