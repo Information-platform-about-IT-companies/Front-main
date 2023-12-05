@@ -28,10 +28,11 @@ export default function IconHeart({ size, extClassName, fill }) {
 IconHeart.propTypes = {
   size: PropTypes.oneOf(["24", "32", "60"]),
   extClassName: PropTypes.string,
-  fill: PropTypes.bool.isRequired,
+  fill: PropTypes.string,
 };
 
 IconHeart.defaultProps = {
   size: "32",
   extClassName: null,
+  fill: "",
 };

@@ -81,9 +81,14 @@ Filter.propTypes = {
   state: PropTypes.shape({
     categories: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
-        services: PropTypes.shape({ id: PropTypes.number, name: PropTypes.string }).isRequired,
+        services: PropTypes.arrayOf(
+          PropTypes.shape({
+            id: PropTypes.number,
+            name: PropTypes.string,
+          }).isRequired,
+        ),
       }),
     ),
     checkedServices: PropTypes.arrayOf(PropTypes.number).isRequired,

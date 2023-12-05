@@ -1,9 +1,11 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { withEmailSentScreen } from "hoc/withEmailSentScreen";
 import { UserIsInactiveError } from "components/UserIsInactiveError/UserIsInactiveError";
+import { API_ERRORS } from "services/constants";
+
 // functions
 import { EMAIL_REGULAR, PASSWORD_REGULAR, SIGN_UP_CONFIRM_REGULAR } from "services/regulars";
 import { HTTP } from "api/http";
@@ -71,19 +73,24 @@ function Login({ askForEmail, showEmailSentScreen }) {
         const currentUser = await userAPI.getCurrentUser();
         setData((data) => ({ ...data, currentUser }));
       } catch (error) {
-        if (error?.data?.detail === "User is inactive.") {
-          setError(
-            <UserIsInactiveError
-              fixError={async (e) => {
-                e.preventDefault();
-                await askForEmail(formik.values);
-                showEmailSentScreen();
-              }}
-            />,
-            "Пользователь не подтвердил регистрацию",
-          );
-        } else {
-          setError(error);
+        switch (error.message) {
+          case API_ERRORS.USER_IS_INACTIVE:
+            setError(
+              <UserIsInactiveError
+                fixError={async (e) => {
+                  e.preventDefault();
+                  await askForEmail(formik.values);
+                  showEmailSentScreen();
+                }}
+              />,
+              "Пользователь не подтвердил регистрацию",
+            );
+            break;
+          case API_ERRORS.WRONG_CREDENTIALS:
+            formik.setFieldError("email", "E-mail не зарегистрирован");
+            break;
+          default:
+            setError(error);
         }
       }
       return false;
