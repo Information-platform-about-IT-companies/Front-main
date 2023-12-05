@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { companyAPI } from "api/companyAPI";
 import { useErrorHandler } from "hooks/useErrorHandler";
 import { useToggleFavorited } from "hooks/useFavorited";
@@ -15,12 +15,13 @@ import Spinner from "UI-KIT/Spinner/Spinner";
 import Breadcrumbs from "components/Breadcrumbs/Breadcrumbs";
 import Map from "components/Map/Map";
 // функции
-import { declinationsNumericalValues } from "services/constants";
+import { ROUTES, declinationsNumericalValues } from "services/constants";
 // стили
 import "./CompanyPage.scss";
 
 export default function CompanyPage() {
   const { companyId } = useParams();
+  const navigate = useNavigate();
   const [company, setCompany] = useState(null);
   const isCompanyFetched = company !== null;
   const [Error, setError] = useErrorHandler();
@@ -44,15 +45,20 @@ export default function CompanyPage() {
 
   const onToggleFavorited = async () => {
     const currentStatus = company.isFavorited;
-    setCompany({ ...company, isFavorited: !currentStatus });
-    try {
-      await toggleFavorited(company);
-    } catch (error) {
-      setError(
-        <SignInOrSignUp />,
-        "Чтобы добавить компанию в избранное, необходимо войти в личный кабинет или зарегистрироваться",
-      );
-      setCompany({ ...company, isFavorited: currentStatus });
+
+    if (!currentStatus) {
+      setCompany({ ...company, isFavorited: !currentStatus });
+      try {
+        await toggleFavorited(company);
+      } catch (error) {
+        setError(
+          <SignInOrSignUp />,
+          "Чтобы добавить компанию в избранное, необходимо войти в личный кабинет или зарегистрироваться",
+        );
+        setCompany({ ...company, isFavorited: currentStatus });
+      }
+    } else {
+      navigate(ROUTES.FAVOURITE);
     }
   };
 
@@ -117,7 +123,7 @@ export default function CompanyPage() {
           />
           <Button
             size="standard"
-            title={company?.isFavorited ? "Удалить из избранного" : "Добавить в избранное"}
+            title={company?.isFavorited ? "В избранном" : "Добавить в избранное"}
             extClassName="company__btn"
             onClick={onToggleFavorited}
           />

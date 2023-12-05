@@ -46,6 +46,7 @@ export const ROUTES = {
   SIGN_IN: "/signin",
   FILTER: "/filter",
   PROFILE: "/profile",
+  FAVOURITE: "/profile/favourite",
   COMPANY: "/company",
   PASS_RECOVERY: "/passrecovery",
   RESET_PASSWORD_CONFIRM: "/reset-password-confirm",
