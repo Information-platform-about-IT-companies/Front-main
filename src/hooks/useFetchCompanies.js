@@ -9,7 +9,6 @@ export const useFetchCompanies = (...params) => {
   const [searchParams] = useSearchParams();
   const initialState = { totalPages: 1, companies: [], loadingStatus: LoadingStatus.idle };
   const [state, setState] = useState(initialState);
-
   const updateCompany = (company) => {
     setState({
       ...state,
@@ -21,6 +20,7 @@ export const useFetchCompanies = (...params) => {
     const filterCities = JSON.parse(searchParams.get("cities"));
     const filterServices = JSON.parse(searchParams.get("services"));
     const page = searchParams.get("page");
+    const pageSize = searchParams.get("pageSize");
 
     return [
       ...(params.includes("page") && page ? [["page", Number(page)]] : []),
@@ -29,6 +29,7 @@ export const useFetchCompanies = (...params) => {
         ? filterServices.map((id) => ["service", id])
         : []),
       ...(params.includes("isFavorited") ? [["is_favorited", 1]] : []),
+      ...(params.includes("pageSize") && pageSize ? [["page_size", Number(pageSize)]] : []),
     ];
   }
 

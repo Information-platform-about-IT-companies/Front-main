@@ -9,7 +9,7 @@ import { LoadingStatus } from "services/constants";
 import "./ProfileFavourite.scss";
 
 function ProfileFavourite() {
-  const [state, { updateCompany }] = useFetchCompanies("page", "isFavorited");
+  const [state, { updateCompany }] = useFetchCompanies("page", "isFavorited", "pageSize");
 
   return (
     <div className="profile__favourite">

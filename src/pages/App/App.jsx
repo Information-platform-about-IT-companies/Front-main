@@ -1,6 +1,6 @@
 // Сторонние библиотеки
 import { useEffect } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useSearchParams } from "react-router-dom";
 // functions
 import { useMainContext } from "context/MainContext";
 import { userAPI } from "api/userApi";
@@ -28,7 +28,8 @@ import RecoveryPassword from "../RecoveryPassword/RecoveryPassword";
 function App() {
   const { data, setData } = useMainContext();
   const { currentUser } = data || {};
-
+  const [searchParams] = useSearchParams();
+  const pageSize = searchParams.get("pageSize");
   const loggedIn = Boolean(HTTP.accessToken && currentUser);
 
   useEffect(() => {
@@ -57,6 +58,12 @@ function App() {
           >
             <Route index element={<Navigate to="info" />} />
             <Route path="info" element={<ProfileInfo />} />
+            <Route
+              path="favourite"
+              element={
+                !pageSize ? <Navigate to="/profile/favourite?pageSize=5" /> : <ProfileFavourite />
+              }
+            />
             <Route path="favourite" element={<ProfileFavourite />} />
             <Route path="support" element={<ProfileSupport />} />
           </Route>
