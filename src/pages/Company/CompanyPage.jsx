@@ -10,15 +10,15 @@ import LabelGroup from "UI-KIT/LabelGroup/LabelGroup";
 import { Button } from "UI-KIT/Button/Button";
 import HideTextBlock from "UI-KIT/HideTextBlock/HideTextBlock";
 import { SignInOrSignUp } from "UI-KIT/SignInOrSignUp/SignInOrSignUp";
+import Spinner from "UI-KIT/Spinner/Spinner";
 // components
 import Breadcrumbs from "components/Breadcrumbs/Breadcrumbs";
 import Map from "components/Map/Map";
 // функции
 import { declinationsNumericalValues } from "services/constants";
+import { usePopUp } from "hooks/usePopUp";
 // стили
 import "./CompanyPage.scss";
-import Spinner from "UI-KIT/Spinner/Spinner";
-import { usePopUp } from "hooks/usePopUp";
 
 export default function CompanyPage() {
   const { companyId } = useParams();
