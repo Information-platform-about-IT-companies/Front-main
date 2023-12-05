@@ -171,26 +171,39 @@ export function Search({ extClassName }) {
   }
 
   useEffect(() => {
-    if (
-      !!state.response.services &&
-      state.response.services[0]?.name.toLowerCase() === state.query.toLowerCase()
-    ) {
-      dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: true });
-    } else {
-      dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: false });
+    if (!!state.query && !!state.queryCity) {
+      if (
+        !!state.response.services &&
+        state.response.services[0]?.name.toLowerCase() === state.query.toLowerCase() &&
+        !!state.responseCity &&
+        state.responseCity[0]?.name.toLowerCase() === state.queryCity.toLowerCase()
+      ) {
+        dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: true });
+      } else {
+        dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: false });
+      }
     }
-  }, [state.query, state.response]);
-
-  useEffect(() => {
-    if (
-      !!state.responseCity.length &&
-      state.responseCity[0]?.name.toLowerCase() === state.queryCity.toLowerCase()
-    ) {
-      dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: true });
-    } else {
-      dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: false });
+    if (!!state.query && !state.queryCity) {
+      if (
+        !!state.response.services &&
+        state.response.services[0]?.name.toLowerCase() === state.query.toLowerCase()
+      ) {
+        dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: true });
+      } else {
+        dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: false });
+      }
     }
-  }, [state.queryCity, state.responseCity]);
+    if (!state.query && !!state.queryCity) {
+      if (
+        !!state.responseCity &&
+        state.responseCity[0]?.name.toLowerCase() === state.queryCity.toLowerCase()
+      ) {
+        dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: true });
+      } else {
+        dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: false });
+      }
+    }
+  }, [state.query, state.response, state.queryCity, state.responseCity]);
 
   useEffect(() => {
     if (!state.isResponseSelected) debouncedSearch(state.query);
