@@ -38,7 +38,7 @@ function App() {
         setData({ ...data, currentUser: user });
       } catch (error) {
         // eslint-disable-next-line no-console
-        console.log(error);
+        console.error(error);
       }
     };
     if (HTTP.accessToken && !currentUser) {
