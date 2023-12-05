@@ -45,13 +45,18 @@ export default function Map({ company, address }) {
     return <div>{error}</div>;
   }
 
+  if (position === null || longitude === null) {
+    return null; // Пока координаты не получены, компонент не будет рендериться
+  }
+
   return (
     <div className="map">
-      {isLoading ? (
+      {isLoading && (
         <div className="map__spinner">
           <Spinner />
         </div>
-      ) : (
+      )}{" "}
+      {!isLoading && (position === null || longitude === null) ? null : (
         <MapContainer
           center={position}
           zoom={15}
