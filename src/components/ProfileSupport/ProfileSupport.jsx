@@ -9,10 +9,8 @@ import { Button } from "UI-KIT/Button/Button";
 // styles
 import "./ProfileSupport.scss";
 import { SUPPORT_MAIL } from "services/constants";
-import { useNavigate } from "react-router-dom";
 
 function ProfileSupport() {
-  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       supportTitle: "",
