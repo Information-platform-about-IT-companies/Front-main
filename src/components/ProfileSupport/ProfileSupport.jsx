@@ -8,8 +8,11 @@ import Textarea from "UI-KIT/Textarea/Textarea";
 import { Button } from "UI-KIT/Button/Button";
 // styles
 import "./ProfileSupport.scss";
+import { SUPPORT_MAIL } from "services/constants";
+import { useNavigate } from "react-router-dom";
 
 function ProfileSupport() {
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       supportTitle: "",
@@ -23,7 +26,12 @@ function ProfileSupport() {
         .max(1500, "Длина поля от 5 до 1500 символов")
         .required("Поле обязательно для заполнения"),
     }),
-    onSubmit: (values) => console.log(JSON.stringify(values, null, 2)),
+    onSubmit: (values) => {
+      const mailtoLink = `mailto:${SUPPORT_MAIL}?subject=${encodeURIComponent(
+        values.supportTitle,
+      )}&body=${encodeURIComponent(values.supportMessage)}`;
+      window.open(mailtoLink, "_blank");
+    },
   });
 
   const transformBlur = (event) => {

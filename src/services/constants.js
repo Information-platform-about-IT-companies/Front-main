@@ -3,6 +3,8 @@ export const COMPANIES_PER_PAGE = 10;
 export const API_HOST = "https://dev.octopus-it.ru/api/v1/";
 export const API_PATH = "/api/v1/";
 
+export const SUPPORT_MAIL = "info@octopus-it.ru";
+
 export const API_ENDPOINTS = {
   AUTH: {
     SIGNUP: "auth/signup/",
