@@ -79,13 +79,15 @@ function ProfileInfo() {
         const user = await userAPI.getCurrentUser();
         updateUser(user);
       } catch (error) {
-        console.log(error);
+        // eslint-disable-next-line no-console
+        console.error(error);
       }
     };
 
     if (!currentUser) {
       fetchCurrentUser();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
   const formikPassword = useFormik({

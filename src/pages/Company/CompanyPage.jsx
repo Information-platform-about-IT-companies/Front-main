@@ -16,7 +16,6 @@ import Breadcrumbs from "components/Breadcrumbs/Breadcrumbs";
 import Map from "components/Map/Map";
 // функции
 import { declinationsNumericalValues } from "services/constants";
-import { usePopUp } from "hooks/usePopUp";
 // стили
 import "./CompanyPage.scss";
 
@@ -40,6 +39,7 @@ export default function CompanyPage() {
     if (!isCompanyFetched || loggedIn) {
       fetchCompany(companyId);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [companyId, loggedIn]);
 
   const onToggleFavorited = async () => {

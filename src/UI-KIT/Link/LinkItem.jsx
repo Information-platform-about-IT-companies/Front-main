@@ -8,10 +8,11 @@ export function LinkItem({ url, title, textColor, lineColor, weight, extClassNam
   useEffect(() => {
     ref.current.style.color = textColor;
     ref.current.style.fontWeight = weight;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [textColor]);
 
   const changeLineColor = () => {
-    console.log((ref.current.style.borderColor = lineColor));
+    ref.current.style.borderColor = lineColor;
   };
   return (
     <Link to={url} ref={ref} onMouseOver={changeLineColor} className={`link ${extClassName}`}>

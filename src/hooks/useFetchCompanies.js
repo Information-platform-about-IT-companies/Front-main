@@ -55,6 +55,7 @@ export const useFetchCompanies = (...params) => {
     setState({ ...state, loadingStatus: LoadingStatus.loading });
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn, searchParams]);
 
   return [state, { updateCompany }];

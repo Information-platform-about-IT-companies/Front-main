@@ -149,7 +149,7 @@ export const OutlineLink = {
 };
 
 export const NavLinks = {
-  render: (args) => (
+  render: () => (
     <div
       style={{
         width: "200px",

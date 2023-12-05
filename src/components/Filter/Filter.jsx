@@ -37,6 +37,7 @@ export function Filter({ state, dispatch }) {
       dispatch({ type: "CHANGE_LOADING_STATUS", payload: LoadingStatus.failed });
       dispatch({ type: "SET_LOADING_ERROR", payload: e });
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
   const { isOpenFilter, loadingStatus, checkedCities, checkedServices } = state;

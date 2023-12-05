@@ -163,11 +163,7 @@ function Register({ showEmailSentScreen }) {
             }
             onBlur={transformBlur}
           />
-          <Button
-            title="Зарегистрироваться"
-            fill
-            size="standard"
-          />
+          <Button title="Зарегистрироваться" fill size="standard" />
         </Form>
         <p className="register__suggestion">
           У вас уже есть учетная запись?{" "}
