@@ -29,7 +29,7 @@ export default function ScrollUp() {
 
   return (
     <button className="scroll" data-testid="skrollUp" onClick={onClick}>
-      {showScroll && <Icon extClassName="scroll__icon" icon="IconOctopusArrow" size={60} />}
+      {showScroll && <Icon extClassName="scroll__icon" icon="IconOctopusArrow" size="60" />}
     </button>
   );
 }

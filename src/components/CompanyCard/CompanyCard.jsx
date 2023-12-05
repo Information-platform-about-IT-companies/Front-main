@@ -76,7 +76,10 @@ CompanyCard.propTypes = {
   type: PropTypes.string.isRequired,
   logo: PropTypes.string,
   name: PropTypes.string.isRequired,
-  city: PropTypes.string,
+  city: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+  }),
   services: PropTypes.arrayOf(
     PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
   ),
@@ -88,7 +91,7 @@ CompanyCard.propTypes = {
 
 CompanyCard.defaultProps = {
   logo: null,
-  city: "",
+  city: {},
   onIconHeartClick: () => {},
   extClassCardName: "",
   description: "",
