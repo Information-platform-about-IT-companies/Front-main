@@ -119,7 +119,7 @@ function Register({ showEmailSentScreen }) {
           <Input
             label="E-mail"
             extClassNameInput="login__input"
-            type="email"
+            type="text"
             name="email"
             id="authEmail"
             value={formik.values.email}

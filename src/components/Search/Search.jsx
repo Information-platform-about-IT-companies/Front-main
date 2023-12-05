@@ -228,6 +228,8 @@ export function Search({ extClassName }) {
         onFocus={() => {
           dispatch({ type: ACTION.SET_IS_HINT_CITY_OPEN, payload: false });
           dispatch({ type: ACTION.SET_IS_HINT_NOT_FOUND_OPEN, payload: false });
+        }}
+        onBlur={() => {
           dispatch({ type: ACTION.SET_QUERY, payload: state.query.trim() });
         }}
         autoComplete="off"
@@ -244,6 +246,8 @@ export function Search({ extClassName }) {
         onFocus={() => {
           dispatch({ type: ACTION.SET_IS_HINT_OPEN, payload: false });
           dispatch({ type: ACTION.SET_IS_HINT_NOT_FOUND_OPEN, payload: false });
+        }}
+        onBlur={() => {
           dispatch({ type: ACTION.SET_QUERY_CITY, payload: state.queryCity.trim() });
         }}
         autoComplete="off"

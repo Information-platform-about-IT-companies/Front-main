@@ -54,8 +54,6 @@
   &__city {
     @include roboto-16(var(--text-color));
 
-    &-link {
-      text-decoration: none;
-    }
+    min-height: 20px;
   }
 }
