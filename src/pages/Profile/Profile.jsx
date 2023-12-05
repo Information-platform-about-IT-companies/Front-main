@@ -7,10 +7,10 @@ import "./Profile.scss";
 function Profile() {
   return (
     <main className="profile">
-      <nav className="profile_navigation">
+      <nav className="profile__navigation">
         <Button
           linkType="navlink"
-          extClassName="profile_navigation_button"
+          extClassName="profile__navigation-button"
           size="standard"
           url="info"
           title="Личные данные"
@@ -18,7 +18,7 @@ function Profile() {
 
         <Button
           linkType="navlink"
-          extClassName="profile_navigation_button"
+          extClassName="profile__navigation-button"
           size="standard"
           url="favourite"
           title="Избранные компании"
@@ -26,7 +26,7 @@ function Profile() {
 
         <Button
           linkType="navlink"
-          extClassName="profile_navigation_button"
+          extClassName="profile__navigation-button"
           size="standard"
           url="support"
           title="Поддержка"
