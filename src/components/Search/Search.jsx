@@ -87,7 +87,7 @@ export function Search({ extClassName }) {
   // выполнение отложенного поиска
   const debouncedSearch = useRef(
     debounce((search) => {
-      if (search.length >= 3) {
+      if (search.length >= 2) {
         addResponseSearch(search);
         dispatch({ type: ACTION.SET_IS_HINT_NOT_FOUND_OPEN, payload: false });
         dispatch({ type: ACTION.SET_IS_HINT_OPEN, payload: true });
@@ -99,7 +99,7 @@ export function Search({ extClassName }) {
   ).current;
   const debouncedSearchCity = useRef(
     debounce((search) => {
-      if (search.length >= 3) {
+      if (search.length >= 1) {
         addResponseSearchCity(search);
         dispatch({ type: ACTION.SET_IS_HINT_NOT_FOUND_OPEN, payload: false });
         dispatch({ type: ACTION.SET_IS_HINT_CITY_OPEN, payload: true });
