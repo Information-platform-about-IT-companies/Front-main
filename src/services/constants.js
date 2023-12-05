@@ -64,6 +64,15 @@ export const selectedCategoriesMap = [
   { id: 5, icon: ICONS.BUSINESS },
 ];
 
+export const API_ERRORS = {
+  USER_IS_INACTIVE: "Пользователь не подтвердил регистрацию на почте",
+  USER_IS_ACTIVE: "Регистрация подтверждена ранее",
+  WRONG_CREDENTIALS: "Неверный email или пользователь не существует.",
+  EMAIL_EXISTS: "Пользователь с такой почтой уже зарегестрирован",
+  NO_CREDENTIALS: "Данные аутентификации не были предоставлены",
+  MIN_3_LENGTH: "Поле должно содержать хотя бы 3 символа",
+};
+
 export function declinationsNumericalValues(value, text) {
   const v = Math.abs(value) % 100;
   const v1 = v % 10;
