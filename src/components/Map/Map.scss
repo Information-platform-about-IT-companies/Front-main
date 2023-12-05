@@ -6,4 +6,10 @@
   border-color: $blue-light;
   border-radius: 10px;
   overflow: hidden;
+
+  &__spinner {
+    @include flex(center, center);
+
+    height: 100%;
+  }
 }

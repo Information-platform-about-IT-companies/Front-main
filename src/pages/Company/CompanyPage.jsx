@@ -127,8 +127,8 @@ export default function CompanyPage() {
           <div className="company__contact-block">
             <span className="company__contact-block_title">Номера телефонов:</span>
             <ul className="company__contact-block_subtitle">
-              {company && company.tel ? (
-                company.tel.map((t) => <li>{t}</li>)
+              {company && company.phones ? (
+                company.phones.map((t) => <li>{t}</li>)
               ) : (
                 <span>Нет доступных телефонов компании</span>
               )}
