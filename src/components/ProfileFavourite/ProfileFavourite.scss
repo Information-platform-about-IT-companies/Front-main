@@ -1,7 +1,7 @@
 @import "src/assets/style/main";
 
 .profile {
-  &_favourite {
+  &__favourite {
     width: 100%;
   }
 
@@ -14,12 +14,8 @@
     row-gap: 20px;
   }
 
-  &_favourite-cards {
+  &__favourite-cards {
     display: grid;
     gap: 28px;
-  }
-
-  &_favourite-find-button {
-    max-width: 190px;
   }
 }
