@@ -23,7 +23,7 @@ export default function Map({ company, address }) {
         setLatitude(parseFloat(result.lat));
         setLongitude(parseFloat(result.lon));
       } else {
-        setError(`Адрес "${address}" не найден.`);
+        console.log(`Адрес "${address}" не найден.`);
       }
     } catch (err) {
       setError(`Произошла ошибка при выполнении запроса: ${err.message}`);
