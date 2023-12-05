@@ -40,6 +40,7 @@ export default function CompanyPage() {
     if (!isCompanyFetched || loggedIn) {
       fetchCompany(companyId);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [companyId, loggedIn]);
 
   const onToggleFavorited = async () => {

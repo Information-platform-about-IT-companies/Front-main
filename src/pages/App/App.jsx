@@ -1,9 +1,8 @@
 // Сторонние библиотеки
-import { useEffect, useContext } from "react";
+import { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 // functions
 import { useMainContext } from "context/MainContext";
-import { ThemeContext } from "context/ThemeContext";
 import { userAPI } from "api/userApi";
 import { HTTP } from "api/http";
 // Компоненты
@@ -27,7 +26,6 @@ import "./App.scss";
 import RecoveryPassword from "../RecoveryPassword/RecoveryPassword";
 
 function App() {
-  const { theme, setTheme } = useContext(ThemeContext);
   const { data, setData } = useMainContext();
   const { currentUser } = data || {};
 
@@ -39,12 +37,14 @@ function App() {
         const user = await userAPI.getCurrentUser();
         setData({ ...data, currentUser: user });
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.log(error);
       }
     };
     if (HTTP.accessToken && !currentUser) {
       fetchCurrentUser();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [HTTP.refreshToken]);
 
   return (

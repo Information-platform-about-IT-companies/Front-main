@@ -5,8 +5,6 @@ import { BrowserRouter } from "react-router-dom";
 import MainContextProvider from "context/MainContext";
 import { Search } from "./Search";
 
-const onChange = jest.fn();
-
 describe("Search component", () => {
   it("renders Search component", () => {
     render(

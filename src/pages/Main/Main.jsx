@@ -48,6 +48,7 @@ function Main() {
     } else if (!isCategoriesFetched) {
       fetchCategories();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isCategoriesFetched]);
 
   return (

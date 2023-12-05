@@ -16,7 +16,6 @@ function ProfileFavourite() {
       <h1 className="profile_title">Избранные компании</h1>
       {state.loadingStatus === LoadingStatus.loading && <Loader />}
       {state.loadingStatus === LoadingStatus.succeeded && state.companies.length ? (
-
         <CompanyList
           className="profile_favourite-cards"
           type="favoriteCard"

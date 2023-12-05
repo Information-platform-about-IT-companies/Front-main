@@ -21,13 +21,13 @@ export default {
   },
 };
 
-export const lightTheme = {
+export const LightTheme = {
   args: {
     theme: "light",
   },
 };
 
-export const darkTheme = {
+export const DarkTheme = {
   args: {
     theme: "dark",
   },
