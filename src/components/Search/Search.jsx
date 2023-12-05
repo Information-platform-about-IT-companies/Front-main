@@ -22,8 +22,8 @@ export function Search({ extClassName }) {
   const handleSubmitSearch = (event) => {
     event.preventDefault();
     if (
-      (!!state.query && (!state.response.services || !!state.response.services.length)) ||
-      (!!state.queryCity && !!state.responseCity.length)
+      (!!state.query && (!state.response.services || !state.response.services.length)) ||
+      (!!state.queryCity && !state.responseCity.length)
     ) {
       dispatch({ type: ACTION.SET_IS_HINT_OPEN, payload: false });
       dispatch({ type: ACTION.SET_IS_HINT_CITY_OPEN, payload: false });
@@ -91,16 +91,7 @@ export function Search({ extClassName }) {
         addResponseSearch(search);
         dispatch({ type: ACTION.SET_IS_HINT_NOT_FOUND_OPEN, payload: false });
         dispatch({ type: ACTION.SET_IS_HINT_OPEN, payload: true });
-        if (
-          !!state.response.serices &&
-          state.response.services.toLowerCase() === state.query.toLowerCase()
-        ) {
-          dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: true });
-        } else {
-          dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: false });
-        }
       } else {
-        dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: false });
         dispatch({ type: ACTION.SET_IS_HINT_OPEN, payload: false });
         dispatch({ type: ACTION.SET_RESPONSE, payload: {} });
       }
@@ -112,16 +103,7 @@ export function Search({ extClassName }) {
         addResponseSearchCity(search);
         dispatch({ type: ACTION.SET_IS_HINT_NOT_FOUND_OPEN, payload: false });
         dispatch({ type: ACTION.SET_IS_HINT_CITY_OPEN, payload: true });
-        if (
-          !!state.responseCity.length &&
-          state.responseCity.toLowerCase() === state.queryCity.toLowerCase()
-        ) {
-          dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: true });
-        } else {
-          dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: false });
-        }
       } else {
-        dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: false });
         dispatch({ type: ACTION.SET_IS_HINT_CITY_OPEN, payload: false });
         dispatch({ type: ACTION.SET_RESPONSE_CITY, payload: [] });
       }
@@ -187,6 +169,28 @@ export function Search({ extClassName }) {
 
     return <SearchHintList title="городах" optionsObjectList={res} onSelect={handleSelectCity} />;
   }
+
+  useEffect(() => {
+    if (
+      !!state.response.services &&
+      state.response.services[0]?.name.toLowerCase() === state.query.toLowerCase()
+    ) {
+      dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: true });
+    } else {
+      dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: false });
+    }
+  }, [state.query, state.response]);
+
+  useEffect(() => {
+    if (
+      !!state.responseCity.length &&
+      state.responseCity[0]?.name.toLowerCase() === state.queryCity.toLowerCase()
+    ) {
+      dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: true });
+    } else {
+      dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: false });
+    }
+  }, [state.queryCity, state.responseCity]);
 
   useEffect(() => {
     if (!state.isResponseSelected) debouncedSearch(state.query);

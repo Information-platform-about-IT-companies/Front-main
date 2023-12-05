@@ -7,7 +7,7 @@ import { Form } from "UI-KIT/Form/Form";
 import { Button } from "UI-KIT/Button/Button";
 import { ButtonChanges } from "UI-KIT/ButtonChanges/ButtonChanges";
 // functions
-import { NAME_REGULAR, PASSWORD_REGULAR } from "services/regulars";
+import { EMAIL_REGULAR, NAME_REGULAR, PASSWORD_REGULAR } from "services/regulars";
 import { useErrorHandler } from "hooks/useErrorHandler";
 import { useMainContext } from "context/MainContext";
 import { userAPI } from "api/userApi";
@@ -42,7 +42,7 @@ function ProfileInfo() {
         .required("Поле обязательно для заполнения"),
       email: yup
         .string()
-        .email("Введите корректный E-mail")
+        .matches(EMAIL_REGULAR, "Введите корректный E-mail")
         .min(6, "Длина поля от 6 до 254 символов")
         .max(254, "Длина поля от 6 до 254 символов")
         .required("Поле обязательно для заполнения"),
@@ -199,7 +199,6 @@ function ProfileInfo() {
             type="submit"
             data-testid="submitInfoButton"
             title="Обновить профиль"
-            disabled={!(formikInfo.isValid && formikInfo.dirty)}
           />
           <ButtonChanges
             type="button"
@@ -240,12 +239,10 @@ function ProfileInfo() {
               }
               onBlur={transformPasswordBlur}
             >
-              {/*               <ul className="form-info-change__tooltip-container">
+              <ul className="form-info-change__tooltip-container">
                 <li className="form-info-change__tooltip-item">от 8 до 30 символов</li>
-                <li className="form-info-change__tooltip-item">
-                  должен содержать цифры и буквы / спецсимволы без пробелов
-                </li>
-              </ul> */}
+                <li className="form-info-change__tooltip-item">содержит буквы и цифры</li>
+              </ul>
             </Input>
           </div>
           <Input
