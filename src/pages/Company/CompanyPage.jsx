@@ -16,7 +16,6 @@ import Breadcrumbs from "components/Breadcrumbs/Breadcrumbs";
 import Map from "components/Map/Map";
 // функции
 import { declinationsNumericalValues } from "services/constants";
-import { usePopUp } from "hooks/usePopUp";
 // стили
 import "./CompanyPage.scss";
 
