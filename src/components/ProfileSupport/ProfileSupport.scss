@@ -1,7 +1,17 @@
 @import "src/assets/style/main";
 
-.support {
-  &_button {
-    max-width: 233px;
+.form-info {
+  text-align: left;
+
+  &__subtitle {
+    @include roboto(var(--text-color), 20px, 23px, 400);
+  }
+
+  &__description {
+    @include roboto(var(--text-color), 16px, 22px, 300);
+  }
+
+  &__button {
+    justify-self: flex-start;
   }
 }

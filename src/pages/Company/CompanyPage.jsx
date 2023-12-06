@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { companyAPI } from "api/companyAPI";
 import { useErrorHandler } from "hooks/useErrorHandler";
 import { useToggleFavorited } from "hooks/useFavorited";
@@ -10,18 +10,18 @@ import LabelGroup from "UI-KIT/LabelGroup/LabelGroup";
 import { Button } from "UI-KIT/Button/Button";
 import HideTextBlock from "UI-KIT/HideTextBlock/HideTextBlock";
 import { SignInOrSignUp } from "UI-KIT/SignInOrSignUp/SignInOrSignUp";
+import Spinner from "UI-KIT/Spinner/Spinner";
 // components
 import Breadcrumbs from "components/Breadcrumbs/Breadcrumbs";
 import Map from "components/Map/Map";
 // функции
-import { declinationsNumericalValues } from "services/constants";
+import { ROUTES, declinationsNumericalValues } from "services/constants";
 // стили
 import "./CompanyPage.scss";
-import Spinner from "UI-KIT/Spinner/Spinner";
-import { usePopUp } from "hooks/usePopUp";
 
 export default function CompanyPage() {
   const { companyId } = useParams();
+  const navigate = useNavigate();
   const [company, setCompany] = useState(null);
   const isCompanyFetched = company !== null;
   const [Error, setError] = useErrorHandler();
@@ -40,19 +40,25 @@ export default function CompanyPage() {
     if (!isCompanyFetched || loggedIn) {
       fetchCompany(companyId);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [companyId, loggedIn]);
 
   const onToggleFavorited = async () => {
     const currentStatus = company.isFavorited;
-    setCompany({ ...company, isFavorited: !currentStatus });
-    try {
-      await toggleFavorited(company);
-    } catch (error) {
-      setError(
-        <SignInOrSignUp />,
-        "Чтобы добавить компанию в избранное, необходимо войти в личный кабинет или зарегистрироваться",
-      );
-      setCompany({ ...company, isFavorited: currentStatus });
+
+    if (!currentStatus) {
+      setCompany({ ...company, isFavorited: !currentStatus });
+      try {
+        await toggleFavorited(company);
+      } catch (error) {
+        setError(
+          <SignInOrSignUp />,
+          "Чтобы добавить компанию в избранное, необходимо войти в личный кабинет или зарегистрироваться",
+        );
+        setCompany({ ...company, isFavorited: currentStatus });
+      }
+    } else {
+      navigate(ROUTES.FAVOURITE);
     }
   };
 
@@ -60,11 +66,11 @@ export default function CompanyPage() {
 
   return (
     <main className="company-page">
-      <Breadcrumbs />
+      <Breadcrumbs company={company} />
       <section className="company__basic-info">
         {isCompanyFetched ? (
           <>
-            <CompanyLogo logo={company.logo} name={company.name} city={company.city?.name} />
+            <CompanyLogo logo={company.logo} name={company.name} city={company?.city} />
             <div className="company__size-info">
               <p>
                 Год основания: <span className="company__accent-text">{company.year_founded}</span>
@@ -117,7 +123,7 @@ export default function CompanyPage() {
           />
           <Button
             size="standard"
-            title={company?.isFavorited ? "Удалить из избранного" : "Добавить в избранное"}
+            title={company?.isFavorited ? "В избранном" : "Добавить в избранное"}
             extClassName="company__btn"
             onClick={onToggleFavorited}
           />
@@ -127,8 +133,8 @@ export default function CompanyPage() {
           <div className="company__contact-block">
             <span className="company__contact-block_title">Номера телефонов:</span>
             <ul className="company__contact-block_subtitle">
-              {company && company.tel ? (
-                company.tel.map((t) => <li>{t}</li>)
+              {company && company.phones ? (
+                company.phones.map((t) => <li>{t}</li>)
               ) : (
                 <span>Нет доступных телефонов компании</span>
               )}

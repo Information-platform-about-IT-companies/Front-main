@@ -1,9 +1,8 @@
 // Сторонние библиотеки
-import { useEffect, useContext } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { Navigate, Route, Routes, useSearchParams } from "react-router-dom";
 // functions
 import { useMainContext } from "context/MainContext";
-import { ThemeContext } from "context/ThemeContext";
 import { userAPI } from "api/userApi";
 import { HTTP } from "api/http";
 // Компоненты
@@ -27,10 +26,10 @@ import "./App.scss";
 import RecoveryPassword from "../RecoveryPassword/RecoveryPassword";
 
 function App() {
-  const { theme, setTheme } = useContext(ThemeContext);
   const { data, setData } = useMainContext();
   const { currentUser } = data || {};
-
+  const [searchParams] = useSearchParams();
+  const pageSize = searchParams.get("pageSize");
   const loggedIn = Boolean(HTTP.accessToken && currentUser);
 
   useEffect(() => {
@@ -39,12 +38,14 @@ function App() {
         const user = await userAPI.getCurrentUser();
         setData({ ...data, currentUser: user });
       } catch (error) {
-        console.log(error);
+        // eslint-disable-next-line no-console
+        console.error(error);
       }
     };
     if (HTTP.accessToken && !currentUser) {
       fetchCurrentUser();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [HTTP.refreshToken]);
 
   return (
@@ -57,6 +58,12 @@ function App() {
           >
             <Route index element={<Navigate to="info" />} />
             <Route path="info" element={<ProfileInfo />} />
+            <Route
+              path="favourite"
+              element={
+                !pageSize ? <Navigate to="/profile/favourite?pageSize=5" /> : <ProfileFavourite />
+              }
+            />
             <Route path="favourite" element={<ProfileFavourite />} />
             <Route path="support" element={<ProfileSupport />} />
           </Route>
@@ -67,7 +74,7 @@ function App() {
           <Route path="/signin" element={loggedIn ? <Navigate to="/" /> : <Login />} />
           <Route path="/signup" element={loggedIn ? <Navigate to="/" /> : <Register />} />
           <Route
-            path="/recoverypassword"
+            path="/reset-password-confirm"
             element={loggedIn ? <Navigate to="/" /> : <RecoveryPassword />}
           />
           <Route path="/passrecovery" element={<ForgetPassword />} />

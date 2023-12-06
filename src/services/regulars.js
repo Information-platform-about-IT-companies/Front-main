@@ -6,3 +6,9 @@ export const NAME_REGULAR =
 
 export const SIGN_UP_CONFIRM_REGULAR =
   /^#\/signup_confirm\/[a-zA-Z0-9-]+\/[a-zA-Z0-9-]+-[a-zA-Z0-9]+$/;
+
+export const RESET_PASSWORD_REGULAR =
+  /^#\/reset_password_confirm\/[a-zA-Z0-9-]+\/[a-zA-Z0-9-]+-[a-zA-Z0-9]+$/;
+
+export const EMAIL_REGULAR =
+  /^([a-z]+(?:[-._]?[a-z0-9])*)@([a-z]+(?:[-._]?[a-z0-9])*)\.([a-z]{2,})$/im;

@@ -9,7 +9,6 @@ export const useFetchCompanies = (...params) => {
   const [searchParams] = useSearchParams();
   const initialState = { totalPages: 1, companies: [], loadingStatus: LoadingStatus.idle };
   const [state, setState] = useState(initialState);
-
   const updateCompany = (company) => {
     setState({
       ...state,
@@ -21,14 +20,16 @@ export const useFetchCompanies = (...params) => {
     const filterCities = JSON.parse(searchParams.get("cities"));
     const filterServices = JSON.parse(searchParams.get("services"));
     const page = searchParams.get("page");
+    const pageSize = searchParams.get("pageSize");
 
     return [
       ...(params.includes("page") && page ? [["page", Number(page)]] : []),
       ...(params.includes("cities") && filterCities ? filterCities.map((id) => ["city", id]) : []),
       ...(params.includes("services") && filterServices
-        ? filterServices.map((id) => ["services", id])
+        ? filterServices.map((id) => ["service", id])
         : []),
       ...(params.includes("isFavorited") ? [["is_favorited", 1]] : []),
+      ...(params.includes("pageSize") && pageSize ? [["page_size", Number(pageSize)]] : []),
     ];
   }
 
@@ -36,11 +37,18 @@ export const useFetchCompanies = (...params) => {
     const fetchData = async () => {
       try {
         const query = constructQuery();
-        const { results: companies, total_pages: totalPages } = await companyAPI.fetchCompanies(
-          query,
-          { withCredentials: loggedIn },
-        );
-        setState({ ...state, companies, totalPages, loadingStatus: LoadingStatus.succeeded });
+        const {
+          results: companies,
+          total_objects: totalCompanies,
+          total_pages: totalPages,
+        } = await companyAPI.fetchCompanies(query, { withCredentials: loggedIn });
+        setState({
+          ...state,
+          companies,
+          totalCompanies,
+          totalPages,
+          loadingStatus: LoadingStatus.succeeded,
+        });
       } catch {
         setState({ ...state, loadingStatus: LoadingStatus.failed });
       }
@@ -48,6 +56,7 @@ export const useFetchCompanies = (...params) => {
     setState({ ...state, loadingStatus: LoadingStatus.loading });
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn, searchParams]);
 
   return [state, { updateCompany }];

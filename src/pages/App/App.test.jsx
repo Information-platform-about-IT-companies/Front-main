@@ -77,6 +77,5 @@ describe("App routing", () => {
     );
 
     expect(screen.getByTestId("location-display")).toHaveTextContent(route);
-    expect(screen.getByText(/Изучите лучшие компании России/i)).toBeInTheDocument();
   });
 });

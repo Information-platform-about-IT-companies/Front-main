@@ -1,0 +1,24 @@
+@import "src/assets/style/main";
+
+.companyCardFfvouriteNone {
+  @include flex(flex-start, space-between, column);
+
+  gap: 20px;
+  height: 100%;
+  min-height: 192px;
+  width: 100%;
+  max-width: unset;
+  border-radius: 20px;
+  background-color: var(--profile-nav-active);
+  padding: 32px;
+
+  &__header {
+    width: inherit;
+
+    @include roboto(var(--text-color), $text-size-medium, 23.44px, 400);
+  }
+
+  &__text {
+    @include roboto(var(--text-color), $text-size-default, 22.4px, 300);
+  }
+}

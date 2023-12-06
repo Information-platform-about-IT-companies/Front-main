@@ -9,9 +9,17 @@ import "./Pagination.scss";
 export function Pagination({ totalPages }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = Number(searchParams.get("page") ?? 1);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   const turnToPage = (page) => {
     searchParams.set("page", page);
     setSearchParams(searchParams);
+    scrollToTop();
   };
 
   const firstPage = 1;
@@ -28,7 +36,7 @@ export function Pagination({ totalPages }) {
           <ButtonIcon
             className="pagination__button"
             onClick={() => turnToPage(currentPage - 1)}
-            icon={<IconArrow direction="left" size="24" />}
+            icon={<IconArrow direction="left" size="24" color="var(--text-color)" />}
           />
         </li>
       )}
@@ -53,7 +61,7 @@ export function Pagination({ totalPages }) {
           <ButtonIcon
             className="pagination__button"
             onClick={() => turnToPage(currentPage + 1)}
-            icon={<IconArrow direction="right" size="24" />}
+            icon={<IconArrow direction="right" size="24" color="var(--text-color)" />}
           />
         </li>
       )}

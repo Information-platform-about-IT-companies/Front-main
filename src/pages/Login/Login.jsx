@@ -1,8 +1,13 @@
 import { useLocation } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { withEmailSentScreen } from "hoc/withEmailSentScreen";
+import { UserIsInactiveError } from "components/UserIsInactiveError/UserIsInactiveError";
+import { API_ERRORS } from "services/constants";
+
 // functions
-import { PASSWORD_REGULAR, SIGN_UP_CONFIRM_REGULAR } from "services/regulars";
+import { EMAIL_REGULAR, PASSWORD_REGULAR, SIGN_UP_CONFIRM_REGULAR } from "services/regulars";
 import { HTTP } from "api/http";
 import { authAPI } from "api/authApi";
 import { userAPI } from "api/userApi";
@@ -15,9 +20,8 @@ import { Form } from "UI-KIT/Form/Form";
 import Input from "UI-KIT/Input/Input";
 // styles
 import "./Login.scss";
-import { useEffect, useRef, useState } from "react";
 
-function Login() {
+function Login({ askForEmail, showEmailSentScreen }) {
   const [Error, setError] = useErrorHandler();
   const { setData } = useMainContext();
   const location = useLocation();
@@ -51,7 +55,7 @@ function Login() {
     validationSchema: yup.object({
       email: yup
         .string()
-        .email("Введите корректный E-mail")
+        .matches(EMAIL_REGULAR, "Введите корректный E-mail")
         .min(6, "Длина поля от 6 до 254 символов")
         .max(254, "Длина поля от 6 до 254 символов")
         .required("Поле обязательно для заполнения"),
@@ -69,7 +73,25 @@ function Login() {
         const currentUser = await userAPI.getCurrentUser();
         setData((data) => ({ ...data, currentUser }));
       } catch (error) {
-        setError(error);
+        switch (error.message) {
+          case API_ERRORS.USER_IS_INACTIVE:
+            setError(
+              <UserIsInactiveError
+                fixError={async (e) => {
+                  e.preventDefault();
+                  await askForEmail(formik.values);
+                  showEmailSentScreen();
+                }}
+              />,
+              "Пользователь не подтвердил регистрацию",
+            );
+            break;
+          case API_ERRORS.WRONG_CREDENTIALS:
+            formik.setFieldError("email", "E-mail не зарегистрирован");
+            break;
+          default:
+            setError(error);
+        }
       }
       return false;
     },
@@ -119,7 +141,7 @@ function Login() {
           textColor="var(--text-color)"
           lineColor="var(--link-underline)"
         />
-        <Button title="Войти" fill size="standard" disabled={!(formik.isValid && formik.dirty)} />
+        <Button title="Войти" fill size="standard" />
       </Form>
       {!signupConfirmed && (
         <p className="login__suggestion">
@@ -139,4 +161,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default withEmailSentScreen(Login);

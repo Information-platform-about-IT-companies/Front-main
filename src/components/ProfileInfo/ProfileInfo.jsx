@@ -7,7 +7,7 @@ import { Form } from "UI-KIT/Form/Form";
 import { Button } from "UI-KIT/Button/Button";
 import { ButtonChanges } from "UI-KIT/ButtonChanges/ButtonChanges";
 // functions
-import { NAME_REGULAR, PASSWORD_REGULAR } from "services/regulars";
+import { EMAIL_REGULAR, NAME_REGULAR, PASSWORD_REGULAR } from "services/regulars";
 import { useErrorHandler } from "hooks/useErrorHandler";
 import { useMainContext } from "context/MainContext";
 import { userAPI } from "api/userApi";
@@ -42,7 +42,7 @@ function ProfileInfo() {
         .required("Поле обязательно для заполнения"),
       email: yup
         .string()
-        .email("Введите корректный E-mail")
+        .matches(EMAIL_REGULAR, "Введите корректный E-mail")
         .min(6, "Длина поля от 6 до 254 символов")
         .max(254, "Длина поля от 6 до 254 символов")
         .required("Поле обязательно для заполнения"),
@@ -69,20 +69,25 @@ function ProfileInfo() {
     updateFormikValues(user);
   };
 
+  const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
+  const [isPassResetSuccessful, setPassResetSuccessful] = useState(false);
+
   useEffect(() => {
+    setPassResetSuccessful(false);
     const fetchCurrentUser = async () => {
       try {
         const user = await userAPI.getCurrentUser();
-        console.log("user", user);
         updateUser(user);
       } catch (error) {
-        console.log(error);
+        // eslint-disable-next-line no-console
+        console.error(error);
       }
     };
 
     if (!currentUser) {
       fetchCurrentUser();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
   const formikPassword = useFormik({
@@ -115,8 +120,11 @@ function ProfileInfo() {
     onSubmit: async (values) => {
       try {
         await userAPI.resetPassword(values);
+        setPassResetSuccessful(true);
       } catch (error) {
         setError(error);
+      } finally {
+        setIsChangePasswordOpen(false);
       }
     },
   });
@@ -131,15 +139,13 @@ function ProfileInfo() {
   };
   const id = useId();
 
-  const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
-
   function handleChangePasswordForm() {
     setIsChangePasswordOpen((prevIsChangePasswordOpen) => !prevIsChangePasswordOpen);
   }
 
   return (
     <>
-      <h1 className="profile_title">Профиль пользователя</h1>
+      <h1 className="profile__title">Профиль пользователя</h1>
 
       <Form
         extClassName={isChangePasswordOpen ? `form-info form-info_with-change` : `form-info`}
@@ -190,6 +196,7 @@ function ProfileInfo() {
             formikInfo.errors.email && formikInfo.touched.email ? formikInfo.errors.email : null
           }
           onBlur={transformInfoBlur}
+          disabled
         />
         <div className="info-buttons">
           <Button
@@ -198,7 +205,6 @@ function ProfileInfo() {
             type="submit"
             data-testid="submitInfoButton"
             title="Обновить профиль"
-            disabled={!(formikInfo.isValid && formikInfo.dirty)}
           />
           <ButtonChanges
             type="button"
@@ -206,6 +212,9 @@ function ProfileInfo() {
             onClick={() => handleChangePasswordForm()}
           />
         </div>
+        {isPassResetSuccessful && (
+          <div className="form-info-change__status">Ваш пароль успешно изменен</div>
+        )}
       </Form>
 
       {isChangePasswordOpen ? (
@@ -239,12 +248,10 @@ function ProfileInfo() {
               }
               onBlur={transformPasswordBlur}
             >
-              {/*               <ul className="form-info-change__tooltip-container">
+              <ul className="form-info-change__tooltip-container">
                 <li className="form-info-change__tooltip-item">от 8 до 30 символов</li>
-                <li className="form-info-change__tooltip-item">
-                  должен содержать цифры и буквы / спецсимволы без пробелов
-                </li>
-              </ul> */}
+                <li className="form-info-change__tooltip-item">содержит буквы и цифры</li>
+              </ul>
             </Input>
           </div>
           <Input

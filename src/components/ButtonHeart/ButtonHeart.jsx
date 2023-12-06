@@ -25,11 +25,11 @@ export default function ButtonHeart({ click, fill }) {
 
 ButtonHeart.propTypes = {
   click: PropTypes.func,
-  fill: PropTypes.oneOf[("fill", {})],
+  fill: PropTypes.bool,
 };
 
 ButtonHeart.defaultProps = {
   // eslint-disable-next-line no-console
   click: () => console.log("функция не передана"),
-  fill: {},
+  fill: false,
 };

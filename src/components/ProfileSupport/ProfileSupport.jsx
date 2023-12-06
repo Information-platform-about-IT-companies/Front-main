@@ -8,6 +8,7 @@ import Textarea from "UI-KIT/Textarea/Textarea";
 import { Button } from "UI-KIT/Button/Button";
 // styles
 import "./ProfileSupport.scss";
+import { SUPPORT_MAIL } from "services/constants";
 
 function ProfileSupport() {
   const formik = useFormik({
@@ -23,7 +24,12 @@ function ProfileSupport() {
         .max(1500, "Длина поля от 5 до 1500 символов")
         .required("Поле обязательно для заполнения"),
     }),
-    onSubmit: (values) => console.log(JSON.stringify(values, null, 2)),
+    onSubmit: (values) => {
+      const mailtoLink = `mailto:${SUPPORT_MAIL}?subject=${encodeURIComponent(
+        values.supportTitle,
+      )}&body=${encodeURIComponent(values.supportMessage)}`;
+      window.open(mailtoLink, "_blank");
+    },
   });
 
   const transformBlur = (event) => {
@@ -34,10 +40,10 @@ function ProfileSupport() {
   const id = useId();
   return (
     <>
-      <h1 className="profile_title">Поддержка</h1>
+      <h1 className="profile__title">Поддержка</h1>
       <Form extClassName="form-info" onSubmit={formik.handleSubmit}>
-        <h4 className="profile_subtitle">Это самый быстрый способ связаться с нами!</h4>
-        <p className="profile_description">
+        <h4 className="form-info__subtitle">Это самый быстрый способ связаться с нами</h4>
+        <p className="form-info__description">
           Наша служба поддержки ответит на запросы из этой формы. Чтобы получить максимально быстрое
           решение, пожалуйста, изложите свой запрос как можно более подробно.
         </p>
@@ -75,7 +81,7 @@ function ProfileSupport() {
           disabled={!(formik.isValid && formik.dirty)}
           fill
           size="standard"
-          extClassName="support_button"
+          extClassName="form-info__button"
           type="submit"
           title="Отправить сообщение"
         />

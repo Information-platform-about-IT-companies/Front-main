@@ -6,7 +6,7 @@
   --button-border: #{$blue};
   --text-color: #{$black};
   --icon-color: #{$blue};
-  --link-underline: #{$sea-blue-middle-soft};
+  --link-underline: #{$sea-blue};
   --input-border: #{$blue};
   --input-background: #{$white};
   --input-placeholder: #{$black};
@@ -30,11 +30,15 @@
   --filter-content-background: #{$white};
   --filter-content-border: #{$blue};
   --filter-nav-item-active: #{$blue};
+  --filter-nav-item-arrow-active: #{$gradient-blue};
   --filter-companycard-background: #{$snow-white};
   --checkbox-background: #{$white};
   --checkbox-background-checked: #{$blue};
-  --button-heart-border: #{$black};
+  --button-heart-border: #{$black-middle};
   --pagination-background: #{$snow-white};
+  --breadcrumbs-underline-hover: #{$gradient-blue};
+  --popup-button-text: #{$black};
+  --popup-background: #{$snow-white};
 }
 
 :root[data-theme="dark"] {
@@ -43,7 +47,7 @@
   --button-border: #{$blue-dark};
   --text-color: #{$snow-white};
   --icon-color: #{$blue-dark};
-  --link-underline: #{$blue-dark};
+  --link-underline: #{$sea-blue};
   --input-border: #{$blue-dark};
   --input-background: #{$blue-night};
   --input-placeholder: #{$blue-dark};
@@ -67,9 +71,13 @@
   --filter-content-background: #{$blue-night};
   --filter-content-border: #{$blue-dark};
   --filter-nav-item-active: #{$blue-dark};
+  --filter-nav-item-arrow-active: #{$gradient-blue};
   --filter-companycard-background: #{$sea-blue-light-night};
   --checkbox-background: #{$blue-night};
   --checkbox-background-checked: #{$blue-dark};
-  --button-heart-border: #{$blue-dark};
+  --button-heart-border: #{$blue-middle};
   --pagination-background: #{$sea-blue-light-night};
+  --breadcrumbs-underline-hover: #{$sea-blue};
+  --popup-button-text: #{$snow-white};
+  --popup-background: #{$blue-night};
 }

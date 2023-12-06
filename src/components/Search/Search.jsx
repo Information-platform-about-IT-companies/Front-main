@@ -22,8 +22,8 @@ export function Search({ extClassName }) {
   const handleSubmitSearch = (event) => {
     event.preventDefault();
     if (
-      (!!state.query && (!state.response.services || state.response.services.length === 0)) ||
-      (!!state.queryCity && state.responseCity.length === 0)
+      (!!state.query && (!state.response.services || !state.response.services.length)) ||
+      (!!state.queryCity && !state.responseCity.length)
     ) {
       dispatch({ type: ACTION.SET_IS_HINT_OPEN, payload: false });
       dispatch({ type: ACTION.SET_IS_HINT_CITY_OPEN, payload: false });
@@ -87,7 +87,7 @@ export function Search({ extClassName }) {
   // выполнение отложенного поиска
   const debouncedSearch = useRef(
     debounce((search) => {
-      if (search.length >= 3) {
+      if (search.length >= 2) {
         addResponseSearch(search);
         dispatch({ type: ACTION.SET_IS_HINT_NOT_FOUND_OPEN, payload: false });
         dispatch({ type: ACTION.SET_IS_HINT_OPEN, payload: true });
@@ -99,7 +99,7 @@ export function Search({ extClassName }) {
   ).current;
   const debouncedSearchCity = useRef(
     debounce((search) => {
-      if (search.length >= 3) {
+      if (search.length >= 1) {
         addResponseSearchCity(search);
         dispatch({ type: ACTION.SET_IS_HINT_NOT_FOUND_OPEN, payload: false });
         dispatch({ type: ACTION.SET_IS_HINT_CITY_OPEN, payload: true });
@@ -171,12 +171,39 @@ export function Search({ extClassName }) {
   }
 
   useEffect(() => {
-    if (state.query || state.queryCity) {
-      dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: true });
-    } else {
-      dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: false });
+    if (!!state.query && !!state.queryCity) {
+      if (
+        !!state.response.services &&
+        state.response.services[0]?.name.toLowerCase() === state.query.toLowerCase() &&
+        !!state.responseCity &&
+        state.responseCity[0]?.name.toLowerCase() === state.queryCity.toLowerCase()
+      ) {
+        dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: true });
+      } else {
+        dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: false });
+      }
     }
-  }, [state.query, state.queryCity]);
+    if (!!state.query && !state.queryCity) {
+      if (
+        !!state.response.services &&
+        state.response.services[0]?.name.toLowerCase() === state.query.toLowerCase()
+      ) {
+        dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: true });
+      } else {
+        dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: false });
+      }
+    }
+    if (!state.query && !!state.queryCity) {
+      if (
+        !!state.responseCity &&
+        state.responseCity[0]?.name.toLowerCase() === state.queryCity.toLowerCase()
+      ) {
+        dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: true });
+      } else {
+        dispatch({ type: ACTION.SET_IS_BUTTON_ACTIVE, payload: false });
+      }
+    }
+  }, [state.query, state.response, state.queryCity, state.responseCity]);
 
   useEffect(() => {
     if (!state.isResponseSelected) debouncedSearch(state.query);
@@ -215,6 +242,9 @@ export function Search({ extClassName }) {
           dispatch({ type: ACTION.SET_IS_HINT_CITY_OPEN, payload: false });
           dispatch({ type: ACTION.SET_IS_HINT_NOT_FOUND_OPEN, payload: false });
         }}
+        onBlur={() => {
+          dispatch({ type: ACTION.SET_QUERY, payload: state.query.trim() });
+        }}
         autoComplete="off"
       />
       <Input
@@ -229,6 +259,9 @@ export function Search({ extClassName }) {
         onFocus={() => {
           dispatch({ type: ACTION.SET_IS_HINT_OPEN, payload: false });
           dispatch({ type: ACTION.SET_IS_HINT_NOT_FOUND_OPEN, payload: false });
+        }}
+        onBlur={() => {
+          dispatch({ type: ACTION.SET_QUERY_CITY, payload: state.queryCity.trim() });
         }}
         autoComplete="off"
       />

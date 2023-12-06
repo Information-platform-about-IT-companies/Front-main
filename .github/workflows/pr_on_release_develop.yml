@@ -61,6 +61,7 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
             cd octopus_dev
+            sudo docker image prune -f
             sudo docker-compose -f docker-compose.dev.yml pull
             sudo docker-compose -f docker-compose.dev.yml down
             sudo docker-compose -f docker-compose.dev.yml up -d

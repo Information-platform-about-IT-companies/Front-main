@@ -1,11 +1,15 @@
 export const COMPANIES_PER_PAGE = 10;
 
 export const API_HOST = "https://dev.octopus-it.ru/api/v1/";
+export const API_PATH = "/api/v1/";
+
+export const SUPPORT_MAIL = "info@octopus-it.ru";
 
 export const API_ENDPOINTS = {
   AUTH: {
     SIGNUP: "auth/signup/",
     SIGNUP_CONFIRM: "auth/signup_confirm/",
+    REPEAT_SIGNUP_CONFIRM: "auth/re_signup_confirm/",
     SIGNIN: "auth/signin/",
     RESET_PASSWORD: "auth/reset_password/",
     CONFIRM_RESET_PASSWORD: "auth/reset_password_confirm/",
@@ -16,18 +20,18 @@ export const API_ENDPOINTS = {
     CHANGE_PASSWORD: "users/change_password/",
   },
   INFO: {
-    INDUSTRIES: "info/industries",
-    CATEGORIES: "info/service_categories",
-    SERVICES: "info/services",
-    CITIES: "info/cities",
-    SEARCH: "info/search_services_companies",
+    INDUSTRIES: "info/industries/",
+    CATEGORIES: "info/service_categories/",
+    SERVICES: "info/services/",
+    CITIES: "info/cities/",
+    SEARCH: "info/search_services_companies/",
   },
   TOKENS: {
     REFRESH: "tokens/refresh/",
   },
   COMPANIES: {
-    FETCH: (params) => `companies?${new URLSearchParams(params).toString()}`,
-    GET: (id) => `companies/${id}`,
+    FETCH: (params) => `companies/?${new URLSearchParams(params).toString()}`,
+    GET: (id) => `companies/${id}/`,
   },
   FAVORITE: {
     ADD: (id) => `companies/${id}/favorite/`,
@@ -38,11 +42,14 @@ export const API_ENDPOINTS = {
 export const ROUTES = {
   ROOT: "/",
   SIGN_UP: "/signup",
+  SIGN_UP_SUCCESS: "/signup/#/success",
   SIGN_IN: "/signin",
   FILTER: "/filter",
   PROFILE: "/profile",
+  FAVOURITE: "/profile/favourite",
   COMPANY: "/company",
   PASS_RECOVERY: "/passrecovery",
+  RESET_PASSWORD_CONFIRM: "/reset-password-confirm",
   NOT_FOUND: "/400",
 };
 
@@ -59,6 +66,15 @@ export const selectedCategoriesMap = [
   { id: 4, icon: ICONS.MARKETING },
   { id: 5, icon: ICONS.BUSINESS },
 ];
+
+export const API_ERRORS = {
+  USER_IS_INACTIVE: "Пользователь не подтвердил регистрацию на почте",
+  USER_IS_ACTIVE: "Регистрация подтверждена ранее",
+  WRONG_CREDENTIALS: "Неверный email или пользователь не существует.",
+  EMAIL_EXISTS: "Пользователь с такой почтой уже зарегестрирован",
+  NO_CREDENTIALS: "Данные аутентификации не были предоставлены",
+  MIN_3_LENGTH: "Поле должно содержать хотя бы 3 символа",
+};
 
 export function declinationsNumericalValues(value, text) {
   const v = Math.abs(value) % 100;

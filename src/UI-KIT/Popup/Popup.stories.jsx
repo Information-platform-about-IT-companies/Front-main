@@ -1,6 +1,5 @@
 import { Popup } from "UI-KIT/Popup/Popup";
 import "./Popup.scss";
-import { MemoryRouter } from "react-router-dom";
 import { Button } from "UI-KIT/Button/Button";
 
 const meta = {

@@ -21,6 +21,13 @@
   color: $color;
 }
 
+@mixin roboto-20($color: $black, $weight: 400) {
+  font-size: $text-size-medium;
+  line-height: 28px;
+  font-weight: $weight;
+  color: $color;
+}
+
 @mixin roboto-24($color: $black) {
   font-size: 24px;
   line-height: 28px;

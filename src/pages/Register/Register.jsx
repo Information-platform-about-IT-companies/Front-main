@@ -1,10 +1,11 @@
 import { useFormik } from "formik";
-import { useState } from "react";
 import * as yup from "yup";
 // functions
 import { authAPI } from "api/authApi";
 import { useErrorHandler } from "hooks/useErrorHandler";
-import { NAME_REGULAR, PASSWORD_REGULAR } from "services/regulars";
+import { API_ERRORS } from "services/constants";
+import { EMAIL_REGULAR, NAME_REGULAR, PASSWORD_REGULAR } from "services/regulars";
+import { withEmailSentScreen } from "hoc/withEmailSentScreen";
 // UI-KIT
 import { LinkItem } from "UI-KIT/Link/LinkItem";
 import { Button } from "UI-KIT/Button/Button";
@@ -13,9 +14,9 @@ import Input from "UI-KIT/Input/Input";
 // styles
 import "./Register.scss";
 
-function Register() {
-  const [isSuccessReg, setSuccessReg] = useState(false);
+function Register({ showEmailSentScreen }) {
   const [Error, setError] = useErrorHandler();
+
   const formik = useFormik({
     initialValues: {
       userName: "",
@@ -39,7 +40,7 @@ function Register() {
         .required("Поле обязательно для заполнения"),
       email: yup
         .string()
-        .email("Введите корректный E-mail")
+        .matches(EMAIL_REGULAR, "Введите корректный E-mail")
         .min(6, "Длина поля от 6 до 254 символов")
         .max(254, "Длина поля от 6 до 254 символов")
         .required("Поле обязательно для заполнения"),
@@ -60,9 +61,16 @@ function Register() {
     onSubmit: async (values) => {
       try {
         await authAPI.signup(values);
-        setSuccessReg(true);
+        const { email, password } = formik.values;
+        showEmailSentScreen({ email, password });
       } catch (error) {
-        setError(error);
+        switch (error.message) {
+          case API_ERRORS.EMAIL_EXISTS:
+            formik.setFieldError("email", "Такой E-mail уже зарегистрирован");
+            break;
+          default:
+            setError(error);
+        }
       }
     },
   });
@@ -75,8 +83,8 @@ function Register() {
   return (
     <main className="register">
       <h1 className="register__title">Добро пожаловать в Octopus</h1>
-      <div className={`register__container ${isSuccessReg ? "register__container_hide" : ""}`}>
-        <p className="register__subtitle">Заполните все поля, чтобы зарегистрироваться </p>
+      <div className="register__container">
+        <p className="register__subtitle">Заполните все поля, чтобы зарегистрироваться</p>
         <Form extClassName="register__form" onSubmit={formik.handleSubmit}>
           <div className="register__userName">
             <Input
@@ -111,7 +119,7 @@ function Register() {
           <Input
             label="E-mail"
             extClassNameInput="login__input"
-            type="email"
+            type="text"
             name="email"
             id="authEmail"
             value={formik.values.email}
@@ -135,9 +143,7 @@ function Register() {
             >
               <ul className="register__tooltip-container">
                 <li className="register__tooltip-item">от 8 до 30 символов</li>
-                <li className="register__tooltip-item">
-                  должен содержать цифры и буквы / спецсимволы без пробелов
-                </li>
+                <li className="register__tooltip-item">содержит буквы и цифры</li>
               </ul>
             </Input>
           </div>
@@ -157,47 +163,7 @@ function Register() {
             }
             onBlur={transformBlur}
           />
-          <Button
-            title="Зарегистрироваться"
-            fill
-            size="standard"
-            disabled={!(formik.isValid && formik.dirty)}
-          />
-        </Form>
-        <p className="register__suggestion">
-          У вас уже есть учетная запись?{" "}
-          <LinkItem
-            url="/signin"
-            title="Войти"
-            extClassName="login__link"
-            weight="400"
-            textColor="var(--text-color)"
-            lineColor="var(--link-underline)"
-          />
-        </p>
-      </div>
-      <div className={`register__message ${isSuccessReg ? "register__message_show" : ""}`}>
-        <Form extClassName="register__confirm-form">
-          <h3 className="register__confirm-title">Учетная запись создана</h3>
-          <p className="register__confirm-textbox">
-            <p className="register__confirm-text">
-              Мы отправили электронное письмо с подтверждением на почту.
-            </p>{" "}
-            <p className="register__confirm-text">Нажмите на ссылку внутри, чтобы начать.</p>
-          </p>
-          <p className="register__confirm-textbox">
-            <p className="register__confirm-text">Не получили письмо?</p>{" "}
-            <p className="register__confirm-text">
-              Чтобы отправить электронное письмо повторно,
-              <Button
-                title="нажмите здесь"
-                fill={false}
-                url="#"
-                linkType="link"
-                extClassName="register__confirm-link"
-              />
-            </p>
-          </p>
+          <Button title="Зарегистрироваться" fill size="standard" />
         </Form>
         <p className="register__suggestion">
           У вас уже есть учетная запись?{" "}
@@ -216,4 +182,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default withEmailSentScreen(Register);

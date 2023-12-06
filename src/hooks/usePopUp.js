@@ -6,7 +6,7 @@ export const usePopUp = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    setIsOpen(true);
+    setIsOpen(content !== null);
   }, [content]);
 
   function PopUp() {

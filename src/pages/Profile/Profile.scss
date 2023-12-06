@@ -6,30 +6,15 @@
   margin-top: 80px;
   color: var(--text-color);
 
-  &_navigation {
+  &__navigation {
     margin-right: 40px;
     margin-top: 73px;
     max-width: 285px;
     width: 100%;
+    font-size: 20px;
 
-    &_button:last-child {
+    &-button:last-child {
       margin-bottom: 0;
-    }
-
-    &_subtitle {
-      font-size: 20px;
-      font-weight: 400;
-      line-height: 23px;
-      text-align: left;
-      margin-bottom: 20px;
-    }
-
-    &_description {
-      font-size: 16px;
-      font-weight: 300;
-      line-height: 22px;
-      text-align: left;
-      margin-bottom: 20px;
     }
   }
 
@@ -37,17 +22,15 @@
     width: 100%;
   }
 
-  &_title {
-    font-size: 32px;
-    font-weight: 400;
-    line-height: 38px;
+  &__title {
+    @include roboto(var(--text-color), 32px, 38px, 400);
+
     text-align: left;
     margin-bottom: 34px;
-    color: var(--text-color);
   }
 }
 
-.button.profile_navigation_button {
+.button.profile__navigation-button {
   width: 100%;
   text-align: left;
   margin-bottom: 20px;

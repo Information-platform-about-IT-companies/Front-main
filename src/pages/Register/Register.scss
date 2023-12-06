@@ -7,16 +7,13 @@
 
   &__container {
     @include flex(center, center, column);
-
-    &_hide {
-      display: none;
-    }
   }
 
   &__title {
     @include roboto-32($color: var(--text-color));
 
     font-style: normal;
+    font-weight: 400;
     line-height: normal;
     margin-bottom: 20px;
   }
@@ -43,16 +40,6 @@
     height: 46px;
   }
 
-  &__suggestion {
-    @include roboto-16($color: var(--text-color));
-
-    font-style: normal;
-    line-height: normal;
-    font-weight: 300;
-    margin-top: 24px;
-    margin-bottom: 102px;
-  }
-
   &__link {
     @include roboto-16($color: var(--text-color));
   }
@@ -63,6 +50,16 @@
     @include flex(start, space-between, row);
 
     gap: 32px;
+  }
+
+  &__suggestion {
+    @include roboto-16($color: var(--text-color));
+
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    margin-bottom: 102px;
+    margin-top: 24px;
   }
 
   &__tooltip-input {
@@ -112,54 +109,5 @@
     list-style: disc outside;
     margin-left: 23px;
     padding-right: -100px;
-  }
-
-  &__message {
-    display: none;
-
-    &_show {
-      @include flex(center, center, column);
-
-      margin-top: 50px;
-    }
-  }
-
-  &__confirm-form {
-    @include flex(center, center, column);
-
-    min-width: 773px;
-    min-height: 468px;
-    padding: 32px;
-    gap: 20px;
-    border-radius: 20px;
-  }
-
-  &__confirm-title {
-    @include roboto-32($color: var(--text-color));
-
-    margin-bottom: -5px;
-  }
-
-  &__confirm-textbox {
-    @include flex(center, center, column);
-  }
-
-  &__confirm-text {
-    @include flex(center, center, row);
-    @include roboto-16($color: var(--text-color));
-
-    font-weight: 300;
-    line-height: 140%;
-  }
-
-  &__confirm-link {
-    line-height: 110%;
-    outline: none;
-    margin-left: 4px;
-    border-radius: 0;
-
-    &:hover {
-      border-bottom: 1px solid var(--link-underline);
-    }
   }
 }

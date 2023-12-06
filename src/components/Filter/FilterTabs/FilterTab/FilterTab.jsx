@@ -26,7 +26,7 @@ export function Tab({ formName, tabName, total, direction, onClick }) {
 Tab.propTypes = {
   formName: PropTypes.string.isRequired,
   tabName: PropTypes.string.isRequired,
-  total: PropTypes.number.isRequired,
+  total: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf([""])]).isRequired,
   direction: PropTypes.oneOf(["up", "down"]).isRequired,
   onClick: PropTypes.func.isRequired,
 };

@@ -9,18 +9,22 @@ import MainContextProvider from "../../context/MainContext";
 describe("Header component is renders", () => {
   it("renders Header component when is logged in", () => {
     render(
-      <BrowserRouter>
-        <Header loggedIn userData={{ firstName: "Test", lastName: "User" }} />
-      </BrowserRouter>,
+      <MainContextProvider>
+        <BrowserRouter>
+          <Header loggedIn userData={{ firstName: "Test", lastName: "User" }} />
+        </BrowserRouter>
+      </MainContextProvider>,
     );
     const headerElem = screen.getByText(/Test User/i);
     expect(headerElem).toBeInTheDocument();
   });
   it("renders Header component when is logged out", () => {
     render(
-      <BrowserRouter>
-        <Header loggedIn={false} userData={{ firstName: "Test", lastName: "User" }} />
-      </BrowserRouter>,
+      <MainContextProvider>
+        <BrowserRouter>
+          <Header loggedIn={false} userData={{ firstName: "Test", lastName: "User" }} />
+        </BrowserRouter>
+      </MainContextProvider>,
     );
     const headerElem = screen.getByText(/Войти/i);
     expect(headerElem).toBeInTheDocument();
@@ -63,9 +67,11 @@ describe("Header component navigation", () => {
 
   it("should navigate to /signup when register button is clicked", async () => {
     render(
-      <BrowserRouter>
-        <Header loggedIn={false} userData={{ firstName: "Test", lastName: "User" }} />
-      </BrowserRouter>,
+      <MainContextProvider>
+        <BrowserRouter>
+          <Header loggedIn={false} userData={{ firstName: "Test", lastName: "User" }} />
+        </BrowserRouter>
+      </MainContextProvider>,
     );
     const linkElement = screen.getByText(/Зарегистрироваться/i);
     expect(linkElement).toBeInTheDocument();
@@ -77,9 +83,11 @@ describe("Header component navigation", () => {
 
   it("should navigate to /profile when profile button is clicked", async () => {
     render(
-      <BrowserRouter>
-        <Header loggedIn userData={{ firstName: "Test", lastName: "User" }} />
-      </BrowserRouter>,
+      <MainContextProvider>
+        <BrowserRouter>
+          <Header loggedIn userData={{ firstName: "Test", lastName: "User" }} />
+        </BrowserRouter>
+      </MainContextProvider>,
     );
     const linkElement = screen.getByText(/Test User/i);
     expect(linkElement).toBeInTheDocument();

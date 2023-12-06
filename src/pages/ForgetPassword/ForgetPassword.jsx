@@ -4,6 +4,7 @@ import * as yup from "yup";
 // functions
 import { authAPI } from "api/authApi";
 import { useErrorHandler } from "hooks/useErrorHandler";
+import { EMAIL_REGULAR } from "services/regulars";
 // UI-KIT
 import { LinkItem } from "UI-KIT/Link/LinkItem";
 import { Button } from "UI-KIT/Button/Button";
@@ -23,7 +24,7 @@ function ForgetPassword() {
     validationSchema: yup.object({
       email: yup
         .string()
-        .email("Введите корректный E-mail")
+        .matches(EMAIL_REGULAR, "Введите корректный E-mail")
         .min(6, "Длина поля от 6 до 254 символов")
         .max(254, "Длина поля от 6 до 254 символов")
         .required("Поле обязательно для заполнения"),
@@ -44,7 +45,7 @@ function ForgetPassword() {
   };
 
   function repeatRequestForConfirm() {
-    console.log("Повторный запрос на сервер для получения письма на почту");
+    setNoErrorServerResponse(false);
   }
 
   return (
@@ -77,13 +78,7 @@ function ForgetPassword() {
             onBlur={transformBlur}
           />
 
-          <Button
-            title="Восстановить пароль"
-            type="submit"
-            fill
-            size="standard"
-            disabled={!(formik.isValid && formik.dirty)}
-          />
+          <Button title="Восстановить пароль" type="submit" fill size="standard" />
         </Form>
         <p className="password-recovery__suggestion">
           Вспомнили свой пароль?{" "}
