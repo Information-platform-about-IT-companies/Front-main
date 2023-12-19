@@ -9,15 +9,15 @@ export function EmailSent({ askForEmail }) {
       <h1 className="email-sent__title">Добро пожаловать в Octopus</h1>
       <div className="email-sent__message">
         <Form extClassName="email-sent__confirm-form" onSubmit={() => false}>
-          <h3 className="email-sent__confirm-title">Ваша учетная запись создана!</h3>
+          <h3 className="email-sent__confirm-title">Учетная запись создана</h3>
           <div className="email-sent__confirm-textbox">
             <p className="email-sent__confirm-text">
-              Мы отправили электронное письмо с подтверждением на вашу почту.
+              Мы отправили электронное письмо с подтверждением на почту.
             </p>{" "}
-            <p className="email-sent__confirm-text">Нажмите на ссылку внутри, чтобы начать!</p>
+            <p className="email-sent__confirm-text">Нажмите на ссылку внутри, чтобы начать.</p>
           </div>
           <div className="email-sent__confirm-textbox">
-            <p className="email-sent__confirm-text">Вы не получили электронное письмо? </p>{" "}
+            <p className="email-sent__confirm-text">Не получили письмо?</p>{" "}
             <p className="email-sent__confirm-text">
               Чтобы отправить электронное письмо повторно,{" "}
               <ButtonChanges
