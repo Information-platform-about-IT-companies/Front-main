@@ -63,6 +63,8 @@
     margin-left: 4px;
     border-radius: 0;
 
+    @include roboto-16($color: var(--text-color));
+
     &:hover {
       border-bottom: 1px solid var(--link-underline);
     }
