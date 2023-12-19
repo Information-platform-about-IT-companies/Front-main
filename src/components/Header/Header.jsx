@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // functions
 import { logout } from "api/authApi";
 import { useMainContext } from "context/MainContext";
@@ -16,10 +16,12 @@ import "assets/style/main.scss";
 function Header({ loggedIn, userData }) {
   const { theme, setTheme } = useContext(ThemeContext);
   const { setData } = useMainContext();
+  const navigate = useNavigate();
 
   const onLogout = () => {
     logout();
     setData((data) => ({ ...data, currentUser: null }));
+    navigate(`/`);
   };
   return (
     <header className="header">
