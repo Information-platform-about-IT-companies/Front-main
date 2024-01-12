@@ -36,7 +36,7 @@
 
 .form-info-change {
   &__status {
-    @include roboto-20;
+    @include roboto-20(var(--text-color));
   }
 }
 
