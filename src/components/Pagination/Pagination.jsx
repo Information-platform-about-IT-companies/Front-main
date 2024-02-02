@@ -25,8 +25,8 @@ export function Pagination({ totalPages }) {
   const firstPage = 1;
   const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
   const visiblePages = pages.slice(
-    Math.max(0, currentPage - 2),
-    Math.min(currentPage + 1, totalPages),
+    Math.max(0, currentPage - 3),
+    Math.min(currentPage + 2, totalPages),
   );
 
   return (
@@ -36,7 +36,7 @@ export function Pagination({ totalPages }) {
           <ButtonIcon
             className="pagination__button"
             onClick={() => turnToPage(currentPage - 1)}
-            icon={<IconArrow direction="left" size="24" color="var(--text-color)" />}
+            icon={<IconArrow direction="left" size="24" />}
           />
         </li>
       )}

@@ -77,9 +77,7 @@ function RecoveryPassword() {
           >
             <ul className="recoveryPassword__tooltip-container">
               <li className="recoveryPassword__tooltip-item">от 8 до 30 символов</li>
-              <li className="recoveryPassword__tooltip-item">
-                должен содержать цифры и буквы / спецсимволы без пробелов
-              </li>
+              <li className="recoveryPassword__tooltip-item">содержит буквы и цифры</li>
             </ul>
           </Input>
         </div>

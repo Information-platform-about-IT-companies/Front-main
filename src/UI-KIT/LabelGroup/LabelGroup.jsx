@@ -5,7 +5,7 @@ import { Label } from "UI-KIT/Label/Label";
 import { declinationsNumericalValues } from "services/constants";
 import { useState } from "react";
 
-export default function LabelGroup({ title, items, extClass, isLink, full }) {
+export default function LabelGroup({ title, items, extClass, isLink, companyId, full }) {
   const [isHovered, setIsHovered] = useState(Array(items.length).fill(false));
 
   const text = ["услуга", "услуги", "услуг"];
@@ -58,7 +58,12 @@ export default function LabelGroup({ title, items, extClass, isLink, full }) {
           </li>
         ))}
         {filterCount && (
-          <Label title={`Ещё ${filterCount} ${declinationsNumericalValues(filterCount, text)}`} />
+          <Link to={`/companies/${companyId}`} className="labels__list-item">
+            <Label
+              title={`Ещё ${filterCount} ${declinationsNumericalValues(filterCount, text)}`}
+              extClassName="labels__link"
+            />
+          </Link>
         )}
       </ul>
     </div>
@@ -73,12 +78,14 @@ LabelGroup.propTypes = {
       name: PropTypes.string.isRequired,
     }),
   ).isRequired,
+  companyId: PropTypes.string,
   isLink: PropTypes.bool,
   full: PropTypes.bool,
   extClass: PropTypes.string,
 };
 
 LabelGroup.defaultProps = {
+  companyId: "",
   isLink: false,
   full: false,
   extClass: "",
