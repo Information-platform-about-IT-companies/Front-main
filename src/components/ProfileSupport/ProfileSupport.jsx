@@ -42,7 +42,7 @@ function ProfileSupport() {
     <>
       <h1 className="profile__title">Поддержка</h1>
       <Form extClassName="form-info" onSubmit={formik.handleSubmit}>
-        <h4 className="form-info__subtitle">Это самый быстрый способ связаться с нами</h4>
+        <h4 className="form-info__subtitle">Самый быстрый способ связаться с нами</h4>
         <p className="form-info__description">
           Наша служба поддержки ответит на запросы из этой формы. Чтобы получить максимально быстрое
           решение, пожалуйста, изложите свой запрос как можно более подробно.

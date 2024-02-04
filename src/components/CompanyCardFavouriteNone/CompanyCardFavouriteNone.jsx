@@ -10,7 +10,7 @@ export default function CompanyCardFavouriteNone() {
       <p className="companyCardFfvouriteNone__text">
         Нажмите кнопку ниже, чтобы найти полезные компании.
       </p>
-      <Button size="standard" title="Поиск компании" url="/filter" linkType="link" fill />
+      <Button size="standard" title="Поиск компаний" url="/filter" linkType="link" fill />
     </div>
   );
 }

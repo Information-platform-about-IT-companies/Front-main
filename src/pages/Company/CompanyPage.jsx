@@ -103,7 +103,7 @@ export default function CompanyPage() {
               items={company.industries}
               title="Отрасли"
               extClass="company__label-text labels_full"
-              isLink
+              // isLink
               full
             />
           </>

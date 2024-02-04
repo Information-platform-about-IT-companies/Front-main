@@ -71,7 +71,7 @@ function App() {
           <Route path="/filter/*" element={<FilterPage />} />
           <Route path="/company" element={<CompanyPage />} />
           <Route path="/companies/:companyId" element={<CompanyPage />} />
-          <Route path="/signin" element={loggedIn ? <Navigate to="/" /> : <Login />} />
+          <Route path="/signin" element={loggedIn ? <Navigate to="/profile" /> : <Login />} />
           <Route path="/signup" element={loggedIn ? <Navigate to="/" /> : <Register />} />
           <Route
             path="/reset-password-confirm"

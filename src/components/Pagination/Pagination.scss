@@ -11,6 +11,20 @@
     cursor: pointer;
     border: none;
     background: none;
+
+    svg {
+      path {
+        fill: var(--text-color);
+      }
+    }
+
+    &:hover {
+      svg {
+        path {
+          fill: $blue-dark;
+        }
+      }
+    }
   }
 
   &__item {
@@ -24,6 +38,13 @@
     font-size: 14px;
     text-decoration: none;
     color: var(--text-color);
+    transition: all $animation;
+
+    &:hover {
+      background: $gradient-blue;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
     &_active {
       position: relative;
@@ -38,7 +59,7 @@
         inset: 0 0 0 -1px;
         padding: 1px;
         border-radius: 5px;
-        background: linear-gradient(#605ed6, #5c9ad2);
+        background: $gradient-blue;
         mask:
           linear-gradient(#fff 0 0) content-box,
           linear-gradient(#fff 0 0);
