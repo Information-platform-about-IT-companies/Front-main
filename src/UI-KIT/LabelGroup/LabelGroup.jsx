@@ -35,7 +35,6 @@ export default function LabelGroup({
     }
     filterCount = items.length - 3;
   } else filterServices = items.slice(0);
-  // console.log(filterServices) - массив сервисов объектов [{id, name}]
   return (
     <div className={`labels__wrapper ${extClass}`}>
       <span className="labels__text">{title}</span>
