@@ -1,11 +1,19 @@
 import "./LabelGroup.scss";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import PropTypes, { number } from "prop-types";
 import { Label } from "UI-KIT/Label/Label";
 import { declinationsNumericalValues } from "services/constants";
 import { useState } from "react";
 
-export default function LabelGroup({ title, items, extClass, isLink, companyId, full }) {
+export default function LabelGroup({
+  title,
+  items,
+  extClass,
+  isLink,
+  companyId,
+  full,
+  checkedServices,
+}) {
   const [isHovered, setIsHovered] = useState(Array(items.length).fill(false));
 
   const text = ["услуга", "услуги", "услуг"];
@@ -17,6 +25,9 @@ export default function LabelGroup({ title, items, extClass, isLink, companyId, 
     filterServices = items.slice(0, 3);
     filterCount = items.length - 3;
   } else filterServices = items.slice(0);
+  // filterServices.filter((i) =>
+  //   checkedServices.includes(i.id) ? console.log("YES") : console.log("NO"),
+  // );
   return (
     <div className={`labels__wrapper ${extClass}`}>
       <span className="labels__text">{title}</span>
@@ -44,7 +55,12 @@ export default function LabelGroup({ title, items, extClass, isLink, companyId, 
                   })
                 }
               >
-                <Label title={item.name} extClassName="labels__link" />
+                <Label
+                  title={item.name}
+                  extClassName={`${
+                    checkedServices.includes(item.id) ? "label_checked " : ""
+                  } labels__link`}
+                />
                 <span
                   className="labels__tooltip"
                   style={{ display: isHovered[index] && item.name.length > 15 ? "block" : "none" }}
@@ -82,6 +98,7 @@ LabelGroup.propTypes = {
   isLink: PropTypes.bool,
   full: PropTypes.bool,
   extClass: PropTypes.string,
+  checkedServices: PropTypes.arrayOf(number),
 };
 
 LabelGroup.defaultProps = {
@@ -89,4 +106,5 @@ LabelGroup.defaultProps = {
   isLink: false,
   full: false,
   extClass: "",
+  checkedServices: [],
 };

@@ -18,6 +18,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
 
+  &_checked {
+    color: var(--company-checked-text);
+  }
+
   &:hover {
     background-color: var(--company-lable-background-hover);
   }
