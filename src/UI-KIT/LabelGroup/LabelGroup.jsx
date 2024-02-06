@@ -1,9 +1,9 @@
-import "./LabelGroup.scss";
 import { Link } from "react-router-dom";
 import PropTypes, { number } from "prop-types";
 import { Label } from "UI-KIT/Label/Label";
 import { declinationsNumericalValues } from "services/constants";
 import { useState } from "react";
+import "./LabelGroup.scss";
 
 export default function LabelGroup({
   title,
@@ -19,15 +19,23 @@ export default function LabelGroup({
   const text = ["услуга", "услуги", "услуг"];
   // для кнопок "ЕЩЕ N УСЛУГ"
   if (!items) return null;
-  let filterServices;
-  let filterCount;
+  let filterServices = [];
+  let filterCount = 0;
   if (!full && items.length > 3) {
-    filterServices = items.slice(0, 3);
+    for (let i = 0; i < checkedServices.length; i += 1) {
+      filterServices = checkedServices
+        .map((checkedId) => items.find((item) => item.id === checkedId))
+        .filter(Boolean);
+    }
+    for (let i = 0; filterServices.length < 3; i += 1) {
+      const label = items[i];
+      if (!filterServices.some((el) => el && el.id === label.id)) {
+        filterServices.push(label);
+      }
+    }
     filterCount = items.length - 3;
   } else filterServices = items.slice(0);
-  // filterServices.filter((i) =>
-  //   checkedServices.includes(i.id) ? console.log("YES") : console.log("NO"),
-  // );
+  // console.log(filterServices) - массив сервисов объектов [{id, name}]
   return (
     <div className={`labels__wrapper ${extClass}`}>
       <span className="labels__text">{title}</span>
@@ -73,7 +81,7 @@ export default function LabelGroup({
             )}
           </li>
         ))}
-        {filterCount && (
+        {filterCount > 0 && (
           <Link to={`/companies/${companyId}`} className="labels__list-item">
             <Label
               title={`Ещё ${filterCount} ${declinationsNumericalValues(filterCount, text)}`}
