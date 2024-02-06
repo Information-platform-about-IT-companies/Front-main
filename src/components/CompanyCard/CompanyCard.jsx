@@ -21,6 +21,7 @@ export default function CompanyCard({
   onIconHeartClick,
   extClassCardName,
   inFavorite,
+  checkedServices,
 }) {
   const isFilterCard = type === "filterCard";
   const isFavoriteCard = type === "favoriteCard";
@@ -36,7 +37,7 @@ export default function CompanyCard({
           </div>
         </div>
         {description ? <p className="companyCard__description">{cutDescription}</p> : null}
-        <LabelGroup items={services} title="Услуги" isLink />
+        <LabelGroup items={services} title="Услуги" isLink checkedServices={checkedServices} />
         <LinkItem
           title="Подробнее"
           url={`/companies/${id}`}
