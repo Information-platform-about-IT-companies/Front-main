@@ -10,7 +10,7 @@ import { cutText } from "services/constants";
 // Стили
 import "./CompanyCard.scss";
 
-export default function CompanyCard({
+export function CompanyCard({
   id,
   type,
   logo,
@@ -104,3 +104,5 @@ CompanyCard.defaultProps = {
   description: "",
   services: [],
 };
+
+export default CompanyCard;

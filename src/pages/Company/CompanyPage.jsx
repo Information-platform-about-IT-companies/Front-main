@@ -19,7 +19,7 @@ import { ROUTES, declinationsNumericalValues } from "services/constants";
 // стили
 import "./CompanyPage.scss";
 
-export default function CompanyPage() {
+export function CompanyPage() {
   const { companyId } = useParams();
   const navigate = useNavigate();
   const [company, setCompany] = useState(null);
@@ -155,3 +155,5 @@ export default function CompanyPage() {
     </main>
   );
 }
+
+export default CompanyPage;

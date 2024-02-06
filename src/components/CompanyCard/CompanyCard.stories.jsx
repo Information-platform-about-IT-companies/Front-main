@@ -1,5 +1,5 @@
 import { MemoryRouter } from "react-router-dom";
-import CompanyCard from "./CompanyCard";
+import { CompanyCard } from "./CompanyCard";
 
 export default {
   title: "components/CompanyCard",

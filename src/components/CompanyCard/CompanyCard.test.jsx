@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
 import { makeFakeCard } from "mocks/tests/mocks";
-import CompanyCard from "./CompanyCard";
+import { CompanyCard } from "./CompanyCard";
 
 describe("CompanyCard component", () => {
   it("renders favourited CompanyCard component", () => {

@@ -1,5 +1,5 @@
 // Components
-import CompanyCard from "components/CompanyCard/CompanyCard";
+import { CompanyCard } from "components/CompanyCard/CompanyCard";
 import CompanyCardFavouriteNone from "components/CompanyCardFavouriteNone/CompanyCardFavouriteNone";
 import { Pagination } from "components/Pagination/Pagination";
 // UI-KIT
