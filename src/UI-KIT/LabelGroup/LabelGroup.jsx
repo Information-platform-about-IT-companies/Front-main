@@ -1,20 +1,38 @@
-import "./LabelGroup.scss";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import PropTypes, { number } from "prop-types";
 import { Label } from "UI-KIT/Label/Label";
 import { declinationsNumericalValues } from "services/constants";
 import { useState } from "react";
+import "./LabelGroup.scss";
 
-export default function LabelGroup({ title, items, extClass, isLink, companyId, full }) {
+export default function LabelGroup({
+  title,
+  items,
+  extClass,
+  isLink,
+  companyId,
+  full,
+  checkedServices,
+}) {
   const [isHovered, setIsHovered] = useState(Array(items.length).fill(false));
 
   const text = ["услуга", "услуги", "услуг"];
   // для кнопок "ЕЩЕ N УСЛУГ"
   if (!items) return null;
-  let filterServices;
-  let filterCount;
+  let filterServices = [];
+  let filterCount = 0;
   if (!full && items.length > 3) {
-    filterServices = items.slice(0, 3);
+    for (let i = 0; i < checkedServices.length; i += 1) {
+      filterServices = checkedServices
+        .map((checkedId) => items.find((item) => item.id === checkedId))
+        .filter(Boolean);
+    }
+    for (let i = 0; filterServices.length < 3; i += 1) {
+      const label = items[i];
+      if (!filterServices.some((el) => el && el.id === label.id)) {
+        filterServices.push(label);
+      }
+    }
     filterCount = items.length - 3;
   } else filterServices = items.slice(0);
   return (
@@ -44,7 +62,12 @@ export default function LabelGroup({ title, items, extClass, isLink, companyId, 
                   })
                 }
               >
-                <Label title={item.name} extClassName="labels__link" />
+                <Label
+                  title={item.name}
+                  extClassName={`${
+                    checkedServices.includes(item.id) ? "label_checked " : ""
+                  } labels__link`}
+                />
                 <span
                   className="labels__tooltip"
                   style={{ display: isHovered[index] && item.name.length > 15 ? "block" : "none" }}
@@ -57,7 +80,7 @@ export default function LabelGroup({ title, items, extClass, isLink, companyId, 
             )}
           </li>
         ))}
-        {filterCount && (
+        {filterCount > 0 && (
           <Link to={`/companies/${companyId}`} className="labels__list-item">
             <Label
               title={`Ещё ${filterCount} ${declinationsNumericalValues(filterCount, text)}`}
@@ -82,6 +105,7 @@ LabelGroup.propTypes = {
   isLink: PropTypes.bool,
   full: PropTypes.bool,
   extClass: PropTypes.string,
+  checkedServices: PropTypes.arrayOf(number),
 };
 
 LabelGroup.defaultProps = {
@@ -89,4 +113,5 @@ LabelGroup.defaultProps = {
   isLink: false,
   full: false,
   extClass: "",
+  checkedServices: [],
 };

@@ -57,6 +57,7 @@ function FilterPage() {
           companies={stateFetch.companies}
           totalPages={stateFetch.totalPages}
           onCompanyUpdate={updateCompany}
+          checkedServices={state.checkedServices}
         />
       ) : (
         ""

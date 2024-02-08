@@ -1,5 +1,5 @@
 // Components
-import CompanyCard from "components/CompanyCard/CompanyCard";
+import { CompanyCard } from "components/CompanyCard/CompanyCard";
 import CompanyCardFavouriteNone from "components/CompanyCardFavouriteNone/CompanyCardFavouriteNone";
 import { Pagination } from "components/Pagination/Pagination";
 // UI-KIT
@@ -14,6 +14,7 @@ export function CompanyList({
   companies = [],
   onCompanyUpdate: updateCompany,
   totalPages,
+  checkedServices,
 }) {
   const [Error, setError] = useErrorHandler();
   const toggleFavorited = useToggleFavorited();
@@ -44,6 +45,7 @@ export function CompanyList({
                 inFavorite={isFavorited}
                 onIconHeartClick={onIconHeartClick}
                 city={city}
+                checkedServices={checkedServices}
                 {...rest}
               />
             </li>

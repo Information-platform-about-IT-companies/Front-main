@@ -14,7 +14,7 @@ import Layout from "components/Layout/Layout";
 import ScrollUp from "components/ScrollUp/ScrollUp";
 // pages
 import FilterPage from "pages/FilterPage/FilterPage";
-import CompanyPage from "pages/Company/CompanyPage";
+import { CompanyPage } from "pages/Company/CompanyPage";
 import Profile from "pages/Profile/Profile";
 import Main from "pages/Main/Main";
 import Login from "pages/Login/Login";
