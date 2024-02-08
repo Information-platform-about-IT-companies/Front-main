@@ -34,7 +34,8 @@ export default function CompanyPage() {
         const fetchedCompany = await companyAPI.fetchCompany(id, { withCredentials: loggedIn });
         setCompany(fetchedCompany);
       } catch (error) {
-        setError(error);
+        navigate(ROUTES.NOT_FOUND);
+        console.error(error);
       }
     };
     if (!isCompanyFetched || loggedIn) {
